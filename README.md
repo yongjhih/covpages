@@ -1,7 +1,14 @@
 # covpages
 
+[![Coverage](https://yongjhih.github.io/covpages/badge.svg)](https://yongjhih.github.io/covpages/)
+[![Specification](https://img.shields.io/badge/docs-specification-blue.svg)](docs/SPECIFICATION.md)
+[![Benchmark](https://img.shields.io/badge/benchmark-97.6%25%20savings-success.svg)](docs/BENCHMARK.md)
+
 > **Impeccable GitHub-styled unit test coverage report generator for GitHub Pages.**  
 > Supports mainstream formats (LCOV, Cobertura, JSON), zero-build drop-in deployment, commit range backfill, and multi-commit coverage trend graphs across the repository, folders, and individual files.
+
+🌐 **Live Demo & Report**: [https://yongjhih.github.io/covpages/](https://yongjhih.github.io/covpages/)  
+📚 **Documentation**: [Storage & Architecture Specification](docs/SPECIFICATION.md) · [Storage & Network Benchmark](docs/BENCHMARK.md) · [Custom Pages Developer Guide](docs/CUSTOM_PAGES_GUIDE.md)
 
 ---
 
@@ -211,6 +218,28 @@ jobs:
           publish_dir: ./covpages-dist
           force_orphan: true
 ```
+
+---
+
+## 🏷️ Dynamic Coverage Badge SVG
+
+Covpages automatically generates a crisp, Shields.io-compatible vector SVG badge (`badge.svg`) during every build or drop-in generation without relying on any external badge services.
+
+Embed it directly in your `README.md`:
+
+```markdown
+[![Coverage](https://<username>.github.io/<repo>/badge.svg)](https://<username>.github.io/<repo>/)
+```
+
+Example for this repository:
+```markdown
+[![Coverage](https://yongjhih.github.io/covpages/badge.svg)](https://yongjhih.github.io/covpages/)
+```
+
+Badge color indicators:
+- `≥ 80%`: Primer Green (`#2da44e`)
+- `50% – 79.9%`: Primer Yellow (`#bf8700`)
+- `< 50%`: Primer Red (`#cf222e`)
 
 ---
 

@@ -20,6 +20,7 @@ import {
   saveRefs,
 } from './core/history.js';
 import { normalizeLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
+import { generateBadgeSvg } from './core/badge.js';
 import { renderIndexHtml } from './templates/index.html.js';
 
 export * from './types.js';
@@ -30,6 +31,7 @@ export * from './core/git.js';
 export * from './core/backfill.js';
 export * from './core/presets.js';
 export * from './core/lcov-normalizer.js';
+export * from './core/badge.js';
 export * from './server.js';
 export { renderDropinHtml } from './templates/index.html.js';
 
@@ -42,6 +44,7 @@ export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Repor
   fs.writeFileSync(path.join(dir, 'index.html'), rendered.html, 'utf-8');
   fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');
   fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
+  fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');
 }
 
 
@@ -195,6 +198,7 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   fs.writeFileSync(path.join(outputDir, 'covpages-data.js'), rendered.dataJs, 'utf-8');
   fs.writeFileSync(path.join(outputDir, '.nojekyll'), '', 'utf-8');
   fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
+  fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');
 
   // 10. Normalize and write lcov.info if an LCOV input file exists
   for (const inp of inputPaths) {

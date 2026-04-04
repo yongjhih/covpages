@@ -186,6 +186,40 @@ export const APP_JS = `
     }
   }
 
+  const lcovCache = {};
+  let loadingLcovSha = null;
+
+  async function fetchCommitLcov(sha, shortSha) {
+    const key = sha || shortSha;
+    if (!key || lcovCache[key] || loadingLcovSha === key) return;
+    loadingLcovSha = key;
+
+    const candidates = [
+      './history/lcov/lcov-' + shortSha + '.info',
+      './history/lcov/' + sha + '.lcov',
+      './history/lcov/' + shortSha + '.lcov',
+      './history/lcov/lcov-' + sha + '.info',
+      './coverage/lcov-' + shortSha + '.info',
+    ];
+
+    for (const url of candidates) {
+      try {
+        const resp = await fetch(url);
+        if (resp.ok) {
+          const text = await resp.text();
+          const parsed = parseClientLcov(text, data?.commits || []);
+          lcovCache[key] = parsed.files;
+          if (sha) lcovCache[sha] = parsed.files;
+          if (shortSha) lcovCache[shortSha] = parsed.files;
+          break;
+        }
+      } catch {}
+    }
+
+    loadingLcovSha = null;
+    render();
+  }
+
   function getActiveViewData() {
     if (!data) return null;
     const cEntry = data.commits?.find(c => c.commit.sha === state.selectedCommitSha || c.commit.shortSha === state.selectedCommitSha);
@@ -198,6 +232,13 @@ export const APP_JS = `
         folderChildren: data.folderChildren,
         delta: data.delta,
       };
+    }
+
+    const sha = cEntry.commit.sha;
+    const shortSha = cEntry.commit.shortSha;
+    const cachedFiles = lcovCache[sha] || lcovCache[shortSha];
+    if (!cachedFiles && !loadingLcovSha && (state.selectedFile || state.activeTab === 'files')) {
+      fetchCommitLcov(sha, shortSha);
     }
 
     const folders = {};
@@ -229,13 +270,14 @@ export const APP_JS = `
     }
     if (cEntry.fileSummaries) {
       for (const [fp, sm] of Object.entries(cEntry.fileSummaries)) {
+        const cf = cachedFiles?.[fp];
         files[fp] = {
           path: fp,
-          lines: sm.lines,
-          functions: sm.functions,
-          branches: sm.branches,
-          sourceCode: data.files?.[fp]?.sourceCode,
-          lineDetails: data.files?.[fp]?.lineDetails,
+          lines: cf ? cf.lines : sm.lines,
+          functions: cf ? cf.functions : sm.functions,
+          branches: cf ? cf.branches : sm.branches,
+          sourceCode: cf?.sourceCode || (cEntry.commit.sha === data.currentCommit?.sha ? data.files?.[fp]?.sourceCode : undefined),
+          lineDetails: cf?.lineDetails || (cEntry.commit.sha === data.currentCommit?.sha ? data.files?.[fp]?.lineDetails : undefined),
         };
         const parts = fp.split('/');
         const dirParts = parts.slice(0, -1);
@@ -1236,14 +1278,39 @@ export const APP_JS = `
     const sourceCode = fileCov.sourceCode;
     const lineDetails = fileCov.lineDetails || {};
 
+    if (loadingLcovSha && (!lineDetails || Object.keys(lineDetails).length === 0) && !sourceCode) {
+      return \`
+        <div class="file-toolbar">
+          \${renderBreadcrumbs()}
+        </div>
+        \${renderMetrics(fileCov, null)}
+        <div class="blob-wrapper" style="padding: 48px 24px; text-align: center; color: var(--color-fg-muted);">
+          <div style="font-size: 14px; font-weight: 600; color: var(--color-fg-default); margin-bottom: 8px;">Loading coverage details for commit \${escapeHtml(activeView?.commit?.shortSha || '')}...</div>
+          <div style="font-size: 12px;">Fetching normalized LCOV data on demand</div>
+        </div>
+      \`;
+    }
+
     let linesArray = [];
     if (sourceCode) {
       linesArray = sourceCode.split(/\\r?\\n/);
-    } else {
+    } else if (Object.keys(lineDetails).length > 0) {
       const maxLine = Math.max(...Object.keys(lineDetails).map(Number), 1);
       for (let i = 1; i <= maxLine; i++) {
         linesArray.push('');
       }
+    } else {
+      return \`
+        <div class="file-toolbar">
+          \${renderBreadcrumbs()}
+        </div>
+        \${renderMetrics(fileCov, null)}
+        \${trendPoints.length > 1 ? renderTrendChart('Trend for ' + escapeHtml(filePath), trendPoints, state.trendMetric) : ''}
+        <div class="blob-wrapper" style="padding: 48px 24px; text-align: center; color: var(--color-fg-muted);">
+          <div style="font-size: 14px; font-weight: 600; color: var(--color-fg-default); margin-bottom: 8px;">Line-by-line coverage details not available</div>
+          <div style="font-size: 12px;">Summary metrics are preserved in history index (\${fileCov.lines.covered}/\${fileCov.lines.total} lines covered, \${fileCov.lines.pct}%).</div>
+        </div>
+      \`;
     }
 
     let codeRows = '';
