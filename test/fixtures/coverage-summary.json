@@ -1,0 +1,18 @@
+{
+  "total": {
+    "lines": { "total": 20, "covered": 16, "skipped": 0, "pct": 80 },
+    "statements": { "total": 20, "covered": 16, "skipped": 0, "pct": 80 },
+    "functions": { "total": 4, "covered": 3, "skipped": 0, "pct": 75 },
+    "branches": { "total": 6, "covered": 4, "skipped": 0, "pct": 66.67 }
+  },
+  "src/index.ts": {
+    "lines": { "total": 10, "covered": 8, "skipped": 0, "pct": 80 },
+    "functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+    "branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+  },
+  "src/utils/math.ts": {
+    "lines": { "total": 10, "covered": 8, "skipped": 0, "pct": 80 },
+    "functions": { "total": 2, "covered": 1, "skipped": 0, "pct": 50 },
+    "branches": { "total": 4, "covered": 2, "skipped": 0, "pct": 50 }
+  }
+}
