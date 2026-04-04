@@ -403,8 +403,8 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: var(--color-accent-fg);
-  color: #fff;
+  background-color: var(--color-accent-emphasis);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -487,6 +487,11 @@ body {
   outline: none;
 }
 
+.search-box input::placeholder {
+  color: var(--color-fg-muted);
+  opacity: 1;
+}
+
 .search-box input:focus {
   border-color: var(--color-accent-fg);
   box-shadow: 0 0 0 3px var(--color-accent-subtle);
@@ -501,6 +506,7 @@ body {
   display: flex;
   align-items: center;
   pointer-events: none;
+  z-index: 1;
 }
 
 /* File Table */
