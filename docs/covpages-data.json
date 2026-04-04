@@ -1,8 +1,16 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-04T16:28:58.778Z",
+  "generatedAt": "2026-10-04T16:29:33.993Z",
   "currentCommit": {
+    "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+    "shortSha": "ecb966c",
+    "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+    "author": "yongjhih",
+    "date": "2026-10-04T16:29:16.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "548ce9639613b2de26c5db1928c09f8f8d0a1a63",
     "shortSha": "548ce96",
     "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
@@ -10,18 +18,10 @@
     "date": "2026-10-04T16:20:52.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
-    "shortSha": "46a792a",
-    "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
-    "author": "covpages-bot",
-    "date": "2026-10-04T16:20:36.000Z",
-    "branch": "main"
-  },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": 0
+    "branchesPct": -0.19
   },
   "summary": {
     "lines": {
@@ -37,10 +37,10 @@
       "pct": 90.7
     },
     "branches": {
-      "total": 362,
+      "total": 363,
       "covered": 257,
-      "skipped": 105,
-      "pct": 70.99
+      "skipped": 106,
+      "pct": 70.8
     }
   },
   "folders": {
@@ -60,10 +60,10 @@
         "pct": 90.7
       },
       "branches": {
-        "total": 362,
+        "total": 363,
         "covered": 257,
-        "skipped": 105,
-        "pct": 70.99
+        "skipped": 106,
+        "pct": 70.8
       },
       "filesCount": 19,
       "foldersCount": 1
@@ -84,10 +84,10 @@
         "pct": 90.7
       },
       "branches": {
-        "total": 362,
+        "total": 363,
         "covered": 257,
-        "skipped": 105,
-        "pct": 70.99
+        "skipped": 106,
+        "pct": 70.8
       },
       "filesCount": 19,
       "foldersCount": 3
@@ -108,10 +108,10 @@
         "pct": 91.3
       },
       "branches": {
-        "total": 156,
+        "total": 157,
         "covered": 119,
-        "skipped": 37,
-        "pct": 76.28
+        "skipped": 38,
+        "pct": 75.8
       },
       "filesCount": 7,
       "foldersCount": 0
@@ -2790,10 +2790,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 11,
-        "covered": 10,
-        "skipped": 1,
-        "pct": 90.91
+        "total": 13,
+        "covered": 13,
+        "skipped": 0,
+        "pct": 100
       },
       "lineDetails": {
         "6": {
@@ -2895,10 +2895,10 @@
           }
         },
         "50": {
-          "hits": 31
+          "hits": 34
         },
         "51": {
-          "hits": 31
+          "hits": 34
         },
         "53": {
           "hits": 1,
@@ -2908,20 +2908,20 @@
           }
         },
         "54": {
-          "hits": 31,
+          "hits": 34,
           "branches": {
-            "total": 1,
-            "taken": 0
+            "total": 3,
+            "taken": 3
           }
         },
         "55": {
-          "hits": 31
+          "hits": 33
         },
         "56": {
-          "hits": 31
+          "hits": 33
         },
         "57": {
-          "hits": 31
+          "hits": 33
         }
       },
       "functionDetails": [
@@ -2938,12 +2938,12 @@
         {
           "name": "sanitizeBadgeName",
           "line": 49,
-          "hits": 31
+          "hits": 34
         },
         {
           "name": "getBadgeFileName",
           "line": 53,
-          "hits": 31
+          "hits": 34
         }
       ],
       "sourceCode": "/**\n * SVG Coverage Badge Generator\n * Generates lightweight, Shields.io-compatible SVG badges without any external dependencies.\n */\n\nexport function getBadgeColor(pct: number): string {\n  if (pct >= 80) return '#2da44e'; // Primer green\n  if (pct >= 50) return '#bf8700'; // Primer yellow/attention\n  return '#cf222e'; // Primer red/danger\n}\n\nexport function generateBadgeSvg(pct: number, label = 'coverage'): string {\n  const roundedPct = Math.round(pct * 10) / 10;\n  const pctStr = `${roundedPct}%`;\n  const color = getBadgeColor(pct);\n\n  // Character width approximations for crisp rendering\n  const labelWidth = Math.round(label.length * 6.5 + 16);\n  const valueWidth = Math.round(pctStr.length * 7.5 + 16);\n  const totalWidth = labelWidth + valueWidth;\n\n  const labelTextX = Math.round((labelWidth / 2) * 10);\n  const valueTextX = Math.round((labelWidth + valueWidth / 2) * 10);\n\n  return `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"${totalWidth}\" height=\"20\" role=\"img\" aria-label=\"${label}: ${pctStr}\">\n  <title>${label}: ${pctStr}</title>\n  <linearGradient id=\"covpages-grad\" x2=\"0\" y2=\"100%\">\n    <stop offset=\"0\" stop-color=\"#bbb\" stop-opacity=\".1\"/>\n    <stop offset=\"1\" stop-opacity=\".1\"/>\n  </linearGradient>\n  <clipPath id=\"covpages-r\">\n    <rect width=\"${totalWidth}\" height=\"20\" rx=\"3\" fill=\"#fff\"/>\n  </clipPath>\n  <g clip-path=\"url(#covpages-r)\">\n    <rect width=\"${labelWidth}\" height=\"20\" fill=\"#555\"/>\n    <rect x=\"${labelWidth}\" width=\"${valueWidth}\" height=\"20\" fill=\"${color}\"/>\n    <rect width=\"${totalWidth}\" height=\"20\" fill=\"url(#covpages-grad)\"/>\n  </g>\n  <g fill=\"#fff\" text-anchor=\"middle\" font-family=\"-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif\" text-rendering=\"geometricPrecision\" font-size=\"110\">\n    <text aria-hidden=\"true\" x=\"${labelTextX}\" y=\"150\" fill=\"#010101\" fill-opacity=\".3\" transform=\"scale(.1)\">${label}</text>\n    <text x=\"${labelTextX}\" y=\"140\" transform=\"scale(.1)\" fill=\"#fff\">${label}</text>\n    <text aria-hidden=\"true\" x=\"${valueTextX}\" y=\"150\" fill=\"#010101\" fill-opacity=\".3\" transform=\"scale(.1)\">${pctStr}</text>\n    <text x=\"${valueTextX}\" y=\"140\" transform=\"scale(.1)\" fill=\"#fff\">${pctStr}</text>\n  </g>\n</svg>\n`;\n}\n\nexport function sanitizeBadgeName(name: string): string {\n  return name.replace(/[/\\\\?%*:|\"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');\n}\n\nexport function getBadgeFileName(scope: 'overall' | 'branch' | 'tag' | 'folder' | 'file', name?: string): string {\n  if (scope === 'overall' || !name) return 'badge.svg';\n  const safe = sanitizeBadgeName(name);\n  return `${scope}-${safe}.svg`;\n}\n"
@@ -2964,45 +2964,45 @@
       },
       "branches": {
         "total": 28,
-        "covered": 16,
-        "skipped": 12,
-        "pct": 57.14
+        "covered": 14,
+        "skipped": 14,
+        "pct": 50
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 23
+          "hits": 11
         },
         "6": {
-          "hits": 23
+          "hits": 11
         },
         "7": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 23
+          "hits": 11
         },
         "9": {
-          "hits": 23
+          "hits": 11
         },
         "10": {
-          "hits": 23
+          "hits": 11
         },
         "11": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3015,7 +3015,7 @@
           "hits": 5
         },
         "14": {
-          "hits": 23
+          "hits": 11
         },
         "16": {
           "hits": 1,
@@ -3038,7 +3038,7 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "29": {
@@ -3048,14 +3048,14 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "31": {
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "32": {
@@ -3069,7 +3069,7 @@
           "hits": 6,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "34": {
@@ -3154,7 +3154,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 23
+          "hits": 11
         },
         {
           "name": "resolveCommitInfo",
@@ -3179,10 +3179,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 30,
+        "total": 43,
+        "covered": 29,
         "skipped": 14,
-        "pct": 68.18
+        "pct": 67.44
       },
       "lineDetails": {
         "1": {
@@ -3785,8 +3785,8 @@
         "192": {
           "hits": 7,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "193": {
@@ -8569,11 +8569,525 @@
           }
         }
       }
+    },
+    {
+      "commit": {
+        "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+        "shortSha": "ecb966c",
+        "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+        "author": "yongjhih",
+        "date": "2026-10-04T16:29:16.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 1663,
+          "covered": 1176,
+          "skipped": 487,
+          "pct": 70.72
+        },
+        "functions": {
+          "total": 43,
+          "covered": 39,
+          "skipped": 4,
+          "pct": 90.7
+        },
+        "branches": {
+          "total": 363,
+          "covered": 257,
+          "skipped": 106,
+          "pct": 70.8
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 1663,
+            "covered": 1176,
+            "skipped": 487,
+            "pct": 70.72
+          },
+          "functions": {
+            "total": 43,
+            "covered": 39,
+            "skipped": 4,
+            "pct": 90.7
+          },
+          "branches": {
+            "total": 363,
+            "covered": 257,
+            "skipped": 106,
+            "pct": 70.8
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 1663,
+            "covered": 1176,
+            "skipped": 487,
+            "pct": 70.72
+          },
+          "functions": {
+            "total": 43,
+            "covered": 39,
+            "skipped": 4,
+            "pct": 90.7
+          },
+          "branches": {
+            "total": 363,
+            "covered": 257,
+            "skipped": 106,
+            "pct": 70.8
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 685,
+            "covered": 495,
+            "skipped": 190,
+            "pct": 72.26
+          },
+          "functions": {
+            "total": 23,
+            "covered": 21,
+            "skipped": 2,
+            "pct": 91.3
+          },
+          "branches": {
+            "total": 157,
+            "covered": 119,
+            "skipped": 38,
+            "pct": 75.8
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 470,
+            "covered": 362,
+            "skipped": 108,
+            "pct": 77.02
+          },
+          "functions": {
+            "total": 11,
+            "covered": 10,
+            "skipped": 1,
+            "pct": 90.91
+          },
+          "branches": {
+            "total": 135,
+            "covered": 96,
+            "skipped": 39,
+            "pct": 71.11
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 57,
+            "covered": 57,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 217,
+            "covered": 117,
+            "skipped": 100,
+            "pct": 53.92
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 33,
+            "covered": 13,
+            "skipped": 20,
+            "pct": 39.39
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 170,
+            "covered": 133,
+            "skipped": 37,
+            "pct": 78.24
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 18,
+            "skipped": 9,
+            "pct": 66.67
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 169,
+            "covered": 2,
+            "skipped": 167,
+            "pct": 1.18
+          },
+          "functions": {
+            "total": 2,
+            "covered": 0,
+            "skipped": 2,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 33,
+            "covered": 33,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 13,
+            "covered": 13,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 38,
+            "skipped": 2,
+            "pct": 95
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 28,
+            "covered": 14,
+            "skipped": 14,
+            "pct": 50
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 182,
+            "covered": 172,
+            "skipped": 10,
+            "pct": 94.51
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 29,
+            "skipped": 14,
+            "pct": 67.44
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 85,
+            "skipped": 1,
+            "pct": 98.84
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 44,
+            "skipped": 6,
+            "pct": 88
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 103,
+            "skipped": 18,
+            "pct": 85.12
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 20,
+            "covered": 10,
+            "skipped": 10,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 35,
+            "skipped": 5,
+            "pct": 87.5
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 25,
+            "skipped": 5,
+            "pct": 83.33
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 34,
+            "covered": 34,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "548ce9639613b2de26c5db1928c09f8f8d0a1a63"
+      "main": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f"
     },
     "tags": {}
   },
@@ -8615,6 +9129,19 @@
         "linesPct": 70.72,
         "functionsPct": 90.7,
         "branchesPct": 70.99,
+        "linesCovered": 1176,
+        "linesTotal": 1663
+      },
+      {
+        "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+        "shortSha": "ecb966c",
+        "date": "2026-10-04T16:29:16.000Z",
+        "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 70.72,
+        "functionsPct": 90.7,
+        "branchesPct": 70.8,
         "linesCovered": 1176,
         "linesTotal": 1663
       }
@@ -8659,6 +9186,19 @@
           "branchesPct": 70.99,
           "linesCovered": 1176,
           "linesTotal": 1663
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.72,
+          "functionsPct": 90.7,
+          "branchesPct": 70.8,
+          "linesCovered": 1176,
+          "linesTotal": 1663
         }
       ],
       "src": [
@@ -8698,6 +9238,19 @@
           "linesPct": 70.72,
           "functionsPct": 90.7,
           "branchesPct": 70.99,
+          "linesCovered": 1176,
+          "linesTotal": 1663
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.72,
+          "functionsPct": 90.7,
+          "branchesPct": 70.8,
           "linesCovered": 1176,
           "linesTotal": 1663
         }
@@ -8741,6 +9294,19 @@
           "branchesPct": 76.28,
           "linesCovered": 495,
           "linesTotal": 685
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 72.26,
+          "functionsPct": 91.3,
+          "branchesPct": 75.8,
+          "linesCovered": 495,
+          "linesTotal": 685
         }
       ],
       "src/parsers": [
@@ -8782,6 +9348,19 @@
           "branchesPct": 71.11,
           "linesCovered": 362,
           "linesTotal": 470
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.02,
+          "functionsPct": 90.91,
+          "branchesPct": 71.11,
+          "linesCovered": 362,
+          "linesTotal": 470
         }
       ],
       "src/templates": [
@@ -8817,6 +9396,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 57,
+          "linesTotal": 57
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -8866,6 +9458,19 @@
           "branchesPct": 39.39,
           "linesCovered": 117,
           "linesTotal": 217
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.92,
+          "functionsPct": 100,
+          "branchesPct": 39.39,
+          "linesCovered": 117,
+          "linesTotal": 217
         }
       ],
       "src/index.ts": [
@@ -8901,6 +9506,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 78.24,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 133,
+          "linesTotal": 170
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 78.24,
           "functionsPct": 100,
@@ -8948,6 +9566,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -8983,6 +9614,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -9030,6 +9674,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -9065,6 +9722,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 1.18,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 169
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.18,
           "functionsPct": 0,
@@ -9112,6 +9782,19 @@
           "branchesPct": 90.91,
           "linesCovered": 33,
           "linesTotal": 33
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 33,
+          "linesTotal": 33
         }
       ],
       "src/core/git.ts": [
@@ -9151,6 +9834,19 @@
           "linesPct": 95,
           "functionsPct": 100,
           "branchesPct": 57.14,
+          "linesCovered": 38,
+          "linesTotal": 40
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95,
+          "functionsPct": 100,
+          "branchesPct": 50,
           "linesCovered": 38,
           "linesTotal": 40
         }
@@ -9194,6 +9890,19 @@
           "branchesPct": 68.18,
           "linesCovered": 172,
           "linesTotal": 182
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.51,
+          "functionsPct": 100,
+          "branchesPct": 67.44,
+          "linesCovered": 172,
+          "linesTotal": 182
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -9229,6 +9938,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 98.84,
+          "functionsPct": 100,
+          "branchesPct": 88,
+          "linesCovered": 85,
+          "linesTotal": 86
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 98.84,
           "functionsPct": 100,
@@ -9276,6 +9998,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -9311,6 +10046,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 85.12,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 103,
+          "linesTotal": 121
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.12,
           "functionsPct": 100,
@@ -9358,6 +10106,19 @@
           "branchesPct": 83.33,
           "linesCovered": 35,
           "linesTotal": 40
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 87.5,
+          "functionsPct": 100,
+          "branchesPct": 83.33,
+          "linesCovered": 35,
+          "linesTotal": 40
         }
       ],
       "src/parsers/json.ts": [
@@ -9393,6 +10154,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -9440,6 +10214,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -9475,6 +10262,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -9522,6 +10322,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -9563,6 +10376,19 @@
           "branchesPct": 100,
           "linesCovered": 34,
           "linesTotal": 34
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 34,
+          "linesTotal": 34
         }
       ],
       "src/templates/styles.css.ts": [
@@ -9598,6 +10424,19 @@
           "date": "2026-10-04T16:20:52.000Z",
           "message": "docs(coverage): update self-hosted coverage report and badge [skip ci]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
+          "shortSha": "ecb966c",
+          "date": "2026-10-04T16:29:16.000Z",
+          "message": "feat: add scoped directory badges, 1-click markdown copy, and GitHub-identical tree/blob routing",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
