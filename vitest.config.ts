@@ -9,6 +9,8 @@ export default defineConfig({
         'bin/**',
         'dist/**',
         'test/**',
+        'covpages-dist/**',
+        'demo-trend-dist/**',
         'vitest.config.ts',
       ],
     },

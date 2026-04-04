@@ -3,17 +3,17 @@ import { ICONS } from './icons.js';
 import { STYLES_CSS } from './styles.css.js';
 import { APP_JS } from './app.js.js';
 
-export function renderIndexHtml(data: CovpagesData, options: { inline?: boolean } = {}): {
+export function renderIndexHtml(data?: CovpagesData | null, options: { inline?: boolean } = {}): {
   html: string;
   css: string;
   js: string;
   dataJs: string;
 } {
-  const jsonStr = JSON.stringify(data);
+  const jsonStr = data ? JSON.stringify(data) : 'null';
   const iconsStr = JSON.stringify(ICONS);
   const dataJs = `window.__COVPAGES_DATA__ = ${jsonStr};\nwindow.__COVPAGES_ICONS__ = ${iconsStr};`;
 
-  const safeTitle = data.title ? `${data.title} - covpages` : 'Coverage Report - covpages';
+  const safeTitle = data?.title ? `${data.title} - covpages` : 'Coverage Report - covpages';
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@ ${STYLES_CSS}
     <noscript>
       <div style="padding: 24px; text-align: center; font-family: sans-serif;">
         <h2>JavaScript is required to view interactive coverage reports.</h2>
-        <p>Overall Line Coverage: <strong>${data.summary.lines.pct}%</strong> (${data.summary.lines.covered}/${data.summary.lines.total})</p>
+        ${data ? `<p>Overall Line Coverage: <strong>${data.summary.lines.pct}%</strong> (${data.summary.lines.covered}/${data.summary.lines.total})</p>` : ''}
       </div>
     </noscript>
   </div>
@@ -52,4 +52,13 @@ ${APP_JS}
     js: APP_JS,
     dataJs,
   };
+}
+
+export function renderDropinHtml(title = 'Coverage Report'): {
+  html: string;
+  css: string;
+  js: string;
+  dataJs: string;
+} {
+  return renderIndexHtml(null);
 }

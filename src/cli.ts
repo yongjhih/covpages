@@ -1,8 +1,15 @@
 import { parseArgs } from 'node:util';
 import path from 'node:path';
 import fs from 'node:fs';
-import { generateCoveragePages } from './index.js';
-import { startServer } from './server.js';
+import {
+  generateCoveragePages,
+  startServer,
+  backfillCommits,
+  createDropinSite,
+  FRAMEWORK_PRESETS,
+  getPreset,
+  generatePresetWorkflow,
+} from './index.js';
 import type { SupportedFormat } from './types.js';
 
 const HELP_TEXT = `
@@ -13,6 +20,9 @@ USAGE:
 
 COMMANDS:
   generate (default)  Generate coverage static site for GitHub Pages
+  dropin              Generate zero-build drop-in static site (index.html + .nojekyll)
+  backfill            Backfill test coverage across a range of historical git commits
+  presets             View integration guides and workflows for mainstream frameworks
   serve               Start a local preview web server
   init                Create a GitHub Actions workflow for GitHub Pages
   help                Show this help screen
@@ -32,95 +42,29 @@ OPTIONS:
   --repo <name>           Repository name
   --no-source             Exclude embedding source code in report
   --max-history <number>  Maximum number of history points (default: 100)
+  --range <git-range>     Git revision range for backfill (e.g. HEAD~5..HEAD)
+  -n, --count <number>    Number of commits to backfill (default: 5)
+  --test-cmd <cmd>        Custom test command to run for backfill (e.g. "npm test")
+  --coverage-file <path>  Coverage file produced by test command (default: "coverage/lcov.info")
+  --framework <name>      Target framework for init/presets (flutter, vitest, jest, rust, python, go, cpp)
   -p, --port <port>       Port for local preview server (default: 8080)
   -v, --version           Print version
   -h, --help              Print help
 
 EXAMPLES:
-  # Generate from lcov.info
+  # 1. Zero-build Drop-in: put index.html in gh-pages, then just cp lcov.info!
+  npx covpages dropin gh-pages
+  cp coverage/lcov.info gh-pages/
+
+  # 2. Backfill historical commits to create trend charts immediately
+  npx covpages backfill --range HEAD~10..HEAD --test-cmd "npm test"
+
+  # 3. Generate from lcov.info
   npx covpages coverage/lcov.info
 
-  # Ingest multiple commit reports for trend graphs
-  npx covpages --history-dir ./historical-reports/ coverage/lcov.info
-
-  # Specify commit details in CI
-  npx covpages --commit $GITHUB_SHA --branch $GITHUB_REF_NAME coverage/lcov.info
-
-  # Serve preview locally
-  npx covpages serve covpages-dist
-`;
-
-const GITHUB_WORKFLOW_TEMPLATE = `name: Test Coverage Pages
-
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-
-permissions:
-  contents: write
-  pages: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build covpages
-        run: npm run build
-
-      - name: Run Tests with Coverage
-        run: npm run test:coverage
-
-      - name: Restore Previous Coverage History
-        uses: actions/cache/restore@v4
-        with:
-          path: covpages-dist/history.json
-          key: covpages-history-\${{ github.ref_name }}
-          restore-keys: |
-            covpages-history-
-
-      - name: Generate Self-Hosted covpages Report
-        run: |
-          node bin/covpages.js generate \\
-            --input coverage/lcov.info \\
-            --output covpages-dist \\
-            --commit "\${{ github.sha }}" \\
-            --branch "\${{ github.ref_name }}" \\
-            --message "\${{ github.event.head_commit.message || 'Update coverage report' }}" \\
-            --repo "yongjhih/covpages" \\
-            --title "covpages Coverage"
-
-      - name: Save Coverage History Cache
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        uses: actions/cache/save@v4
-        with:
-          path: covpages-dist/history.json
-          key: covpages-history-\${{ github.ref_name }}-\${{ github.run_id }}
-
-      - name: Deploy to gh-pages Branch
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: \${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./covpages-dist
-          force_orphan: true
+  # 4. View framework integration workflows
+  npx covpages presets flutter
+  npx covpages presets vitest
 `;
 
 export async function runCli(argv = process.argv.slice(2)): Promise<void> {
@@ -139,6 +83,11 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     repo: { type: 'string' as const },
     'no-source': { type: 'boolean' as const, default: false },
     'max-history': { type: 'string' as const, default: '100' },
+    range: { type: 'string' as const },
+    count: { type: 'string' as const, short: 'n' },
+    'test-cmd': { type: 'string' as const },
+    'coverage-file': { type: 'string' as const },
+    framework: { type: 'string' as const },
     port: { type: 'string' as const, short: 'p', default: '8080' },
     version: { type: 'boolean' as const, short: 'v' },
     help: { type: 'boolean' as const, short: 'h' },
@@ -177,18 +126,92 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     return fallback;
   };
 
+  // 1. Drop-in command
+  if (firstArg === 'dropin') {
+    const targetDir = positionals[1] || strVal(values.output, 'gh-pages')!;
+    createDropinSite(targetDir, strVal(values.title, 'Coverage Report'));
+    console.log(`\n🎉 Zero-build Drop-in site created at: ${path.resolve(targetDir)}/index.html`);
+    console.log('   How to use:');
+    console.log('   1. Put your coverage file (lcov.info) into this directory.');
+    console.log('   2. Push to your "gh-pages" branch.');
+    console.log('   3. The page will fetch and parse lcov.info in real time on the client side!\n');
+    return;
+  }
+
+  // 2. Presets command
+  if (firstArg === 'presets') {
+    const framework = positionals[1] || strVal(values.framework);
+    if (framework) {
+      const preset = getPreset(framework);
+      if (!preset) {
+        console.error(`\nUnknown framework "${framework}". Available presets:`);
+        Object.keys(FRAMEWORK_PRESETS).forEach(k => console.log(` - ${k} (${FRAMEWORK_PRESETS[k].name})`));
+        console.log('');
+        process.exit(1);
+      }
+      console.log(`\n📘 Framework Preset: ${preset.name}`);
+      console.log(`   Description:   ${preset.description}`);
+      console.log(`   Test Command:  ${preset.testCmd}`);
+      console.log(`   Coverage File: ${preset.coverageFile}\n`);
+      console.log('--- Ready-to-use GitHub Actions Workflow (.github/workflows/covpages.yml) ---');
+      console.log(generatePresetWorkflow(framework));
+      return;
+    }
+
+    console.log('\n🌟 Available Framework Presets:\n');
+    for (const [key, preset] of Object.entries(FRAMEWORK_PRESETS)) {
+      console.log(`  • ${key.padEnd(10)} : ${preset.name.padEnd(32)} (${preset.testCmd})`);
+    }
+    console.log('\nRun "npx covpages presets <framework>" to view full CI workflow and configuration.\n');
+    return;
+  }
+
+  // 3. Backfill command
+  if (firstArg === 'backfill') {
+    const count = values.count ? parseInt(strVal(values.count)!, 10) : undefined;
+    console.log('\n⏳ Starting commit backfill process...');
+    try {
+      const result = backfillCommits({
+        range: strVal(values.range),
+        count,
+        testCmd: strVal(values['test-cmd']),
+        coverageFile: strVal(values['coverage-file']),
+        outputDir: strVal(values.output, 'covpages-dist')!,
+        historyFile: strVal(values.history),
+        repoName: strVal(values.repo),
+        title: strVal(values.title),
+      });
+      console.log(`✅ Backfill completed with ${result.commits.length} commits in trend timeline!`);
+    } catch (err: any) {
+      console.error(`\n❌ Error during backfill: ${err.message}\n`);
+      process.exit(1);
+    }
+    return;
+  }
+
+  // 4. Init command
   if (firstArg === 'init') {
+    const framework = strVal(values.framework);
     const workflowDir = path.resolve('.github/workflows');
     const workflowPath = path.join(workflowDir, 'covpages.yml');
     if (!fs.existsSync(workflowDir)) {
       fs.mkdirSync(workflowDir, { recursive: true });
     }
-    fs.writeFileSync(workflowPath, GITHUB_WORKFLOW_TEMPLATE, 'utf-8');
+
+    let workflowContent = '';
+    if (framework && getPreset(framework)) {
+      workflowContent = generatePresetWorkflow(framework);
+    } else {
+      workflowContent = generatePresetWorkflow('vitest');
+    }
+
+    fs.writeFileSync(workflowPath, workflowContent, 'utf-8');
     console.log(`\n✨ Created GitHub Actions workflow at: ${workflowPath}`);
     console.log('   Push to main branch to automatically generate and publish coverage to GitHub Pages!\n');
     return;
   }
 
+  // 5. Serve command
   if (firstArg === 'serve') {
     const targetDir = positionals[1] || strVal(values.output, 'covpages-dist')!;
     const port = parseInt(strVal(values.port, '8080')!, 10);

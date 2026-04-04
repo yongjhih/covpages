@@ -2,12 +2,8 @@ export const APP_JS = `
 (function() {
   'use strict';
 
-  // Read data from window.__COVPAGES_DATA__
-  const data = window.__COVPAGES_DATA__;
-  if (!data) {
-    console.error('Covpages data not found.');
-    return;
-  }
+  // Read data from window.__COVPAGES_DATA__ or fetch dynamically
+  let data = window.__COVPAGES_DATA__ || null;
 
   // Icons map passed from backend
   const icons = window.__COVPAGES_ICONS__ || {};
@@ -17,7 +13,7 @@ export const APP_JS = `
     activeTab: 'files', // 'files' | 'trends' | 'commits'
     currentFolder: '',
     selectedFile: null,
-    selectedCommitSha: data.currentCommit?.sha || '',
+    selectedCommitSha: '',
     trendScope: 'overall', // 'overall' | 'folder' | 'file'
     trendTarget: '',
     trendMetric: 'linesPct', // 'linesPct' | 'functionsPct' | 'branchesPct'
@@ -26,6 +22,233 @@ export const APP_JS = `
     sortAsc: true,
     theme: localStorage.getItem('covpages-theme') || 'auto',
   };
+
+  function initState() {
+    if (data) {
+      state.selectedCommitSha = data.currentCommit?.sha || '';
+    }
+  }
+
+  // Pure client-side LCOV Parser for drop-in static mode
+  function parseClientLcov(content, historyCommits) {
+    const lines = content.split(/\\r?\\n/);
+    const files = {};
+    let currentPath = '';
+    let lineDetails = {};
+    let fnMap = new Map();
+    let fnf = 0, fnh = 0, brf = 0, brh = 0, lf = 0, lh = 0;
+    let seenLF = false, seenFNF = false, seenBRF = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      if (line.startsWith('SF:')) {
+        currentPath = line.slice(3).trim().replace(/\\\\/g, '/').replace(/^\\/+/, '');
+      } else if (line.startsWith('FN:')) {
+        const parts = line.slice(3).split(',');
+        if (parts.length >= 2) {
+          fnMap.set(parts.slice(1).join(','), { line: parseInt(parts[0], 10), hits: 0 });
+        }
+      } else if (line.startsWith('FNDA:')) {
+        const parts = line.slice(5).split(',');
+        if (parts.length >= 2) {
+          const hits = parseInt(parts[0], 10) || 0;
+          const name = parts.slice(1).join(',');
+          const ex = fnMap.get(name);
+          if (ex) ex.hits += hits; else fnMap.set(name, { line: 0, hits });
+        }
+      } else if (line.startsWith('FNF:')) {
+        fnf = parseInt(line.slice(4), 10) || 0; seenFNF = true;
+      } else if (line.startsWith('FNH:')) {
+        fnh = parseInt(line.slice(4), 10) || 0;
+      } else if (line.startsWith('BRDA:')) {
+        const parts = line.slice(5).split(',');
+        if (parts.length >= 4) {
+          const ln = parseInt(parts[0], 10);
+          const taken = parts[3] === '-' ? 0 : parseInt(parts[3], 10) || 0;
+          if (!lineDetails[ln]) lineDetails[ln] = { hits: 0 };
+          if (!lineDetails[ln].branches) lineDetails[ln].branches = { total: 0, taken: 0 };
+          lineDetails[ln].branches.total += 1;
+          if (taken > 0) lineDetails[ln].branches.taken += 1;
+        }
+      } else if (line.startsWith('BRF:')) {
+        brf = parseInt(line.slice(4), 10) || 0; seenBRF = true;
+      } else if (line.startsWith('BRH:')) {
+        brh = parseInt(line.slice(4), 10) || 0;
+      } else if (line.startsWith('DA:')) {
+        const parts = line.slice(3).split(',');
+        if (parts.length >= 2) {
+          const ln = parseInt(parts[0], 10);
+          const hits = parseInt(parts[1], 10) || 0;
+          if (!lineDetails[ln]) lineDetails[ln] = { hits }; else lineDetails[ln].hits += hits;
+        }
+      } else if (line.startsWith('LF:')) {
+        lf = parseInt(line.slice(3), 10) || 0; seenLF = true;
+      } else if (line.startsWith('LH:')) {
+        lh = parseInt(line.slice(3), 10) || 0;
+      } else if (line === 'end_of_record') {
+        if (currentPath) {
+          const lineNums = Object.keys(lineDetails).map(Number);
+          const finalLF = seenLF ? lf : lineNums.length;
+          const finalLH = seenLF ? lh : lineNums.filter(l => lineDetails[l].hits > 0).length;
+          const fnArr = Array.from(fnMap.entries()).map(([name, e]) => ({ name, line: e.line, hits: e.hits }));
+          const finalFNF = seenFNF ? fnf : fnArr.length;
+          const finalFNH = seenFNF ? fnh : fnArr.filter(f => f.hits > 0).length;
+          let cBRF = 0, cBRH = 0;
+          lineNums.forEach(ln => {
+            if (lineDetails[ln].branches) {
+              cBRF += lineDetails[ln].branches.total;
+              cBRH += lineDetails[ln].branches.taken;
+            }
+          });
+          const finalBRF = seenBRF ? brf : cBRF;
+          const finalBRH = seenBRF ? brh : cBRH;
+
+          const calcPct = (c, t) => t === 0 ? 100 : Math.round((c / t) * 10000) / 100;
+
+          files[currentPath] = {
+            path: currentPath,
+            lines: { total: finalLF, covered: finalLH, skipped: Math.max(0, finalLF - finalLH), pct: calcPct(finalLH, finalLF) },
+            functions: { total: finalFNF, covered: finalFNH, skipped: Math.max(0, finalFNF - finalFNH), pct: calcPct(finalFNH, finalFNF) },
+            branches: { total: finalBRF, covered: finalBRH, skipped: Math.max(0, finalBRF - finalBRH), pct: calcPct(finalBRH, finalBRF) },
+            lineDetails,
+            functionDetails: fnArr,
+          };
+        }
+        currentPath = ''; lineDetails = {}; fnMap.clear();
+        fnf = 0; fnh = 0; brf = 0; brh = 0; lf = 0; lh = 0;
+        seenLF = false; seenFNF = false; seenBRF = false;
+      }
+    }
+
+    // Client-side tree aggregator
+    const folders = {};
+    const folderChildren = {};
+    const ensureF = (fp) => {
+      if (!folders[fp]) {
+        const parts = fp ? fp.split('/') : [];
+        folders[fp] = {
+          path: fp, name: parts.length > 0 ? parts[parts.length - 1] : 'root',
+          lines: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          branches: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          filesCount: 0, foldersCount: 0,
+        };
+        folderChildren[fp] = { subfolders: new Set(), files: [] };
+      }
+    };
+    ensureF('');
+    for (const [fp, fc] of Object.entries(files)) {
+      const parts = fp.split('/');
+      const dirParts = parts.slice(0, -1);
+      const imm = dirParts.join('/');
+      let cur = '';
+      ensureF('');
+      for (let i = 0; i < dirParts.length; i++) {
+        const nxt = dirParts.slice(0, i + 1).join('/');
+        ensureF(nxt);
+        folderChildren[cur].subfolders.add(nxt);
+        cur = nxt;
+      }
+      folderChildren[imm].files.push(fp);
+      const roll = (tgt) => {
+        const f = folders[tgt];
+        f.lines.total += fc.lines.total; f.lines.covered += fc.lines.covered; f.lines.skipped += fc.lines.skipped;
+        f.functions.total += fc.functions.total; f.functions.covered += fc.functions.covered; f.functions.skipped += fc.functions.skipped;
+        f.branches.total += fc.branches.total; f.branches.covered += fc.branches.covered; f.branches.skipped += fc.branches.skipped;
+        f.filesCount++;
+      };
+      roll('');
+      for (let i = 0; i < dirParts.length; i++) roll(dirParts.slice(0, i + 1).join('/'));
+    }
+
+    for (const f of Object.values(folders)) {
+      f.lines.pct = f.lines.total ? Math.round((f.lines.covered / f.lines.total) * 10000) / 100 : 100;
+      f.functions.pct = f.functions.total ? Math.round((f.functions.covered / f.functions.total) * 10000) / 100 : 100;
+      f.branches.pct = f.branches.total ? Math.round((f.branches.covered / f.branches.total) * 10000) / 100 : 100;
+      f.foldersCount = folderChildren[f.path].subfolders.size;
+    }
+
+    const cleanChildren = {};
+    for (const [k, v] of Object.entries(folderChildren)) {
+      cleanChildren[k] = { subfolders: Array.from(v.subfolders).sort(), files: v.files.sort() };
+    }
+
+    const root = folders[''] || { lines: { total: 0, covered: 0, skipped: 0, pct: 100 }, functions: { total: 0, covered: 0, skipped: 0, pct: 100 }, branches: { total: 0, covered: 0, skipped: 0, pct: 100 } };
+    const summary = { lines: { ...root.lines }, functions: { ...root.functions }, branches: { ...root.branches } };
+
+    const currentCommit = {
+      sha: 'HEAD',
+      shortSha: 'HEAD',
+      message: 'Drop-in Coverage Report',
+      author: 'git',
+      date: new Date().toISOString(),
+      branch: 'gh-pages',
+    };
+
+    const commits = Array.isArray(historyCommits) ? [...historyCommits] : [];
+    if (commits.length === 0 || commits[commits.length - 1]?.commit?.sha !== currentCommit.sha) {
+      const fSum = {}, flSum = {};
+      for (const [k, v] of Object.entries(folders)) fSum[k] = { lines: { ...v.lines }, functions: { ...v.functions }, branches: { ...v.branches } };
+      for (const [k, v] of Object.entries(files)) flSum[k] = { lines: { ...v.lines }, functions: { ...v.functions }, branches: { ...v.branches } };
+      commits.push({ commit: currentCommit, summary, folderSummaries: fSum, fileSummaries: flSum });
+    }
+
+    const overallTrend = commits.map(c => ({
+      sha: c.commit.sha, shortSha: c.commit.shortSha || c.commit.sha.slice(0, 7),
+      date: c.commit.date, message: c.commit.message, author: c.commit.author, branch: c.commit.branch,
+      linesPct: c.summary.lines.pct, functionsPct: c.summary.functions.pct, branchesPct: c.summary.branches.pct,
+      linesCovered: c.summary.lines.covered, linesTotal: c.summary.lines.total,
+    }));
+
+    const folderTrends = {};
+    const fileTrends = {};
+    for (const c of commits) {
+      for (const [fp, sm] of Object.entries(c.folderSummaries || {})) {
+        if (!folderTrends[fp]) folderTrends[fp] = [];
+        folderTrends[fp].push({
+          sha: c.commit.sha, shortSha: c.commit.shortSha || c.commit.sha.slice(0, 7),
+          date: c.commit.date, message: c.commit.message, author: c.commit.author, branch: c.commit.branch,
+          linesPct: sm.lines.pct, functionsPct: sm.functions.pct, branchesPct: sm.branches.pct,
+          linesCovered: sm.lines.covered, linesTotal: sm.lines.total,
+        });
+      }
+      for (const [fp, sm] of Object.entries(c.fileSummaries || {})) {
+        if (!fileTrends[fp]) fileTrends[fp] = [];
+        fileTrends[fp].push({
+          sha: c.commit.sha, shortSha: c.commit.shortSha || c.commit.sha.slice(0, 7),
+          date: c.commit.date, message: c.commit.message, author: c.commit.author, branch: c.commit.branch,
+          linesPct: sm.lines.pct, functionsPct: sm.functions.pct, branchesPct: sm.branches.pct,
+          linesCovered: sm.lines.covered, linesTotal: sm.lines.total,
+        });
+      }
+    }
+
+    let delta;
+    if (commits.length > 1) {
+      const prev = commits[commits.length - 2].summary;
+      delta = {
+        linesPct: Math.round((summary.lines.pct - prev.lines.pct) * 100) / 100,
+        functionsPct: Math.round((summary.functions.pct - prev.functions.pct) * 100) / 100,
+        branchesPct: Math.round((summary.branches.pct - prev.branches.pct) * 100) / 100,
+      };
+    }
+
+    return {
+      title: 'Coverage Report',
+      repoName: (typeof location !== 'undefined' ? location.pathname.split('/').filter(Boolean)[0] : '') || 'coverage',
+      generatedAt: new Date().toISOString(),
+      currentCommit,
+      delta,
+      summary,
+      folders,
+      files,
+      folderChildren: cleanChildren,
+      commits,
+      trends: { overall: overallTrend, folders: folderTrends, files: fileTrends },
+    };
+  }
 
   // Helper: rate class based on percentage
   function getRateClass(pct) {
@@ -272,16 +495,13 @@ export const APP_JS = `
 
     const metricName = metricKey === 'linesPct' ? 'Lines' : metricKey === 'functionsPct' ? 'Functions' : 'Branches';
 
-    // Min and max for Y-axis (scale between 0 and 100 or tighter)
     const rawValues = points.map(p => p[metricKey] ?? 0);
     const minVal = Math.max(0, Math.floor(Math.min(...rawValues) / 10) * 10 - 10);
     const maxVal = Math.min(100, Math.ceil(Math.max(...rawValues) / 10) * 10 + 10);
     const valRange = (maxVal - minVal) || 10;
 
-    // Y ticks
     const ticks = [minVal, minVal + valRange / 2, maxVal];
 
-    // Compute point coordinates
     const coords = points.map((p, idx) => {
       const x = points.length === 1 
         ? paddingLeft + chartW / 2 
@@ -290,7 +510,6 @@ export const APP_JS = `
       return { x, y, point: p };
     });
 
-    // Generate Path D
     let pathD = '';
     if (coords.length === 1) {
       pathD = \`M \${coords[0].x - 10} \${coords[0].y} L \${coords[0].x + 10} \${coords[0].y}\`;
@@ -396,7 +615,6 @@ export const APP_JS = `
 
     let rows = [];
 
-    // Subfolders
     children.subfolders.forEach(subPath => {
       const name = subPath.split('/').pop() || subPath;
       if (query && !name.toLowerCase().includes(query) && !subPath.toLowerCase().includes(query)) return;
@@ -416,7 +634,6 @@ export const APP_JS = `
       });
     });
 
-    // Files
     children.files.forEach(filePath => {
       const name = filePath.split('/').pop() || filePath;
       if (query && !name.toLowerCase().includes(query) && !filePath.toLowerCase().includes(query)) return;
@@ -436,7 +653,6 @@ export const APP_JS = `
       });
     });
 
-    // Sorting
     rows.sort((a, b) => {
       let valA, valB;
       if (state.sortColumn === 'lines') {
@@ -449,7 +665,6 @@ export const APP_JS = `
         valA = a.branches.pct;
         valB = b.branches.pct;
       } else {
-        // name
         valA = a.name.toLowerCase();
         valB = b.name.toLowerCase();
       }
@@ -534,7 +749,6 @@ export const APP_JS = `
 
     const trendPoints = data.trends?.files?.[filePath] || [];
 
-    // Build lines view
     const sourceCode = fileCov.sourceCode;
     const lineDetails = fileCov.lineDetails || {};
 
@@ -542,7 +756,6 @@ export const APP_JS = `
     if (sourceCode) {
       linesArray = sourceCode.split(/\\r?\\n/);
     } else {
-      // Reconstruct line rows from lineDetails keys
       const maxLine = Math.max(...Object.keys(lineDetails).map(Number), 1);
       for (let i = 1; i <= maxLine; i++) {
         linesArray.push('');
@@ -750,8 +963,66 @@ export const APP_JS = `
     \`;
   }
 
+  // Render Empty Drop-in State when no coverage file is found yet
+  function renderEmptyState() {
+    return \`
+      <header class="gh-header">
+        <div class="gh-header-inner">
+          <div class="gh-brand">
+            <span class="gh-brand-icon">\${icons.github || ''}</span>
+            <span>covpages</span>
+            <span class="gh-repo-title">/ Drop-in Coverage</span>
+          </div>
+          <div class="gh-header-actions">
+            <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              \${icons.moon}
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="gh-container">
+        <div style="max-width: 800px; margin: 40px auto; text-align: center;">
+          <div style="margin-bottom: 24px; color: var(--color-accent-fg);">
+            \${icons.file}
+          </div>
+          <h2 style="margin-bottom: 8px;">No coverage report detected yet</h2>
+          <p style="color: var(--color-fg-muted); margin-bottom: 24px;">
+            Place your <code>lcov.info</code> file into this directory to automatically render coverage metrics and trends.
+          </p>
+
+          <div id="drop-zone" style="border: 2px dashed var(--color-border-default); border-radius: var(--radius-lg); padding: 40px 20px; background-color: var(--color-canvas-subtle); cursor: pointer; margin-bottom: 32px; transition: border-color 0.2s;">
+            <p style="font-weight: 600; margin-bottom: 4px;">Drag & drop your <code>lcov.info</code> here to view immediately</p>
+            <p style="color: var(--color-fg-muted); font-size: 12px; margin-bottom: 12px;">or click to select file from your computer</p>
+            <input type="file" id="lcov-file-input" accept=".info,.lcov,.txt" style="display: none;">
+            <button class="gh-btn gh-btn-primary" id="select-file-btn">Select lcov.info</button>
+          </div>
+
+          <div class="gh-box" style="text-align: left; padding: 20px;">
+            <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 14px;">Quick Framework Commands:</h3>
+            <div style="font-family: var(--font-mono); font-size: 12px; background: var(--color-canvas-subtle); padding: 12px; border-radius: var(--radius-md); overflow-x: auto; line-height: 1.8;">
+              <div># Flutter / Dart</div>
+              <div style="color: var(--color-accent-fg); margin-bottom: 8px;">flutter test --coverage && cp coverage/lcov.info .</div>
+              <div># Vitest / Jest</div>
+              <div style="color: var(--color-accent-fg); margin-bottom: 8px;">npx vitest run --coverage && cp coverage/lcov.info .</div>
+              <div># Rust</div>
+              <div style="color: var(--color-accent-fg); margin-bottom: 8px;">cargo llvm-cov --lcov --output-path lcov.info</div>
+              <div># Python</div>
+              <div style="color: var(--color-accent-fg);">pytest --cov --cov-report=lcov:lcov.info</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    \`;
+  }
+
   // Main Render Routine
   function render() {
+    if (!data) {
+      container.innerHTML = renderEmptyState();
+      bindEmptyEvents();
+      return;
+    }
+
     let mainContent = '';
 
     if (state.activeTab === 'files') {
@@ -782,7 +1053,7 @@ export const APP_JS = `
         \${mainContent}
       </main>
       <footer class="gh-footer">
-        Generated by <a href="https://github.com/covpages/covpages" target="_blank" rel="noopener">covpages</a> • 
+        Generated by <a href="https://github.com/yongjhih/covpages" target="_blank" rel="noopener">covpages</a> • 
         \${escapeHtml(data.generatedAt ? formatDate(data.generatedAt) : new Date().toISOString())}
       </footer>
     \`;
@@ -790,9 +1061,7 @@ export const APP_JS = `
     bindEvents();
   }
 
-  // Event handlers
-  function bindEvents() {
-    // Theme toggle
+  function bindEmptyEvents() {
     const themeBtn = document.getElementById('theme-toggle-btn');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
@@ -802,7 +1071,69 @@ export const APP_JS = `
       });
     }
 
-    // Brand link
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('lcov-file-input');
+    const selectBtn = document.getElementById('select-file-btn');
+
+    if (selectBtn && fileInput) {
+      selectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.click();
+      });
+    }
+
+    if (dropZone && fileInput) {
+      dropZone.addEventListener('click', () => fileInput.click());
+
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'var(--color-accent-fg)';
+      });
+
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = 'var(--color-border-default)';
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'var(--color-border-default)';
+        if (e.dataTransfer?.files?.length) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files?.length) {
+          handleFile(e.target.files[0]);
+        }
+      });
+    }
+
+    function handleFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result;
+        if (typeof text === 'string') {
+          data = parseClientLcov(text);
+          initState();
+          render();
+        }
+      };
+      reader.readAsText(file);
+    }
+  }
+
+  // Event handlers
+  function bindEvents() {
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const nextTheme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        render();
+      });
+    }
+
     const brandLink = document.getElementById('brand-link');
     if (brandLink) {
       brandLink.addEventListener('click', (e) => {
@@ -814,7 +1145,6 @@ export const APP_JS = `
       });
     }
 
-    // Nav tabs
     document.querySelectorAll('.gh-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         state.activeTab = tab.getAttribute('data-tab');
@@ -822,7 +1152,6 @@ export const APP_JS = `
       });
     });
 
-    // Breadcrumb navigation
     document.querySelectorAll('.breadcrumb-item').forEach(item => {
       item.addEventListener('click', () => {
         const folder = item.getAttribute('data-folder');
@@ -832,7 +1161,6 @@ export const APP_JS = `
       });
     });
 
-    // Folder navigation in table
     document.querySelectorAll('[data-nav-folder]').forEach(el => {
       el.addEventListener('click', () => {
         state.currentFolder = el.getAttribute('data-nav-folder');
@@ -841,7 +1169,6 @@ export const APP_JS = `
       });
     });
 
-    // File navigation in table
     document.querySelectorAll('[data-nav-file]').forEach(el => {
       el.addEventListener('click', () => {
         state.selectedFile = el.getAttribute('data-nav-file');
@@ -849,12 +1176,10 @@ export const APP_JS = `
       });
     });
 
-    // Filter input
     const filterInput = document.getElementById('filter-input');
     if (filterInput) {
       filterInput.addEventListener('input', (e) => {
         state.filterText = e.target.value;
-        // Re-render only table
         const tableContainer = document.querySelector('.gh-box');
         if (tableContainer) {
           const newHtml = renderTable();
@@ -862,7 +1187,6 @@ export const APP_JS = `
           if (toolbar) {
             toolbar.outerHTML = newHtml;
             bindEvents();
-            // preserve focus
             const refocusedInput = document.getElementById('filter-input');
             if (refocusedInput) {
               refocusedInput.focus();
@@ -873,7 +1197,6 @@ export const APP_JS = `
       });
     }
 
-    // Table sorting
     document.querySelectorAll('.gh-table th.sortable').forEach(th => {
       th.addEventListener('click', () => {
         const sortCol = th.getAttribute('data-sort');
@@ -887,7 +1210,6 @@ export const APP_JS = `
       });
     });
 
-    // Metric selector in charts
     document.querySelectorAll('.chart-actions button[data-metric]').forEach(btn => {
       btn.addEventListener('click', () => {
         state.trendMetric = btn.getAttribute('data-metric');
@@ -895,7 +1217,6 @@ export const APP_JS = `
       });
     });
 
-    // Trend scope selector in Trends Tab
     document.querySelectorAll('button[data-scope]').forEach(btn => {
       btn.addEventListener('click', () => {
         state.trendScope = btn.getAttribute('data-scope');
@@ -912,7 +1233,6 @@ export const APP_JS = `
       });
     });
 
-    // Trend folder select
     const trendFolderSelect = document.getElementById('trend-folder-select');
     if (trendFolderSelect) {
       trendFolderSelect.addEventListener('change', (e) => {
@@ -921,7 +1241,6 @@ export const APP_JS = `
       });
     }
 
-    // Trend file select
     const trendFileSelect = document.getElementById('trend-file-select');
     if (trendFileSelect) {
       trendFileSelect.addEventListener('change', (e) => {
@@ -930,7 +1249,6 @@ export const APP_JS = `
       });
     }
 
-    // Jump to next uncovered line in source viewer
     const jumpBtn = document.getElementById('jump-next-uncovered');
     if (jumpBtn) {
       jumpBtn.addEventListener('click', () => {
@@ -950,7 +1268,6 @@ export const APP_JS = `
       });
     }
 
-    // Tooltip for chart dots
     document.querySelectorAll('.chart-dot').forEach(dot => {
       dot.addEventListener('mouseenter', (e) => {
         if (!tooltipEl) return;
@@ -998,7 +1315,53 @@ export const APP_JS = `
     }
   });
 
-  // Initial render
-  render();
+  // Dynamic bootstrapping for Drop-in mode
+  async function bootstrap() {
+    if (data) {
+      initState();
+      render();
+      return;
+    }
+
+    // Try fetching covpages-data.json
+    try {
+      const r = await fetch('./covpages-data.json');
+      if (r.ok) {
+        data = await r.json();
+        initState();
+        render();
+        return;
+      }
+    } catch {}
+
+    // Try fetching history.json
+    let historyCommits = [];
+    try {
+      const hr = await fetch('./history.json');
+      if (hr.ok) {
+        historyCommits = await hr.json();
+      }
+    } catch {}
+
+    // Try fetching lcov.info
+    const candidates = ['./lcov.info', './coverage/lcov.info'];
+    for (const cand of candidates) {
+      try {
+        const lr = await fetch(cand);
+        if (lr.ok) {
+          const lcovText = await lr.text();
+          data = parseClientLcov(lcovText, historyCommits);
+          initState();
+          render();
+          return;
+        }
+      } catch {}
+    }
+
+    // Fallback: render empty state with drag-and-drop
+    render();
+  }
+
+  bootstrap();
 })();
 `;

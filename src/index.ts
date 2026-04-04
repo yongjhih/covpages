@@ -24,7 +24,21 @@ export * from './parsers/index.js';
 export * from './core/aggregator.js';
 export * from './core/history.js';
 export * from './core/git.js';
+export * from './core/backfill.js';
+export * from './core/presets.js';
 export * from './server.js';
+export { renderDropinHtml } from './templates/index.html.js';
+
+export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Report'): void {
+  const dir = path.resolve(outputDir);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const rendered = renderIndexHtml(null);
+  fs.writeFileSync(path.join(dir, 'index.html'), rendered.html, 'utf-8');
+  fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');
+}
+
 
 export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   const outputDir = path.resolve(options.outputDir || './covpages-dist');
