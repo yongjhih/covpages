@@ -36,15 +36,23 @@ describe('Covpages CLI', () => {
 
   it('runs init command to generate GitHub workflow', async () => {
     const workflowPath = path.resolve('.github/workflows/covpages.yml');
-    if (fs.existsSync(workflowPath)) {
-      fs.unlinkSync(workflowPath);
+    const backupContent = fs.existsSync(workflowPath) ? fs.readFileSync(workflowPath, 'utf-8') : null;
+
+    try {
+      if (fs.existsSync(workflowPath)) {
+        fs.unlinkSync(workflowPath);
+      }
+
+      await runCli(['init']);
+
+      expect(fs.existsSync(workflowPath)).toBe(true);
+      const content = fs.readFileSync(workflowPath, 'utf-8');
+      expect(content).toContain('Test Coverage Pages');
+      expect(content).toContain('generate');
+    } finally {
+      if (backupContent !== null) {
+        fs.writeFileSync(workflowPath, backupContent, 'utf-8');
+      }
     }
-
-    await runCli(['init']);
-
-    expect(fs.existsSync(workflowPath)).toBe(true);
-    const content = fs.readFileSync(workflowPath, 'utf-8');
-    expect(content).toContain('Test Coverage Pages');
-    expect(content).toContain('generate');
   });
 });
