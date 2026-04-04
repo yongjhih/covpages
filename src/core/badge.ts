@@ -45,3 +45,13 @@ export function generateBadgeSvg(pct: number, label = 'coverage'): string {
 </svg>
 `;
 }
+
+export function sanitizeBadgeName(name: string): string {
+  return name.replace(/[/\\?%*:|"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+export function getBadgeFileName(scope: 'overall' | 'branch' | 'tag' | 'folder' | 'file', name?: string): string {
+  if (scope === 'overall' || !name) return 'badge.svg';
+  const safe = sanitizeBadgeName(name);
+  return `${scope}-${safe}.svg`;
+}

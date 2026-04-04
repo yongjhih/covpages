@@ -83,84 +83,289 @@ export const APP_JS = `
     return { branches, tags };
   }
 
-  function parseHash() {
-    const raw = (window.location.hash || '').replace(/^#/, '');
-    if (!raw) return;
+  function getBasePath() {
+    if (data?.baseUrl) return data.baseUrl.replace(/\/$/, '') + '/';
+    if (window.location.protocol === 'file:') return '';
+    const p = window.location.pathname;
+    const clean = p.replace(/\/index\.html$/, '');
+    const segments = clean.split('/').filter(Boolean);
+    if (segments.length > 0) {
+      if (segments[0] === 'covpages' || window.location.hostname.endsWith('github.io')) {
+        return '/' + segments[0] + '/';
+      }
+    }
+    return '/';
+  }
 
-    if (raw.includes('=') || raw.includes('&')) {
-      const params = new URLSearchParams(raw);
-      if (params.has('branch')) {
-        state.activeRefType = 'branch';
-        state.activeRefName = params.get('branch') || '';
-        const refs = getAvailableRefs();
-        if (refs.branches[state.activeRefName]) {
-          state.selectedCommitSha = refs.branches[state.activeRefName];
+  function sanitizeBadgeName(name) {
+    return (name || '').replace(/[/\\?%*:|"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  function generateClientBadgeSvg(pct, label) {
+    label = label || 'coverage';
+    const roundedPct = Math.round(pct * 10) / 10;
+    const pctStr = roundedPct + '%';
+    let color = '#2da44e';
+    if (pct < 50) color = '#cf222e';
+    else if (pct < 80) color = '#bf8700';
+
+    const labelWidth = Math.round(label.length * 6.5 + 16);
+    const valueWidth = Math.round(pctStr.length * 7.5 + 16);
+    const totalWidth = labelWidth + valueWidth;
+    const labelTextX = Math.round((labelWidth / 2) * 10);
+    const valueTextX = Math.round((labelWidth + valueWidth / 2) * 10);
+
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + totalWidth + '" height="20" role="img" aria-label="' + escapeHtml(label) + ': ' + pctStr + '">' +
+      '<title>' + escapeHtml(label) + ': ' + pctStr + '</title>' +
+      '<linearGradient id="cov-g" x2="0" y2="100%">' +
+        '<stop offset="0" stop-color="#bbb" stop-opacity=".1"/>' +
+        '<stop offset="1" stop-opacity=".1"/>' +
+      '</linearGradient>' +
+      '<clipPath id="cov-r">' +
+        '<rect width="' + totalWidth + '" height="20" rx="3" fill="#fff"/>' +
+      '</clipPath>' +
+      '<g clip-path="url(#cov-r)">' +
+        '<rect width="' + labelWidth + '" height="20" fill="#555"/>' +
+        '<rect x="' + labelWidth + '" width="' + valueWidth + '" height="20" fill="' + color + '"/>' +
+        '<rect width="' + totalWidth + '" height="20" fill="url(#cov-g)"/>' +
+      '</g>' +
+      '<g fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" text-rendering="geometricPrecision" font-size="110">' +
+        '<text aria-hidden="true" x="' + labelTextX + '" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">' + escapeHtml(label) + '</text>' +
+        '<text x="' + labelTextX + '" y="140" transform="scale(.1)" fill="#fff">' + escapeHtml(label) + '</text>' +
+        '<text aria-hidden="true" x="' + valueTextX + '" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">' + pctStr + '</text>' +
+        '<text x="' + valueTextX + '" y="140" transform="scale(.1)" fill="#fff">' + pctStr + '</text>' +
+      '</g>' +
+    '</svg>';
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('gh-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'gh-toast';
+      toast.className = 'gh-toast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = '<span class="gh-toast-icon">' + (icons.check || '✓') + '</span><span>' + escapeHtml(msg) + '</span>';
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  function openBadgeModal(label, pct, badgeFilename) {
+    const origin = window.location.origin;
+    const base = getBasePath();
+    const badgeUrl = origin + base + (badgeFilename ? 'badges/' + badgeFilename : 'badge.svg');
+    const pageUrl = window.location.href;
+    const mdSnippet = '[![Coverage - ' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
+    const htmlSnippet = '<a href="' + pageUrl + '"><img src="' + badgeUrl + '" alt="Coverage - ' + label + '" /></a>';
+
+    let modalBackdrop = document.getElementById('badge-modal-backdrop');
+    if (modalBackdrop) modalBackdrop.remove();
+
+    modalBackdrop = document.createElement('div');
+    modalBackdrop.id = 'badge-modal-backdrop';
+    modalBackdrop.className = 'badge-modal-backdrop';
+    modalBackdrop.innerHTML = 
+      '<div class="badge-modal" role="dialog" aria-label="Coverage Badge Snippet">' +
+        '<div class="badge-modal-header">' +
+          '<span class="badge-modal-title">Coverage Badge: ' + escapeHtml(label) + '</span>' +
+          '<button class="badge-modal-close" id="badge-modal-close" aria-label="Close">✕</button>' +
+        '</div>' +
+        '<div class="badge-modal-body">' +
+          '<div class="badge-preview-box">' +
+            generateClientBadgeSvg(pct, label) +
+          '</div>' +
+          '<div>' +
+            '<div class="badge-field-label"><span>Markdown</span></div>' +
+            '<div class="badge-code-wrap">' +
+              '<input type="text" class="badge-code-input" id="badge-md-input" readonly value="' + escapeHtml(mdSnippet) + '">' +
+              '<button class="badge-copy-inline-btn" data-copy-target="badge-md-input">Copy</button>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="badge-field-label"><span>HTML</span></div>' +
+            '<div class="badge-code-wrap">' +
+              '<input type="text" class="badge-code-input" id="badge-html-input" readonly value="' + escapeHtml(htmlSnippet) + '">' +
+              '<button class="badge-copy-inline-btn" data-copy-target="badge-html-input">Copy</button>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="badge-field-label"><span>Badge Image URL</span></div>' +
+            '<div class="badge-code-wrap">' +
+              '<input type="text" class="badge-code-input" id="badge-url-input" readonly value="' + escapeHtml(badgeUrl) + '">' +
+              '<button class="badge-copy-inline-btn" data-copy-target="badge-url-input">Copy</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(modalBackdrop);
+
+    modalBackdrop.querySelector('#badge-modal-close').addEventListener('click', () => modalBackdrop.remove());
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) modalBackdrop.remove();
+    });
+
+    modalBackdrop.querySelectorAll('.badge-copy-inline-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-copy-target');
+        const input = document.getElementById(targetId);
+        if (input) {
+          navigator.clipboard.writeText(input.value);
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+          showToast('Copied to clipboard!');
         }
-      } else if (params.has('tag')) {
-        state.activeRefType = 'tag';
-        state.activeRefName = params.get('tag') || '';
-        const refs = getAvailableRefs();
-        if (refs.tags[state.activeRefName]) {
-          state.selectedCommitSha = refs.tags[state.activeRefName];
-        }
-      }
-      if (params.has('tab')) {
-        const t = params.get('tab');
-        if (t === 'files' || t === 'trends' || t === 'commits') state.activeTab = t;
-      }
-      if (params.has('file')) {
-        state.selectedFile = params.get('file');
-        state.activeTab = 'files';
-        ensureExpanded(state.selectedFile);
-      } else if (params.has('folder')) {
-        state.currentFolder = params.get('folder') || '';
-        state.selectedFile = null;
-        state.activeTab = 'files';
-        ensureExpanded(state.currentFolder);
-      }
-    } else {
-      if (raw === 'trends') {
-        state.activeTab = 'trends';
-      } else if (raw === 'commits') {
-        state.activeTab = 'commits';
-      } else if (raw === 'files') {
-        state.activeTab = 'files';
-        state.selectedFile = null;
-      } else if (raw.startsWith('files/')) {
-        const pathPart = raw.slice(6);
-        state.activeTab = 'files';
-        if (data?.files && data.files[pathPart]) {
-          state.selectedFile = pathPart;
-          ensureExpanded(pathPart);
-        } else {
-          state.currentFolder = pathPart;
-          state.selectedFile = null;
-          ensureExpanded(pathPart);
-        }
-      }
+      });
+    });
+  }
+
+  async function copyBadgeMarkdown(label, pct, badgeFilename) {
+    const origin = window.location.origin;
+    const base = getBasePath();
+    const badgeUrl = origin + base + (badgeFilename ? 'badges/' + badgeFilename : 'badge.svg');
+    const pageUrl = window.location.href;
+    const mdSnippet = '[![Coverage - ' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
+    try {
+      await navigator.clipboard.writeText(mdSnippet);
+      showToast('Copied badge Markdown for "' + label + '" to clipboard!');
+    } catch {
+      openBadgeModal(label, pct, badgeFilename);
     }
   }
 
-  function updateHash() {
-    const params = new URLSearchParams();
-    if (state.activeRefType === 'tag') {
-      params.set('tag', state.activeRefName);
-    } else if (state.activeRefName && state.activeRefName !== 'main') {
-      params.set('branch', state.activeRefName);
+  function parseRoute() {
+    // 1. SPA redirect query: ?/tree/main/src
+    if (window.location.search.startsWith('?/')) {
+      const redirect = decodeURIComponent(window.location.search.slice(2));
+      const cleanUrl = getBasePath() + redirect.replace(/^\//, '');
+      window.history.replaceState(null, '', cleanUrl);
     }
 
-    if (state.activeTab !== 'files') {
-      params.set('tab', state.activeTab);
+    // 2. Legacy hash handling
+    const hash = window.location.hash || '';
+    if (hash.startsWith('#') && hash.includes('=')) {
+      const params = new URLSearchParams(hash.replace(/^#/, ''));
+      if (params.has('branch')) { state.activeRefType = 'branch'; state.activeRefName = params.get('branch'); }
+      if (params.has('tag')) { state.activeRefType = 'tag'; state.activeRefName = params.get('tag'); }
+      if (params.has('file')) { state.selectedFile = params.get('file'); state.activeTab = 'files'; }
+      else if (params.has('folder')) { state.currentFolder = params.get('folder'); state.selectedFile = null; state.activeTab = 'files'; }
+      if (params.has('tab')) { state.activeTab = params.get('tab'); }
+      updateRoute(true);
+      return;
+    }
+
+    // 3. Subpath relative to getBasePath()
+    let subpath = '';
+    if (window.location.protocol === 'file:' || hash.startsWith('#/')) {
+      subpath = (hash || '').replace(/^#\/?/, '');
+    } else {
+      const p = window.location.pathname;
+      const base = getBasePath();
+      if (p.startsWith(base)) {
+        subpath = p.slice(base.length);
+      } else {
+        subpath = p.replace(/^\//, '');
+      }
+    }
+
+    subpath = subpath.replace(/\/$/, '');
+    if (!subpath || subpath === 'index.html') {
+      state.activeTab = 'files';
+      state.currentFolder = '';
+      state.selectedFile = null;
+      return;
+    }
+
+    const refs = getAvailableRefs();
+    const allRefNames = [...Object.keys(refs.branches), ...Object.keys(refs.tags)];
+    allRefNames.sort((a, b) => b.length - a.length);
+
+    function matchRefAndPath(remainder) {
+      for (const rName of allRefNames) {
+        if (remainder === rName || remainder.startsWith(rName + '/')) {
+          const rest = remainder.slice(rName.length).replace(/^\//, '');
+          const rType = refs.tags[rName] ? 'tag' : 'branch';
+          const sha = rType === 'tag' ? refs.tags[rName] : refs.branches[rName];
+          return { refName: rName, refType: rType, sha: sha, path: rest };
+        }
+      }
+      const firstSlash = remainder.indexOf('/');
+      const firstPart = firstSlash !== -1 ? remainder.slice(0, firstSlash) : remainder;
+      const restPart = firstSlash !== -1 ? remainder.slice(firstSlash + 1) : '';
+      if (/^[0-9a-f]{7,40}$/i.test(firstPart)) {
+        return { refName: firstPart, refType: 'branch', sha: firstPart, path: restPart };
+      }
+      return { refName: data?.currentCommit?.branch || 'main', refType: 'branch', sha: data?.currentCommit?.sha || '', path: remainder };
+    }
+
+    if (subpath.startsWith('tree/')) {
+      const remainder = subpath.slice(5);
+      const matched = matchRefAndPath(remainder);
+      state.activeRefType = matched.refType;
+      state.activeRefName = matched.refName;
+      state.selectedCommitSha = matched.sha;
+      state.currentFolder = matched.path || '';
+      state.selectedFile = null;
+      state.activeTab = 'files';
+      ensureExpanded(state.currentFolder);
+    } else if (subpath.startsWith('blob/')) {
+      const remainder = subpath.slice(5);
+      const matched = matchRefAndPath(remainder);
+      state.activeRefType = matched.refType;
+      state.activeRefName = matched.refName;
+      state.selectedCommitSha = matched.sha;
+      state.selectedFile = matched.path;
+      state.activeTab = 'files';
+      ensureExpanded(state.selectedFile);
+    } else if (subpath.startsWith('commits')) {
+      const remainder = subpath.slice(7).replace(/^\//, '');
+      if (remainder) {
+        const matched = matchRefAndPath(remainder);
+        state.activeRefType = matched.refType;
+        state.activeRefName = matched.refName;
+        state.selectedCommitSha = matched.sha;
+      }
+      state.activeTab = 'commits';
+    } else if (subpath.startsWith('trends')) {
+      state.activeTab = 'trends';
+    }
+  }
+
+  function updateRoute(replace = false) {
+    const base = getBasePath();
+    const ref = state.activeRefName || data?.currentCommit?.branch || 'main';
+    let targetUrl = base;
+
+    if (state.activeTab === 'commits') {
+      targetUrl = base + 'commits/' + encodeURI(ref);
+    } else if (state.activeTab === 'trends') {
+      targetUrl = base + 'trends';
     } else if (state.selectedFile) {
-      params.set('file', state.selectedFile);
+      targetUrl = base + 'blob/' + encodeURI(ref) + '/' + state.selectedFile;
     } else if (state.currentFolder) {
-      params.set('folder', state.currentFolder);
+      targetUrl = base + 'tree/' + encodeURI(ref) + '/' + state.currentFolder;
+    } else if (ref !== 'main' || state.activeRefType === 'tag') {
+      targetUrl = base + 'tree/' + encodeURI(ref);
+    } else {
+      targetUrl = base;
     }
 
-    const str = params.toString();
-    const newHash = str ? '#' + str : '#';
-    if (window.location.hash !== newHash) {
-      history.replaceState(null, '', newHash);
+    if (window.location.protocol === 'file:') {
+      const fileHash = '#' + targetUrl;
+      if (window.location.hash !== fileHash) {
+        if (replace) history.replaceState(null, '', fileHash);
+        else history.pushState(null, '', fileHash);
+      }
+      return;
+    }
+
+    if (window.location.pathname !== targetUrl) {
+      if (replace) history.replaceState(null, '', targetUrl);
+      else history.pushState(null, '', targetUrl);
     }
   }
 
@@ -182,7 +387,7 @@ export const APP_JS = `
           state.expandedFolders.add(sf);
         }
       }
-      parseHash();
+      parseRoute();
     }
   }
 
@@ -323,7 +528,7 @@ export const APP_JS = `
     state.refPopoverOpen = false;
     state.refSearchText = '';
     state.selectedCommitSha = refSha || '';
-    updateHash();
+    updateRoute();
     render();
   }
 
@@ -698,6 +903,10 @@ export const APP_JS = `
               \${icons.commit || ''}
               <span class="commit-sha-badge">\${escapeHtml(viewCommit?.shortSha || '')}</span>
             </span>
+            <button class="gh-btn badge-btn" id="header-badge-btn" data-badge-copy="ref" title="Click to copy badge Markdown for this branch/tag">
+              <span class="badge-svg-display">\${generateClientBadgeSvg(activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100, state.activeRefName || 'coverage')}</span>
+              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+            </button>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
               \${themeIcon}
             </button>
@@ -1236,12 +1445,24 @@ export const APP_JS = `
       }).join('');
     }
 
+    const activeFolderCov = activeView?.folders?.[state.currentFolder] || activeView?.summary || { lines: { pct: 100 } };
+    const folderParts = state.currentFolder ? state.currentFolder.split('/') : [];
+    const currentFolderName = folderParts.length > 0 ? folderParts[folderParts.length - 1] : (data?.repoName || 'coverage');
+
     return \`
       <div class="file-toolbar">
         \${renderBreadcrumbs()}
-        <div class="search-box">
-          <span class="search-icon" aria-hidden="true">\${icons.search || ''}</span>
-          <input type="text" id="filter-input" placeholder="Filter files... (press /)" value="\${escapeHtml(state.filterText)}" aria-label="Filter files">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="badge-toolbar-group">
+            <button class="gh-btn badge-btn" id="folder-badge-btn" data-badge-copy="folder" data-badge-folder="\${escapeHtml(state.currentFolder || '')}" title="Click to copy badge Markdown for this directory">
+              <span class="badge-svg-display">\${generateClientBadgeSvg(activeFolderCov.lines.pct, currentFolderName)}</span>
+              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+            </button>
+          </div>
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">\${icons.search || ''}</span>
+            <input type="text" id="filter-input" placeholder="Filter files... (press /)" value="\${escapeHtml(state.filterText)}" aria-label="Filter files">
+          </div>
         </div>
       </div>
       <div class="gh-box">
@@ -1340,17 +1561,26 @@ export const APP_JS = `
       \`;
     });
 
+    const fileParts = filePath.split('/');
+    const currentFileName = fileParts[fileParts.length - 1];
+
     return \`
       <div class="file-toolbar">
         \${renderBreadcrumbs()}
-        <div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="badge-toolbar-group">
+            <button class="gh-btn badge-btn" id="file-badge-btn" data-badge-copy="file" data-badge-file="\${escapeHtml(filePath)}" title="Click to copy badge Markdown for this file">
+              <span class="badge-svg-display">\${generateClientBadgeSvg(fileCov.lines.pct, currentFileName)}</span>
+              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+            </button>
+          </div>
           <button class="gh-btn" id="jump-next-uncovered" title="Jump to next uncovered line (n)">Next Uncovered (n)</button>
         </div>
       </div>
 
       \${renderMetrics(fileCov, null)}
 
-      \${trendPoints.length > 1 ? renderTrendChart(\`Trend for \${filePath}\`, trendPoints, state.trendMetric) : ''}
+      \${trendPoints.length > 1 ? renderTrendChart('Trend for ' + escapeHtml(filePath), trendPoints, state.trendMetric) : ''}
 
       <div class="blob-wrapper">
         <div class="blob-header">
@@ -1793,8 +2023,41 @@ export const APP_JS = `
         }
         state.activeTab = 'files';
         state.selectedFile = null;
-        updateHash();
+        updateRoute();
         render();
+      });
+    });
+
+    // Badge copy buttons (header, folder, file)
+    document.querySelectorAll('[data-badge-copy]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const scope = btn.getAttribute('data-badge-copy');
+        let label = 'coverage';
+        let pct = activeView?.summary?.lines?.pct || 100;
+        let filename = 'badge.svg';
+
+        if (scope === 'folder') {
+          const folder = btn.getAttribute('data-badge-folder') || state.currentFolder || '';
+          const parts = folder ? folder.split('/') : [];
+          label = parts.length > 0 ? parts[parts.length - 1] : (data?.repoName || 'coverage');
+          const fCov = activeView?.folders?.[folder] || activeView?.summary;
+          pct = fCov?.lines?.pct || 100;
+          filename = folder ? 'folder-' + sanitizeBadgeName(folder) + '.svg' : 'badge.svg';
+        } else if (scope === 'file') {
+          const file = btn.getAttribute('data-badge-file') || state.selectedFile || '';
+          const parts = file.split('/');
+          label = parts[parts.length - 1];
+          const fCov = activeView?.files?.[file];
+          pct = fCov?.lines?.pct || 100;
+          filename = 'file-' + sanitizeBadgeName(file) + '.svg';
+        } else if (scope === 'ref') {
+          label = state.activeRefName || data?.currentCommit?.branch || 'coverage';
+          pct = activeView?.summary?.lines?.pct || 100;
+          filename = 'branch-' + sanitizeBadgeName(label) + '.svg';
+        }
+
+        copyBadgeMarkdown(label, pct, filename);
       });
     });
 
@@ -1867,6 +2130,7 @@ export const APP_JS = `
             state.selectedFile = target;
             state.gotoFilterText = '';
             ensureExpanded(target);
+            updateRoute();
             render();
           }
         } else if (e.key === 'Escape') {
@@ -1906,7 +2170,7 @@ export const APP_JS = `
         state.selectedFile = file;
         state.gotoFilterText = '';
         ensureExpanded(file);
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1933,7 +2197,7 @@ export const APP_JS = `
         state.currentFolder = folder;
         state.selectedFile = null;
         state.expandedFolders.add(folder);
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1944,7 +2208,7 @@ export const APP_JS = `
         const file = el.getAttribute('data-tree-file');
         state.selectedFile = file;
         ensureExpanded(file);
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1956,7 +2220,7 @@ export const APP_JS = `
         state.activeTab = 'files';
         state.currentFolder = '';
         state.selectedFile = null;
-        updateHash();
+        updateRoute();
         render();
       });
     }
@@ -1964,7 +2228,7 @@ export const APP_JS = `
     document.querySelectorAll('.gh-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         state.activeTab = tab.getAttribute('data-tab');
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1974,7 +2238,7 @@ export const APP_JS = `
         const folder = item.getAttribute('data-folder');
         state.currentFolder = folder || '';
         state.selectedFile = null;
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1983,7 +2247,7 @@ export const APP_JS = `
       el.addEventListener('click', () => {
         state.currentFolder = el.getAttribute('data-nav-folder');
         state.selectedFile = null;
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -1991,7 +2255,7 @@ export const APP_JS = `
     document.querySelectorAll('[data-nav-file]').forEach(el => {
       el.addEventListener('click', () => {
         state.selectedFile = el.getAttribute('data-nav-file');
-        updateHash();
+        updateRoute();
         render();
       });
     });
@@ -2159,8 +2423,13 @@ export const APP_JS = `
     }
   });
 
+  window.addEventListener('popstate', () => {
+    parseRoute();
+    render();
+  });
+
   window.addEventListener('hashchange', () => {
-    parseHash();
+    parseRoute();
     render();
   });
 
