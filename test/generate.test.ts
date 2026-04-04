@@ -41,6 +41,13 @@ describe('Coverage Site Generator', () => {
     expect(fs.existsSync(dataJson)).toBe(true);
     expect(fs.existsSync(dataJs)).toBe(true);
     expect(fs.existsSync(historyJson)).toBe(true);
+    expect(fs.existsSync(path.join(outDir, '.nojekyll'))).toBe(true);
+    expect(fs.existsSync(path.join(outDir, '.gitattributes'))).toBe(true);
+    expect(fs.existsSync(path.join(outDir, 'refs.json'))).toBe(true);
+    expect(fs.existsSync(path.join(outDir, 'lcov.info'))).toBe(true);
+
+    const gitattributes = fs.readFileSync(path.join(outDir, '.gitattributes'), 'utf-8');
+    expect(gitattributes).toContain('*.info text eol=lf delta');
 
     const htmlContent = fs.readFileSync(indexHtml, 'utf-8');
     expect(htmlContent).toContain('<!DOCTYPE html>');
@@ -49,9 +56,45 @@ describe('Coverage Site Generator', () => {
     expect(htmlContent).toContain('files-sidebar');
     expect(htmlContent).toContain('goto-input');
     expect(htmlContent).toContain('Go to file... (t)');
+    expect(htmlContent).toContain('ref-selector-btn');
 
     const jsonContent = JSON.parse(fs.readFileSync(dataJson, 'utf-8'));
     expect(jsonContent.summary.lines.total).toBe(10);
+  });
+
+  it('supports tag, baseUrl, and saveRaw historical LCOV snapshots', () => {
+    const data = generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'commit1.lcov')],
+      outputDir: outDir,
+      commitSha: 'abcdef1234567890abcdef1234567890abcdef12',
+      tag: 'v1.2.3',
+      baseUrl: '/docs/covpages/',
+      saveRaw: true,
+    });
+
+    expect(data.currentCommit.tag).toBe('v1.2.3');
+    expect(data.baseUrl).toBe('/docs/covpages/');
+    expect(data.refs?.tags['v1.2.3']).toBe('abcdef1234567890abcdef1234567890abcdef12');
+
+    const rawSnapshot = path.join(outDir, 'history', 'lcov', 'lcov-abcdef1.info');
+    expect(fs.existsSync(rawSnapshot)).toBe(true);
+    const content = fs.readFileSync(rawSnapshot, 'utf-8');
+    expect(content).toContain('SF:');
+    expect(content).not.toContain('\r');
+  });
+
+  it('supports generating directly to docs/covpages subdirectory', () => {
+    const docsDir = path.join(outDir, 'docs', 'covpages');
+    const data = generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'commit1.lcov')],
+      outputDir: docsDir,
+      branch: 'main',
+    });
+
+    expect(fs.existsSync(path.join(docsDir, 'index.html'))).toBe(true);
+    expect(fs.existsSync(path.join(docsDir, '.nojekyll'))).toBe(true);
+    expect(fs.existsSync(path.join(docsDir, '.gitattributes'))).toBe(true);
+    expect(fs.existsSync(path.join(docsDir, 'refs.json'))).toBe(true);
   });
 
   it('accumulates multiple commits and updates trends with delta', () => {

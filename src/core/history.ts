@@ -7,6 +7,7 @@ import type {
   FileCoverage,
   FolderCoverage,
   TrendPoint,
+  RefMap,
 } from '../types.js';
 
 export function createCommitHistoryEntry(
@@ -60,6 +61,7 @@ export function buildTrends(commits: CommitHistoryEntry[]): {
     message: c.commit.message,
     author: c.commit.author,
     branch: c.commit.branch,
+    tag: c.commit.tag,
     linesPct: c.summary.lines.pct,
     functionsPct: c.summary.functions.pct,
     branchesPct: c.summary.branches.pct,
@@ -88,6 +90,7 @@ export function buildTrends(commits: CommitHistoryEntry[]): {
           message: c.commit.message,
           author: c.commit.author,
           branch: c.commit.branch,
+          tag: c.commit.tag,
           linesPct: fSummary.lines.pct,
           functionsPct: fSummary.functions.pct,
           branchesPct: fSummary.branches.pct,
@@ -119,6 +122,7 @@ export function buildTrends(commits: CommitHistoryEntry[]): {
           message: c.commit.message,
           author: c.commit.author,
           branch: c.commit.branch,
+          tag: c.commit.tag,
           linesPct: fSummary.lines.pct,
           functionsPct: fSummary.functions.pct,
           branchesPct: fSummary.branches.pct,
@@ -192,3 +196,28 @@ export function calculateDelta(
     branchesPct: Math.round((current.branches.pct - previous.branches.pct) * 100) / 100,
   };
 }
+
+export function extractRefs(commits: CommitHistoryEntry[]): RefMap {
+  const branches: Record<string, string> = {};
+  const tags: Record<string, string> = {};
+
+  for (const c of commits) {
+    if (c.commit.branch) {
+      branches[c.commit.branch] = c.commit.sha;
+    }
+    if (c.commit.tag) {
+      tags[c.commit.tag] = c.commit.sha;
+    }
+  }
+
+  return { branches, tags };
+}
+
+export function saveRefs(refsPath: string, refs: RefMap): void {
+  const dir = path.dirname(refsPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(refsPath, JSON.stringify(refs, null, 2), 'utf-8');
+}
+

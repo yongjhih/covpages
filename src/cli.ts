@@ -37,6 +37,10 @@ OPTIONS:
   -m, --message <msg>     Commit message (defaults to git HEAD message)
   -a, --author <author>   Commit author (defaults to git author)
   -b, --branch <branch>   Branch name (defaults to git branch)
+  -t, --tag <tag>         Tag name (defaults to git tag if on tag)
+  --base-url <url>        Base URL for subdirectory hosting (e.g. "/docs/covpages/")
+  --save-raw              Save normalized raw lcov-<sha>.info in history/lcov/
+  --docs                  Target docs/covpages for GitHub Pages deployment
   --date <iso-date>       Commit date (defaults to git date or now)
   --title <title>         Custom title for report
   --repo <name>           Repository name
@@ -78,6 +82,10 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     message: { type: 'string' as const, short: 'm' },
     author: { type: 'string' as const, short: 'a' },
     branch: { type: 'string' as const, short: 'b' },
+    tag: { type: 'string' as const, short: 't' },
+    'base-url': { type: 'string' as const },
+    'save-raw': { type: 'boolean' as const, default: false },
+    docs: { type: 'boolean' as const, default: false },
     date: { type: 'string' as const },
     title: { type: 'string' as const },
     repo: { type: 'string' as const },
@@ -198,16 +206,16 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
       fs.mkdirSync(workflowDir, { recursive: true });
     }
 
-    let workflowContent = '';
-    if (framework && getPreset(framework)) {
-      workflowContent = generatePresetWorkflow(framework);
-    } else {
-      workflowContent = generatePresetWorkflow('vitest');
-    }
+    const presetKey = framework && getPreset(framework) ? framework : 'vitest';
+    const workflowContent = generatePresetWorkflow(presetKey, { docs: Boolean(values.docs) });
 
     fs.writeFileSync(workflowPath, workflowContent, 'utf-8');
     console.log(`\n✨ Created GitHub Actions workflow at: ${workflowPath}`);
-    console.log('   Push to main branch to automatically generate and publish coverage to GitHub Pages!\n');
+    if (values.docs) {
+      console.log('   Configured for GitHub Pages deployment from docs/covpages on main branch!\n');
+    } else {
+      console.log('   Push to main branch to automatically generate and publish coverage to GitHub Pages!\n');
+    }
     return;
   }
 
@@ -260,7 +268,9 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
 
   console.log(`\n🔍 Parsing coverage report from: ${inputs.join(', ')}`);
 
-  const outputDir = strVal(values.output, 'covpages-dist')!;
+  const outputDir = values.docs && values.output === 'covpages-dist'
+    ? 'docs/covpages'
+    : strVal(values.output, 'covpages-dist')!;
 
   try {
     const result = generateCoveragePages({
@@ -274,6 +284,9 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
       commitAuthor: strVal(values.author),
       commitDate: strVal(values.date),
       branch: strVal(values.branch),
+      tag: strVal(values.tag),
+      baseUrl: strVal(values['base-url']),
+      saveRaw: Boolean(values['save-raw']),
       title: strVal(values.title),
       repoName: strVal(values.repo),
       includeSource: !values['no-source'],

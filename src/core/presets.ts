@@ -137,10 +137,56 @@ export function getPreset(name: string): FrameworkPreset | undefined {
   return FRAMEWORK_PRESETS[key] || FRAMEWORK_PRESETS[name.toLowerCase()];
 }
 
-export function generatePresetWorkflow(presetKey: string): string {
+export function generatePresetWorkflow(presetKey: string, options?: { docs?: boolean }): string {
   const preset = getPreset(presetKey);
   if (!preset) {
     throw new Error(`Unknown framework preset: "${presetKey}". Available: ${Object.keys(FRAMEWORK_PRESETS).join(', ')}`);
+  }
+
+  if (options?.docs) {
+    return `name: Test Coverage Pages (Docs)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "covpages-docs"
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+${preset.workflowStep}
+
+      - name: Generate covpages Report for docs/covpages
+        run: |
+          npx covpages generate \\
+            --input ${preset.coverageFile} \\
+            --output docs/covpages \\
+            --commit "\${{ github.sha }}" \\
+            --branch "\${{ github.ref_name }}" \\
+            --message "\${{ github.event.head_commit.message || 'Coverage update' }}"
+
+      - name: Commit and Push to docs/covpages
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/covpages
+          git diff --staged --quiet || git commit -m "docs(coverage): update covpages report [skip ci]"
+          git push
+`;
   }
 
   return `name: Test Coverage Pages
