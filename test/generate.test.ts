@@ -46,6 +46,9 @@ describe('Coverage Site Generator', () => {
     expect(htmlContent).toContain('<!DOCTYPE html>');
     expect(htmlContent).toContain('Project Test Coverage - covpages');
     expect(htmlContent).toContain('window.__COVPAGES_DATA__');
+    expect(htmlContent).toContain('files-sidebar');
+    expect(htmlContent).toContain('goto-input');
+    expect(htmlContent).toContain('Go to file... (t)');
 
     const jsonContent = JSON.parse(fs.readFileSync(dataJson, 'utf-8'));
     expect(jsonContent.summary.lines.total).toBe(10);
