@@ -1,0 +1,1019 @@
+import { ICONS } from '../templates/icons.js';
+
+export function renderWebsiteHtml(options: {
+  repo?: string;
+  badgeUrl?: string;
+  liveDemoUrl?: string;
+} = {}): string {
+  const repo = options.repo || 'yongjhih/covpages';
+  const badgeUrl = options.badgeUrl || 'badges/overall.svg';
+  const liveDemoUrl = options.liveDemoUrl || 'covpages/';
+
+  return `<!DOCTYPE html>
+<html lang="en" data-color-mode="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Covpages - Git-Native, Zero-Server Code Coverage for GitHub Pages with multi-commit trends and scoped SVG badges.">
+  <meta name="color-scheme" content="light dark">
+  <title>Covpages - Git-Native Coverage for GitHub Pages</title>
+  <style>
+    :root {
+      --color-canvas-default: #ffffff;
+      --color-canvas-subtle: #f6f8fa;
+      --color-border-default: #d0d7de;
+      --color-border-muted: #d8dee4;
+      --color-fg-default: #1f2328;
+      --color-fg-muted: #656d76;
+      --color-accent-fg: #0969da;
+      --color-accent-emphasis: #0969da;
+      --color-success-fg: #1a7f37;
+      --color-success-emphasis: #1f883d;
+      --color-success-subtle: #dafbe1;
+      --color-btn-bg: #f6f8fa;
+      --color-btn-border: #d0d7de;
+      --color-btn-primary-bg: #1f883d;
+      --color-btn-primary-border: rgba(31,35,40,0.15);
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    [data-color-mode="dark"] {
+      --color-canvas-default: #0d1117;
+      --color-canvas-subtle: #161b22;
+      --color-border-default: #30363d;
+      --color-border-muted: #21262d;
+      --color-fg-default: #e6edf3;
+      --color-fg-muted: #848d97;
+      --color-accent-fg: #2f81f7;
+      --color-accent-emphasis: #1f6feb;
+      --color-success-fg: #3fb950;
+      --color-success-emphasis: #238636;
+      --color-success-subtle: rgba(46,160,67,0.15);
+      --color-btn-bg: #21262d;
+      --color-btn-border: #30363d;
+      --color-btn-primary-bg: #238636;
+      --color-btn-primary-border: rgba(240,246,252,0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      [data-color-mode="auto"] {
+        --color-canvas-default: #0d1117;
+        --color-canvas-subtle: #161b22;
+        --color-border-default: #30363d;
+        --color-border-muted: #21262d;
+        --color-fg-default: #e6edf3;
+        --color-fg-muted: #848d97;
+        --color-accent-fg: #2f81f7;
+        --color-accent-emphasis: #1f6feb;
+        --color-success-fg: #3fb950;
+        --color-success-emphasis: #238636;
+        --color-success-subtle: rgba(46,160,67,0.15);
+        --color-btn-bg: #21262d;
+        --color-btn-border: #30363d;
+        --color-btn-primary-bg: #238636;
+        --color-btn-primary-border: rgba(240,246,252,0.1);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-stack);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-fg-default);
+      background-color: var(--color-canvas-default);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--color-accent-fg); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 24px;
+      background-color: var(--color-canvas-default);
+      border-bottom: 1px solid var(--color-border-default);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-fg-default);
+    }
+    .brand:hover { text-decoration: none; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-fg-muted);
+    }
+    .nav-link:hover {
+      color: var(--color-fg-default);
+      text-decoration: none;
+    }
+    .nav-link.active {
+      color: var(--color-fg-default);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--color-btn-border);
+      background-color: var(--color-btn-bg);
+      color: var(--color-fg-default);
+      text-decoration: none;
+      transition: 0.15s ease-in-out;
+    }
+    .btn:hover {
+      background-color: var(--color-border-muted);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background-color: var(--color-btn-primary-bg);
+      color: #ffffff !important;
+      border-color: var(--color-btn-primary-border);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+    .btn-sm {
+      padding: 3px 10px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 72px 0 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      margin-bottom: 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-accent-fg);
+      background-color: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: 20px;
+    }
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--color-fg-muted);
+      max-width: 720px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Live Preview Card */
+    .preview-card {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      text-align: left;
+      margin-top: 16px;
+    }
+    .preview-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--color-canvas-default);
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .preview-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .preview-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      padding: 20px 24px;
+      background-color: var(--color-canvas-default);
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--color-fg-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-fg-default);
+    }
+    .stat-progress {
+      height: 6px;
+      background: var(--color-border-muted);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .stat-fill {
+      height: 100%;
+      background: var(--color-success-emphasis);
+      border-radius: 3px;
+    }
+
+    .preview-actions {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--color-canvas-subtle);
+      border-top: 1px solid var(--color-border-muted);
+    }
+
+    /* Section Headers */
+    .section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--color-fg-muted);
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      padding: 24px;
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--color-fg-muted);
+      line-height: 1.5;
+    }
+
+    /* Playground / Badges */
+    .badge-builder {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-family: var(--font-stack);
+      border: 1px solid var(--color-border-default);
+      border-radius: 6px;
+      background: var(--color-canvas-default);
+      color: var(--color-fg-default);
+    }
+    .badge-preview-box {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--color-canvas-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .badge-img-wrap {
+      padding: 12px;
+    }
+    .code-preview {
+      width: 100%;
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-muted);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Benchmarks Table */
+    .benchmarks-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--color-border-default);
+      border-radius: 8px;
+      padding: 16px;
+      background-color: var(--color-canvas-subtle);
+    }
+    .benchmarks-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background-color: var(--color-canvas-default);
+      border: 1px solid var(--color-border-muted);
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: left;
+      font-size: 13px;
+    }
+    .benchmarks-table th, .benchmarks-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--color-border-muted);
+    }
+    .benchmarks-table th {
+      background: var(--color-canvas-subtle);
+      font-weight: 600;
+    }
+    .benchmarks-table tr:last-child td {
+      border-bottom: none;
+    }
+    .highlight-cell {
+      color: var(--color-success-fg);
+      font-weight: 600;
+    }
+
+    /* Code Tabs */
+    .code-tabs {
+      border: 1px solid var(--color-border-default);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tabs-header {
+      display: flex;
+      background: var(--color-canvas-subtle);
+      border-bottom: 1px solid var(--color-border-default);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-fg-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active {
+      color: var(--color-fg-default);
+      border-bottom-color: var(--color-accent-emphasis);
+      background: var(--color-canvas-default);
+    }
+    .tab-content {
+      padding: 20px;
+      background: var(--color-canvas-default);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1f2328;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    [data-color-mode="dark"] .toast {
+      background: #30363d;
+      color: #f0f6fc;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 48px 0;
+      text-align: center;
+      color: var(--color-fg-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <a href="#" class="brand">
+      <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor">
+        <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+      </svg>
+      <span>covpages</span>
+      <span style="font-size: 11px; padding: 2px 6px; background: var(--color-canvas-subtle); border: 1px solid var(--color-border-default); border-radius: 10px; font-weight: normal;">v0.1.0</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#overview" class="nav-link active">Overview</a>
+      <a href="${liveDemoUrl}" class="nav-link" style="color: var(--color-success-fg); font-weight: 600;">Live Demo ↗</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#benchmarks" class="nav-link">Benchmarks</a>
+      <a href="#badges" class="nav-link">Badges</a>
+      <a href="#quickstart" class="nav-link">Quickstart</a>
+      <a href="#react" class="nav-link">+React</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-sm" id="theme-toggle" title="Toggle theme">🌓 Theme</button>
+      <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">Live Coverage</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="overview">
+    <div class="container">
+      <div class="hero-pill">
+        <span>✨ Git-Native</span>
+        <span>•</span>
+        <span>Zero Servers</span>
+        <span>•</span>
+        <span>100% Free for GitHub Pages</span>
+      </div>
+
+      <h1>Git-Native Code Coverage<br>for GitHub Pages</h1>
+      <p>
+        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Impeccable GitHub design with multi-commit trends, scoped SVG badges, and syntax highlighting.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="${liveDemoUrl}" class="btn btn-primary" style="font-size: 15px; padding: 8px 20px;">
+          Explore Live Demo ↗
+        </a>
+        <a href="#quickstart" class="btn" style="font-size: 15px; padding: 8px 20px;">
+          Get Started in 5 Min
+        </a>
+        <a href="#badges" class="btn" style="font-size: 15px; padding: 8px 20px;">
+          Badge Generator
+        </a>
+      </div>
+
+      <!-- Live Preview Card -->
+      <div class="preview-card">
+        <div class="preview-card-header">
+          <div class="preview-title">
+            <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+              <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path>
+            </svg>
+            <span>Live Showcase: ${repo} (Branch: main)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <img src="${badgeUrl}" alt="Coverage Badge" height="20" style="vertical-align: middle;">
+          </div>
+        </div>
+
+        <div class="preview-stats-bar">
+          <div class="stat-box">
+            <div class="stat-label">Line Coverage</div>
+            <div class="stat-value">50.0%</div>
+            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Functions</div>
+            <div class="stat-value">50.0%</div>
+            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Branches</div>
+            <div class="stat-value">50.0%</div>
+            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Historical Commits</div>
+            <div class="stat-value">Active</div>
+            <div style="font-size: 12px; color: var(--color-fg-muted); margin-top: 4px;">Normalized Git delta</div>
+          </div>
+        </div>
+
+        <div class="preview-actions">
+          <div style="font-size: 13px; color: var(--color-fg-muted);">
+            Explore directory file trees, syntax-highlighted source lines, and commit trends on GitHub Pages.
+          </div>
+          <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">
+            Open Interactive Coverage Viewer ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Covpages?</h2>
+      <p class="section-subtitle">
+        Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3 class="feature-title"><span>📦</span> <span>97.6% Git Delta Compression</span></h3>
+          <p class="feature-desc">
+            Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title"><span>🏷️</span> <span>Scoped SVG Badges with 1-Click Copy</span></h3>
+          <p class="feature-desc">
+            Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title"><span>🎨</span> <span>GitHub-Identical UI & Syntax Highlighting</span></h3>
+          <p class="feature-desc">
+            Identical tree/blob routing, keyboard shortcuts (t, n, ESC), line numbers, hit gutters, and Prism.js syntax highlighting for all major languages.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title"><span>📈</span> <span>Multi-Commit Trends by Folder & File</span></h3>
+          <p class="feature-desc">
+            Track coverage fluctuations across commits. Inspect trendlines by repository, individual directory, or specific source file.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title"><span>🧩</span> <span>+React & Component Reusability</span></h3>
+          <p class="feature-desc">
+            Import &lt;Covpages /&gt; directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard &lt;cov-pages&gt; Web Component.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title"><span>⚡</span> <span>Zero-Server 1-Click GitHub Actions</span></h3>
+          <p class="feature-desc">
+            Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scoped Badges Playground -->
+  <section class="section" id="badges">
+    <div class="container">
+      <h2 class="section-title">Interactive Badge Generator</h2>
+      <p class="section-subtitle">
+        Embed live SVG coverage badges into your README.md for your entire project or specific folders.
+      </p>
+
+      <div class="badge-builder">
+        <div class="form-group">
+          <label class="form-label">GitHub Repository</label>
+          <input type="text" id="badge-repo" class="form-input" value="${repo}">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Scope</label>
+          <select id="badge-scope" class="form-select">
+            <option value="overall">Overall Repository</option>
+            <option value="branch">Branch (e.g. main)</option>
+            <option value="folder">Directory (e.g. src)</option>
+            <option value="file">File (e.g. src/index.ts)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="badge-target-group" style="display: none;">
+          <label class="form-label" id="badge-target-label">Target Name</label>
+          <input type="text" id="badge-target" class="form-input" value="src">
+        </div>
+
+        <div class="badge-preview-box">
+          <div class="badge-img-wrap">
+            <img id="badge-preview-img" src="${badgeUrl}" alt="Badge Preview" height="24">
+          </div>
+
+          <div class="code-preview" id="badge-markdown-code"></div>
+
+          <div style="display:flex; gap:12px;">
+            <button class="btn btn-primary" id="copy-badge-md">📋 Copy Markdown</button>
+            <button class="btn" id="copy-badge-url">🔗 Copy Badge URL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Storage & Performance Benchmarks -->
+  <section class="section" id="benchmarks">
+    <div class="container">
+      <h2 class="section-title">Storage & Bandwidth Benchmarks</h2>
+      <p class="section-subtitle">
+        Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.
+      </p>
+
+      <div class="benchmarks-table-wrap">
+        <table class="benchmarks-table">
+          <thead>
+            <tr>
+              <th>Storage Strategy (100 Commits)</th>
+              <th>Raw Disk Size</th>
+              <th>Git Packfile Size</th>
+              <th>Compression Ratio</th>
+              <th>Growth / Commit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Naive Unnormalized LCOV</td>
+              <td>52.4 MB</td>
+              <td>18.7 MB</td>
+              <td>64.3%</td>
+              <td>~187 KB / commit</td>
+            </tr>
+            <tr style="background: var(--color-canvas-subtle);">
+              <td><strong>Covpages Normalized LCOV</strong></td>
+              <td>52.4 MB</td>
+              <td class="highlight-cell">1.24 MB</td>
+              <td class="highlight-cell">97.6%</td>
+              <td class="highlight-cell">~12.4 KB / commit</td>
+            </tr>
+            <tr>
+              <td><strong>Covpages Compiled history.json</strong></td>
+              <td>2.4 MB</td>
+              <td class="highlight-cell">180 KB</td>
+              <td class="highlight-cell">92.5%</td>
+              <td class="highlight-cell">~1.8 KB / commit</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 32px;" class="benchmarks-table-wrap">
+        <table class="benchmarks-table">
+          <thead>
+            <tr>
+              <th>Total Cost of Ownership (TCO)</th>
+              <th>Commercial SaaS (Codecov/Coveralls)</th>
+              <th>Self-Hosted (SonarQube)</th>
+              <th>Covpages (GitHub Pages)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Monthly Cost</strong></td>
+              <td>$10 to $50 / user / month</td>
+              <td>$40 to $200 / mo (Cloud VM + DB)</td>
+              <td class="highlight-cell">$0 / month (100% Free)</td>
+            </tr>
+            <tr>
+              <td><strong>Maintenance Overhead</strong></td>
+              <td>Token rotation, billing setup</td>
+              <td>OS updates, DB migrations</td>
+              <td class="highlight-cell">Zero (Native Git commit)</td>
+            </tr>
+            <tr>
+              <td><strong>Security & Privacy</strong></td>
+              <td>Proprietary third-party SaaS</td>
+              <td>Private, extra attack surface</td>
+              <td class="highlight-cell">100% inside your GitHub Org</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quickstart -->
+  <section class="section" id="quickstart">
+    <div class="container">
+      <h2 class="section-title">Quickstart & Setup</h2>
+      <p class="section-subtitle">
+        Get up and running in under 5 minutes with zero configuration.
+      </p>
+
+      <div class="code-tabs">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="tab-cli">1. Automated CI Setup</button>
+          <button class="tab-btn" data-tab="tab-vitest">Vitest / Jest</button>
+          <button class="tab-btn" data-tab="tab-flutter">Flutter / Dart</button>
+          <button class="tab-btn" data-tab="tab-go">Go</button>
+          <button class="tab-btn" data-tab="tab-python">Python</button>
+          <button class="tab-btn" data-tab="tab-rust">Rust</button>
+        </div>
+
+        <div class="tab-content" id="tab-cli"># 1. Initialize GitHub Actions Workflow in your repository
+npx covpages init
+
+# 2. Push to GitHub!
+git add .github/workflows/covpages.yml
+git commit -m "ci: add covpages coverage report workflow"
+git push origin main
+
+# Your coverage will be automatically published to https://&lt;owner&gt;.github.io/&lt;repo&gt;/</div>
+
+        <div class="tab-content" id="tab-vitest" style="display: none;"># vitest.config.ts
+export default {
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+    },
+  },
+};
+
+# Run tests and generate covpages
+npx vitest run --coverage
+npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+
+        <div class="tab-content" id="tab-flutter" style="display: none;"># Run Flutter test coverage
+flutter test --coverage
+
+# Generate Covpages report from coverage/lcov.info
+npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+
+        <div class="tab-content" id="tab-go" style="display: none;"># Run Go tests with coverage profile
+go test -coverprofile=coverage.out ./...
+
+# Convert or use covpages parser
+npx covpages generate --input coverage.out --output docs/covpages</div>
+
+        <div class="tab-content" id="tab-python" style="display: none;"># Run pytest with lcov output
+pytest --cov=src --cov-report=lcov:coverage/lcov.info
+
+# Generate Covpages report
+npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+
+        <div class="tab-content" id="tab-rust" style="display: none;"># Install cargo-llvm-cov
+cargo install cargo-llvm-cov
+
+# Run tests and generate lcov
+cargo llvm-cov --lcov --output-path coverage/lcov.info
+
+# Generate Covpages report
+npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- React Integration -->
+  <section class="section" id="react">
+    <div class="container">
+      <h2 class="section-title">Reusable Component Architecture & React Integration</h2>
+      <p class="section-subtitle">
+        Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.
+      </p>
+
+      <div class="code-tabs">
+        <div class="tabs-header">
+          <button class="tab-btn active">React (Vite / Next.js / Docusaurus)</button>
+        </div>
+        <div class="tab-content">import React, { useState, useEffect } from 'react';
+import { Covpages } from 'covpages/react';
+import 'covpages/style.css';
+
+export function CoveragePortal() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('/covpages-data.json')
+      .then(res => res.json())
+      .then(setData);
+  }, []);
+
+  if (!data) return &lt;div&gt;Loading coverage report...&lt;/div&gt;;
+
+  return (
+    &lt;div style={{ height: '100vh', width: '100%' }}&gt;
+      &lt;Covpages data={data} theme="auto" initialTab="files" /&gt;
+    &lt;/div&gt;
+  );
+}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Covpages is open source software released under the <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+      </p>
+      <p style="margin-top: 8px;">
+        Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Theme Toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      let currentMode = localStorage.getItem('covpages-theme') || 'auto';
+      document.documentElement.setAttribute('data-color-mode', currentMode);
+
+      themeToggle.addEventListener('click', () => {
+        currentMode = currentMode === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-color-mode', currentMode);
+        localStorage.setItem('covpages-theme', currentMode);
+      });
+
+      // Tab switcher
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-tab');
+          if (!tabId) return;
+          const container = btn.closest('.code-tabs');
+          container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          container.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+          btn.classList.add('active');
+          const target = document.getElementById(tabId);
+          if (target) target.style.display = 'block';
+        });
+      });
+
+      // Toast helper
+      const toast = document.getElementById('toast');
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+      }
+
+      // Badge Playground
+      const repoInput = document.getElementById('badge-repo');
+      const scopeSelect = document.getElementById('badge-scope');
+      const targetGroup = document.getElementById('badge-target-group');
+      const targetLabel = document.getElementById('badge-target-label');
+      const targetInput = document.getElementById('badge-target');
+      const previewImg = document.getElementById('badge-preview-img');
+      const mdCode = document.getElementById('badge-markdown-code');
+
+      function sanitizeBadgeName(p) {
+        return p.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/--+/g, '-').toLowerCase();
+      }
+
+      function updateBadgePreview() {
+        const r = repoInput.value.trim() || '${repo}';
+        const scope = scopeSelect.value;
+        const target = targetInput.value.trim();
+
+        if (scope === 'overall') {
+          targetGroup.style.display = 'none';
+        } else {
+          targetGroup.style.display = 'block';
+          targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');
+        }
+
+        let badgeFile = 'badges/overall.svg';
+        let linkPath = '';
+        let altText = 'Coverage';
+
+        if (scope === 'branch') {
+          badgeFile = 'badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';
+          linkPath = 'tree/' + (target || 'main');
+          altText = 'Coverage: ' + (target || 'main');
+        } else if (scope === 'folder') {
+          badgeFile = 'badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';
+          linkPath = 'tree/main/' + (target || 'src');
+          altText = 'Coverage: ' + (target || 'src');
+        } else if (scope === 'file') {
+          badgeFile = 'badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';
+          linkPath = 'blob/main/' + (target || 'src/index.ts');
+          altText = 'Coverage: ' + (target || 'src/index.ts');
+        }
+
+        const origin = window.location.origin;
+        const basePath = window.location.pathname.replace(/\\/[^\\/]*$/, '/');
+        const fullBadgeUrl = origin + basePath + badgeFile;
+        const fullLinkUrl = origin + basePath + (linkPath ? linkPath : '');
+
+        previewImg.src = badgeFile;
+        const mdSnippet = '[![' + altText + '](' + fullBadgeUrl + ')](' + fullLinkUrl + ')';
+        mdCode.textContent = mdSnippet;
+      }
+
+      scopeSelect.addEventListener('change', updateBadgePreview);
+      repoInput.addEventListener('input', updateBadgePreview);
+      targetInput.addEventListener('input', updateBadgePreview);
+      updateBadgePreview();
+
+      document.getElementById('copy-badge-md').addEventListener('click', () => {
+        navigator.clipboard.writeText(mdCode.textContent).then(() => {
+          showToast('Copied Badge Markdown to clipboard!');
+        });
+      });
+
+      document.getElementById('copy-badge-url').addEventListener('click', () => {
+        navigator.clipboard.writeText(previewImg.src).then(() => {
+          showToast('Copied Badge URL to clipboard!');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>`;
+}

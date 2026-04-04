@@ -1487,6 +1487,84 @@ export const APP_JS = `
     \`;
   }
 
+  function getLanguageFromPath(filePath) {
+    if (!filePath) return 'javascript';
+    const parts = filePath.split('.');
+    const ext = parts[parts.length - 1].toLowerCase();
+    const map = {
+      ts: 'typescript',
+      tsx: 'typescript',
+      js: 'javascript',
+      jsx: 'javascript',
+      mjs: 'javascript',
+      cjs: 'javascript',
+      json: 'json',
+      html: 'markup',
+      htm: 'markup',
+      svg: 'markup',
+      xml: 'markup',
+      css: 'css',
+      py: 'python',
+      go: 'go',
+      rs: 'rust',
+      java: 'java',
+      dart: 'dart',
+      sh: 'bash',
+      bash: 'bash',
+      zsh: 'bash',
+      yml: 'yaml',
+      yaml: 'yaml',
+      md: 'markdown',
+      c: 'c',
+      h: 'c',
+      cpp: 'cpp',
+      hpp: 'cpp',
+      cc: 'cpp',
+    };
+    return map[ext] || 'javascript';
+  }
+
+  function highlightSourceCodeLines(sourceCode, filePath) {
+    if (!sourceCode) return [];
+    const rawLines = sourceCode.split(/\\r?\\n/);
+    const p = typeof window !== 'undefined' ? window.Prism : (typeof Prism !== 'undefined' ? Prism : null);
+    if (!p || !p.highlight) {
+      return rawLines.map(function(l) { return escapeHtml(l || ' '); });
+    }
+    const lang = getLanguageFromPath(filePath);
+    const grammar = p.languages[lang] || p.languages.javascript;
+    if (!grammar) {
+      return rawLines.map(function(l) { return escapeHtml(l || ' '); });
+    }
+    try {
+      const rawHtml = p.highlight(sourceCode, grammar, lang);
+      const splitLines = rawHtml.split(/\\r?\\n/);
+      const openTags = [];
+      const result = [];
+
+      for (let i = 0; i < splitLines.length; i++) {
+        let line = splitLines[i];
+        let prefix = openTags.map(function(t) { return t.full; }).join('');
+
+        const tagRegex = /<\\/?span[^>]*>/g;
+        let match;
+        while ((match = tagRegex.exec(line)) !== null) {
+          const tag = match[0];
+          if (tag.startsWith('</')) {
+            openTags.pop();
+          } else {
+            openTags.push({ full: tag });
+          }
+        }
+        let suffix = '</span>'.repeat(openTags.length);
+        result.push(prefix + (line || ' ') + suffix);
+      }
+      return result;
+    } catch (e) {
+      return rawLines.map(function(l) { return escapeHtml(l || ' '); });
+    }
+  }
+
   // Render Source Code Detail Viewer for a single file
   function renderFileViewer() {
     const filePath = state.selectedFile;
@@ -1534,8 +1612,14 @@ export const APP_JS = `
       \`;
     }
 
+    let highlightedLines = [];
+    if (sourceCode) {
+      highlightedLines = highlightSourceCodeLines(sourceCode, filePath);
+    }
+
     let codeRows = '';
-    linesArray.forEach((rawLine, idx) => {
+    const totalLines = highlightedLines.length > 0 ? highlightedLines.length : linesArray.length;
+    for (let idx = 0; idx < totalLines; idx++) {
       const lineNum = idx + 1;
       const detail = lineDetails[lineNum];
 
@@ -1552,14 +1636,16 @@ export const APP_JS = `
         }
       }
 
+      const codeHtml = highlightedLines[idx] !== undefined ? highlightedLines[idx] : escapeHtml(linesArray[idx] || ' ');
+
       codeRows += \`
         <tr class="\${rowClass}" id="L\${lineNum}">
           <td class="blob-num" data-line-number="\${lineNum}">\${lineNum}</td>
           <td class="blob-hits">\${hitsText}</td>
-          <td class="blob-code">\${escapeHtml(rawLine || ' ')}</td>
+          <td class="blob-code">\${codeHtml}</td>
         </tr>
       \`;
-    });
+    }
 
     const fileParts = filePath.split('/');
     const currentFileName = fileParts[fileParts.length - 1];

@@ -52,6 +52,8 @@ jobs:
           cp docs/index.html docs/covpages/index.html
           cp docs/badge.svg docs/covpages/badge.svg
           cp -r docs/history docs/covpages/ 2>/dev/null || true
+          cp -r docs/badges docs/covpages/ 2>/dev/null || true
+          node bin/build-website.js docs
 
       - name: Commit and Push Coverage to main /docs
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
