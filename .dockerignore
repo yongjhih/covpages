@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+covpages-dist
+.git
+.github
+docs
+.devcontainer
+*.log

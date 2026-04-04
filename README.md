@@ -3,12 +3,16 @@
 [![Coverage](https://yongjhih.github.io/covpages/badge.svg)](https://yongjhih.github.io/covpages/)
 [![Specification](https://img.shields.io/badge/docs-specification-blue.svg)](docs/SPECIFICATION.md)
 [![Benchmark](https://img.shields.io/badge/benchmark-97.6%25%20savings-success.svg)](docs/BENCHMARK.md)
+[![Devcontainer](https://img.shields.io/badge/devcontainer-ready-blue.svg)](.devcontainer/README.md)
+[![Docker](https://img.shields.io/badge/docker-wrapper-informational.svg)](docs/DOCKER.md)
+[![React](https://img.shields.io/badge/react-component-61dafb.svg)](docs/REACT_INTEGRATION.md)
 
 > **Impeccable GitHub-styled unit test coverage report generator for GitHub Pages.**  
 > Supports mainstream formats (LCOV, Cobertura, JSON), zero-build drop-in deployment, commit range backfill, and multi-commit coverage trend graphs across the repository, folders, and individual files.
 
-🌐 **Live Demo & Report**: [https://yongjhih.github.io/covpages/](https://yongjhih.github.io/covpages/)  
-📚 **Documentation**: [Storage & Architecture Specification](docs/SPECIFICATION.md) · [Storage & Network Benchmark](docs/BENCHMARK.md) · [Custom Pages Developer Guide](docs/CUSTOM_PAGES_GUIDE.md)
+🌐 **Project Website**: [https://yongjhih.github.io/covpages/](https://yongjhih.github.io/covpages/)  
+📊 **Live Coverage Report**: [https://yongjhih.github.io/covpages/covpages/](https://yongjhih.github.io/covpages/covpages/)  
+📚 **Documentation**: [Storage & Architecture Specification](docs/SPECIFICATION.md) · [Storage & Network Benchmark](docs/BENCHMARK.md) · [Docker & Devcontainer Guide](docs/DOCKER.md) · [React Integration](docs/REACT_INTEGRATION.md)
 
 ---
 
@@ -146,6 +150,44 @@ npx covpages init --framework rust
 # Initialize workflow for Python
 npx covpages init --framework python
 ```
+
+---
+
+## 🐳 Deployment Mode 3: Docker-Wrapper CLI & Devcontainer
+
+No Node.js installed on your machine or CI runner? Run Covpages directly via Docker or Devcontainer!
+
+### 1. Docker-Wrapper CLI
+
+The `covpages-docker` wrapper automatically detects Docker/Podman, mounts your current repository, preserves host user file permissions (`-u $(id -u):$(id -g)`), and forwards CI variables:
+
+```bash
+# Using the wrapper script directly (zero Node.js setup needed)
+./bin/covpages-docker.sh generate --input coverage/lcov.info --output docs/covpages
+
+# Or using npx
+npx covpages-docker generate --input coverage/lcov.info --output docs/covpages
+
+# Or using covpages CLI
+npx covpages docker generate --input coverage/lcov.info --output docs/covpages
+```
+
+### 2. Official Docker Container
+
+```bash
+docker run --rm \
+  -v "$PWD:/workspace" \
+  -w /workspace \
+  -u "$(id -u):$(id -g)" \
+  ghcr.io/yongjhih/covpages:latest generate \
+    --input coverage/lcov.info \
+    --output docs/covpages
+```
+
+### 3. Devcontainer (VS Code & GitHub Codespaces)
+
+Open this repository in VS Code or GitHub Codespaces with `.devcontainer/devcontainer.json`. All development tools, Node.js 22, Git, and extensions are preconfigured.
+See [docs/DOCKER.md](docs/DOCKER.md) for complete instructions.
 
 ---
 

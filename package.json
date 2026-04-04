@@ -4,7 +4,8 @@
   "description": "Impeccable GitHub-styled coverage report generator for GitHub Pages with multi-commit trends by repo, folder, and file",
   "type": "module",
   "bin": {
-    "covpages": "./bin/covpages.js"
+    "covpages": "./bin/covpages.js",
+    "covpages-docker": "./bin/covpages-docker.sh"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,11 +24,14 @@
     "dist",
     "bin",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "Dockerfile"
   ],
   "scripts": {
     "build": "tsc",
     "build:website": "node bin/build-website.js docs",
+    "docker:build": "docker build -t covpages:latest .",
+    "docker:run": "./bin/covpages-docker.sh",
     "prepublishOnly": "npm run build && npm test",
     "test": "vitest run",
     "test:watch": "vitest",

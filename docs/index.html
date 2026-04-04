@@ -788,6 +788,7 @@
           <button class="tab-btn" data-tab="tab-go">Go</button>
           <button class="tab-btn" data-tab="tab-python">Python</button>
           <button class="tab-btn" data-tab="tab-rust">Rust</button>
+          <button class="tab-btn" data-tab="tab-docker">Docker / Container</button>
         </div>
 
         <div class="tab-content" id="tab-cli"># 1. Initialize GitHub Actions Workflow in your repository
@@ -840,6 +841,14 @@ cargo llvm-cov --lcov --output-path coverage/lcov.info
 
 # Generate Covpages report
 npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+
+        <div class="tab-content" id="tab-docker" style="display: none;"># Run via Docker-wrapper CLI (Zero Node.js required on host)
+./bin/covpages-docker.sh generate --input coverage/lcov.info --output docs/covpages
+
+# Or run official container image directly
+docker run --rm -v "$PWD:/workspace" -w /workspace   ghcr.io/yongjhih/covpages:latest generate --input coverage/lcov.info --output docs/covpages
+
+# Devcontainer: open directly in VS Code or GitHub Codespaces via .devcontainer/</div>
       </div>
     </div>
   </section>
