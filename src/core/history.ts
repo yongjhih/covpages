@@ -14,7 +14,8 @@ export function createCommitHistoryEntry(
   commit: CommitInfo,
   summary: { lines: CoverageMetric; functions: CoverageMetric; branches: CoverageMetric },
   folders: Record<string, FolderCoverage>,
-  files: Record<string, FileCoverage>
+  files: Record<string, FileCoverage>,
+  artifacts?: import('../types.js').CommitArtifacts
 ): CommitHistoryEntry {
   const folderSummaries: Record<string, { lines: CoverageMetric; functions: CoverageMetric; branches: CoverageMetric }> = {};
   for (const [fPath, fCov] of Object.entries(folders)) {
@@ -39,6 +40,7 @@ export function createCommitHistoryEntry(
     summary,
     folderSummaries,
     fileSummaries,
+    artifacts: artifacts || undefined,
   };
 }
 

@@ -16,7 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { CommitHistoryEntry, RefMap } from '../types.js';
 
-export type ObjectKind = 'json' | 'lcov';
+export type ObjectKind = 'json' | 'lcov' | (string & {});
 
 const SHA_RE = /^[0-9a-f]{7,64}$/i;
 
@@ -42,6 +42,13 @@ export function writeCommitObject(outputDir: string, entry: CommitHistoryEntry):
 export function writeLcovObject(outputDir: string, sha: string, lcov: string): void {
   if (!SHA_RE.test(sha)) return;
   writeFile(objectPath(outputDir, sha, 'lcov'), lcov);
+}
+
+export function writeRawObject(outputDir: string, sha: string, extension: string, content: string): string {
+  if (!SHA_RE.test(sha)) return '';
+  const rel = objectRelPath(sha, extension);
+  writeFile(path.join(outputDir, rel), content);
+  return rel;
 }
 
 /** Read every commit object under objects/. */
@@ -74,7 +81,9 @@ export function pruneObjects(outputDir: string, keep: CommitHistoryEntry[]): voi
     const dir = path.join(root, fan);
     if (!fs.statSync(dir).isDirectory()) continue;
     for (const f of fs.readdirSync(dir)) {
-      const sha = fan + f.replace(/\.(json|lcov)$/, '');
+      const dotIndex = f.indexOf('.');
+      const shaRest = dotIndex > 0 ? f.slice(0, dotIndex) : f;
+      const sha = (fan + shaRest).toLowerCase();
       if (!keepSet.has(sha)) fs.rmSync(path.join(dir, f), { force: true });
     }
     if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);

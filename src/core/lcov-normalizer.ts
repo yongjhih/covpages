@@ -106,6 +106,68 @@ export function normalizeLcov(content: string): string {
 }
 
 /**
+ * Converts internal FileCoverage map (regardless of original input format: Cobertura, JSON, etc.)
+ * into a standardized, deterministic normalized LCOV format.
+ */
+export function fileCoveragesToLcov(files: Record<string, import('../types.js').FileCoverage>): string {
+  const filePaths = Object.keys(files).sort((a, b) => a.localeCompare(b));
+  const output: string[] = [];
+
+  for (const filePath of filePaths) {
+    const file = files[filePath];
+    output.push(`SF:${file.path || filePath}`);
+
+    // FN / FNDA
+    if (file.functionDetails && file.functionDetails.length > 0) {
+      const sortedFns = [...file.functionDetails].sort((a, b) => a.line - b.line);
+      for (const fn of sortedFns) {
+        output.push(`FN:${fn.line},${fn.name}`);
+      }
+      const sortedFnda = [...file.functionDetails].sort((a, b) => a.name.localeCompare(b.name));
+      for (const fn of sortedFnda) {
+        output.push(`FNDA:${fn.hits},${fn.name}`);
+      }
+      output.push(`FNF:${file.functions.total}`);
+      output.push(`FNH:${file.functions.covered}`);
+    }
+
+    // BRDA
+    if (file.lineDetails) {
+      const lineNumbers = Object.keys(file.lineDetails).map(Number).sort((a, b) => a - b);
+      let brCount = 0;
+      for (const ln of lineNumbers) {
+        const detail = file.lineDetails[ln];
+        if (detail?.branches) {
+          const total = detail.branches.total || 0;
+          const taken = detail.branches.taken || 0;
+          for (let b = 0; b < total; b++) {
+            const hit = b < taken ? 1 : 0;
+            output.push(`BRDA:${ln},0,${b},${hit}`);
+            brCount++;
+          }
+        }
+      }
+      if (brCount > 0 || file.branches.total > 0) {
+        output.push(`BRF:${file.branches.total}`);
+        output.push(`BRH:${file.branches.covered}`);
+      }
+
+      // DA
+      for (const ln of lineNumbers) {
+        const hits = file.lineDetails[ln]?.hits ?? 0;
+        output.push(`DA:${ln},${hits}`);
+      }
+      output.push(`LF:${file.lines.total}`);
+      output.push(`LH:${file.lines.covered}`);
+    }
+
+    output.push('end_of_record');
+  }
+
+  return normalizeLcov(output.join('\n'));
+}
+
+/**
  * Standard .gitattributes content for GitHub Pages and coverage directories
  * to guarantee optimal delta compression and LF normalization in git packfiles.
  */

@@ -86,6 +86,20 @@ export interface CommitHistoryEntry {
     functions: CoverageMetric;
     branches: CoverageMetric;
   }>;
+  /** Raw data stored in objects/ for this commit (written with --save-raw). */
+  artifacts?: CommitArtifacts;
+}
+
+/**
+ * Per-commit raw data manifest. Whatever the input format, a canonical LCOV is always
+ * produced (the browser viewer only needs one parser); the original reports are archived
+ * next to it so nothing is lost and future viewers/parsers can use richer formats.
+ */
+export interface CommitArtifacts {
+  /** Canonical normalized LCOV, e.g. "objects/ab/cdef….lcov". */
+  lcov?: string;
+  /** Original input reports, e.g. [{ format: "cobertura", path: "objects/ab/cdef….0.cobertura.xml" }]. */
+  sources?: { format: string; path: string }[];
 }
 
 export interface CoverageReport {
@@ -130,7 +144,8 @@ export interface CovpagesData {
   };
 }
 
-export type SupportedFormat = 'lcov' | 'cobertura' | 'clover' | 'json' | 'auto';
+/** Built-in ids are listed for editor hints; any id registered via `registerParser` is accepted. */
+export type SupportedFormat = 'lcov' | 'cobertura' | 'clover' | 'json' | 'istanbul' | 'auto' | (string & {});
 
 export interface ParseOptions {
   format?: SupportedFormat;

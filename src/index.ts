@@ -6,7 +6,7 @@ import type {
   FileCoverage,
   CommitHistoryEntry,
 } from './types.js';
-import { parseCoverageFile } from './parsers/index.js';
+import { parseCoverageFile, resolveParser } from './parsers/index.js';
 import { resolveCommitInfo } from './core/git.js';
 import { aggregateCoverage } from './core/aggregator.js';
 import {
@@ -19,13 +19,14 @@ import {
   extractRefs,
   saveRefs,
 } from './core/history.js';
-import { normalizeLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
+import { normalizeLcov, fileCoveragesToLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
 import { generateBadgeSvg, getBadgeFileName } from './core/badge.js';
 import { renderIndexHtml, render404Html } from './templates/index.html.js';
 import {
   loadCommitObjects,
   writeCommitObject,
   writeLcovObject,
+  writeRawObject,
   writeLooseRefs,
   writeHead,
   readHeadBranch,
@@ -136,35 +137,59 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
 
   // 3. Process primary input coverage file(s)
   let mergedFiles: Record<string, FileCoverage> = {};
+  const sourcesArtifacts: { format: string; path: string }[] = [];
 
   const inputPaths = options.inputs && options.inputs.length > 0 
     ? options.inputs 
     : ['coverage/lcov.info'];
 
-  for (const inputPath of inputPaths) {
+  for (let i = 0; i < inputPaths.length; i++) {
+    const inputPath = inputPaths[i];
     const resolvedInput = path.resolve(inputPath);
     if (!fs.existsSync(resolvedInput)) {
       throw new Error(`Coverage input file not found: ${resolvedInput}`);
     }
 
-    const parsed = parseCoverageFile(resolvedInput, {
-      format: options.format,
-      rootDir,
-      includeSource: options.includeSource ?? true,
-    });
-
+    const content = fs.readFileSync(resolvedInput, 'utf-8');
+    const parser = resolveParser(resolvedInput, content, options.format);
+    const parsed = parser.parse(content, rootDir, options.includeSource ?? true);
     mergedFiles = { ...mergedFiles, ...parsed };
+
+    if (options.saveRaw) {
+      const ext = parser.extension || path.extname(resolvedInput).replace(/^\./, '') || 'raw';
+      const kind = inputPaths.length > 1 ? `${i}.${parser.id}.${ext}` : `${parser.id}.${ext}`;
+      const relPath = writeRawObject(outputDir, currentCommit.sha, kind, content);
+      sourcesArtifacts.push({ format: parser.id, path: relPath });
+    }
   }
 
-  // 4. Hierarchical aggregation
+  // 4. Canonical LCOV generation for unified client consumption
+  const canonicalLcov = fileCoveragesToLcov(mergedFiles);
+  fs.writeFileSync(path.join(outputDir, 'lcov.info'), canonicalLcov, 'utf-8');
+
+  let lcovArtifactPath: string | undefined;
+  if (options.saveRaw) {
+    writeLcovObject(outputDir, currentCommit.sha, canonicalLcov);
+    lcovArtifactPath = `objects/${currentCommit.sha.slice(0, 2).toLowerCase()}/${currentCommit.sha.slice(2).toLowerCase()}.lcov`;
+  }
+
+  const artifacts = options.saveRaw
+    ? {
+        lcov: lcovArtifactPath,
+        sources: sourcesArtifacts.length > 0 ? sourcesArtifacts : undefined,
+      }
+    : undefined;
+
+  // 5. Hierarchical aggregation
   const aggregated = aggregateCoverage(mergedFiles);
 
-  // 5. Create history entry for the current commit
+  // 6. Create history entry for the current commit
   const currentEntry = createCommitHistoryEntry(
     currentCommit,
     aggregated.summary,
     aggregated.folders,
-    aggregated.files
+    aggregated.files,
+    artifacts
   );
 
   // Find previous commit before appending current
@@ -253,22 +278,6 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   for (const [filePath, fileCov] of Object.entries(aggregated.files)) {
     const fileFile = getBadgeFileName('file', filePath);
     fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, path.basename(filePath)), 'utf-8');
-  }
-
-  // 10. Normalize and write lcov.info if an LCOV input file exists
-  for (const inp of inputPaths) {
-    if (inp.endsWith('.info') || inp.endsWith('.lcov')) {
-      try {
-        const rawLcov = fs.readFileSync(path.resolve(inp), 'utf-8');
-        const normalized = normalizeLcov(rawLcov);
-        fs.writeFileSync(path.join(outputDir, 'lcov.info'), normalized, 'utf-8');
-
-        if (options.saveRaw) {
-          writeLcovObject(outputDir, currentCommit.sha, normalized);
-        }
-      } catch {}
-      break;
-    }
   }
 
   return covpagesData;
