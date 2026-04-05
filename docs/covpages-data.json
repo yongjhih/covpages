@@ -1,8 +1,16 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-05T05:05:45.762Z",
+  "generatedAt": "2026-10-05T05:06:05.602Z",
   "currentCommit": {
+    "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+    "shortSha": "e426e3b",
+    "message": "fix: inline badges share clipPath ids, clipping wider badges",
+    "author": "yongjhih",
+    "date": "2026-10-05T05:05:45.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "1779101f406940cec9b3a851e5a02807d65e0cf8",
     "shortSha": "1779101",
     "message": "fix: inline badge clipPath id collision",
@@ -10,18 +18,10 @@
     "date": "2026-10-05T05:04:38.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "af3340d3049b9e9015f81b8582d8e924ac016cf9",
-    "shortSha": "af3340d",
-    "message": "feat: git-like history store (objects/, refs/heads, refs/tags, HEAD) and attach tag reports to their branch",
-    "author": "yongjhih",
-    "date": "2026-10-05T05:04:22.000Z",
-    "branch": "main"
-  },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": 0.57
+    "branchesPct": -0.57
   },
   "summary": {
     "lines": {
@@ -37,10 +37,10 @@
       "pct": 85.33
     },
     "branches": {
-      "total": 452,
-      "covered": 328,
-      "skipped": 124,
-      "pct": 72.57
+      "total": 450,
+      "covered": 324,
+      "skipped": 126,
+      "pct": 72
     }
   },
   "folders": {
@@ -60,10 +60,10 @@
         "pct": 85.33
       },
       "branches": {
-        "total": 452,
-        "covered": 328,
-        "skipped": 124,
-        "pct": 72.57
+        "total": 450,
+        "covered": 324,
+        "skipped": 126,
+        "pct": 72
       },
       "filesCount": 25,
       "foldersCount": 1
@@ -84,10 +84,10 @@
         "pct": 85.33
       },
       "branches": {
-        "total": 452,
-        "covered": 328,
-        "skipped": 124,
-        "pct": 72.57
+        "total": 450,
+        "covered": 324,
+        "skipped": 126,
+        "pct": 72
       },
       "filesCount": 25,
       "foldersCount": 5
@@ -108,10 +108,10 @@
         "pct": 91.89
       },
       "branches": {
-        "total": 218,
-        "covered": 169,
-        "skipped": 49,
-        "pct": 77.52
+        "total": 216,
+        "covered": 165,
+        "skipped": 51,
+        "pct": 76.39
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -3108,45 +3108,45 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 26,
+          "hits": 14,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 26
+          "hits": 14
         },
         "6": {
-          "hits": 26
+          "hits": 14
         },
         "7": {
-          "hits": 26,
+          "hits": 14,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 26
+          "hits": 14
         },
         "9": {
-          "hits": 26
+          "hits": 14
         },
         "10": {
-          "hits": 26
+          "hits": 14
         },
         "11": {
-          "hits": 26,
+          "hits": 14,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3159,7 +3159,7 @@
           "hits": 6
         },
         "14": {
-          "hits": 26
+          "hits": 14
         },
         "20": {
           "hits": 1,
@@ -3256,7 +3256,7 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "48": {
@@ -3266,14 +3266,14 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "50": {
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "51": {
@@ -3287,7 +3287,7 @@
           "hits": 6,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "53": {
@@ -3388,7 +3388,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 26
+          "hits": 14
         },
         {
           "name": "resolveContainingBranch",
@@ -3423,10 +3423,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 49,
-        "covered": 35,
+        "total": 48,
+        "covered": 34,
         "skipped": 14,
-        "pct": 71.43
+        "pct": 70.83
       },
       "lineDetails": {
         "1": {
@@ -4079,8 +4079,8 @@
         "203": {
           "hits": 7,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "204": {
@@ -4990,10 +4990,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 41,
-        "covered": 31,
+        "total": 40,
+        "covered": 30,
         "skipped": 10,
-        "pct": 75.61
+        "pct": 75
       },
       "lineDetails": {
         "1": {
@@ -5100,8 +5100,8 @@
         "50": {
           "hits": 7,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "51": {
@@ -15914,11 +15914,685 @@
           }
         }
       }
+    },
+    {
+      "commit": {
+        "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+        "shortSha": "e426e3b",
+        "message": "fix: inline badges share clipPath ids, clipping wider badges",
+        "author": "yongjhih",
+        "date": "2026-10-05T05:05:45.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 1945,
+          "covered": 1399,
+          "skipped": 546,
+          "pct": 71.93
+        },
+        "functions": {
+          "total": 75,
+          "covered": 64,
+          "skipped": 11,
+          "pct": 85.33
+        },
+        "branches": {
+          "total": 450,
+          "covered": 324,
+          "skipped": 126,
+          "pct": 72
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 1945,
+            "covered": 1399,
+            "skipped": 546,
+            "pct": 71.93
+          },
+          "functions": {
+            "total": 75,
+            "covered": 64,
+            "skipped": 11,
+            "pct": 85.33
+          },
+          "branches": {
+            "total": 450,
+            "covered": 324,
+            "skipped": 126,
+            "pct": 72
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 1945,
+            "covered": 1399,
+            "skipped": 546,
+            "pct": 71.93
+          },
+          "functions": {
+            "total": 75,
+            "covered": 64,
+            "skipped": 11,
+            "pct": 85.33
+          },
+          "branches": {
+            "total": 450,
+            "covered": 324,
+            "skipped": 126,
+            "pct": 72
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 819,
+            "covered": 615,
+            "skipped": 204,
+            "pct": 75.09
+          },
+          "functions": {
+            "total": 37,
+            "covered": 34,
+            "skipped": 3,
+            "pct": 91.89
+          },
+          "branches": {
+            "total": 216,
+            "covered": 165,
+            "skipped": 51,
+            "pct": 76.39
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 470,
+            "covered": 362,
+            "skipped": 108,
+            "pct": 77.02
+          },
+          "functions": {
+            "total": 11,
+            "covered": 10,
+            "skipped": 1,
+            "pct": 90.91
+          },
+          "branches": {
+            "total": 135,
+            "covered": 96,
+            "skipped": 39,
+            "pct": 71.11
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 59,
+            "covered": 59,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 28,
+            "covered": 18,
+            "skipped": 10,
+            "pct": 64.29
+          },
+          "functions": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          },
+          "branches": {
+            "total": 5,
+            "covered": 4,
+            "skipped": 1,
+            "pct": 80
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 229,
+            "covered": 118,
+            "skipped": 111,
+            "pct": 51.53
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 34,
+            "covered": 13,
+            "skipped": 21,
+            "pct": 38.24
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 174,
+            "covered": 137,
+            "skipped": 37,
+            "pct": 78.74
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 21,
+            "skipped": 9,
+            "pct": 70
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 33,
+            "covered": 33,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 13,
+            "covered": 13,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 192,
+            "covered": 182,
+            "skipped": 10,
+            "pct": 94.79
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 48,
+            "covered": 34,
+            "skipped": 14,
+            "pct": 70.83
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 85,
+            "skipped": 1,
+            "pct": 98.84
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 44,
+            "skipped": 6,
+            "pct": 88
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 97,
+            "covered": 96,
+            "skipped": 1,
+            "pct": 98.97
+          },
+          "functions": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 40,
+            "covered": 30,
+            "skipped": 10,
+            "pct": 75
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 103,
+            "skipped": 18,
+            "pct": 85.12
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 20,
+            "covered": 10,
+            "skipped": 10,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 35,
+            "skipped": 5,
+            "pct": 87.5
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 25,
+            "skipped": 5,
+            "pct": 83.33
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 10,
+            "covered": 0,
+            "skipped": 10,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "1779101f406940cec9b3a851e5a02807d65e0cf8"
+      "main": "e426e3b75b974b9d9eb3b32d861f76490c6899a5"
     },
     "tags": {}
   },
@@ -16077,6 +16751,19 @@
         "linesPct": 71.93,
         "functionsPct": 85.33,
         "branchesPct": 72.57,
+        "linesCovered": 1399,
+        "linesTotal": 1945
+      },
+      {
+        "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+        "shortSha": "e426e3b",
+        "date": "2026-10-05T05:05:45.000Z",
+        "message": "fix: inline badges share clipPath ids, clipping wider badges",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 71.93,
+        "functionsPct": 85.33,
+        "branchesPct": 72,
         "linesCovered": 1399,
         "linesTotal": 1945
       }
@@ -16238,6 +16925,19 @@
           "branchesPct": 72.57,
           "linesCovered": 1399,
           "linesTotal": 1945
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 71.93,
+          "functionsPct": 85.33,
+          "branchesPct": 72,
+          "linesCovered": 1399,
+          "linesTotal": 1945
         }
       ],
       "src": [
@@ -16394,6 +17094,19 @@
           "linesPct": 71.93,
           "functionsPct": 85.33,
           "branchesPct": 72.57,
+          "linesCovered": 1399,
+          "linesTotal": 1945
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 71.93,
+          "functionsPct": 85.33,
+          "branchesPct": 72,
           "linesCovered": 1399,
           "linesTotal": 1945
         }
@@ -16554,6 +17267,19 @@
           "branchesPct": 77.52,
           "linesCovered": 615,
           "linesTotal": 819
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 75.09,
+          "functionsPct": 91.89,
+          "branchesPct": 76.39,
+          "linesCovered": 615,
+          "linesTotal": 819
         }
       ],
       "src/parsers": [
@@ -16706,6 +17432,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 77.02,
+          "functionsPct": 90.91,
+          "branchesPct": 71.11,
+          "linesCovered": 362,
+          "linesTotal": 470
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 77.02,
           "functionsPct": 90.91,
@@ -16870,6 +17609,19 @@
           "branchesPct": 100,
           "linesCovered": 59,
           "linesTotal": 59
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 59,
+          "linesTotal": 59
         }
       ],
       "src/react": [
@@ -16976,6 +17728,19 @@
           "branchesPct": 73.68,
           "linesCovered": 78,
           "linesTotal": 102
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
         }
       ],
       "src/website": [
@@ -17076,6 +17841,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 64.29,
+          "functionsPct": 50,
+          "branchesPct": 80,
+          "linesCovered": 18,
+          "linesTotal": 28
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 64.29,
           "functionsPct": 50,
@@ -17242,6 +18020,19 @@
           "branchesPct": 38.24,
           "linesCovered": 118,
           "linesTotal": 229
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 51.53,
+          "functionsPct": 100,
+          "branchesPct": 38.24,
+          "linesCovered": 118,
+          "linesTotal": 229
         }
       ],
       "src/index.ts": [
@@ -17394,6 +18185,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 78.74,
+          "functionsPct": 100,
+          "branchesPct": 70,
+          "linesCovered": 137,
+          "linesTotal": 174
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 78.74,
           "functionsPct": 100,
@@ -17558,6 +18362,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -17710,6 +18527,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -17874,6 +18704,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -18026,6 +18869,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -18190,6 +19046,19 @@
           "branchesPct": 100,
           "linesCovered": 33,
           "linesTotal": 33
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 33,
+          "linesTotal": 33
         }
       ],
       "src/core/git.ts": [
@@ -18346,6 +19215,19 @@
           "linesPct": 89.66,
           "functionsPct": 100,
           "branchesPct": 64.29,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
           "linesCovered": 52,
           "linesTotal": 58
         }
@@ -18506,6 +19388,19 @@
           "branchesPct": 71.43,
           "linesCovered": 182,
           "linesTotal": 192
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.79,
+          "functionsPct": 100,
+          "branchesPct": 70.83,
+          "linesCovered": 182,
+          "linesTotal": 192
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -18658,6 +19553,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 98.84,
+          "functionsPct": 100,
+          "branchesPct": 88,
+          "linesCovered": 85,
+          "linesTotal": 86
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 98.84,
           "functionsPct": 100,
@@ -18822,6 +19730,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -18974,6 +19895,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 85.12,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 103,
+          "linesTotal": 121
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.12,
           "functionsPct": 100,
@@ -19138,6 +20072,19 @@
           "branchesPct": 83.33,
           "linesCovered": 35,
           "linesTotal": 40
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 87.5,
+          "functionsPct": 100,
+          "branchesPct": 83.33,
+          "linesCovered": 35,
+          "linesTotal": 40
         }
       ],
       "src/parsers/json.ts": [
@@ -19290,6 +20237,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -19454,6 +20414,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -19606,6 +20579,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -19770,6 +20756,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -19922,6 +20921,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -20086,6 +21098,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -20186,6 +21211,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -20298,6 +21336,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -20398,6 +21449,19 @@
           "date": "2026-10-05T05:04:38.000Z",
           "message": "fix: inline badge clipPath id collision",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -20510,6 +21574,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 10
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 10
         }
       ],
       "src/website/render.ts": [
@@ -20616,6 +21693,19 @@
           "branchesPct": 100,
           "linesCovered": 18,
           "linesTotal": 18
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 18,
+          "linesTotal": 18
         }
       ],
       "src/core/store.ts": [
@@ -20655,6 +21745,19 @@
           "linesPct": 98.97,
           "functionsPct": 100,
           "branchesPct": 75.61,
+          "linesCovered": 96,
+          "linesTotal": 97
+        },
+        {
+          "sha": "e426e3b75b974b9d9eb3b32d861f76490c6899a5",
+          "shortSha": "e426e3b",
+          "date": "2026-10-05T05:05:45.000Z",
+          "message": "fix: inline badges share clipPath ids, clipping wider badges",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 98.97,
+          "functionsPct": 100,
+          "branchesPct": 75,
           "linesCovered": 96,
           "linesTotal": 97
         }
