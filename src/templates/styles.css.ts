@@ -1427,8 +1427,9 @@ tr.line-uncovered .blob-hits {
 
 .badge-svg-display svg {
   display: block;
-  height: 18px;
+  height: 20px;
   width: auto;
+  max-width: none;
   border-radius: 3px;
 }
 
