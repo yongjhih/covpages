@@ -76,8 +76,9 @@ describe('Coverage Site Generator', () => {
     expect(data.baseUrl).toBe('/docs/covpages/');
     expect(data.refs?.tags['v1.2.3']).toBe('abcdef1234567890abcdef1234567890abcdef12');
 
-    const rawSnapshot = path.join(outDir, 'history', 'lcov', 'lcov-abcdef1.info');
+    const rawSnapshot = path.join(outDir, 'objects', 'ab', 'cdef1234567890abcdef1234567890abcdef12.lcov');
     expect(fs.existsSync(rawSnapshot)).toBe(true);
+    expect(fs.readFileSync(path.join(outDir, 'refs', 'tags', 'v1.2.3'), 'utf-8').trim()).toBe('abcdef1234567890abcdef1234567890abcdef12');
     const content = fs.readFileSync(rawSnapshot, 'utf-8');
     expect(content).toContain('SF:');
     expect(content).not.toContain('\r');

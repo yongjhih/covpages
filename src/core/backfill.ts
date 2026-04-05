@@ -18,6 +18,7 @@ import {
   calculateDelta,
 } from './history.js';
 import { renderIndexHtml } from '../templates/index.html.js';
+import { resolveContainingBranch } from './git.js';
 
 export interface BackfillOptions {
   range?: string;
@@ -37,6 +38,14 @@ function runGit(cmd: string, cwd: string): string {
     encoding: 'utf-8',
     stdio: ['pipe', 'pipe', 'ignore'],
   }).trim();
+}
+
+function runGitSafe(cmd: string, cwd: string): string {
+  try {
+    return runGit(cmd, cwd);
+  } catch {
+    return '';
+  }
 }
 
 export function backfillCommits(options: BackfillOptions = {}): CovpagesData {
@@ -125,7 +134,8 @@ export function backfillCommits(options: BackfillOptions = {}): CovpagesData {
       const message = runGit(`log -1 --pretty=%B ${sha}`, cwd).split('\n')[0].trim();
       const author = runGit(`log -1 --pretty=%an ${sha}`, cwd).trim();
       const date = new Date(runGit(`log -1 --pretty=%cI ${sha}`, cwd).trim()).toISOString();
-      const branch = runGit(`branch --contains ${sha}`, cwd).replace(/^\*?\s+/, '').split('\n')[0] || 'main';
+      const branch = resolveContainingBranch(sha, cwd) || 'main';
+      const tag = runGitSafe(`tag --points-at ${sha}`, cwd).split(/\r?\n/)[0] || undefined;
 
       console.log(`[${i + 1}/${revs.length}] Checking out ${shortSha}: "${message}"`);
       execSync(`git checkout -q ${sha}`, { cwd, stdio: 'ignore' });
@@ -152,6 +162,7 @@ export function backfillCommits(options: BackfillOptions = {}): CovpagesData {
           author,
           date,
           branch,
+          tag,
         };
 
         const entry = createCommitHistoryEntry(

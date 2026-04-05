@@ -397,6 +397,7 @@ export const APP_JS = `
     loadingLcovSha = key;
 
     const candidates = [
+      ...(sha && sha.length >= 7 ? ['./objects/' + sha.slice(0, 2).toLowerCase() + '/' + sha.slice(2).toLowerCase() + '.lcov'] : []),
       './history/lcov/lcov-' + shortSha + '.info',
       './history/lcov/' + sha + '.lcov',
       './history/lcov/' + shortSha + '.lcov',

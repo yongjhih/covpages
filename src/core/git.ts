@@ -13,6 +13,25 @@ function runGit(cmd: string, cwd?: string): string {
   }
 }
 
+/**
+ * Find the branch a commit lives on (used for tag builds / detached HEAD).
+ * Preference: remote default branch > main > master > first match.
+ */
+export function resolveContainingBranch(sha: string, cwd?: string): string | undefined {
+  const list = (args: string) =>
+    runGit(`branch ${args} --contains ${sha} --format='%(refname:short)'`, cwd)
+      .split(/\r?\n/)
+      .map((b) => b.trim().replace(/^origin\//, ''))
+      .filter((b) => b && b !== 'HEAD' && b !== 'origin' && !b.includes('HEAD detached'));
+  const candidates = [...new Set([...list('-r'), ...list('')])];
+  if (candidates.length === 0) return undefined;
+  const def = runGit('symbolic-ref --short refs/remotes/origin/HEAD', cwd).replace(/^origin\//, '');
+  for (const pref of [def, 'main', 'master']) {
+    if (pref && candidates.includes(pref)) return pref;
+  }
+  return candidates[0];
+}
+
 export function resolveCommitInfo(options?: {
   cwd?: string;
   sha?: string;
@@ -35,6 +54,13 @@ export function resolveCommitInfo(options?: {
 
   if (tag) {
     tag = tag.trim().replace(/^refs\/tags\//, '');
+  }
+
+  // A tag is not a branch: when the given/derived "branch" is actually the tag name
+  // or a detached HEAD, find the branch that contains the tagged commit instead.
+  branch = branch.trim().replace(/^refs\/heads\//, '');
+  if (!branch || branch === 'HEAD' || (tag && branch === tag)) {
+    branch = resolveContainingBranch(sha, cwd) || 'main';
   }
 
   // Normalize date to ISO string if possible

@@ -309,7 +309,7 @@ OPTIONS:
   -b, --branch <branch>   Branch name (defaults to git branch)
   -t, --tag <tag>         Tag name (defaults to git tag if on tag)
   --base-url <url>        Base URL for subdirectory hosting (e.g. "/docs/covpages/")
-  --save-raw              Save normalized raw lcov-<sha>.info in history/lcov/
+  --save-raw              Save normalized raw LCOV as objects/<sha[0:2]>/<sha[2:]>.lcov
   --docs                  Target docs/covpages for GitHub Pages deployment
   --date <iso-date>       Commit date (defaults to git date or now)
   --title <title>         Custom title for report
