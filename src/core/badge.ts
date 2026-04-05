@@ -9,12 +9,21 @@ export function getBadgeColor(pct: number): string {
   return '#cf222e'; // Primer red/danger
 }
 
+export function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 export function generateBadgeSvg(pct: number, label = 'coverage'): string {
   const roundedPct = Math.round(pct * 10) / 10;
   const pctStr = `${roundedPct}%`;
   const color = getBadgeColor(pct);
 
-  // Character width approximations for crisp rendering
+  // Character width approximations for crisp rendering (based on unescaped visual length)
   const labelWidth = Math.round(label.length * 6.5 + 16);
   const valueWidth = Math.round(pctStr.length * 7.5 + 16);
   const totalWidth = labelWidth + valueWidth;
@@ -22,8 +31,11 @@ export function generateBadgeSvg(pct: number, label = 'coverage'): string {
   const labelTextX = Math.round((labelWidth / 2) * 10);
   const valueTextX = Math.round((labelWidth + valueWidth / 2) * 10);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} 20" width="${totalWidth}" height="20" role="img" aria-label="${label}: ${pctStr}">
-  <title>${label}: ${pctStr}</title>
+  const escapedLabel = escapeXml(label);
+  const escapedPctStr = escapeXml(pctStr);
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} 20" width="${totalWidth}" height="20" role="img" aria-label="${escapedLabel}: ${escapedPctStr}">
+  <title>${escapedLabel}: ${escapedPctStr}</title>
   <linearGradient id="covpages-grad" x2="0" y2="100%">
     <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
     <stop offset="1" stop-opacity=".1"/>
@@ -37,10 +49,10 @@ export function generateBadgeSvg(pct: number, label = 'coverage'): string {
     <rect width="${totalWidth}" height="20" fill="url(#covpages-grad)"/>
   </g>
   <g fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" text-rendering="geometricPrecision" font-size="110">
-    <text aria-hidden="true" x="${labelTextX}" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">${label}</text>
-    <text x="${labelTextX}" y="140" transform="scale(.1)" fill="#fff">${label}</text>
-    <text aria-hidden="true" x="${valueTextX}" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">${pctStr}</text>
-    <text x="${valueTextX}" y="140" transform="scale(.1)" fill="#fff">${pctStr}</text>
+    <text aria-hidden="true" x="${labelTextX}" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">${escapedLabel}</text>
+    <text x="${labelTextX}" y="140" transform="scale(.1)" fill="#fff">${escapedLabel}</text>
+    <text aria-hidden="true" x="${valueTextX}" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">${escapedPctStr}</text>
+    <text x="${valueTextX}" y="140" transform="scale(.1)" fill="#fff">${escapedPctStr}</text>
   </g>
 </svg>
 `;
@@ -63,6 +75,9 @@ export function formatBadgeLabel(
   }
   if (scope === 'tag' || scope === 'commit') {
     return `coverage@${name}`;
+  }
+  if (scope === 'file' || scope === 'folder') {
+    return `coverage&${name}`;
   }
   return name;
 }

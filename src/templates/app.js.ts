@@ -1628,6 +1628,7 @@ export const APP_JS = `
     const activeFolderCov = activeView?.folders?.[state.currentFolder] || activeView?.summary || { lines: { pct: 100 } };
     const folderParts = state.currentFolder ? state.currentFolder.split('/') : [];
     const currentFolderName = folderParts.length > 0 ? folderParts[folderParts.length - 1] : (data?.repoName || 'coverage');
+    const folderBadgeLabel = 'coverage&' + (state.currentFolder || currentFolderName);
 
     return \`
       <div class="file-toolbar">
@@ -1635,7 +1636,7 @@ export const APP_JS = `
         <div style="display:flex; align-items:center; gap:8px;">
           <div class="badge-toolbar-group">
             <button class="gh-btn badge-btn" id="folder-badge-btn" data-badge-copy="folder" data-badge-folder="\${escapeHtml(state.currentFolder || '')}" title="Click to copy badge Markdown for this directory">
-              <span class="badge-svg-display">\${generateClientBadgeSvg(activeFolderCov.lines.pct, currentFolderName)}</span>
+              <span class="badge-svg-display">\${generateClientBadgeSvg(activeFolderCov.lines.pct, folderBadgeLabel)}</span>
               <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
             </button>
           </div>
@@ -1827,8 +1828,7 @@ export const APP_JS = `
       \`;
     }
 
-    const fileParts = filePath.split('/');
-    const currentFileName = fileParts[fileParts.length - 1];
+    const fileBadgeLabel = 'coverage&' + filePath;
 
     return \`
       <div class="file-toolbar">
@@ -1836,7 +1836,7 @@ export const APP_JS = `
         <div style="display:flex; align-items:center; gap:8px;">
           <div class="badge-toolbar-group">
             <button class="gh-btn badge-btn" id="file-badge-btn" data-badge-copy="file" data-badge-file="\${escapeHtml(filePath)}" title="Click to copy badge Markdown for this file">
-              <span class="badge-svg-display">\${generateClientBadgeSvg(fileCov.lines.pct, currentFileName)}</span>
+              <span class="badge-svg-display">\${generateClientBadgeSvg(fileCov.lines.pct, fileBadgeLabel)}</span>
               <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
             </button>
           </div>
@@ -2310,15 +2310,13 @@ export const APP_JS = `
 
         if (scope === 'folder') {
           const folder = btn.getAttribute('data-badge-folder') || state.currentFolder || '';
-          const parts = folder ? folder.split('/') : [];
-          label = parts.length > 0 ? parts[parts.length - 1] : (data?.repoName || 'coverage');
+          label = 'coverage&' + (folder || data?.repoName || 'coverage');
           const fCov = activeView?.folders?.[folder] || activeView?.summary;
           pct = fCov?.lines?.pct || 100;
           filename = folder ? 'folder-' + sanitizeBadgeName(folder) + '.svg' : 'badge.svg';
         } else if (scope === 'file') {
           const file = btn.getAttribute('data-badge-file') || state.selectedFile || '';
-          const parts = file.split('/');
-          label = parts[parts.length - 1];
+          label = 'coverage&' + file;
           const fCov = activeView?.files?.[file];
           pct = fCov?.lines?.pct || 100;
           filename = 'file-' + sanitizeBadgeName(file) + '.svg';

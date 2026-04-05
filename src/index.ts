@@ -305,12 +305,14 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   for (const [fPath, fCov] of Object.entries(aggregated.folders)) {
     if (!fPath) continue;
     const fFile = getBadgeFileName('folder', fPath);
-    fs.writeFileSync(path.join(badgesDir, fFile), generateBadgeSvg(fCov.lines.pct, fPath), 'utf-8');
+    const fLabel = formatBadgeLabel('folder', fPath);
+    fs.writeFileSync(path.join(badgesDir, fFile), generateBadgeSvg(fCov.lines.pct, fLabel), 'utf-8');
   }
 
   for (const [filePath, fileCov] of Object.entries(aggregated.files)) {
     const fileFile = getBadgeFileName('file', filePath);
-    fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, path.basename(filePath)), 'utf-8');
+    const fileLabel = formatBadgeLabel('file', filePath);
+    fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, fileLabel), 'utf-8');
   }
 
   return covpagesData;
