@@ -50,7 +50,24 @@ export function sanitizeBadgeName(name: string): string {
   return name.replace(/[/\\?%*:|"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
-export function getBadgeFileName(scope: 'overall' | 'branch' | 'tag' | 'folder' | 'file', name?: string): string {
+export function formatBadgeLabel(
+  scope: 'overall' | 'branch' | 'tag' | 'commit' | 'folder' | 'file',
+  name?: string,
+  defaultBranch = 'main'
+): string {
+  if (scope === 'overall' || !name) {
+    return 'coverage';
+  }
+  if (scope === 'branch') {
+    return name === defaultBranch ? 'coverage' : `coverage@${name}`;
+  }
+  if (scope === 'tag' || scope === 'commit') {
+    return `coverage@${name}`;
+  }
+  return name;
+}
+
+export function getBadgeFileName(scope: 'overall' | 'branch' | 'tag' | 'commit' | 'folder' | 'file', name?: string): string {
   if (scope === 'overall' || !name) return 'badge.svg';
   const safe = sanitizeBadgeName(name);
   return `${scope}-${safe}.svg`;

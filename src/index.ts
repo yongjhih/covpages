@@ -20,7 +20,7 @@ import {
   saveRefs,
 } from './core/history.js';
 import { normalizeLcov, fileCoveragesToLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
-import { generateBadgeSvg, getBadgeFileName } from './core/badge.js';
+import { generateBadgeSvg, getBadgeFileName, formatBadgeLabel } from './core/badge.js';
 import { renderIndexHtml, render404Html } from './templates/index.html.js';
 import {
   loadCommitObjects,
@@ -216,7 +216,8 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   migrateLegacyLcov(outputDir, commitsHistory);
   pruneObjects(outputDir, commitsHistory);
   writeLooseRefs(outputDir, refs);
-  writeHead(outputDir, readHeadBranch(outputDir) || currentCommit.branch);
+  const defaultBranch = readHeadBranch(outputDir) || currentCommit.branch || 'main';
+  writeHead(outputDir, defaultBranch);
 
   // 8. Assemble CovpagesData
   const repoName = options.repoName || path.basename(rootDir) || 'coverage';
@@ -226,6 +227,7 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
     title,
     repoName,
     baseUrl: options.baseUrl,
+    defaultBranch,
     generatedAt: new Date().toISOString(),
     currentCommit,
     previousCommit,
@@ -250,23 +252,54 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');
   fs.writeFileSync(path.join(outputDir, '404.html'), render404Html(), 'utf-8');
 
-  // 10. Generate scoped badges in badges/ directory for folders, files, and branches
+  // 10. Generate scoped badges in badges/ directory for folders, files, branches, tags, and commits
   const badgesDir = path.join(outputDir, 'badges');
   if (!fs.existsSync(badgesDir)) {
     fs.mkdirSync(badgesDir, { recursive: true });
   }
   fs.writeFileSync(path.join(badgesDir, 'overall.svg'), generateBadgeSvg(aggregated.summary.lines.pct, 'coverage'), 'utf-8');
 
+  // Branch badges: default branch is 'coverage', other branches are 'coverage@<branch>'
+  const branchMap: Record<string, number> = {};
   if (currentCommit.branch) {
-    const bFile = getBadgeFileName('branch', currentCommit.branch);
-    fs.writeFileSync(path.join(badgesDir, bFile), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.branch), 'utf-8');
+    branchMap[currentCommit.branch] = aggregated.summary.lines.pct;
   }
+  if (refs.branches) {
+    for (const [b, sha] of Object.entries(refs.branches)) {
+      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);
+      branchMap[b] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;
+    }
+  }
+  for (const [branch, pct] of Object.entries(branchMap)) {
+    const bFile = getBadgeFileName('branch', branch);
+    const bLabel = formatBadgeLabel('branch', branch, defaultBranch);
+    fs.writeFileSync(path.join(badgesDir, bFile), generateBadgeSvg(pct, bLabel), 'utf-8');
+  }
+
+  // Tag badges: 'coverage@<tag>'
+  const tagMap: Record<string, number> = {};
   if (currentCommit.tag) {
-    const tFile = getBadgeFileName('tag', currentCommit.tag);
-    fs.writeFileSync(path.join(badgesDir, tFile), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.tag), 'utf-8');
+    tagMap[currentCommit.tag] = aggregated.summary.lines.pct;
   }
-  if (currentCommit.shortSha) {
-    fs.writeFileSync(path.join(badgesDir, `commit-${currentCommit.shortSha}.svg`), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.shortSha), 'utf-8');
+  if (refs.tags) {
+    for (const [t, sha] of Object.entries(refs.tags)) {
+      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);
+      tagMap[t] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;
+    }
+  }
+  for (const [tag, pct] of Object.entries(tagMap)) {
+    const tFile = getBadgeFileName('tag', tag);
+    const tLabel = formatBadgeLabel('tag', tag, defaultBranch);
+    fs.writeFileSync(path.join(badgesDir, tFile), generateBadgeSvg(pct, tLabel), 'utf-8');
+  }
+
+  // Commit badges: 'coverage@<commit-id>'
+  for (const entry of commitsHistory) {
+    if (entry.commit.shortSha) {
+      const cFile = getBadgeFileName('commit', entry.commit.shortSha);
+      const cLabel = formatBadgeLabel('commit', entry.commit.shortSha, defaultBranch);
+      fs.writeFileSync(path.join(badgesDir, cFile), generateBadgeSvg(entry.summary.lines.pct, cLabel), 'utf-8');
+    }
   }
 
   for (const [fPath, fCov] of Object.entries(aggregated.folders)) {

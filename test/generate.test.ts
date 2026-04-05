@@ -153,4 +153,47 @@ describe('Coverage Site Generator', () => {
     expect(entry?.artifacts?.lcov).toBe('objects/c0/be4701234567890abcdef1234567890abcdef1.lcov');
     expect(entry?.artifacts?.sources?.[0].format).toBe('cobertura');
   });
+
+  it('generates badges with correct labels: coverage for default branch, coverage@ref for other branch/tag, coverage@sha for commit', () => {
+    // Generate default branch 'main'
+    generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'commit1.lcov')],
+      outputDir: outDir,
+      commitSha: '1111111222222233333334444444555555566666',
+      branch: 'main',
+    });
+
+    const overallBadge = fs.readFileSync(path.join(outDir, 'badges', 'overall.svg'), 'utf-8');
+    expect(overallBadge).toContain('coverage: 50%');
+
+    const mainBadge = fs.readFileSync(path.join(outDir, 'badges', 'branch-main.svg'), 'utf-8');
+    // Default branch badge label should be 'coverage'
+    expect(mainBadge).toContain('coverage: 50%');
+    expect(mainBadge).not.toContain('main: 50%');
+
+    const commitBadge = fs.readFileSync(path.join(outDir, 'badges', 'commit-1111111.svg'), 'utf-8');
+    // Commit badge label should be 'coverage@<commit-id>'
+    expect(commitBadge).toContain('coverage@1111111: 50%');
+
+    // Generate non-default branch 'feat-auth' and tag 'v2.0.0'
+    generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'commit2.lcov')],
+      outputDir: outDir,
+      commitSha: '7777777888888899999990000000aaaaaaaaaaaa',
+      branch: 'feat-auth',
+      tag: 'v2.0.0',
+    });
+
+    const featBadge = fs.readFileSync(path.join(outDir, 'badges', 'branch-feat-auth.svg'), 'utf-8');
+    // Non-default branch badge label should be 'coverage@<branch>'
+    expect(featBadge).toContain('coverage@feat-auth: 90%');
+
+    const tagBadge = fs.readFileSync(path.join(outDir, 'badges', 'tag-v2.0.0.svg'), 'utf-8');
+    // Tag badge label should be 'coverage@<tag>'
+    expect(tagBadge).toContain('coverage@v2.0.0: 90%');
+
+    const commit2Badge = fs.readFileSync(path.join(outDir, 'badges', 'commit-7777777.svg'), 'utf-8');
+    expect(commit2Badge).toContain('coverage@7777777: 90%');
+  });
 });
+

@@ -159,10 +159,10 @@ export const APP_JS = `
   function openBadgeModal(label, pct, badgeFilename) {
     const origin = window.location.origin;
     const base = getBasePath();
-    const badgeUrl = origin + base + (badgeFilename ? 'badges/' + badgeFilename : 'badge.svg');
+    const badgeUrl = origin + base + (badgeFilename && badgeFilename !== 'badge.svg' ? 'badges/' + badgeFilename : 'badge.svg');
     const pageUrl = window.location.href;
-    const mdSnippet = '[![Coverage - ' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
-    const htmlSnippet = '<a href="' + pageUrl + '"><img src="' + badgeUrl + '" alt="Coverage - ' + label + '" /></a>';
+    const mdSnippet = '[![' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
+    const htmlSnippet = '<a href="' + pageUrl + '"><img src="' + badgeUrl + '" alt="' + escapeHtml(label) + '" /></a>';
 
     let modalBackdrop = document.getElementById('badge-modal-backdrop');
     if (modalBackdrop) modalBackdrop.remove();
@@ -228,9 +228,9 @@ export const APP_JS = `
   async function copyBadgeMarkdown(label, pct, badgeFilename) {
     const origin = window.location.origin;
     const base = getBasePath();
-    const badgeUrl = origin + base + (badgeFilename ? 'badges/' + badgeFilename : 'badge.svg');
+    const badgeUrl = origin + base + (badgeFilename && badgeFilename !== 'badge.svg' ? 'badges/' + badgeFilename : 'badge.svg');
     const pageUrl = window.location.href;
-    const mdSnippet = '[![Coverage - ' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
+    const mdSnippet = '[![' + label + '](' + badgeUrl + ')](' + pageUrl + ')';
     try {
       await navigator.clipboard.writeText(mdSnippet);
       showToast('Copied badge Markdown for "' + label + '" to clipboard!');
@@ -1051,6 +1051,16 @@ export const APP_JS = `
     const isDark = state.theme === 'dark' || (state.theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     const themeIcon = isDark ? icons.sun : icons.moon;
     const viewCommit = activeView?.commit || data.currentCommit;
+    const defaultBranch = data?.defaultBranch || data?.currentCommit?.branch || 'main';
+
+    let headerBadgeLabel = 'coverage';
+    if (state.activeRefType === 'tag') {
+      headerBadgeLabel = 'coverage@' + state.activeRefName;
+    } else if (state.activeRefType === 'branch') {
+      headerBadgeLabel = (state.activeRefName === defaultBranch) ? 'coverage' : ('coverage@' + state.activeRefName);
+    } else if (viewCommit?.shortSha) {
+      headerBadgeLabel = 'coverage@' + viewCommit.shortSha;
+    }
 
     return \`
       <header class="gh-header">
@@ -1069,12 +1079,12 @@ export const APP_JS = `
               </button>
               \${state.refPopoverOpen ? renderRefPopover() : ''}
             </div>
-            <span class="gh-btn" title="Commit">
+            <button class="gh-btn" id="header-commit-badge-btn" data-badge-copy="commit" data-badge-commit="\${escapeHtml(viewCommit?.shortSha || '')}" data-badge-pct="\${activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100}" title="Click to copy badge Markdown for this commit">
               \${icons.commit || ''}
               <span class="commit-sha-badge">\${escapeHtml(viewCommit?.shortSha || '')}</span>
-            </span>
+            </button>
             <button class="gh-btn badge-btn" id="header-badge-btn" data-badge-copy="ref" title="Click to copy badge Markdown for this branch/tag">
-              <span class="badge-svg-display">\${generateClientBadgeSvg(activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100, state.activeRefName || 'coverage')}</span>
+              <span class="badge-svg-display">\${generateClientBadgeSvg(activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100, headerBadgeLabel)}</span>
               <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
             </button>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
@@ -1980,6 +1990,9 @@ export const APP_JS = `
                       <span class="commit-sha-badge">
                         \${icons.commit} \${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}
                       </span>
+                      <button class="gh-btn badge-btn" data-badge-copy="commit" data-badge-commit="\${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}" data-badge-pct="\${c.summary.lines.pct}" title="Copy badge Markdown for this commit" style="padding:1px 6px; font-size:11px; margin-left:6px; display:inline-flex; align-items:center; gap:3px;">
+                        \${icons.copy || '📋'} Badge
+                      </button>
                     </td>
                     <td>\${escapeHtml(c.commit.author)}</td>
                     <td>\${escapeHtml(c.commit.branch)}</td>
@@ -2284,7 +2297,7 @@ export const APP_JS = `
       });
     });
 
-    // Badge copy buttons (header, folder, file)
+    // Badge copy buttons (header, folder, file, commit)
     document.querySelectorAll('[data-badge-copy]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -2292,6 +2305,8 @@ export const APP_JS = `
         let label = 'coverage';
         let pct = activeView?.summary?.lines?.pct || 100;
         let filename = 'badge.svg';
+
+        const defaultBranch = data?.defaultBranch || data?.currentCommit?.branch || 'main';
 
         if (scope === 'folder') {
           const folder = btn.getAttribute('data-badge-folder') || state.currentFolder || '';
@@ -2307,10 +2322,25 @@ export const APP_JS = `
           const fCov = activeView?.files?.[file];
           pct = fCov?.lines?.pct || 100;
           filename = 'file-' + sanitizeBadgeName(file) + '.svg';
+        } else if (scope === 'commit') {
+          const sha = btn.getAttribute('data-badge-commit') || (activeView?.commit || data?.currentCommit)?.shortSha || '';
+          label = 'coverage@' + sha;
+          const attrPct = btn.getAttribute('data-badge-pct');
+          pct = attrPct ? parseFloat(attrPct) : (activeView?.summary?.lines?.pct || 100);
+          filename = 'commit-' + sanitizeBadgeName(sha) + '.svg';
         } else if (scope === 'ref') {
-          label = state.activeRefName || data?.currentCommit?.branch || 'coverage';
+          const refName = state.activeRefName || defaultBranch;
+          if (state.activeRefType === 'tag') {
+            label = 'coverage@' + refName;
+            filename = 'tag-' + sanitizeBadgeName(refName) + '.svg';
+          } else if (refName === defaultBranch) {
+            label = 'coverage';
+            filename = 'badge.svg';
+          } else {
+            label = 'coverage@' + refName;
+            filename = 'branch-' + sanitizeBadgeName(refName) + '.svg';
+          }
           pct = activeView?.summary?.lines?.pct || 100;
-          filename = 'branch-' + sanitizeBadgeName(label) + '.svg';
         }
 
         copyBadgeMarkdown(label, pct, filename);

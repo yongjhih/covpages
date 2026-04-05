@@ -116,6 +116,7 @@ export interface CovpagesData {
   title: string;
   repoName: string;
   baseUrl?: string;
+  defaultBranch?: string;
   generatedAt: string;
   currentCommit: CommitInfo;
   previousCommit?: CommitInfo;
