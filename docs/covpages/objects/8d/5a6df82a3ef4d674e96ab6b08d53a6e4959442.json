@@ -2,8 +2,8 @@
   "commit": {
     "sha": "8d5a6df82a3ef4d674e96ab6b08d53a6e4959442",
     "shortSha": "8d5a6df",
-    "message": "fix: ensure Ask AI sidebar opens reliably on click without double-toggling",
-    "author": "Andrew Chen",
+    "message": "Merge pull request #7 from yongjhih/feat/mcp-scopes-and-ai-chat\n\nfeat(mcp): support project vs coverage scopes and interactive Ask AI chat",
+    "author": "yongjhih",
     "date": "2026-10-18T10:23:43.000Z",
     "branch": "main"
   },
@@ -22,9 +22,9 @@
     },
     "branches": {
       "total": 583,
-      "covered": 421,
-      "skipped": 162,
-      "pct": 72.21
+      "covered": 419,
+      "skipped": 164,
+      "pct": 71.87
     }
   },
   "folderSummaries": {
@@ -43,9 +43,9 @@
       },
       "branches": {
         "total": 583,
-        "covered": 421,
-        "skipped": 162,
-        "pct": 72.21
+        "covered": 419,
+        "skipped": 164,
+        "pct": 71.87
       }
     },
     "src": {
@@ -63,9 +63,9 @@
       },
       "branches": {
         "total": 583,
-        "covered": 421,
-        "skipped": 162,
-        "pct": 72.21
+        "covered": 419,
+        "skipped": 164,
+        "pct": 71.87
       }
     },
     "src/core": {
@@ -83,9 +83,9 @@
       },
       "branches": {
         "total": 259,
-        "covered": 203,
-        "skipped": 56,
-        "pct": 78.38
+        "covered": 201,
+        "skipped": 58,
+        "pct": 77.61
       }
     },
     "src/mcp": {
@@ -365,9 +365,9 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       }
     },
     "src/core/history.ts": {
