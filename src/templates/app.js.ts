@@ -12,7 +12,7 @@ export const APP_JS = `
     tag: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>',
     check: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>',
     commit: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>',
-    folder: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="#54aeff"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>',
+    folder: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>',
     file: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path></svg>',
     search: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="m10.68 11.745 4.035 4.034a.75.75 0 1 0 1.06-1.06l-4.034-4.035a6.5 6.5 0 1 0-1.06 1.06Zm-4.18 1.255a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z"></path></svg>',
     chevronRight: '<svg height="14" aria-hidden="true" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 5.72 4.28a.75.75 0 0 1 0-1.06Z"></path></svg>',
@@ -996,7 +996,7 @@ export const APP_JS = `
   }
 
   function getRateColor(pct) {
-    if (pct >= 80) return 'var(--color-success-fg)';
+    if (pct >= 80) return 'var(--color-neutral-emphasis)';
     if (pct >= 50) return 'var(--color-attention-fg)';
     return 'var(--color-danger-fg)';
   }
@@ -1037,10 +1037,13 @@ export const APP_JS = `
     const root = document.documentElement;
     if (theme === 'dark') {
       root.setAttribute('data-theme', 'dark');
+      root.setAttribute('data-color-mode', 'dark');
     } else if (theme === 'light') {
       root.setAttribute('data-theme', 'light');
+      root.setAttribute('data-color-mode', 'light');
     } else {
       root.removeAttribute('data-theme');
+      root.setAttribute('data-color-mode', 'auto');
     }
   }
 
@@ -1085,7 +1088,7 @@ export const APP_JS = `
             </button>
             <button class="gh-btn badge-btn" id="header-badge-btn" data-badge-copy="ref" title="Click to copy badge Markdown for this branch/tag">
               <span class="badge-svg-display">\${generateClientBadgeSvg(activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100, headerBadgeLabel)}</span>
-              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+              <span class="badge-copy-text">\${icons.copy || ''} Copy Badge</span>
             </button>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
               \${themeIcon}
@@ -1135,7 +1138,7 @@ export const APP_JS = `
             \${renderDelta(delta?.linesPct)}
           </div>
           <div class="metric-value-row">
-            <span class="metric-percent \${getRateClass(summary.lines.pct)}">\${summary.lines.pct}%</span>
+            <span class="metric-percent">\${summary.lines.pct}%</span>
             <span class="metric-counts">\${summary.lines.covered} / \${summary.lines.total} lines</span>
           </div>
           <div class="progress-bar-container">
@@ -1149,7 +1152,7 @@ export const APP_JS = `
             \${renderDelta(delta?.functionsPct)}
           </div>
           <div class="metric-value-row">
-            <span class="metric-percent \${getRateClass(summary.functions.pct)}">\${summary.functions.pct}%</span>
+            <span class="metric-percent">\${summary.functions.pct}%</span>
             <span class="metric-counts">\${summary.functions.covered} / \${summary.functions.total} functions</span>
           </div>
           <div class="progress-bar-container">
@@ -1163,7 +1166,7 @@ export const APP_JS = `
             \${renderDelta(delta?.branchesPct)}
           </div>
           <div class="metric-value-row">
-            <span class="metric-percent \${getRateClass(summary.branches.pct)}">\${summary.branches.pct}%</span>
+            <span class="metric-percent">\${summary.branches.pct}%</span>
             <span class="metric-counts">\${summary.branches.covered} / \${summary.branches.total} branches</span>
           </div>
           <div class="progress-bar-container">
@@ -1202,8 +1205,8 @@ export const APP_JS = `
   // Render SVG Sparkline
   function renderSparkline(trendPoints) {
     if (!trendPoints || trendPoints.length <= 1) return '<span style="color:var(--color-fg-subtle)">—</span>';
-    const width = 80;
-    const height = 20;
+    const width = 76;
+    const height = 18;
     const padding = 2;
 
     const values = trendPoints.map(p => p.linesPct);
@@ -1219,11 +1222,11 @@ export const APP_JS = `
 
     const lastVal = values[values.length - 1];
     const firstVal = values[0];
-    const strokeColor = lastVal >= firstVal ? 'var(--color-success-fg)' : 'var(--color-danger-fg)';
+    const strokeColor = lastVal < firstVal ? 'var(--color-danger-fg)' : 'var(--color-fg-muted)';
 
     return \`
       <svg width="\${width}" height="\${height}" style="vertical-align:middle; overflow:visible;">
-        <polyline points="\${coords}" fill="none" stroke="\${strokeColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="\${coords}" fill="none" stroke="\${strokeColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     \`;
   }
@@ -1637,7 +1640,7 @@ export const APP_JS = `
           <div class="badge-toolbar-group">
             <button class="gh-btn badge-btn" id="folder-badge-btn" data-badge-copy="folder" data-badge-folder="\${escapeHtml(state.currentFolder || '')}" title="Click to copy badge Markdown for this directory">
               <span class="badge-svg-display">\${generateClientBadgeSvg(activeFolderCov.lines.pct, folderBadgeLabel)}</span>
-              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+              <span class="badge-copy-text">\${icons.copy || ''} Copy Badge</span>
             </button>
           </div>
           <div class="search-box">
@@ -1837,7 +1840,7 @@ export const APP_JS = `
           <div class="badge-toolbar-group">
             <button class="gh-btn badge-btn" id="file-badge-btn" data-badge-copy="file" data-badge-file="\${escapeHtml(filePath)}" title="Click to copy badge Markdown for this file">
               <span class="badge-svg-display">\${generateClientBadgeSvg(fileCov.lines.pct, fileBadgeLabel)}</span>
-              <span class="badge-copy-text">\${icons.copy || '📋'} Copy Badge</span>
+              <span class="badge-copy-text">\${icons.copy || ''} Copy Badge</span>
             </button>
           </div>
           <button class="gh-btn" id="jump-next-uncovered" title="Jump to next uncovered line (n)">Next Uncovered (n)</button>
@@ -1991,7 +1994,7 @@ export const APP_JS = `
                         \${icons.commit} \${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}
                       </span>
                       <button class="gh-btn badge-btn" data-badge-copy="commit" data-badge-commit="\${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}" data-badge-pct="\${c.summary.lines.pct}" title="Copy badge Markdown for this commit" style="padding:1px 6px; font-size:11px; margin-left:6px; display:inline-flex; align-items:center; gap:3px;">
-                        \${icons.copy || '📋'} Badge
+                        \${icons.copy || ''} Badge
                       </button>
                     </td>
                     <td>\${escapeHtml(c.commit.author)}</td>
