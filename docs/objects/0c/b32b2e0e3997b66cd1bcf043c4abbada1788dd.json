@@ -2,8 +2,8 @@
   "commit": {
     "sha": "0cb32b2e0e3997b66cd1bcf043c4abbada1788dd",
     "shortSha": "0cb32b2",
-    "message": "feat(ask-ai): persist conversation history across page navigation and jumps",
-    "author": "Andrew Chen",
+    "message": "Merge pull request #9 from yongjhih/fix/ask-ai-cta-markdown-buttons\n\nfix: render markdown action links and CTAs as Primer buttons in Ask AI",
+    "author": "yongjhih",
     "date": "2026-10-18T11:16:20.000Z",
     "branch": "main"
   },
@@ -21,10 +21,10 @@
       "pct": 80
     },
     "branches": {
-      "total": 583,
-      "covered": 421,
-      "skipped": 162,
-      "pct": 72.21
+      "total": 581,
+      "covered": 417,
+      "skipped": 164,
+      "pct": 71.77
     }
   },
   "folderSummaries": {
@@ -42,10 +42,10 @@
         "pct": 80
       },
       "branches": {
-        "total": 583,
-        "covered": 421,
-        "skipped": 162,
-        "pct": 72.21
+        "total": 581,
+        "covered": 417,
+        "skipped": 164,
+        "pct": 71.77
       }
     },
     "src": {
@@ -62,10 +62,10 @@
         "pct": 80
       },
       "branches": {
-        "total": 583,
-        "covered": 421,
-        "skipped": 162,
-        "pct": 72.21
+        "total": 581,
+        "covered": 417,
+        "skipped": 164,
+        "pct": 71.77
       }
     },
     "src/core": {
@@ -82,10 +82,10 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 259,
-        "covered": 203,
-        "skipped": 56,
-        "pct": 78.38
+        "total": 257,
+        "covered": 199,
+        "skipped": 58,
+        "pct": 77.43
       }
     },
     "src/mcp": {
@@ -365,9 +365,9 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       }
     },
     "src/core/history.ts": {
@@ -384,10 +384,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       }
     },
     "src/core/lcov-normalizer.ts": {
@@ -444,10 +444,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       }
     },
     "src/mcp/index.ts": {
