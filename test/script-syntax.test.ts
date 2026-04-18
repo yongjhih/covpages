@@ -4,6 +4,7 @@ import { ASK_AI_CLIENT_SCRIPT } from '../src/templates/ask-ai.js';
 import { PRISM_JS } from '../src/templates/prism.bundle.js';
 import { renderIndexHtml, render404Html } from '../src/templates/index.html.js';
 import { renderWebsiteHtml } from '../src/website/render.js';
+import { renderMcpHtml } from '../src/mcp/render.js';
 
 /**
  * The client app is authored inside a TypeScript template literal, where a
@@ -39,6 +40,18 @@ describe('Emitted client scripts are valid JavaScript', () => {
 
   it('project website inline script parses', () => {
     extractScripts(renderWebsiteHtml()).forEach((s, i) => assertParses(s, `website script #${i}`));
+  });
+
+  it('all module scripts in mcp.html (both project and coverage) parse without syntax errors', () => {
+    for (const scope of ['project', 'coverage'] as const) {
+      const html = renderMcpHtml({ repo: 'yongjhih/covpages', scope });
+      const matches = [...html.matchAll(/<script type="module">([\s\S]*?)<\/script>/gi)];
+      expect(matches.length).toBeGreaterThan(0);
+      for (const m of matches) {
+        const codeWithoutImports = m[1].replace(/import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g, '// import');
+        assertParses(codeWithoutImports, `mcp.html (${scope}) module script`);
+      }
+    }
   });
 
   it('renderTrendChart decimates x-axis SHA labels to prevent overlap on dense history', () => {
