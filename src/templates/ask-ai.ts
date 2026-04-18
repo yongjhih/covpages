@@ -9,7 +9,7 @@ export const ASK_AI_CSS = `
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    z-index: 20000;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -31,7 +31,7 @@ export const ASK_AI_CSS = `
     box-shadow: var(--shadow-rest, 0 8px 24px rgba(1, 4, 9, 0.15));
     display: flex;
     flex-direction: column;
-    z-index: 1001;
+    z-index: 20001;
     transform: translateX(100%);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -254,7 +254,16 @@ export const ASK_AI_CLIENT_SCRIPT = `
 
   if (!drawer || !form || !input || !messagesEl) return;
 
+  var lastToggleTime = 0;
   function toggleDrawer(open) {
+    if (typeof open !== 'boolean') {
+      open = drawer.getAttribute('data-open') !== 'true';
+    }
+    var now = Date.now();
+    if (open && now - lastToggleTime < 150) {
+      return;
+    }
+    lastToggleTime = now;
     drawer.setAttribute('data-open', open ? 'true' : 'false');
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
     if (backdrop) backdrop.setAttribute('data-open', open ? 'true' : 'false');
@@ -263,23 +272,32 @@ export const ASK_AI_CLIENT_SCRIPT = `
     }
   }
 
-  if (triggerBtn) {
-    triggerBtn.addEventListener('click', function () {
-      toggleDrawer(drawer.getAttribute('data-open') !== 'true');
-    });
-  }
+  window.toggleAskAiDrawer = function (open) {
+    toggleDrawer(open);
+  };
+
   document.addEventListener('click', function (e) {
-    var btn = e.target && e.target.closest ? e.target.closest('#ask-ai-trigger') : null;
+    var btn = e.target && e.target.closest ? e.target.closest('#ask-ai-trigger, [data-ask-ai-trigger]') : null;
     if (btn) {
       e.preventDefault();
-      toggleDrawer(drawer.getAttribute('data-open') !== 'true');
+      e.stopPropagation();
+      toggleDrawer();
+      return;
+    }
+    var close = e.target && e.target.closest ? e.target.closest('#ask-ai-close, [data-ask-ai-close]') : null;
+    if (close) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDrawer(false);
+      return;
     }
   });
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function () { toggleDrawer(false); });
-  }
+
   if (backdrop) {
-    backdrop.addEventListener('click', function () { toggleDrawer(false); });
+    backdrop.addEventListener('click', function (e) {
+      e.preventDefault();
+      toggleDrawer(false);
+    });
   }
 
   document.addEventListener('keydown', function (e) {
