@@ -823,12 +823,76 @@
     text-decoration: none;
   }
 
-  .ask-ai-cta-btn {
+  /* Primer Button styling for Drawer CTAs and Action Buttons */
+  .ask-ai-drawer .btn,
+  .ask-ai-cta-btn,
+  .ask-ai-jump-btn {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 6px;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--color-fg-default, #1f2328);
+    background-color: var(--color-btn-bg, #f6f8fa);
+    border: 1px solid var(--color-btn-border, #d0d7de);
+    border-radius: var(--radius-md, 6px);
+    box-shadow: 0 1px 0 rgba(31, 35, 40, 0.04);
     cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+  .ask-ai-drawer .btn:hover,
+  .ask-ai-cta-btn:hover,
+  .ask-ai-jump-btn:hover {
+    background-color: var(--color-btn-hover-bg, #eaeef2);
+    border-color: var(--color-border-default, #d0d7de);
+    text-decoration: none;
+    color: var(--color-fg-default, #1f2328);
+  }
+  .ask-ai-drawer .btn-primary,
+  .ask-ai-cta-btn.btn-primary {
+    color: #ffffff !important;
+    background-color: var(--color-btn-primary-bg, #1f883d);
+    border-color: var(--color-btn-primary-border, #1a7f37);
+  }
+  .ask-ai-drawer .btn-primary:hover,
+  .ask-ai-cta-btn.btn-primary:hover {
+    background-color: var(--color-btn-primary-hover-bg, #1a7f37);
+    border-color: var(--color-btn-primary-border, #1a7f37);
+    color: #ffffff !important;
+  }
+
+  .ask-ai-msg ul.ask-ai-actions-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ask-ai-msg ul.ask-ai-actions-list li {
+    margin: 0;
+    display: flex;
+  }
+  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-cta-btn,
+  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-jump-btn {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  .ask-ai-link {
+    color: var(--color-accent-fg, #0969da);
+    text-decoration: underline;
+  }
+  .ask-ai-link:hover {
+    text-decoration: underline;
   }
 
   .ask-ai-footer {
@@ -1528,7 +1592,35 @@
     bindActions(msgEl);
   }
 
+  function handleJump(hash) {
+    if (!hash || !hash.startsWith('#')) return;
+    var el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      toggleDrawer(false);
+      return;
+    }
+
+    // Check if it belongs to ai-proxy local dashboard
+    if (
+      hash === '#form-add-site' ||
+      hash === '#admin-dashboard-authenticated' ||
+      hash === '#details-allow-prefix' ||
+      hash === '#details-allowed-origins' ||
+      hash === '#details-key-mgmt' ||
+      hash.startsWith('#site-row-')
+    ) {
+      window.open('http://127.0.0.1:8788/dashboard.html' + hash, '_blank');
+      return;
+    }
+
+    // Otherwise cross-page jump to project landing page
+    var basePath = window.location.pathname.includes('/covpages/') ? '../' : './';
+    window.location.href = basePath + hash;
+  }
+
   function bindActions(container) {
+    if (!container) return;
     var chips = container.querySelectorAll('.ask-ai-chip[data-ask]');
     for (var i = 0; i < chips.length; i++) {
       chips[i].addEventListener('click', function (ev) {
@@ -1536,6 +1628,14 @@
         if (query) {
           handleUserQuery(query);
         }
+      });
+    }
+
+    var jumpBtns = container.querySelectorAll('.ask-ai-jump-btn[data-jump]');
+    for (var k = 0; k < jumpBtns.length; k++) {
+      jumpBtns[k].addEventListener('click', function (ev) {
+        var hash = ev.currentTarget.getAttribute('data-jump');
+        handleJump(hash);
       });
     }
 
@@ -1548,12 +1648,23 @@
           var targetUrl = action.slice('navigate:'.length);
           window.location.href = targetUrl;
         } else if (action.startsWith('jump:')) {
-          var hash = action.slice('jump:'.length);
-          var el = document.querySelector(hash);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-            toggleDrawer(false);
-          }
+          handleJump(action.slice('jump:'.length));
+        } else if (action === 'action:connect' || action.startsWith('action:connect')) {
+          window.location.href = 'http://127.0.0.1:8788/admin/v1/open-dashboard?redirect=' + encodeURIComponent(window.location.href);
+        } else if (action.startsWith('action:')) {
+          window.open('http://127.0.0.1:8788/dashboard.html', '_blank');
+        }
+      });
+    }
+
+    var links = container.querySelectorAll('a.ask-ai-cta-btn, a.ask-ai-link');
+    for (var l = 0; l < links.length; l++) {
+      links[l].addEventListener('click', function (ev) {
+        var href = ev.currentTarget.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('doc.html') || href.startsWith('dashboard.html')) {
+          ev.preventDefault();
+          window.open('http://127.0.0.1:8788/' + href, '_blank');
         }
       });
     }
@@ -1759,11 +1870,125 @@
       .replace(/"/g, '&quot;');
   }
 
-  function formatMarkdown(str) {
-    return escapeHtml(str)
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/`([^\`]+)`/g, '<code>$1</code>')
-      .replace(/\n/g, '<br />');
+  function formatMarkdown(markdown) {
+    if (!markdown) return '';
+    var lines = String(markdown).split('\n');
+    var result = [];
+    var inCodeBlock = false;
+    var codeBlockLines = [];
+    var inList = false;
+
+    function closeList() {
+      if (inList === 'ol') {
+        result.push('</ol>');
+        inList = false;
+      } else if (inList) {
+        result.push('</ul>');
+        inList = false;
+      }
+    }
+
+    function formatInline(text) {
+      var out = escapeHtml(text);
+
+      // 1) Action CTA buttons: [Text](action:...)
+      out = out.replace(
+        /\[([^\]]+)\]\((action:[^)]+)\)/g,
+        function (_, label, actionUrl) {
+          return '<button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="' + actionUrl + '">' + label + '</button>';
+        }
+      );
+
+      // 2) Jump buttons: [Text](#hash)
+      out = out.replace(
+        /\[([^\]]+)\]\((#[^)]+)\)/g,
+        function (_, label, hash) {
+          return '<button type="button" class="btn btn-sm ask-ai-jump-btn" data-jump="' + hash + '">' + label + '</button>';
+        }
+      );
+
+      // 3) Normal Links / relative files: [Text](url)
+      out = out.replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        function (_, label, url) {
+          var isExt = url.startsWith('http://') || url.startsWith('https://');
+          var targetAttr = isExt ? ' target="_blank" rel="noopener"' : '';
+          return '<a href="' + url + '" class="btn btn-sm ask-ai-cta-btn" style="text-decoration:none;"' + targetAttr + '>' + label + '</a>';
+        }
+      );
+
+      // 4) Bold: **text**
+      out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+      // 5) Inline code
+      out = out.replace(new RegExp('\x60([^\x60]+)\x60', 'g'), '<code>$1</code>');
+
+      return out;
+    }
+
+    var codeFence = String.fromCharCode(96, 96, 96);
+    for (var i = 0; i < lines.length; i++) {
+      var rawLine = lines[i];
+      var trimmed = rawLine.trim();
+
+      if (trimmed.startsWith(codeFence)) {
+        if (inCodeBlock) {
+          result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\n')) + '</code></pre>');
+          codeBlockLines = [];
+          inCodeBlock = false;
+        } else {
+          closeList();
+          inCodeBlock = true;
+        }
+        continue;
+      }
+      if (inCodeBlock) {
+        codeBlockLines.push(rawLine);
+        continue;
+      }
+
+      if (!trimmed) {
+        closeList();
+        continue;
+      }
+
+      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        var itemContent = trimmed.slice(2);
+        var isAction = /^\[.+?\]\(.+?\)$/.test(itemContent.trim());
+        if (!inList) {
+          inList = 'ul';
+          result.push(isAction ? '<ul class="ask-ai-actions-list">' : '<ul>');
+        }
+        result.push('<li>' + formatInline(itemContent) + '</li>');
+        continue;
+      }
+
+      var olMatch = /^(\d+)\.\s+(.*)$/.exec(trimmed);
+      if (olMatch) {
+        if (!inList) {
+          inList = 'ol';
+          result.push('<ol>');
+        }
+        result.push('<li>' + formatInline(olMatch[2]) + '</li>');
+        continue;
+      }
+
+      closeList();
+
+      if (trimmed.startsWith('> ')) {
+        result.push('<blockquote>' + formatInline(trimmed.slice(2)) + '</blockquote>');
+        continue;
+      }
+
+      result.push('<p>' + formatInline(rawLine) + '</p>');
+    }
+
+    closeList();
+    if (inCodeBlock && codeBlockLines.length > 0) {
+      result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\n')) + '</code></pre>');
+    }
+
+    return result.join('');
   }
 })();
 
