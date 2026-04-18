@@ -64,6 +64,7 @@ jobs:
           rm -rf docs/covpages/history docs/covpages/objects docs/covpages/refs
           cp -r docs/objects docs/refs docs/covpages/ 2>/dev/null || true
           cp -r docs/badges docs/covpages/ 2>/dev/null || true
+          node bin/covpages.js mcp docs/covpages --scope coverage
           node bin/build-website.js docs
 
       - name: Commit and Push Coverage to main /docs

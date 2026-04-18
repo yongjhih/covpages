@@ -1090,6 +1090,13 @@ export const APP_JS = `
               <span class="badge-svg-display">\${generateClientBadgeSvg(activeView?.summary?.lines?.pct || data?.summary?.lines?.pct || 100, headerBadgeLabel)}</span>
               <span class="badge-copy-text">\${icons.copy || ''} Copy Badge</span>
             </button>
+            <button class="gh-btn" id="ask-ai-trigger" title="Ask AI about test coverage" aria-label="Ask AI">
+              \${icons.sparkles || ''}
+              <span>Ask AI</span>
+            </button>
+            <a href="mcp" class="gh-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
+              <span>MCP</span>
+            </a>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
               \${themeIcon}
             </button>
