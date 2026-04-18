@@ -486,7 +486,7 @@ export function renderMcpHtml(options: {
       <nav class="nav-links">
         <a href="./" class="nav-link">Overview</a>
         <a href="covpages/" class="nav-link">Live Coverage</a>
-        <a href="mcp.html" class="nav-link active">MCP Page (5 Tools)</a>
+        <a href="mcp" class="nav-link active">MCP Page (5 Tools)</a>
       </nav>
 
       <div style="display:flex;align-items:center;gap:10px;">
@@ -523,19 +523,37 @@ export function renderMcpHtml(options: {
     (function () {
       // Auto-detect current page URL and update registration command snippet
       var cleanUrl = window.location.href.split('#')[0].split('?')[0];
-      if (cleanUrl.endsWith('/')) {
+      // Normalize to short URL without .html
+      if (cleanUrl.endsWith('/mcp.html')) {
+        cleanUrl = cleanUrl.slice(0, -'.html'.length);
+      } else if (cleanUrl.endsWith('.html')) {
+        cleanUrl = cleanUrl.slice(0, -'.html'.length);
+      } else if (cleanUrl.endsWith('/')) {
         cleanUrl += 'mcp';
       }
+
+      var defaultName = '${(repo.split('/')[1] || repo || 'covpages').toLowerCase()}';
+      var siteName = defaultName;
+      try {
+        var parsed = new URL(cleanUrl);
+        var p = parsed.pathname.replace(/\\/mcp(?:\\.html)?$/i, '').replace(/\\/+$/, '');
+        var parts = p.split('/').filter(Boolean);
+        if (parts.length > 0) {
+          siteName = parts.join('-').toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+        }
+      } catch (e) {}
+
+      var fullCmd = 'npx ai-proxy add ' + cleanUrl + ' --name ' + siteName;
       var nodes = document.querySelectorAll('[data-replace-base-url="true"]');
       for (var i = 0; i < nodes.length; i++) {
-        nodes[i].textContent = 'npx ai-proxy add ' + cleanUrl + ' --name covpages';
+        nodes[i].textContent = fullCmd;
       }
 
       var copyBtn = document.getElementById('copy-cmd');
       if (copyBtn) {
         copyBtn.addEventListener('click', function () {
           var targetEl = document.querySelector('[data-replace-base-url="true"]');
-          var text = targetEl ? targetEl.textContent : ('npx ai-proxy add ' + cleanUrl + ' --name covpages');
+          var text = targetEl ? targetEl.textContent : fullCmd;
           navigator.clipboard.writeText(text).then(function () {
             copyBtn.textContent = 'Copied!';
             setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);
