@@ -1,6 +1,7 @@
 {
   "branches": {
-    "main": "2ee2b63559f200540dc44a3d7406c05065a0b80f"
+    "main": "2ee2b63559f200540dc44a3d7406c05065a0b80f",
+    "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
   },
   "tags": {}
 }

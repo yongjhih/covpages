@@ -55,7 +55,8 @@ jobs:
             --message "${{ github.event.head_commit.message || 'Update coverage report' }}" \
             --repo "yongjhih/covpages" \
             --title "covpages Coverage" \
-            --save-raw
+            --save-raw \
+            --mcp
           mkdir -p docs/covpages
           cp docs/index.html docs/covpages/index.html
           cp docs/badge.svg docs/covpages/badge.svg

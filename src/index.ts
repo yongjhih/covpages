@@ -45,9 +45,15 @@ export * from './core/presets.js';
 export * from './core/lcov-normalizer.js';
 export * from './core/badge.js';
 export * from './server.js';
+export * from './mcp/index.js';
 export { renderDropinHtml } from './templates/index.html.js';
+import { buildMcpPage } from './mcp/index.js';
 
-export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Report'): void {
+export function createDropinSite(
+  outputDir = 'gh-pages',
+  title = 'Coverage Report',
+  options: { mcp?: boolean } = {}
+): void {
   const dir = path.resolve(outputDir);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -58,6 +64,10 @@ export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Repor
   fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
   fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');
   fs.writeFileSync(path.join(dir, '404.html'), render404Html(), 'utf-8');
+
+  if (options.mcp) {
+    buildMcpPage(dir, { title });
+  }
 }
 
 
@@ -313,6 +323,10 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
     const fileFile = getBadgeFileName('file', filePath);
     const fileLabel = formatBadgeLabel('file', filePath);
     fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, fileLabel), 'utf-8');
+  }
+
+  if (options.mcp) {
+    buildMcpPage(outputDir, { repo: repoName, title });
   }
 
   return covpagesData;
