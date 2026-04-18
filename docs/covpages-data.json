@@ -2,8 +2,16 @@
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-18T10:02:00.949Z",
+  "generatedAt": "2026-10-18T10:08:07.995Z",
   "currentCommit": {
+    "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+    "shortSha": "f3988f0",
+    "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+    "author": "yongjhih",
+    "date": "2026-10-18T10:07:41.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "024caeb80917d644fcec13a59221878d23817c39",
     "shortSha": "024caeb",
     "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
@@ -11,18 +19,10 @@
     "date": "2026-10-18T10:01:31.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "fe7d6568df00f30d1f61b78a8cb16669fad00701",
-    "shortSha": "fe7d656",
-    "message": "feat: add WebMCP page compliant with ai-proxy specification",
-    "author": "covpages-bot",
-    "date": "2026-10-18T10:00:22.000Z",
-    "branch": "main"
-  },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": -0.47
+    "branchesPct": 0.11
   },
   "summary": {
     "lines": {
@@ -38,10 +38,10 @@
       "pct": 79.8
     },
     "branches": {
-      "total": 546,
-      "covered": 387,
+      "total": 548,
+      "covered": 389,
       "skipped": 159,
-      "pct": 70.88
+      "pct": 70.99
     }
   },
   "folders": {
@@ -61,10 +61,10 @@
         "pct": 79.8
       },
       "branches": {
-        "total": 546,
-        "covered": 387,
+        "total": 548,
+        "covered": 389,
         "skipped": 159,
-        "pct": 70.88
+        "pct": 70.99
       },
       "filesCount": 36,
       "foldersCount": 1
@@ -85,10 +85,10 @@
         "pct": 79.8
       },
       "branches": {
-        "total": 546,
-        "covered": 387,
+        "total": 548,
+        "covered": 389,
         "skipped": 159,
-        "pct": 70.88
+        "pct": 70.99
       },
       "filesCount": 36,
       "foldersCount": 6
@@ -109,10 +109,10 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 257,
-        "covered": 199,
+        "total": 259,
+        "covered": 201,
         "skipped": 58,
-        "pct": 77.43
+        "pct": 77.61
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -3885,10 +3885,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 49,
-        "covered": 35,
+        "total": 50,
+        "covered": 36,
         "skipped": 14,
-        "pct": 71.43
+        "pct": 72
       },
       "lineDetails": {
         "1": {
@@ -4551,8 +4551,8 @@
         "205": {
           "hits": 11,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 3,
+            "taken": 3
           }
         },
         "206": {
@@ -5683,10 +5683,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 43,
-        "covered": 31,
+        "total": 44,
+        "covered": 32,
         "skipped": 12,
-        "pct": 72.09
+        "pct": 72.73
       },
       "lineDetails": {
         "1": {
@@ -5819,8 +5819,8 @@
         "57": {
           "hits": 11,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 3,
+            "taken": 3
           }
         },
         "58": {
@@ -6400,49 +6400,49 @@
           }
         },
         "6": {
-          "hits": 5
+          "hits": 6
         },
         "7": {
-          "hits": 5,
+          "hits": 6,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 5,
+          "hits": 6,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "10": {
-          "hits": 5
+          "hits": 6
         },
         "17": {
-          "hits": 5
+          "hits": 6
         },
         "480": {
-          "hits": 5
+          "hits": 6
         },
         "493": {
-          "hits": 5
+          "hits": 6
         },
         "494": {
-          "hits": 5
+          "hits": 6
         },
-        "871": {
-          "hits": 5
+        "872": {
+          "hits": 6
         }
       },
       "functionDetails": [
         {
           "name": "renderMcpHtml",
           "line": 3,
-          "hits": 5
+          "hits": 6
         }
       ],
-      "sourceCode": "import { ICONS } from '../templates/icons.js';\n\nexport function renderMcpHtml(options: {\n  repo?: string;\n  title?: string;\n} = {}): string {\n  const repo = options.repo || 'yongjhih/covpages';\n  const title = options.title || 'Covpages WebMCP Tools';\n\n  return `<!doctype html>\n<html lang=\"en\" data-color-mode=\"auto\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <meta name=\"description\" content=\"Covpages WebMCP Endpoint for AI tool integration via ai-proxy\" />\n  <meta name=\"color-scheme\" content=\"light dark\" />\n  <title>${title} · covpages</title>\n  <style>\n    :root {\n      color-scheme: light dark;\n      --color-canvas-default: #ffffff;\n      --color-canvas-subtle: #f6f8fa;\n      --color-canvas-overlay: #ffffff;\n      --color-border-default: #d0d7de;\n      --color-border-muted: #d8dee4;\n      --color-fg-default: #1f2328;\n      --color-fg-muted: #59636e;\n      --color-fg-subtle: #656d76;\n      --color-accent-fg: #0969da;\n      --color-accent-emphasis: #0969da;\n      --color-accent-subtle: rgba(9, 105, 218, 0.08);\n      --color-success-fg: #1a7f37;\n      --color-success-emphasis: #1f883d;\n      --color-success-subtle: rgba(26, 127, 55, 0.1);\n      --color-danger-fg: #cf222e;\n      --color-danger-subtle: rgba(207, 34, 46, 0.1);\n      --color-warning-fg: #9a6700;\n      --color-warning-subtle: rgba(154, 103, 0, 0.1);\n      --color-neutral-subtle: rgba(129, 139, 152, 0.12);\n      --color-btn-bg: #f6f8fa;\n      --color-btn-border: #d0d7de;\n      --color-btn-hover-bg: #eaeef2;\n      --color-btn-primary-bg: #1f883d;\n      --color-btn-primary-fg: #ffffff;\n      --color-btn-primary-border: #1a7f37;\n      --color-btn-primary-hover-bg: #1a7f37;\n      --font-stack: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif;\n      --font-mono: ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace;\n      --radius-sm: 4px;\n      --radius-md: 6px;\n      --radius-lg: 8px;\n      --shadow-sm: 0 1px 0 rgba(31, 35, 40, 0.04);\n      --shadow-rest: 0 4px 12px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);\n    }\n\n    [data-color-mode=\"dark\"] {\n      color-scheme: dark;\n      --color-canvas-default: #0d1117;\n      --color-canvas-subtle: #161b22;\n      --color-canvas-overlay: #161b22;\n      --color-border-default: #30363d;\n      --color-border-muted: #21262d;\n      --color-fg-default: #e6edf3;\n      --color-fg-muted: #8b949e;\n      --color-fg-subtle: #6e7681;\n      --color-accent-fg: #4493f8;\n      --color-accent-emphasis: #1f6feb;\n      --color-accent-subtle: rgba(56, 139, 253, 0.1);\n      --color-success-fg: #3fb950;\n      --color-success-emphasis: #238636;\n      --color-success-subtle: rgba(46, 160, 67, 0.15);\n      --color-danger-fg: #ff7b72;\n      --color-danger-subtle: rgba(248, 81, 73, 0.15);\n      --color-warning-fg: #d29922;\n      --color-warning-subtle: rgba(210, 153, 34, 0.15);\n      --color-neutral-subtle: rgba(110, 118, 129, 0.16);\n      --color-btn-bg: #21262d;\n      --color-btn-border: #30363d;\n      --color-btn-hover-bg: #30363d;\n      --color-btn-primary-bg: #238636;\n      --color-btn-primary-fg: #ffffff;\n      --color-btn-primary-border: rgba(240, 246, 252, 0.1);\n      --color-btn-primary-hover-bg: #1a7f37;\n      --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);\n    }\n\n    @media (prefers-color-scheme: dark) {\n      [data-color-mode=\"auto\"] {\n        color-scheme: dark;\n        --color-canvas-default: #0d1117;\n        --color-canvas-subtle: #161b22;\n        --color-canvas-overlay: #161b22;\n        --color-border-default: #30363d;\n        --color-border-muted: #21262d;\n        --color-fg-default: #e6edf3;\n        --color-fg-muted: #8b949e;\n        --color-fg-subtle: #6e7681;\n        --color-accent-fg: #4493f8;\n        --color-accent-emphasis: #1f6feb;\n        --color-accent-subtle: rgba(56, 139, 253, 0.1);\n        --color-success-fg: #3fb950;\n        --color-success-emphasis: #238636;\n        --color-success-subtle: rgba(46, 160, 67, 0.15);\n        --color-danger-fg: #ff7b72;\n        --color-danger-subtle: rgba(248, 81, 73, 0.15);\n        --color-warning-fg: #d29922;\n        --color-warning-subtle: rgba(210, 153, 34, 0.15);\n        --color-neutral-subtle: rgba(110, 118, 129, 0.16);\n        --color-btn-bg: #21262d;\n        --color-btn-border: #30363d;\n        --color-btn-hover-bg: #30363d;\n        --color-btn-primary-bg: #238636;\n        --color-btn-primary-fg: #ffffff;\n        --color-btn-primary-border: rgba(240, 246, 252, 0.1);\n        --color-btn-primary-hover-bg: #1a7f37;\n        --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);\n      }\n    }\n\n    * { box-sizing: border-box; margin: 0; padding: 0; }\n    body {\n      font-family: var(--font-stack);\n      font-size: 14px;\n      line-height: 1.5;\n      color: var(--color-fg-default);\n      background-color: var(--color-canvas-default);\n      -webkit-font-smoothing: antialiased;\n    }\n\n    a { color: var(--color-accent-fg); text-decoration: none; }\n    a:hover { text-decoration: underline; }\n    code, pre { font-family: var(--font-mono); }\n    code {\n      font-size: 12px;\n      padding: 0.2em 0.4em;\n      background-color: var(--color-neutral-subtle);\n      border-radius: var(--radius-sm);\n    }\n\n    /* Header */\n    .site-header {\n      border-bottom: 1px solid var(--color-border-default);\n      background-color: var(--color-canvas-default);\n      position: sticky;\n      top: 0;\n      z-index: 100;\n    }\n    .header-inner {\n      max-width: 1040px;\n      margin: 0 auto;\n      padding: 12px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      gap: 16px;\n    }\n    .brand {\n      display: flex;\n      align-items: center;\n      gap: 10px;\n      font-weight: 600;\n      font-size: 14px;\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n    .brand svg { fill: currentColor; }\n    .nav-links {\n      display: flex;\n      gap: 16px;\n      align-items: center;\n    }\n    .nav-link {\n      color: var(--color-fg-muted);\n      font-size: 13px;\n      font-weight: 500;\n      text-decoration: none;\n      display: flex;\n      align-items: center;\n      gap: 4px;\n    }\n    .nav-link:hover, .nav-link.active {\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n\n    /* Buttons */\n    .btn {\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      gap: 6px;\n      padding: 5px 12px;\n      font-size: 12px;\n      font-weight: 500;\n      border-radius: var(--radius-md);\n      border: 1px solid var(--color-btn-border);\n      background-color: var(--color-btn-bg);\n      color: var(--color-fg-default);\n      cursor: pointer;\n      line-height: 20px;\n      transition: background-color 0.15s ease, border-color 0.15s ease;\n      text-decoration: none;\n    }\n    .btn:hover {\n      background-color: var(--color-btn-hover-bg);\n      text-decoration: none;\n    }\n    .btn-sm {\n      padding: 3px 10px;\n      font-size: 12px;\n    }\n    .btn-primary {\n      background-color: var(--color-btn-primary-bg);\n      color: var(--color-btn-primary-fg);\n      border-color: var(--color-btn-primary-border);\n    }\n    .btn-primary:hover {\n      background-color: var(--color-btn-primary-hover-bg);\n      color: var(--color-btn-primary-fg);\n    }\n    .btn-link {\n      font-size: 12px;\n      color: var(--color-accent-fg);\n      text-decoration: none;\n    }\n    .btn-link:hover { text-decoration: underline; }\n\n    /* Layout */\n    .main-container {\n      max-width: 1040px;\n      margin: 0 auto;\n      padding: 32px 24px 64px 24px;\n    }\n    .intro-section {\n      margin-bottom: 24px;\n    }\n    .intro-title {\n      font-size: 24px;\n      font-weight: 600;\n      margin-bottom: 8px;\n      color: var(--color-fg-default);\n      letter-spacing: -0.015em;\n    }\n    .intro-subtitle {\n      font-size: 14px;\n      color: var(--color-fg-muted);\n      line-height: 1.6;\n      margin-bottom: 16px;\n    }\n\n    /* Command snippet card */\n    .command-box {\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      padding: 12px 16px;\n      font-family: var(--font-mono);\n      font-size: 13px;\n      margin-bottom: 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      gap: 12px;\n      overflow-x: auto;\n    }\n    .command-code {\n      color: var(--color-fg-default);\n      white-space: nowrap;\n    }\n\n    /* MCP Page Widget & UI Styling matching ai-proxy mountMcpPageUi */\n    .mcp-page-widget {\n      display: flex;\n      flex-direction: column;\n      gap: 20px;\n    }\n    .mcp-status-bar {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      font-size: 13px;\n      flex-wrap: wrap;\n      gap: 10px;\n    }\n    .badge {\n      display: inline-flex;\n      align-items: center;\n      padding: 2px 8px;\n      font-size: 12px;\n      font-weight: 500;\n      border-radius: 12px;\n      line-height: 1.4;\n    }\n    .badge-success {\n      background-color: var(--color-success-subtle);\n      color: var(--color-success-fg);\n      border: 1px solid var(--color-success-fg);\n    }\n    .badge-warning {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n    }\n    .badge-danger {\n      background-color: var(--color-danger-subtle);\n      color: var(--color-danger-fg);\n      border: 1px solid var(--color-danger-fg);\n    }\n    .badge-neutral {\n      background-color: var(--color-neutral-subtle);\n      color: var(--color-fg-muted);\n      border: 1px solid var(--color-border-default);\n    }\n    .badge-readonly {\n      background-color: var(--color-accent-subtle);\n      color: var(--color-accent-fg);\n      border: 1px solid var(--color-accent-fg);\n      font-size: 11px;\n    }\n    .badge-mutating {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n      font-size: 11px;\n    }\n\n    .mcp-catalog h3 {\n      font-size: 16px;\n      font-weight: 600;\n      margin-bottom: 12px;\n      color: var(--color-fg-default);\n    }\n    .mcp-tool-list {\n      display: flex;\n      flex-direction: column;\n      gap: 14px;\n    }\n    .mcp-tool-row {\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      background-color: var(--color-canvas-default);\n      padding: 16px;\n      box-shadow: var(--shadow-sm);\n    }\n    .mcp-tool-header {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      margin-bottom: 8px;\n      gap: 10px;\n      flex-wrap: wrap;\n    }\n    .mcp-tool-title {\n      font-size: 14px;\n      margin: 0;\n    }\n    .mcp-tool-title code {\n      font-size: 14px;\n      font-weight: 600;\n      color: var(--color-accent-fg);\n      background: none;\n      padding: 0;\n    }\n    .mcp-tool-desc {\n      font-size: 13px;\n      color: var(--color-fg-muted);\n      margin-bottom: 14px;\n      line-height: 1.5;\n    }\n    .mcp-field-group {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n      gap: 12px;\n      margin-bottom: 12px;\n    }\n    .mcp-field {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n      font-size: 12px;\n      color: var(--color-fg-muted);\n    }\n    .mcp-field input {\n      padding: 6px 10px;\n      font-size: 13px;\n      font-family: inherit;\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-sm);\n      background-color: var(--color-canvas-subtle);\n      color: var(--color-fg-default);\n      outline: none;\n    }\n    .mcp-field input:focus {\n      border-color: var(--color-accent-fg);\n      box-shadow: 0 0 0 2px var(--color-accent-subtle);\n    }\n    .mcp-tool-actions {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n    }\n    .mcp-tool-result {\n      margin-top: 12px;\n      padding: 12px;\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-muted);\n      border-radius: var(--radius-sm);\n      font-family: var(--font-mono);\n      font-size: 12px;\n      line-height: 1.5;\n      overflow-x: auto;\n      max-height: 360px;\n      white-space: pre-wrap;\n      color: var(--color-fg-default);\n    }\n\n    .mcp-direct-result {\n      padding: 16px;\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      background-color: var(--color-canvas-subtle);\n    }\n    .mcp-direct-result h3 {\n      font-size: 14px;\n      font-weight: 600;\n      margin-bottom: 8px;\n    }\n    .mcp-output {\n      font-size: 12px;\n      background-color: var(--color-canvas-default);\n      padding: 12px;\n      border: 1px solid var(--color-border-muted);\n      border-radius: var(--radius-sm);\n      max-height: 320px;\n      overflow-y: auto;\n      white-space: pre-wrap;\n    }\n    .mcp-alert {\n      padding: 10px 14px;\n      border-radius: var(--radius-sm);\n      font-size: 13px;\n    }\n    .mcp-alert-warning {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n    }\n\n    /* Footer */\n    .site-footer {\n      border-top: 1px solid var(--color-border-muted);\n      padding: 24px 0;\n      color: var(--color-fg-muted);\n      font-size: 12px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      flex-wrap: wrap;\n      gap: 12px;\n    }\n  </style>\n  <script>\n    (function () {\n      try {\n        var mode = localStorage.getItem('covpages-theme') || 'auto';\n        document.documentElement.setAttribute('data-color-mode', mode);\n      } catch (e) {}\n    })();\n  </script>\n</head>\n<body>\n  <!-- Header -->\n  <header class=\"site-header\">\n    <div class=\"header-inner\">\n      <a href=\"./\" class=\"brand\">\n        ${ICONS.github}\n        <span>covpages</span>\n        <span style=\"color:var(--fg-muted);font-weight:400;\">/</span>\n        <span>mcp</span>\n      </a>\n\n      <nav class=\"nav-links\">\n        <a href=\"./\" class=\"nav-link\">Overview</a>\n        <a href=\"covpages/\" class=\"nav-link\">Live Coverage</a>\n        <a href=\"mcp.html\" class=\"nav-link active\">MCP Page (5 Tools)</a>\n      </nav>\n\n      <div style=\"display:flex;align-items:center;gap:10px;\">\n        <button class=\"btn btn-sm\" id=\"theme-toggle\" type=\"button\" title=\"Toggle theme\">${ICONS.moon} Theme</button>\n        <a href=\"https://github.com/${repo}\" class=\"btn btn-sm\" target=\"_blank\" rel=\"noopener\">GitHub ${ICONS.linkExternal}</a>\n      </div>\n    </div>\n  </header>\n\n  <!-- Main Content -->\n  <main class=\"main-container\">\n    <section class=\"intro-section\">\n      <h1 class=\"intro-title\">Covpages WebMCP Tools</h1>\n      <p class=\"intro-subtitle\">\n        Zero backend required. This page runs in your browser and registers 5 client-side WebMCP tools via <code>navigator.modelContext</code> (<code>get_coverage_summary</code>, <code>list_coverage_files</code>, <code>get_file_coverage</code>, <code>get_coverage_trends</code>, <code>get_badge_code</code>). You can query coverage stats, file-level metrics, and multi-commit trends directly from Claude or Cursor.\n      </p>\n\n      <div class=\"command-box\">\n        <span class=\"command-code\" data-replace-base-url=\"true\">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp.html --name covpages</span>\n        <button class=\"btn btn-sm\" id=\"copy-cmd\" type=\"button\">Copy</button>\n      </div>\n    </section>\n\n    <!-- Mount target for WebMCP Catalog & Test Runner -->\n    <div id=\"mcp-catalog\"></div>\n\n    <footer class=\"site-footer\">\n      <span>Compliant with <a href=\"https://yongjhih.github.io/ai-proxy/\" target=\"_blank\" rel=\"noopener\">MCP Pages 1.0 Specification</a></span>\n      <span>Covpages &middot; Git-Native Coverage for GitHub Pages</span>\n    </footer>\n  </main>\n\n  <script>\n    (function () {\n      // Base URL replacement for copy/registration snippet\n      var currentUrl = new URL(window.location.href);\n      currentUrl.hash = '';\n      currentUrl.search = '';\n      var cleanPageUrl = currentUrl.href;\n      var nodes = document.querySelectorAll('[data-replace-base-url=\"true\"]');\n      for (var i = 0; i < nodes.length; i++) {\n        nodes[i].textContent = nodes[i].textContent.replace(/https:\\/\\/<host>\\/<org>\\/<repo>\\/mcp\\.html/g, cleanPageUrl);\n      }\n\n      var copyBtn = document.getElementById('copy-cmd');\n      if (copyBtn) {\n        copyBtn.addEventListener('click', function () {\n          var text = document.querySelector('[data-replace-base-url=\"true\"]').textContent;\n          navigator.clipboard.writeText(text).then(function () {\n            copyBtn.textContent = 'Copied!';\n            setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);\n          });\n        });\n      }\n\n      // Theme toggle\n      var themeBtn = document.getElementById('theme-toggle');\n      if (themeBtn) {\n        themeBtn.addEventListener('click', function () {\n          var current = document.documentElement.getAttribute('data-color-mode') || 'auto';\n          var next = current === 'dark' ? 'light' : current === 'light' ? 'auto' : 'dark';\n          document.documentElement.setAttribute('data-color-mode', next);\n          try { localStorage.setItem('covpages-theme', next); } catch (e) {}\n        });\n      }\n    })();\n  </script>\n\n  <!-- WebMCP Tools registration and mount -->\n  <script type=\"module\">\n    import { mountMcpPageUi } from './web/ui.mjs';\n\n    let cachedCoverageData = null;\n    async function loadCoverageData(signal) {\n      if (cachedCoverageData) return cachedCoverageData;\n\n      const candidates = [\n        './covpages-data.json',\n        './covpages/covpages-data.json',\n        '../covpages-data.json',\n        '../covpages/covpages-data.json'\n      ];\n\n      for (const url of candidates) {\n        try {\n          const res = await fetch(url, { signal });\n          if (res.ok) {\n            cachedCoverageData = await res.json();\n            return cachedCoverageData;\n          }\n        } catch (err) {\n          // Try next candidate\n        }\n      }\n\n      if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {\n        cachedCoverageData = window.__COVPAGES_DATA__;\n        return cachedCoverageData;\n      }\n\n      throw new Error('Coverage data file (covpages-data.json) could not be loaded. Please ensure covpages-data.json exists.');\n    }\n\n    const tools = [\n      {\n        name: 'get_coverage_summary',\n        description: 'Get overall code coverage summary (lines, statements, functions, branches) and delta compared to previous commit.',\n        inputSchema: {\n          type: 'object',\n          properties: {},\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Coverage Summary',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(_input, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          return {\n            repoName: data.repoName,\n            generatedAt: data.generatedAt,\n            currentCommit: data.currentCommit,\n            previousCommit: data.previousCommit || null,\n            summary: data.summary,\n            delta: data.delta || null\n          };\n        }\n      },\n      {\n        name: 'list_coverage_files',\n        description: 'List covered and uncovered source files with line coverage percentages and filter options.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            folder: {\n              type: 'string',\n              description: 'Filter files by directory/folder prefix (e.g. \"src/parsers\" or \"lib\")'\n            },\n            minCoverage: {\n              type: 'number',\n              description: 'Minimum line coverage percentage (0-100)'\n            },\n            maxCoverage: {\n              type: 'number',\n              description: 'Maximum line coverage percentage (0-100)'\n            },\n            limit: {\n              type: 'integer',\n              description: 'Maximum number of files to return (default: 50)'\n            },\n            sortBy: {\n              type: 'string',\n              enum: ['linesPct', 'name', 'uncovered'],\n              description: 'Sort by linesPct (ascending), name (alphabetical), or uncovered lines count (descending)'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'List Coverage Files',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          let files = Object.values(data.files || {});\n          if (input.folder) {\n            const folderPrefix = input.folder.endsWith('/') ? input.folder : input.folder + '/';\n            files = files.filter(f => f.path.startsWith(folderPrefix) || f.path === input.folder);\n          }\n          if (typeof input.minCoverage === 'number') {\n            files = files.filter(f => f.lines.pct >= input.minCoverage);\n          }\n          if (typeof input.maxCoverage === 'number') {\n            files = files.filter(f => f.lines.pct <= input.maxCoverage);\n          }\n\n          const sortBy = input.sortBy || 'linesPct';\n          if (sortBy === 'linesPct') {\n            files.sort((a, b) => a.lines.pct - b.lines.pct);\n          } else if (sortBy === 'name') {\n            files.sort((a, b) => a.path.localeCompare(b.path));\n          } else if (sortBy === 'uncovered') {\n            files.sort((a, b) => (b.lines.total - b.lines.covered) - (a.lines.total - a.lines.covered));\n          }\n\n          const limit = typeof input.limit === 'number' && input.limit > 0 ? input.limit : 50;\n          const totalMatching = files.length;\n          const truncated = files.slice(0, limit).map(f => ({\n            path: f.path,\n            lines: f.lines,\n            functions: f.functions,\n            branches: f.branches,\n            uncoveredLinesCount: (f.lines.total - f.lines.covered)\n          }));\n\n          return {\n            totalMatching,\n            returned: truncated.length,\n            files: truncated\n          };\n        }\n      },\n      {\n        name: 'get_file_coverage',\n        description: 'Get detailed line-by-line coverage and uncovered lines for a specific file.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            path: {\n              type: 'string',\n              description: 'Relative path of the source file (e.g. \"src/cli.ts\")'\n            }\n          },\n          required: ['path'],\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get File Coverage Details',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute({ path: filePath }, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          const file = data.files && (data.files[filePath] || Object.values(data.files).find(f => f.path === filePath || f.path.endsWith('/' + filePath)));\n          if (!file) {\n            throw new Error(\\`File \"\\${filePath}\" not found in coverage report.\\`);\n          }\n\n          const uncoveredLines = [];\n          if (file.lineHits) {\n            for (const [lineNo, hits] of Object.entries(file.lineHits)) {\n              if (hits === 0) uncoveredLines.push(Number(lineNo));\n            }\n          } else if (file.lineDetails) {\n            for (const d of file.lineDetails) {\n              if (d.hits === 0) uncoveredLines.push(d.line);\n            }\n          }\n\n          return {\n            path: file.path,\n            lines: file.lines,\n            functions: file.functions,\n            branches: file.branches,\n            uncoveredLines,\n            uncoveredCount: uncoveredLines.length\n          };\n        }\n      },\n      {\n        name: 'get_coverage_trends',\n        description: 'Get historical coverage trend data across previous commits.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            limit: {\n              type: 'integer',\n              description: 'Number of historical commits to return (default: 20)'\n            },\n            branch: {\n              type: 'string',\n              description: 'Filter trends by git branch'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Coverage Trends',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          let commits = Array.isArray(data.commits) ? [...data.commits] : [];\n          if (input.branch) {\n            commits = commits.filter(c => c.commit && c.commit.branch === input.branch);\n          }\n          const limit = typeof input.limit === 'number' && input.limit > 0 ? input.limit : 20;\n          const sliced = commits.slice(-limit).map(c => ({\n            sha: c.commit ? c.commit.sha : '',\n            shortSha: c.commit ? c.commit.shortSha || c.commit.sha.slice(0, 7) : '',\n            message: c.commit ? c.commit.message : '',\n            date: c.commit ? c.commit.date : '',\n            branch: c.commit ? c.commit.branch : '',\n            linesPct: c.summary ? c.summary.lines.pct : 0,\n            functionsPct: c.summary ? c.summary.functions.pct : 0,\n            branchesPct: c.summary ? c.summary.branches.pct : 0\n          }));\n\n          return {\n            totalCommits: commits.length,\n            returned: sliced.length,\n            trends: sliced\n          };\n        }\n      },\n      {\n        name: 'get_badge_code',\n        description: 'Generate SVG badge markdown and embed code for overall coverage or a specific folder/file.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            scope: {\n              type: 'string',\n              enum: ['overall', 'folder', 'file'],\n              description: 'Badge scope: overall project, folder, or specific file'\n            },\n            path: {\n              type: 'string',\n              description: 'Target folder or file path when scope is \"folder\" or \"file\"'\n            },\n            baseUrl: {\n              type: 'string',\n              description: 'Base URL of published GitHub Pages site (e.g. \"https://user.github.io/repo\")'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Badge Code',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          const scope = input.scope || 'overall';\n          let badgeRelative = 'badges/overall.svg';\n          let label = 'Coverage';\n          let pct = data.summary ? data.summary.lines.pct : 100;\n\n          if (scope === 'folder' && input.path) {\n            const clean = input.path.replace(/[\\\\/\\\\\\\\]+/g, '__');\n            badgeRelative = \\`badges/folder__\\${clean}.svg\\`;\n            label = \\`Coverage: \\${input.path}\\`;\n            const folderObj = data.folders && data.folders[input.path];\n            if (folderObj) pct = folderObj.lines.pct;\n          } else if (scope === 'file' && input.path) {\n            const clean = input.path.replace(/[\\\\/\\\\\\\\]+/g, '__');\n            badgeRelative = \\`badges/file__\\${clean}.svg\\`;\n            label = \\`Coverage: \\${input.path}\\`;\n            const fileObj = data.files && data.files[input.path];\n            if (fileObj) pct = fileObj.lines.pct;\n          }\n\n          const base = input.baseUrl ? input.baseUrl.replace(/\\\\/+$/, '') : '.';\n          const fullBadgeUrl = base === '.' ? badgeRelative : \\`\\${base}/\\${badgeRelative}\\`;\n          const siteUrl = base === '.' ? './covpages/' : \\`\\${base}/covpages/\\`;\n\n          return {\n            scope,\n            coveragePct: pct,\n            badgeFile: badgeRelative,\n            badgeUrl: fullBadgeUrl,\n            markdown: \\`[![\\${label}](\\${fullBadgeUrl})](\\${siteUrl})\\`,\n            html: \\`<a href=\"\\${siteUrl}\"><img src=\"\\${fullBadgeUrl}\" alt=\"\\${label}\" /></a>\\`\n          };\n        }\n      }\n    ];\n\n    mountMcpPageUi({\n      container: document.getElementById('mcp-catalog'),\n      title: 'Covpages WebMCP Tools',\n      tools\n    });\n  </script>\n</body>\n</html>\n`;\n}\n"
+      "sourceCode": "import { ICONS } from '../templates/icons.js';\n\nexport function renderMcpHtml(options: {\n  repo?: string;\n  title?: string;\n} = {}): string {\n  const repo = options.repo || 'yongjhih/covpages';\n  const title = options.title || 'Covpages WebMCP Tools';\n\n  return `<!doctype html>\n<html lang=\"en\" data-color-mode=\"auto\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <meta name=\"description\" content=\"Covpages WebMCP Endpoint for AI tool integration via ai-proxy\" />\n  <meta name=\"color-scheme\" content=\"light dark\" />\n  <title>${title} · covpages</title>\n  <style>\n    :root {\n      color-scheme: light dark;\n      --color-canvas-default: #ffffff;\n      --color-canvas-subtle: #f6f8fa;\n      --color-canvas-overlay: #ffffff;\n      --color-border-default: #d0d7de;\n      --color-border-muted: #d8dee4;\n      --color-fg-default: #1f2328;\n      --color-fg-muted: #59636e;\n      --color-fg-subtle: #656d76;\n      --color-accent-fg: #0969da;\n      --color-accent-emphasis: #0969da;\n      --color-accent-subtle: rgba(9, 105, 218, 0.08);\n      --color-success-fg: #1a7f37;\n      --color-success-emphasis: #1f883d;\n      --color-success-subtle: rgba(26, 127, 55, 0.1);\n      --color-danger-fg: #cf222e;\n      --color-danger-subtle: rgba(207, 34, 46, 0.1);\n      --color-warning-fg: #9a6700;\n      --color-warning-subtle: rgba(154, 103, 0, 0.1);\n      --color-neutral-subtle: rgba(129, 139, 152, 0.12);\n      --color-btn-bg: #f6f8fa;\n      --color-btn-border: #d0d7de;\n      --color-btn-hover-bg: #eaeef2;\n      --color-btn-primary-bg: #1f883d;\n      --color-btn-primary-fg: #ffffff;\n      --color-btn-primary-border: #1a7f37;\n      --color-btn-primary-hover-bg: #1a7f37;\n      --font-stack: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif;\n      --font-mono: ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace;\n      --radius-sm: 4px;\n      --radius-md: 6px;\n      --radius-lg: 8px;\n      --shadow-sm: 0 1px 0 rgba(31, 35, 40, 0.04);\n      --shadow-rest: 0 4px 12px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);\n    }\n\n    [data-color-mode=\"dark\"] {\n      color-scheme: dark;\n      --color-canvas-default: #0d1117;\n      --color-canvas-subtle: #161b22;\n      --color-canvas-overlay: #161b22;\n      --color-border-default: #30363d;\n      --color-border-muted: #21262d;\n      --color-fg-default: #e6edf3;\n      --color-fg-muted: #8b949e;\n      --color-fg-subtle: #6e7681;\n      --color-accent-fg: #4493f8;\n      --color-accent-emphasis: #1f6feb;\n      --color-accent-subtle: rgba(56, 139, 253, 0.1);\n      --color-success-fg: #3fb950;\n      --color-success-emphasis: #238636;\n      --color-success-subtle: rgba(46, 160, 67, 0.15);\n      --color-danger-fg: #ff7b72;\n      --color-danger-subtle: rgba(248, 81, 73, 0.15);\n      --color-warning-fg: #d29922;\n      --color-warning-subtle: rgba(210, 153, 34, 0.15);\n      --color-neutral-subtle: rgba(110, 118, 129, 0.16);\n      --color-btn-bg: #21262d;\n      --color-btn-border: #30363d;\n      --color-btn-hover-bg: #30363d;\n      --color-btn-primary-bg: #238636;\n      --color-btn-primary-fg: #ffffff;\n      --color-btn-primary-border: rgba(240, 246, 252, 0.1);\n      --color-btn-primary-hover-bg: #1a7f37;\n      --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);\n    }\n\n    @media (prefers-color-scheme: dark) {\n      [data-color-mode=\"auto\"] {\n        color-scheme: dark;\n        --color-canvas-default: #0d1117;\n        --color-canvas-subtle: #161b22;\n        --color-canvas-overlay: #161b22;\n        --color-border-default: #30363d;\n        --color-border-muted: #21262d;\n        --color-fg-default: #e6edf3;\n        --color-fg-muted: #8b949e;\n        --color-fg-subtle: #6e7681;\n        --color-accent-fg: #4493f8;\n        --color-accent-emphasis: #1f6feb;\n        --color-accent-subtle: rgba(56, 139, 253, 0.1);\n        --color-success-fg: #3fb950;\n        --color-success-emphasis: #238636;\n        --color-success-subtle: rgba(46, 160, 67, 0.15);\n        --color-danger-fg: #ff7b72;\n        --color-danger-subtle: rgba(248, 81, 73, 0.15);\n        --color-warning-fg: #d29922;\n        --color-warning-subtle: rgba(210, 153, 34, 0.15);\n        --color-neutral-subtle: rgba(110, 118, 129, 0.16);\n        --color-btn-bg: #21262d;\n        --color-btn-border: #30363d;\n        --color-btn-hover-bg: #30363d;\n        --color-btn-primary-bg: #238636;\n        --color-btn-primary-fg: #ffffff;\n        --color-btn-primary-border: rgba(240, 246, 252, 0.1);\n        --color-btn-primary-hover-bg: #1a7f37;\n        --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);\n      }\n    }\n\n    * { box-sizing: border-box; margin: 0; padding: 0; }\n    body {\n      font-family: var(--font-stack);\n      font-size: 14px;\n      line-height: 1.5;\n      color: var(--color-fg-default);\n      background-color: var(--color-canvas-default);\n      -webkit-font-smoothing: antialiased;\n    }\n\n    a { color: var(--color-accent-fg); text-decoration: none; }\n    a:hover { text-decoration: underline; }\n    code, pre { font-family: var(--font-mono); }\n    code {\n      font-size: 12px;\n      padding: 0.2em 0.4em;\n      background-color: var(--color-neutral-subtle);\n      border-radius: var(--radius-sm);\n    }\n\n    /* Header */\n    .site-header {\n      border-bottom: 1px solid var(--color-border-default);\n      background-color: var(--color-canvas-default);\n      position: sticky;\n      top: 0;\n      z-index: 100;\n    }\n    .header-inner {\n      max-width: 1040px;\n      margin: 0 auto;\n      padding: 12px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      gap: 16px;\n    }\n    .brand {\n      display: flex;\n      align-items: center;\n      gap: 10px;\n      font-weight: 600;\n      font-size: 14px;\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n    .brand svg { fill: currentColor; }\n    .nav-links {\n      display: flex;\n      gap: 16px;\n      align-items: center;\n    }\n    .nav-link {\n      color: var(--color-fg-muted);\n      font-size: 13px;\n      font-weight: 500;\n      text-decoration: none;\n      display: flex;\n      align-items: center;\n      gap: 4px;\n    }\n    .nav-link:hover, .nav-link.active {\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n\n    /* Buttons */\n    .btn {\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      gap: 6px;\n      padding: 5px 12px;\n      font-size: 12px;\n      font-weight: 500;\n      border-radius: var(--radius-md);\n      border: 1px solid var(--color-btn-border);\n      background-color: var(--color-btn-bg);\n      color: var(--color-fg-default);\n      cursor: pointer;\n      line-height: 20px;\n      transition: background-color 0.15s ease, border-color 0.15s ease;\n      text-decoration: none;\n    }\n    .btn:hover {\n      background-color: var(--color-btn-hover-bg);\n      text-decoration: none;\n    }\n    .btn-sm {\n      padding: 3px 10px;\n      font-size: 12px;\n    }\n    .btn-primary {\n      background-color: var(--color-btn-primary-bg);\n      color: var(--color-btn-primary-fg);\n      border-color: var(--color-btn-primary-border);\n    }\n    .btn-primary:hover {\n      background-color: var(--color-btn-primary-hover-bg);\n      color: var(--color-btn-primary-fg);\n    }\n    .btn-link {\n      font-size: 12px;\n      color: var(--color-accent-fg);\n      text-decoration: none;\n    }\n    .btn-link:hover { text-decoration: underline; }\n\n    /* Layout */\n    .main-container {\n      max-width: 1040px;\n      margin: 0 auto;\n      padding: 32px 24px 64px 24px;\n    }\n    .intro-section {\n      margin-bottom: 24px;\n    }\n    .intro-title {\n      font-size: 24px;\n      font-weight: 600;\n      margin-bottom: 8px;\n      color: var(--color-fg-default);\n      letter-spacing: -0.015em;\n    }\n    .intro-subtitle {\n      font-size: 14px;\n      color: var(--color-fg-muted);\n      line-height: 1.6;\n      margin-bottom: 16px;\n    }\n\n    /* Command snippet card */\n    .command-box {\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      padding: 12px 16px;\n      font-family: var(--font-mono);\n      font-size: 13px;\n      margin-bottom: 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      gap: 12px;\n      overflow-x: auto;\n    }\n    .command-code {\n      color: var(--color-fg-default);\n      white-space: nowrap;\n    }\n\n    /* MCP Page Widget & UI Styling matching ai-proxy mountMcpPageUi */\n    .mcp-page-widget {\n      display: flex;\n      flex-direction: column;\n      gap: 20px;\n    }\n    .mcp-status-bar {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      font-size: 13px;\n      flex-wrap: wrap;\n      gap: 10px;\n    }\n    .badge {\n      display: inline-flex;\n      align-items: center;\n      padding: 2px 8px;\n      font-size: 12px;\n      font-weight: 500;\n      border-radius: 12px;\n      line-height: 1.4;\n    }\n    .badge-success {\n      background-color: var(--color-success-subtle);\n      color: var(--color-success-fg);\n      border: 1px solid var(--color-success-fg);\n    }\n    .badge-warning {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n    }\n    .badge-danger {\n      background-color: var(--color-danger-subtle);\n      color: var(--color-danger-fg);\n      border: 1px solid var(--color-danger-fg);\n    }\n    .badge-neutral {\n      background-color: var(--color-neutral-subtle);\n      color: var(--color-fg-muted);\n      border: 1px solid var(--color-border-default);\n    }\n    .badge-readonly {\n      background-color: var(--color-accent-subtle);\n      color: var(--color-accent-fg);\n      border: 1px solid var(--color-accent-fg);\n      font-size: 11px;\n    }\n    .badge-mutating {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n      font-size: 11px;\n    }\n\n    .mcp-catalog h3 {\n      font-size: 16px;\n      font-weight: 600;\n      margin-bottom: 12px;\n      color: var(--color-fg-default);\n    }\n    .mcp-tool-list {\n      display: flex;\n      flex-direction: column;\n      gap: 14px;\n    }\n    .mcp-tool-row {\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      background-color: var(--color-canvas-default);\n      padding: 16px;\n      box-shadow: var(--shadow-sm);\n    }\n    .mcp-tool-header {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      margin-bottom: 8px;\n      gap: 10px;\n      flex-wrap: wrap;\n    }\n    .mcp-tool-title {\n      font-size: 14px;\n      margin: 0;\n    }\n    .mcp-tool-title code {\n      font-size: 14px;\n      font-weight: 600;\n      color: var(--color-accent-fg);\n      background: none;\n      padding: 0;\n    }\n    .mcp-tool-desc {\n      font-size: 13px;\n      color: var(--color-fg-muted);\n      margin-bottom: 14px;\n      line-height: 1.5;\n    }\n    .mcp-field-group {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n      gap: 12px;\n      margin-bottom: 12px;\n    }\n    .mcp-field {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n      font-size: 12px;\n      color: var(--color-fg-muted);\n    }\n    .mcp-field input {\n      padding: 6px 10px;\n      font-size: 13px;\n      font-family: inherit;\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-sm);\n      background-color: var(--color-canvas-subtle);\n      color: var(--color-fg-default);\n      outline: none;\n    }\n    .mcp-field input:focus {\n      border-color: var(--color-accent-fg);\n      box-shadow: 0 0 0 2px var(--color-accent-subtle);\n    }\n    .mcp-tool-actions {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n    }\n    .mcp-tool-result {\n      margin-top: 12px;\n      padding: 12px;\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-muted);\n      border-radius: var(--radius-sm);\n      font-family: var(--font-mono);\n      font-size: 12px;\n      line-height: 1.5;\n      overflow-x: auto;\n      max-height: 360px;\n      white-space: pre-wrap;\n      color: var(--color-fg-default);\n    }\n\n    .mcp-direct-result {\n      padding: 16px;\n      border: 1px solid var(--color-border-default);\n      border-radius: var(--radius-md);\n      background-color: var(--color-canvas-subtle);\n    }\n    .mcp-direct-result h3 {\n      font-size: 14px;\n      font-weight: 600;\n      margin-bottom: 8px;\n    }\n    .mcp-output {\n      font-size: 12px;\n      background-color: var(--color-canvas-default);\n      padding: 12px;\n      border: 1px solid var(--color-border-muted);\n      border-radius: var(--radius-sm);\n      max-height: 320px;\n      overflow-y: auto;\n      white-space: pre-wrap;\n    }\n    .mcp-alert {\n      padding: 10px 14px;\n      border-radius: var(--radius-sm);\n      font-size: 13px;\n    }\n    .mcp-alert-warning {\n      background-color: var(--color-warning-subtle);\n      color: var(--color-warning-fg);\n      border: 1px solid var(--color-warning-fg);\n    }\n\n    /* Footer */\n    .site-footer {\n      border-top: 1px solid var(--color-border-muted);\n      padding: 24px 0;\n      color: var(--color-fg-muted);\n      font-size: 12px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      flex-wrap: wrap;\n      gap: 12px;\n    }\n  </style>\n  <script>\n    (function () {\n      try {\n        var mode = localStorage.getItem('covpages-theme') || 'auto';\n        document.documentElement.setAttribute('data-color-mode', mode);\n      } catch (e) {}\n    })();\n  </script>\n</head>\n<body>\n  <!-- Header -->\n  <header class=\"site-header\">\n    <div class=\"header-inner\">\n      <a href=\"./\" class=\"brand\">\n        ${ICONS.github}\n        <span>covpages</span>\n        <span style=\"color:var(--fg-muted);font-weight:400;\">/</span>\n        <span>mcp</span>\n      </a>\n\n      <nav class=\"nav-links\">\n        <a href=\"./\" class=\"nav-link\">Overview</a>\n        <a href=\"covpages/\" class=\"nav-link\">Live Coverage</a>\n        <a href=\"mcp.html\" class=\"nav-link active\">MCP Page (5 Tools)</a>\n      </nav>\n\n      <div style=\"display:flex;align-items:center;gap:10px;\">\n        <button class=\"btn btn-sm\" id=\"theme-toggle\" type=\"button\" title=\"Toggle theme\">${ICONS.moon} Theme</button>\n        <a href=\"https://github.com/${repo}\" class=\"btn btn-sm\" target=\"_blank\" rel=\"noopener\">GitHub ${ICONS.linkExternal}</a>\n      </div>\n    </div>\n  </header>\n\n  <!-- Main Content -->\n  <main class=\"main-container\">\n    <section class=\"intro-section\">\n      <h1 class=\"intro-title\">Covpages WebMCP Tools</h1>\n      <p class=\"intro-subtitle\">\n        Zero backend required. This page runs in your browser and registers 5 client-side WebMCP tools via <code>navigator.modelContext</code> (<code>get_coverage_summary</code>, <code>list_coverage_files</code>, <code>get_file_coverage</code>, <code>get_coverage_trends</code>, <code>get_badge_code</code>). You can query coverage stats, file-level metrics, and multi-commit trends directly from Claude or Cursor.\n      </p>\n\n      <div class=\"command-box\">\n        <span class=\"command-code\" data-replace-base-url=\"true\">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp --name covpages</span>\n        <button class=\"btn btn-sm\" id=\"copy-cmd\" type=\"button\">Copy</button>\n      </div>\n    </section>\n\n    <!-- Mount target for WebMCP Catalog & Test Runner -->\n    <div id=\"mcp-catalog\"></div>\n\n    <footer class=\"site-footer\">\n      <span>Compliant with <a href=\"https://yongjhih.github.io/ai-proxy/\" target=\"_blank\" rel=\"noopener\">MCP Pages 1.0 Specification</a></span>\n      <span>Covpages &middot; Git-Native Coverage for GitHub Pages</span>\n    </footer>\n  </main>\n\n  <script>\n    (function () {\n      // Auto-detect current page URL and update registration command snippet\n      var cleanUrl = window.location.href.split('#')[0].split('?')[0];\n      if (cleanUrl.endsWith('/')) {\n        cleanUrl += 'mcp';\n      }\n      var nodes = document.querySelectorAll('[data-replace-base-url=\"true\"]');\n      for (var i = 0; i < nodes.length; i++) {\n        nodes[i].textContent = 'npx ai-proxy add ' + cleanUrl + ' --name covpages';\n      }\n\n      var copyBtn = document.getElementById('copy-cmd');\n      if (copyBtn) {\n        copyBtn.addEventListener('click', function () {\n          var targetEl = document.querySelector('[data-replace-base-url=\"true\"]');\n          var text = targetEl ? targetEl.textContent : ('npx ai-proxy add ' + cleanUrl + ' --name covpages');\n          navigator.clipboard.writeText(text).then(function () {\n            copyBtn.textContent = 'Copied!';\n            setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);\n          });\n        });\n      }\n\n      // Theme toggle\n      var themeBtn = document.getElementById('theme-toggle');\n      if (themeBtn) {\n        themeBtn.addEventListener('click', function () {\n          var current = document.documentElement.getAttribute('data-color-mode') || 'auto';\n          var next = current === 'dark' ? 'light' : current === 'light' ? 'auto' : 'dark';\n          document.documentElement.setAttribute('data-color-mode', next);\n          try { localStorage.setItem('covpages-theme', next); } catch (e) {}\n        });\n      }\n    })();\n  </script>\n\n  <!-- WebMCP Tools registration and mount -->\n  <script type=\"module\">\n    import { mountMcpPageUi } from './web/ui.mjs';\n\n    let cachedCoverageData = null;\n    async function loadCoverageData(signal) {\n      if (cachedCoverageData) return cachedCoverageData;\n\n      const candidates = [\n        './covpages-data.json',\n        './covpages/covpages-data.json',\n        '../covpages-data.json',\n        '../covpages/covpages-data.json'\n      ];\n\n      for (const url of candidates) {\n        try {\n          const res = await fetch(url, { signal });\n          if (res.ok) {\n            cachedCoverageData = await res.json();\n            return cachedCoverageData;\n          }\n        } catch (err) {\n          // Try next candidate\n        }\n      }\n\n      if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {\n        cachedCoverageData = window.__COVPAGES_DATA__;\n        return cachedCoverageData;\n      }\n\n      throw new Error('Coverage data file (covpages-data.json) could not be loaded. Please ensure covpages-data.json exists.');\n    }\n\n    const tools = [\n      {\n        name: 'get_coverage_summary',\n        description: 'Get overall code coverage summary (lines, statements, functions, branches) and delta compared to previous commit.',\n        inputSchema: {\n          type: 'object',\n          properties: {},\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Coverage Summary',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(_input, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          return {\n            repoName: data.repoName,\n            generatedAt: data.generatedAt,\n            currentCommit: data.currentCommit,\n            previousCommit: data.previousCommit || null,\n            summary: data.summary,\n            delta: data.delta || null\n          };\n        }\n      },\n      {\n        name: 'list_coverage_files',\n        description: 'List covered and uncovered source files with line coverage percentages and filter options.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            folder: {\n              type: 'string',\n              description: 'Filter files by directory/folder prefix (e.g. \"src/parsers\" or \"lib\")'\n            },\n            minCoverage: {\n              type: 'number',\n              description: 'Minimum line coverage percentage (0-100)'\n            },\n            maxCoverage: {\n              type: 'number',\n              description: 'Maximum line coverage percentage (0-100)'\n            },\n            limit: {\n              type: 'integer',\n              description: 'Maximum number of files to return (default: 50)'\n            },\n            sortBy: {\n              type: 'string',\n              enum: ['linesPct', 'name', 'uncovered'],\n              description: 'Sort by linesPct (ascending), name (alphabetical), or uncovered lines count (descending)'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'List Coverage Files',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          let files = Object.values(data.files || {});\n          if (input.folder) {\n            const folderPrefix = input.folder.endsWith('/') ? input.folder : input.folder + '/';\n            files = files.filter(f => f.path.startsWith(folderPrefix) || f.path === input.folder);\n          }\n          if (typeof input.minCoverage === 'number') {\n            files = files.filter(f => f.lines.pct >= input.minCoverage);\n          }\n          if (typeof input.maxCoverage === 'number') {\n            files = files.filter(f => f.lines.pct <= input.maxCoverage);\n          }\n\n          const sortBy = input.sortBy || 'linesPct';\n          if (sortBy === 'linesPct') {\n            files.sort((a, b) => a.lines.pct - b.lines.pct);\n          } else if (sortBy === 'name') {\n            files.sort((a, b) => a.path.localeCompare(b.path));\n          } else if (sortBy === 'uncovered') {\n            files.sort((a, b) => (b.lines.total - b.lines.covered) - (a.lines.total - a.lines.covered));\n          }\n\n          const limit = typeof input.limit === 'number' && input.limit > 0 ? input.limit : 50;\n          const totalMatching = files.length;\n          const truncated = files.slice(0, limit).map(f => ({\n            path: f.path,\n            lines: f.lines,\n            functions: f.functions,\n            branches: f.branches,\n            uncoveredLinesCount: (f.lines.total - f.lines.covered)\n          }));\n\n          return {\n            totalMatching,\n            returned: truncated.length,\n            files: truncated\n          };\n        }\n      },\n      {\n        name: 'get_file_coverage',\n        description: 'Get detailed line-by-line coverage and uncovered lines for a specific file.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            path: {\n              type: 'string',\n              description: 'Relative path of the source file (e.g. \"src/cli.ts\")'\n            }\n          },\n          required: ['path'],\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get File Coverage Details',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute({ path: filePath }, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          const file = data.files && (data.files[filePath] || Object.values(data.files).find(f => f.path === filePath || f.path.endsWith('/' + filePath)));\n          if (!file) {\n            throw new Error(\\`File \"\\${filePath}\" not found in coverage report.\\`);\n          }\n\n          const uncoveredLines = [];\n          if (file.lineHits) {\n            for (const [lineNo, hits] of Object.entries(file.lineHits)) {\n              if (hits === 0) uncoveredLines.push(Number(lineNo));\n            }\n          } else if (file.lineDetails) {\n            for (const d of file.lineDetails) {\n              if (d.hits === 0) uncoveredLines.push(d.line);\n            }\n          }\n\n          return {\n            path: file.path,\n            lines: file.lines,\n            functions: file.functions,\n            branches: file.branches,\n            uncoveredLines,\n            uncoveredCount: uncoveredLines.length\n          };\n        }\n      },\n      {\n        name: 'get_coverage_trends',\n        description: 'Get historical coverage trend data across previous commits.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            limit: {\n              type: 'integer',\n              description: 'Number of historical commits to return (default: 20)'\n            },\n            branch: {\n              type: 'string',\n              description: 'Filter trends by git branch'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Coverage Trends',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          let commits = Array.isArray(data.commits) ? [...data.commits] : [];\n          if (input.branch) {\n            commits = commits.filter(c => c.commit && c.commit.branch === input.branch);\n          }\n          const limit = typeof input.limit === 'number' && input.limit > 0 ? input.limit : 20;\n          const sliced = commits.slice(-limit).map(c => ({\n            sha: c.commit ? c.commit.sha : '',\n            shortSha: c.commit ? c.commit.shortSha || c.commit.sha.slice(0, 7) : '',\n            message: c.commit ? c.commit.message : '',\n            date: c.commit ? c.commit.date : '',\n            branch: c.commit ? c.commit.branch : '',\n            linesPct: c.summary ? c.summary.lines.pct : 0,\n            functionsPct: c.summary ? c.summary.functions.pct : 0,\n            branchesPct: c.summary ? c.summary.branches.pct : 0\n          }));\n\n          return {\n            totalCommits: commits.length,\n            returned: sliced.length,\n            trends: sliced\n          };\n        }\n      },\n      {\n        name: 'get_badge_code',\n        description: 'Generate SVG badge markdown and embed code for overall coverage or a specific folder/file.',\n        inputSchema: {\n          type: 'object',\n          properties: {\n            scope: {\n              type: 'string',\n              enum: ['overall', 'folder', 'file'],\n              description: 'Badge scope: overall project, folder, or specific file'\n            },\n            path: {\n              type: 'string',\n              description: 'Target folder or file path when scope is \"folder\" or \"file\"'\n            },\n            baseUrl: {\n              type: 'string',\n              description: 'Base URL of published GitHub Pages site (e.g. \"https://user.github.io/repo\")'\n            }\n          },\n          additionalProperties: false\n        },\n        annotations: {\n          title: 'Get Badge Code',\n          readOnlyHint: true,\n          destructiveHint: false,\n          idempotentHint: true,\n          openWorldHint: false\n        },\n        async execute(input = {}, { signal } = {}) {\n          const data = await loadCoverageData(signal);\n          const scope = input.scope || 'overall';\n          let badgeRelative = 'badges/overall.svg';\n          let label = 'Coverage';\n          let pct = data.summary ? data.summary.lines.pct : 100;\n\n          if (scope === 'folder' && input.path) {\n            const clean = input.path.replace(/[\\\\/\\\\\\\\]+/g, '__');\n            badgeRelative = \\`badges/folder__\\${clean}.svg\\`;\n            label = \\`Coverage: \\${input.path}\\`;\n            const folderObj = data.folders && data.folders[input.path];\n            if (folderObj) pct = folderObj.lines.pct;\n          } else if (scope === 'file' && input.path) {\n            const clean = input.path.replace(/[\\\\/\\\\\\\\]+/g, '__');\n            badgeRelative = \\`badges/file__\\${clean}.svg\\`;\n            label = \\`Coverage: \\${input.path}\\`;\n            const fileObj = data.files && data.files[input.path];\n            if (fileObj) pct = fileObj.lines.pct;\n          }\n\n          const base = input.baseUrl ? input.baseUrl.replace(/\\\\/+$/, '') : '.';\n          const fullBadgeUrl = base === '.' ? badgeRelative : \\`\\${base}/\\${badgeRelative}\\`;\n          const siteUrl = base === '.' ? './covpages/' : \\`\\${base}/covpages/\\`;\n\n          return {\n            scope,\n            coveragePct: pct,\n            badgeFile: badgeRelative,\n            badgeUrl: fullBadgeUrl,\n            markdown: \\`[![\\${label}](\\${fullBadgeUrl})](\\${siteUrl})\\`,\n            html: \\`<a href=\"\\${siteUrl}\"><img src=\"\\${fullBadgeUrl}\" alt=\"\\${label}\" /></a>\\`\n          };\n        }\n      }\n    ];\n\n    mountMcpPageUi({\n      container: document.getElementById('mcp-catalog'),\n      title: 'Covpages WebMCP Tools',\n      tools\n    });\n  </script>\n</body>\n</html>\n`;\n}\n"
     },
     "src/mcp/web-modules.ts": {
       "path": "src/mcp/web-modules.ts",
@@ -31492,11 +31492,954 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+        "shortSha": "f3988f0",
+        "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+        "author": "yongjhih",
+        "date": "2026-10-18T10:07:41.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3367,
+          "covered": 1701,
+          "skipped": 1666,
+          "pct": 50.52
+        },
+        "functions": {
+          "total": 99,
+          "covered": 79,
+          "skipped": 20,
+          "pct": 79.8
+        },
+        "branches": {
+          "total": 548,
+          "covered": 389,
+          "skipped": 159,
+          "pct": 70.99
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3367,
+            "covered": 1701,
+            "skipped": 1666,
+            "pct": 50.52
+          },
+          "functions": {
+            "total": 99,
+            "covered": 79,
+            "skipped": 20,
+            "pct": 79.8
+          },
+          "branches": {
+            "total": 548,
+            "covered": 389,
+            "skipped": 159,
+            "pct": 70.99
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3367,
+            "covered": 1701,
+            "skipped": 1666,
+            "pct": 50.52
+          },
+          "functions": {
+            "total": 99,
+            "covered": 79,
+            "skipped": 20,
+            "pct": 79.8
+          },
+          "branches": {
+            "total": 548,
+            "covered": 389,
+            "skipped": 159,
+            "pct": 70.99
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 906,
+            "covered": 700,
+            "skipped": 206,
+            "pct": 77.26
+          },
+          "functions": {
+            "total": 41,
+            "covered": 38,
+            "skipped": 3,
+            "pct": 92.68
+          },
+          "branches": {
+            "total": 259,
+            "covered": 201,
+            "skipped": 58,
+            "pct": 77.61
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1159,
+            "covered": 48,
+            "skipped": 1111,
+            "pct": 4.14
+          },
+          "functions": {
+            "total": 10,
+            "covered": 3,
+            "skipped": 7,
+            "pct": 30
+          },
+          "branches": {
+            "total": 14,
+            "covered": 5,
+            "skipped": 9,
+            "pct": 35.71
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1110,
+            "covered": 0,
+            "skipped": 1110,
+            "pct": 0
+          },
+          "functions": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          },
+          "branches": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 63,
+            "covered": 63,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 97,
+            "covered": 82,
+            "skipped": 15,
+            "pct": 84.54
+          },
+          "functions": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          },
+          "branches": {
+            "total": 10,
+            "covered": 6,
+            "skipped": 4,
+            "pct": 60
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 246,
+            "covered": 133,
+            "skipped": 113,
+            "pct": 54.07
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 40,
+            "covered": 17,
+            "skipped": 23,
+            "pct": 42.5
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 221,
+            "covered": 182,
+            "skipped": 39,
+            "pct": 82.35
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 34,
+            "skipped": 16,
+            "pct": 68
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 36,
+            "skipped": 14,
+            "pct": 72
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 44,
+            "covered": 32,
+            "skipped": 12,
+            "pct": 72.73
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 29,
+            "covered": 28,
+            "skipped": 1,
+            "pct": 96.55
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 0,
+            "skipped": 252,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 0,
+            "skipped": 159,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 0,
+            "skipped": 61,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 0,
+            "skipped": 247,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 237,
+            "covered": 0,
+            "skipped": 237,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 0,
+            "skipped": 148,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 25,
+            "covered": 25,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 15,
+            "covered": 0,
+            "skipped": 15,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 82,
+            "covered": 82,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 6,
+            "skipped": 3,
+            "pct": 66.67
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/f3/988f05842aba055df0ad5cd078531134588d13.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/f3/988f05842aba055df0ad5cd078531134588d13.lcov.info"
+          }
+        ]
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "024caeb80917d644fcec13a59221878d23817c39",
+      "main": "f3988f05842aba055df0ad5cd078531134588d13",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -31840,6 +32783,19 @@
         "branchesPct": 70.88,
         "linesCovered": 1701,
         "linesTotal": 3367
+      },
+      {
+        "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+        "shortSha": "f3988f0",
+        "date": "2026-10-18T10:07:41.000Z",
+        "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 50.52,
+        "functionsPct": 79.8,
+        "branchesPct": 70.99,
+        "linesCovered": 1701,
+        "linesTotal": 3367
       }
     ],
     "folders": {
@@ -32179,6 +33135,19 @@
           "linesPct": 50.52,
           "functionsPct": 79.8,
           "branchesPct": 70.88,
+          "linesCovered": 1701,
+          "linesTotal": 3367
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 50.52,
+          "functionsPct": 79.8,
+          "branchesPct": 70.99,
           "linesCovered": 1701,
           "linesTotal": 3367
         }
@@ -32521,6 +33490,19 @@
           "branchesPct": 70.88,
           "linesCovered": 1701,
           "linesTotal": 3367
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 50.52,
+          "functionsPct": 79.8,
+          "branchesPct": 70.99,
+          "linesCovered": 1701,
+          "linesTotal": 3367
         }
       ],
       "src/core": [
@@ -32861,6 +33843,19 @@
           "branchesPct": 77.43,
           "linesCovered": 700,
           "linesTotal": 906
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.26,
+          "functionsPct": 92.68,
+          "branchesPct": 77.61,
+          "linesCovered": 700,
+          "linesTotal": 906
         }
       ],
       "src/parsers": [
@@ -33194,6 +34189,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.17,
@@ -33541,6 +34549,19 @@
           "branchesPct": 100,
           "linesCovered": 63,
           "linesTotal": 63
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 63,
+          "linesTotal": 63
         }
       ],
       "src/react": [
@@ -33822,6 +34843,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
@@ -34117,6 +35151,19 @@
           "branchesPct": 60,
           "linesCovered": 82,
           "linesTotal": 97
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 84.54,
+          "functionsPct": 75,
+          "branchesPct": 60,
+          "linesCovered": 82,
+          "linesTotal": 97
         }
       ],
       "src/mcp": [
@@ -34158,6 +35205,19 @@
           "branchesPct": 35.71,
           "linesCovered": 48,
           "linesTotal": 1159
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 4.14,
+          "functionsPct": 30,
+          "branchesPct": 35.71,
+          "linesCovered": 48,
+          "linesTotal": 1159
         }
       ],
       "src/mcp/web": [
@@ -34192,6 +35252,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 1110
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
@@ -34541,6 +35614,19 @@
           "branchesPct": 42.5,
           "linesCovered": 133,
           "linesTotal": 246
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 54.07,
+          "functionsPct": 100,
+          "branchesPct": 42.5,
+          "linesCovered": 133,
+          "linesTotal": 246
         }
       ],
       "src/index.ts": [
@@ -34874,6 +35960,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 82.35,
+          "functionsPct": 100,
+          "branchesPct": 68,
+          "linesCovered": 182,
+          "linesTotal": 221
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 82.35,
@@ -35221,6 +36320,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -35554,6 +36666,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -35901,6 +37026,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -36234,6 +37372,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
@@ -36581,6 +37732,19 @@
           "branchesPct": 96.67,
           "linesCovered": 60,
           "linesTotal": 62
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
         }
       ],
       "src/core/git.ts": [
@@ -36914,6 +38078,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 89.66,
@@ -37261,6 +38438,19 @@
           "branchesPct": 71.43,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 72,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -37594,6 +38784,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 99.25,
@@ -37941,6 +39144,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -38274,6 +39490,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 90.91,
@@ -38621,6 +39850,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -38954,6 +40196,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
@@ -39301,6 +40556,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -39634,6 +40902,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -39981,6 +41262,19 @@
           "branchesPct": 100,
           "linesCovered": 25,
           "linesTotal": 25
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 25,
+          "linesTotal": 25
         }
       ],
       "src/templates/index.html.ts": [
@@ -40314,6 +41608,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -40661,6 +41968,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -40942,6 +42262,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
@@ -41237,6 +42570,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -41518,6 +42864,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -41813,6 +43172,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 15
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 15
         }
       ],
       "src/website/render.ts": [
@@ -42101,6 +43473,19 @@
           "branchesPct": 66.67,
           "linesCovered": 82,
           "linesTotal": 82
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 82,
+          "linesTotal": 82
         }
       ],
       "src/core/store.ts": [
@@ -42324,6 +43709,19 @@
           "branchesPct": 72.09,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.73,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -42495,6 +43893,19 @@
           "branchesPct": 63.64,
           "linesCovered": 23,
           "linesTotal": 27
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
         }
       ],
       "src/mcp/index.ts": [
@@ -42529,6 +43940,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.55,
+          "functionsPct": 100,
+          "branchesPct": 75,
+          "linesCovered": 28,
+          "linesTotal": 29
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 96.55,
@@ -42577,6 +44001,19 @@
           "branchesPct": 66.67,
           "linesCovered": 11,
           "linesTotal": 11
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 11,
+          "linesTotal": 11
         }
       ],
       "src/mcp/web-modules.ts": [
@@ -42611,6 +44048,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -42659,6 +44109,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 252
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 252
         }
       ],
       "src/mcp/web/dispatch.mjs": [
@@ -42693,6 +44156,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 159
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
@@ -42741,6 +44217,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 61
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 61
         }
       ],
       "src/mcp/web/index.mjs": [
@@ -42775,6 +44264,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
@@ -42823,6 +44325,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 247
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 247
         }
       ],
       "src/mcp/web/ui.mjs": [
@@ -42864,6 +44379,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 237
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 237
         }
       ],
       "src/mcp/web/url.mjs": [
@@ -42898,6 +44426,19 @@
           "shortSha": "024caeb",
           "date": "2026-10-18T10:01:31.000Z",
           "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 148
+        },
+        {
+          "sha": "f3988f05842aba055df0ad5cd078531134588d13",
+          "shortSha": "f3988f0",
+          "date": "2026-10-18T10:07:41.000Z",
+          "message": "Merge pull request #5 from yongjhih/fix/mcp-url-auto-detect\n\nfix(mcp): auto-detect current URL in registration command snippet",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
