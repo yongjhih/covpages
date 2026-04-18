@@ -9,6 +9,7 @@ export * from './web-modules.js';
 export interface BuildMcpOptions {
   repo?: string;
   title?: string;
+  scope?: 'project' | 'coverage';
 }
 
 /**
@@ -40,8 +41,16 @@ export function buildMcpPage(
   const resolvedOut = path.resolve(outputDir);
   fs.mkdirSync(resolvedOut, { recursive: true });
 
+  const scope = options.scope || (
+    fs.existsSync(path.join(resolvedOut, 'covpages-data.json')) ||
+    resolvedOut.endsWith(path.sep + 'covpages') ||
+    path.basename(resolvedOut) === 'covpages'
+      ? 'coverage'
+      : 'project'
+  );
+
   const vendoredFiles = vendorMcpWeb(resolvedOut);
-  const html = renderMcpHtml(options);
+  const html = renderMcpHtml({ ...options, scope });
   const mcpHtmlPath = path.join(resolvedOut, 'mcp.html');
   fs.writeFileSync(mcpHtmlPath, html, 'utf8');
 

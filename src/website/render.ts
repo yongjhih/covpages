@@ -1,5 +1,6 @@
 import { ICONS } from '../templates/icons.js';
 import { PRISM_JS } from '../templates/prism.bundle.js';
+import { ASK_AI_CSS, renderAskAiDrawerHtml, ASK_AI_CLIENT_SCRIPT } from '../templates/ask-ai.js';
 
 // Pre-configured server-side syntax highlighter for code snippets
 function createHighlighter() {
@@ -723,6 +724,7 @@ export function renderWebsiteHtml(options: {
       .nav-links { display: none; }
       .site-header { padding: 0 16px; }
     }
+    ${ASK_AI_CSS}
   </style>
 </head>
 <body>
@@ -746,6 +748,7 @@ export function renderWebsiteHtml(options: {
     </nav>
 
     <div class="header-actions">
+      <button class="btn btn-sm" id="ask-ai-trigger" title="Ask AI about covpages" aria-label="Ask AI">${ICONS.sparkles} <span>Ask AI</span></button>
       <button class="btn btn-sm" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">${ICONS.moon} <span>Theme</span></button>
       <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ${ICONS.linkExternal}</a>
       <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">Live Coverage</a>
@@ -1283,6 +1286,11 @@ export function CoveragePortal() {
         });
       });
     })();
+  </script>
+
+  ${renderAskAiDrawerHtml({ mode: 'project' })}
+  <script type="module">
+    ${ASK_AI_CLIENT_SCRIPT}
   </script>
 </body>
 </html>`;

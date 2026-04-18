@@ -1,18 +1,26 @@
 import { ICONS } from '../templates/icons.js';
+import { FRAMEWORK_PRESETS } from '../core/presets.js';
+import { ASK_AI_CSS, renderAskAiDrawerHtml, ASK_AI_CLIENT_SCRIPT } from '../templates/ask-ai.js';
 
 export function renderMcpHtml(options: {
   repo?: string;
   title?: string;
+  scope?: 'project' | 'coverage';
 } = {}): string {
   const repo = options.repo || 'yongjhih/covpages';
-  const title = options.title || 'Covpages WebMCP Tools';
+  const isCoverage = options.scope === 'coverage';
+  const title = options.title || (isCoverage
+    ? 'Covpages Coverage & High-Value Targets WebMCP Tools'
+    : 'Covpages CLI & Project WebMCP Tools');
+
+  const serializedPresets = JSON.stringify(FRAMEWORK_PRESETS);
 
   return `<!doctype html>
 <html lang="en" data-color-mode="auto">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Covpages WebMCP Endpoint for AI tool integration via ai-proxy" />
+  <meta name="description" content="${isCoverage ? 'Covpages coverage metrics and high-value target prioritization WebMCP endpoint' : 'Covpages CLI, presets, and setup consultation WebMCP endpoint'}" />
   <meta name="color-scheme" content="light dark" />
   <title>${title} · covpages</title>
   <style>
@@ -462,6 +470,8 @@ export function renderMcpHtml(options: {
       flex-wrap: wrap;
       gap: 12px;
     }
+
+    ${ASK_AI_CSS}
   </style>
   <script>
     (function () {
@@ -480,16 +490,17 @@ export function renderMcpHtml(options: {
         ${ICONS.github}
         <span>covpages</span>
         <span style="color:var(--fg-muted);font-weight:400;">/</span>
-        <span>mcp</span>
+        <span>${isCoverage ? 'covpages / mcp' : 'mcp'}</span>
       </a>
 
       <nav class="nav-links">
-        <a href="./" class="nav-link">Overview</a>
-        <a href="covpages/" class="nav-link">Live Coverage</a>
-        <a href="mcp" class="nav-link active">MCP Page (5 Tools)</a>
+        <a href="${isCoverage ? '../' : './'}" class="nav-link">Overview</a>
+        <a href="${isCoverage ? './' : 'covpages/'}" class="nav-link">${isCoverage ? 'Coverage Report' : 'Live Coverage'}</a>
+        <a href="mcp" class="nav-link active">${isCoverage ? 'Coverage MCP (6 Tools)' : 'Project MCP (5 Tools)'}</a>
       </nav>
 
       <div style="display:flex;align-items:center;gap:10px;">
+        <button class="btn btn-sm btn-primary" id="ask-ai-trigger" type="button">Ask AI</button>
         <button class="btn btn-sm" id="theme-toggle" type="button" title="Toggle theme">${ICONS.moon} Theme</button>
         <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ${ICONS.linkExternal}</a>
       </div>
@@ -499,9 +510,11 @@ export function renderMcpHtml(options: {
   <!-- Main Content -->
   <main class="main-container">
     <section class="intro-section">
-      <h1 class="intro-title">Covpages WebMCP Tools</h1>
+      <h1 class="intro-title">${title}</h1>
       <p class="intro-subtitle">
-        Zero backend required. This page runs in your browser and registers 5 client-side WebMCP tools via <code>navigator.modelContext</code> (<code>get_coverage_summary</code>, <code>list_coverage_files</code>, <code>get_file_coverage</code>, <code>get_coverage_trends</code>, <code>get_badge_code</code>). You can query coverage stats, file-level metrics, and multi-commit trends directly from Claude or Cursor.
+        ${isCoverage
+          ? 'Zero backend required. This page runs in your browser and registers 6 client-side WebMCP tools via <code>navigator.modelContext</code> (including <code>find_high_value_targets</code>, <code>get_coverage_summary</code>, <code>list_coverage_files</code>, <code>get_file_coverage</code>, <code>get_coverage_trends</code>, <code>get_badge_code</code>). You can analyze high-value test targets, inspect file metrics, and track multi-commit trends directly from Claude or Cursor.'
+          : 'Zero backend required. This page runs in your browser and registers 5 client-side WebMCP tools via <code>navigator.modelContext</code> (<code>get_cli_help</code>, <code>get_framework_preset</code>, <code>consult_setup</code>, <code>get_documentation</code>, <code>navigate_to</code>). AI assistants can fetch ready-to-use workflows, recommend setup modes, consult on architecture, and navigate pages.'}
       </p>
 
       <div class="command-box">
@@ -518,6 +531,8 @@ export function renderMcpHtml(options: {
       <span>Covpages &middot; Git-Native Coverage for GitHub Pages</span>
     </footer>
   </main>
+
+  ${renderAskAiDrawerHtml({ mode: isCoverage ? 'coverage' : 'project' })}
 
   <script>
     (function () {
@@ -574,9 +589,16 @@ export function renderMcpHtml(options: {
     })();
   </script>
 
+  <script>
+    ${ASK_AI_CLIENT_SCRIPT}
+  </script>
+
   <!-- WebMCP Tools registration and mount -->
   <script type="module">
     import { mountMcpPageUi } from './web/ui.mjs';
+
+    const IS_COVERAGE_MODE = ${isCoverage ? 'true' : 'false'};
+    const PRESETS = ${serializedPresets};
 
     let cachedCoverageData = null;
     async function loadCoverageData(signal) {
@@ -596,9 +618,7 @@ export function renderMcpHtml(options: {
             cachedCoverageData = await res.json();
             return cachedCoverageData;
           }
-        } catch (err) {
-          // Try next candidate
-        }
+        } catch (err) {}
       }
 
       if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {
@@ -606,10 +626,385 @@ export function renderMcpHtml(options: {
         return cachedCoverageData;
       }
 
-      throw new Error('Coverage data file (covpages-data.json) could not be loaded. Please ensure covpages-data.json exists.');
+      throw new Error('Coverage data file (covpages-data.json) could not be loaded.');
     }
 
-    const tools = [
+    // Tools for Site-level / Project MCP (/covpages/mcp)
+    const projectTools = [
+      {
+        name: 'get_cli_help',
+        description: 'Get covpages command-line interface documentation, commands, options, and usage examples.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            command: {
+              type: 'string',
+              enum: ['generate', 'dropin', 'mcp', 'backfill', 'presets', 'docker', 'serve', 'init', 'all'],
+              description: 'Filter by specific subcommand (default: "all")'
+            }
+          },
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Get CLI Help',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute({ command } = {}) {
+          const commands = {
+            generate: 'covpages generate [options] [input-files...] - Generate coverage static site for GitHub Pages with multi-commit trends and badges.',
+            dropin: 'covpages dropin [dir] - Generate zero-build drop-in static site (index.html + .nojekyll). Put in gh-pages, then simply copy lcov.info!',
+            mcp: 'covpages mcp [dir] - Generate compliant MCP Page (mcp.html + web/ modules) for ai-proxy.',
+            backfill: 'covpages backfill --range <range> --test-cmd <cmd> - Backfill test coverage across a range of historical git commits.',
+            presets: 'covpages presets [framework] - View integration guides and workflows for mainstream frameworks (flutter, vitest, jest, rust, python, go, cpp).',
+            docker: 'covpages docker <run|build|pull> [args...] - Run, build, or pull covpages inside a container (docker/podman).',
+            serve: 'covpages serve [dir] [-p port] - Start a local preview web server.',
+            init: 'covpages init [--framework <name>] [--docs] - Create a GitHub Actions workflow (.github/workflows/covpages.yml).'
+          };
+
+          if (command && command !== 'all' && commands[command]) {
+            return {
+              command,
+              documentation: commands[command]
+            };
+          }
+
+          return {
+            usage: 'covpages [command] [options] [input-files...]',
+            commands,
+            quickExamples: [
+              'npx covpages dropin gh-pages && cp coverage/lcov.info gh-pages/',
+              'npx covpages coverage/lcov.info --docs --save-raw',
+              'npx covpages init --framework vitest --docs',
+              'npx covpages backfill --range HEAD~5..HEAD --test-cmd "npm test"'
+            ]
+          };
+        }
+      },
+      {
+        name: 'get_framework_preset',
+        description: 'Get framework-specific integration guide, test command, and ready-to-use GitHub Actions workflow (.github/workflows/covpages.yml).',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            framework: {
+              type: 'string',
+              description: 'Target framework: flutter, dart, vitest, jest, rust, python, go, or cpp'
+            },
+            docs: {
+              type: 'boolean',
+              description: 'Configure workflow for GitHub Pages deployment from docs/ directory (default: true)'
+            }
+          },
+          required: ['framework'],
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Get Framework Preset',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute({ framework, docs = true }) {
+          const key = (framework || '').toLowerCase().trim();
+          const p = PRESETS[key];
+          if (!p) {
+            return {
+              error: \`Unknown framework "\${framework}". Available: \${Object.keys(PRESETS).join(', ')}\`,
+              availablePresets: Object.keys(PRESETS)
+            };
+          }
+
+          const workflow = \`name: Test Coverage Pages
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "covpages"
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+\${p.workflowStep}
+
+      - name: Generate covpages Report
+        run: npx covpages \${p.coverageFile} \${docs ? '--docs' : '--output gh-pages'} --save-raw --mcp
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          github_token: \${{ secrets.GITHUB_TOKEN }}
+          publish_dir: \${docs ? './docs/covpages' : './gh-pages'}
+\`;
+
+          return {
+            framework: p.name,
+            language: p.language,
+            testCommand: p.testCmd,
+            coverageFile: p.coverageFile,
+            description: p.description,
+            recommendedWorkflowPath: '.github/workflows/covpages.yml',
+            workflow
+          };
+        }
+      },
+      {
+        name: 'consult_setup',
+        description: 'Consultative setup advisor for covpages. Recommends the optimal deployment mode (zero-build drop-in, GitHub Actions workflow, Docker, or commit backfill) based on your repository and requirements.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            language: {
+              type: 'string',
+              description: 'Programming language (e.g. "typescript", "dart", "rust", "python", "go")'
+            },
+            framework: {
+              type: 'string',
+              description: 'Testing framework (e.g. "vitest", "jest", "flutter", "pytest")'
+            },
+            zeroBuild: {
+              type: 'boolean',
+              description: 'True if you prefer zero-build drop-in mode without node/npm build step in CI'
+            },
+            hasExistingCommits: {
+              type: 'boolean',
+              description: 'True if you want to backfill coverage across historical git commits'
+            }
+          },
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Consult Setup',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute(input = {}) {
+          if (input.zeroBuild) {
+            return {
+              recommendedMode: 'zero-build-dropin',
+              summary: 'Zero-build drop-in mode is ideal for environments where you don\'t want to run Node.js in CI.',
+              steps: [
+                '1. Run "npx covpages dropin gh-pages" to create the static viewer.',
+                '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',
+                '3. Push gh-pages branch. The browser client parses and renders lcov.info dynamically at runtime!'
+              ],
+              command: 'npx covpages dropin gh-pages'
+            };
+          }
+
+          if (input.hasExistingCommits) {
+            return {
+              recommendedMode: 'backfill-history',
+              summary: 'Commit backfill mode executes historical commits in a git revision range to generate trendlines.',
+              command: 'npx covpages backfill --range HEAD~10..HEAD --test-cmd "npm test" --docs',
+              description: 'Runs your test suite across recent commits to populate multi-commit trends and store packed git objects.'
+            };
+          }
+
+          const matchedFramework = input.framework || input.language || 'vitest';
+          return {
+            recommendedMode: 'github-actions-workflow',
+            summary: 'GitHub Actions automated publishing with multi-commit trends and scoped badges.',
+            quickCommand: \`npx covpages init --framework \${matchedFramework} --docs\`,
+            workflowFile: '.github/workflows/covpages.yml',
+            features: [
+              'Git packfile delta compression (100 commits compress into ~1.24 MB)',
+              'Scoped SVG badges for every branch, directory, and file',
+              'Built-in WebMCP endpoint (mcp.html + web/*.mjs) for ai-proxy'
+            ]
+          };
+        }
+      },
+      {
+        name: 'get_documentation',
+        description: 'Fetch documentation topics (quickstart, dropin, backfill, badges, react, docker, specification, mcp).',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            topic: {
+              type: 'string',
+              enum: ['overview', 'quickstart', 'dropin', 'backfill', 'presets', 'badges', 'react', 'docker', 'specification', 'mcp'],
+              description: 'Documentation topic'
+            }
+          },
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Get Documentation',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute({ topic = 'overview' } = {}) {
+          const docsMap = {
+            overview: '# Covpages\\n\\nGit-Native Code Coverage for GitHub Pages with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP endpoints.',
+            quickstart: '## Quickstart\\n\\n1. Run tests with coverage: \`npm test -- --coverage\`\\n2. Generate site: \`npx covpages coverage/lcov.info --docs --save-raw\`\\n3. Deploy \`docs/\` to GitHub Pages.',
+            dropin: '## Zero-Build Drop-in Mode\\n\\nPut \`index.html\` in \`gh-pages\`, then just copy \`lcov.info\`. The browser parses LCOV at runtime!',
+            backfill: '## Backfill Commits\\n\\nRun \`npx covpages backfill --range HEAD~10..HEAD\` to backfill trend points across historical commits.',
+            badges: '## Scoped SVG Badges\\n\\nCovpages generates badges into \`badges/\` for repository, branch, directories, and files.',
+            react: '## React & Component Integration\\n\\nUse \`import { Covpages } from "covpages/react";\` to embed interactive coverage charts into Next.js or Docusaurus.',
+            mcp: '## WebMCP & ai-proxy\\n\\nTurns any static GitHub Pages site into an MCP server via \`mcp.html\` and vendored \`web/*.mjs\` client modules.'
+          };
+          return {
+            topic,
+            content: docsMap[topic] || docsMap.overview
+          };
+        }
+      },
+      {
+        name: 'navigate_to',
+        description: 'Navigate to a specific page or section of covpages (e.g. live demo coverage viewer, badges generator, quickstart, GitHub repo).',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            target: {
+              type: 'string',
+              enum: ['live_demo', 'badges', 'quickstart', 'coverage_mcp', 'github_repo'],
+              description: 'Destination target'
+            }
+          },
+          required: ['target'],
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Navigate To',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute({ target }) {
+          const targets = {
+            live_demo: './covpages/',
+            coverage_mcp: './covpages/mcp',
+            badges: './#badges',
+            quickstart: './#quickstart',
+            github_repo: 'https://github.com/' + repo
+          };
+          const dest = targets[target] || './';
+          if (typeof window !== 'undefined' && window.location) {
+            window.location.href = dest;
+          }
+          return {
+            target,
+            navigatedTo: dest
+          };
+        }
+      }
+    ];
+
+    // Tools for Coverage-level MCP (/covpages/covpages/mcp)
+    const coverageTools = [
+      {
+        name: 'find_high_value_targets',
+        description: 'Identify and prioritize high-value files and directories where adding test coverage yields the greatest overall repository coverage gains.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            folder: {
+              type: 'string',
+              description: 'Filter targets to a specific directory or subfolder'
+            },
+            scope: {
+              type: 'string',
+              enum: ['files', 'folders'],
+              description: 'Analyze files or folders (default: "files")'
+            },
+            minUncoveredLines: {
+              type: 'number',
+              description: 'Filter targets with at least N uncovered lines'
+            },
+            maxCoverage: {
+              type: 'number',
+              description: 'Filter targets with current coverage <= percentage (0-100)'
+            },
+            limit: {
+              type: 'integer',
+              description: 'Maximum number of prioritized targets to return (default: 10)'
+            }
+          },
+          additionalProperties: false
+        },
+        annotations: {
+          title: 'Find High-Value Coverage Targets',
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false
+        },
+        async execute(input = {}, { signal } = {}) {
+          const data = await loadCoverageData(signal);
+          const isFolders = input.scope === 'folders';
+          const repoTotal = data.summary.lines.total;
+          const repoCovered = data.summary.lines.covered;
+          const curRepoPct = data.summary.lines.pct;
+
+          let items = isFolders
+            ? Object.entries(data.folders || {}).map(([p, f]) => ({ path: p || '(root)', lines: f.lines, functions: f.functions, branches: f.branches }))
+            : Object.values(data.files || {});
+
+          if (input.folder) {
+            const prefix = input.folder.endsWith('/') ? input.folder : input.folder + '/';
+            items = items.filter(f => f.path.startsWith(prefix) || f.path === input.folder);
+          }
+          if (typeof input.minUncoveredLines === 'number') {
+            items = items.filter(f => (f.lines.total - f.lines.covered) >= input.minUncoveredLines);
+          }
+          if (typeof input.maxCoverage === 'number') {
+            items = items.filter(f => f.lines.pct <= input.maxCoverage);
+          }
+
+          const ranked = items.map(item => {
+            const uncovered = item.lines.total - item.lines.covered;
+            const potentialGain = repoTotal > 0 ? (uncovered / repoTotal) * 100 : 0;
+            const projectedPct = repoTotal > 0 ? ((repoCovered + uncovered) / repoTotal) * 100 : 0;
+            const priority = potentialGain >= 5 || uncovered >= 150 ? 'high' : potentialGain >= 1 || uncovered >= 40 ? 'medium' : 'low';
+            return {
+              path: item.path,
+              currentCoveragePct: item.lines.pct,
+              uncoveredLines: uncovered,
+              totalLines: item.lines.total,
+              potentialGainPct: Number(potentialGain.toFixed(2)),
+              projectedRepoCoveragePct: Number(projectedPct.toFixed(2)),
+              priority,
+              recommendation: \`Covering \${item.path} (currently \${item.lines.pct.toFixed(1)}%, \${uncovered} uncovered lines) will increase overall repo coverage by +\${potentialGain.toFixed(2)}% (from \${curRepoPct.toFixed(2)}% to \${projectedPct.toFixed(2)}%).\`
+            };
+          }).sort((a, b) => b.uncoveredLines - a.uncoveredLines);
+
+          const limit = typeof input.limit === 'number' && input.limit > 0 ? input.limit : 10;
+          return {
+            repoSummary: {
+              currentLinesPct: curRepoPct,
+              coveredLines: repoCovered,
+              totalLines: repoTotal,
+              deltaVsPrevious: data.delta ? data.delta.linesPct : null
+            },
+            totalEvaluated: items.length,
+            targets: ranked.slice(0, limit)
+          };
+        }
+      },
       {
         name: 'get_coverage_summary',
         description: 'Get overall code coverage summary (lines, statements, functions, branches) and delta compared to previous commit.',
@@ -878,9 +1273,11 @@ export function renderMcpHtml(options: {
       }
     ];
 
+    const tools = IS_COVERAGE_MODE ? coverageTools : projectTools;
+
     mountMcpPageUi({
       container: document.getElementById('mcp-catalog'),
-      title: 'Covpages WebMCP Tools',
+      title,
       tools
     });
   </script>
