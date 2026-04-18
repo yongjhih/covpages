@@ -355,5 +355,46 @@ describe('Emitted client scripts are valid JavaScript', () => {
       (globalThis as any).fetch = originalFetch;
     }
   });
+
+  it('resolves MCP header link to absolute base (/covpages/covpages/mcp) when on deep SPA file route', () => {
+    const originalWindow = (globalThis as any).window;
+    try {
+      (globalThis as any).window = {
+        location: {
+          protocol: 'https:',
+          pathname: '/covpages/covpages/blob/main/src/mcp/web/client.mjs',
+          href: 'https://yongjhih.github.io/covpages/covpages/blob/main/src/mcp/web/client.mjs',
+        },
+        matchMedia: () => ({ matches: false }),
+      };
+
+      const getBasePathMatch = APP_JS.match(/function getBasePath\(\) \{[\s\S]*?\n  \}/);
+      const renderHeaderMatch = APP_JS.match(/function renderHeader\(\) \{[\s\S]*?\n  \}/);
+      expect(getBasePathMatch).not.toBeNull();
+      expect(renderHeaderMatch).not.toBeNull();
+
+      const fn = new Function(
+        'window',
+        `const data = { repoName: 'covpages', title: 'Coverage' };
+         const state = { theme: 'light', activeRefType: 'branch', activeRefName: 'main' };
+         const activeView = { summary: { lines: { pct: 80 } } };
+         const icons = { github: '', branch: '', sparkles: '', moon: '', sun: '', file: '', graph: '', commit: '' };
+         function escapeHtml(s) { return String(s || ''); }
+         function generateClientBadgeSvg() { return ''; }
+         ${getBasePathMatch![0]}
+         ${renderHeaderMatch![0]}
+         return { getBasePath, renderHeader };`
+      )((globalThis as any).window);
+
+      const base = fn.getBasePath();
+      expect(base).toBe('/covpages/covpages/');
+
+      const headerHtml = fn.renderHeader();
+      expect(headerHtml).toContain('href="/covpages/covpages/mcp"');
+      expect(headerHtml).not.toContain('href="mcp"');
+    } finally {
+      (globalThis as any).window = originalWindow;
+    }
+  });
 });
 
