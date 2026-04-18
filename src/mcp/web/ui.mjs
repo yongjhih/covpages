@@ -172,7 +172,7 @@ export async function mountMcpPageUi({
             }</span>
           </div>
           <p class="mcp-tool-desc">${escapeHtml(t.description)}</p>
-          <form class="mcp-tool-form" data-tool="${escapeHtml(t.name)}">
+          <form class="mcp-tool-form" data-tool="${escapeHtml(t.name)}" action="javascript:void(0);">
             ${inputsHtml ? `<div class="mcp-field-group">${inputsHtml}</div>` : ''}
             <div class="mcp-tool-actions">
               <button type="submit" class="btn btn-sm">Run Tool</button>

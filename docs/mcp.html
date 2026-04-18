@@ -767,7 +767,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Get covpages command-line interface documentation, commands, options, and usage examples.</p>
-      <form class="mcp-tool-form" data-tool="get_cli_help">
+      <form class="mcp-tool-form" data-tool="get_cli_help" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>command</code> (string)</span>
         <input type="text" name="command" data-prop-type="string" placeholder="Filter by specific subcommand (default: &quot;all&quot;)" />
@@ -784,7 +784,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Get framework-specific integration guide, test command, and ready-to-use GitHub Actions workflow (.github/workflows/covpages.yml).</p>
-      <form class="mcp-tool-form" data-tool="get_framework_preset">
+      <form class="mcp-tool-form" data-tool="get_framework_preset" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>framework</code> (string *)</span>
         <input type="text" name="framework" data-prop-type="string" placeholder="Target framework: flutter, dart, vitest, jest, rust, python, go, or cpp" />
@@ -804,7 +804,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Consultative setup advisor for covpages. Recommends the optimal deployment mode (zero-build drop-in, GitHub Actions workflow, Docker, or commit backfill) based on your repository and requirements.</p>
-      <form class="mcp-tool-form" data-tool="consult_setup">
+      <form class="mcp-tool-form" data-tool="consult_setup" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>language</code> (string)</span>
         <input type="text" name="language" data-prop-type="string" placeholder="Programming language (e.g. &quot;typescript&quot;, &quot;dart&quot;, &quot;rust&quot;, &quot;python&quot;, &quot;go&quot;)" />
@@ -830,7 +830,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Fetch documentation topics (quickstart, dropin, backfill, badges, react, docker, specification, mcp).</p>
-      <form class="mcp-tool-form" data-tool="get_documentation">
+      <form class="mcp-tool-form" data-tool="get_documentation" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>topic</code> (string)</span>
         <input type="text" name="topic" data-prop-type="string" placeholder="Documentation topic" />
@@ -847,7 +847,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Navigate to a specific page or section of covpages (e.g. live demo coverage viewer, badges generator, quickstart, GitHub repo).</p>
-      <form class="mcp-tool-form" data-tool="navigate_to">
+      <form class="mcp-tool-form" data-tool="navigate_to" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>target</code> (string *)</span>
         <input type="text" name="target" data-prop-type="string" placeholder="Destination target" />
@@ -864,7 +864,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Identify and prioritize high-value files and directories where adding test coverage yields the greatest overall repository coverage gains.</p>
-      <form class="mcp-tool-form" data-tool="find_high_value_targets">
+      <form class="mcp-tool-form" data-tool="find_high_value_targets" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>folder</code> (string)</span>
         <input type="text" name="folder" data-prop-type="string" placeholder="Filter targets to a specific directory or subfolder" />
@@ -893,7 +893,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Get overall code coverage summary (lines, statements, functions, branches) and delta compared to previous commit.</p>
-      <form class="mcp-tool-form" data-tool="get_coverage_summary">
+      <form class="mcp-tool-form" data-tool="get_coverage_summary" action="javascript:void(0);">
         
         <div class="mcp-tool-actions">
           <button type="submit" class="btn btn-sm">Run Tool</button>
@@ -907,7 +907,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">List covered and uncovered source files with line coverage percentages and filter options.</p>
-      <form class="mcp-tool-form" data-tool="list_coverage_files">
+      <form class="mcp-tool-form" data-tool="list_coverage_files" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>folder</code> (string)</span>
         <input type="text" name="folder" data-prop-type="string" placeholder="Filter files by directory/folder prefix (e.g. &quot;src/parsers&quot; or &quot;lib&quot;)" />
@@ -936,7 +936,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Get detailed line-by-line coverage and uncovered lines for a specific file.</p>
-      <form class="mcp-tool-form" data-tool="get_file_coverage">
+      <form class="mcp-tool-form" data-tool="get_file_coverage" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>path</code> (string *)</span>
         <input type="text" name="path" data-prop-type="string" placeholder="Relative path of the source file (e.g. &quot;src/cli.ts&quot;)" />
@@ -953,7 +953,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Get historical coverage trend data across previous commits.</p>
-      <form class="mcp-tool-form" data-tool="get_coverage_trends">
+      <form class="mcp-tool-form" data-tool="get_coverage_trends" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>limit</code> (integer)</span>
         <input type="text" name="limit" data-prop-type="integer" placeholder="Number of historical commits to return (default: 20)" />
@@ -973,7 +973,7 @@
         <span class="badge badge-readonly">Read-Only</span>
       </div>
       <p class="mcp-tool-desc">Generate SVG badge markdown and embed code for overall coverage or a specific folder/file.</p>
-      <form class="mcp-tool-form" data-tool="get_badge_code">
+      <form class="mcp-tool-form" data-tool="get_badge_code" action="javascript:void(0);">
         <div class="mcp-field-group"><label class="mcp-field">
         <span><code>scope</code> (string)</span>
         <input type="text" name="scope" data-prop-type="string" placeholder="Badge scope: overall project, folder, or specific file" />
@@ -1918,7 +1918,7 @@ ${p.workflowStep}
         uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${'\x24{{ secrets.GITHUB_TOKEN }}'}
           publish_dir: ${docs ? './docs/covpages' : './gh-pages'}
 `;
 
@@ -1969,7 +1969,7 @@ ${p.workflowStep}
           if (input.zeroBuild) {
             return {
               recommendedMode: 'zero-build-dropin',
-              summary: 'Zero-build drop-in mode is ideal for environments where you don't want to run Node.js in CI.',
+              summary: "Zero-build drop-in mode is ideal for environments where you don't want to run Node.js in CI.",
               steps: [
                 '1. Run "npx covpages dropin gh-pages" to create the static viewer.',
                 '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',
