@@ -2,70 +2,70 @@
   "commit": {
     "sha": "5d979e73c6ff5793c1ac897114fb60688d5e5035",
     "shortSha": "5d979e7",
-    "message": "Merge pull request #14 from yongjhih/fix/mcp-undefined-title-repo\n\nfix: define title and repo in mcp module script and add delegated form submit listener",
-    "author": "yongjhih",
+    "message": "fix: dispatch WebMCP tools from covpages Ask AI assistant",
+    "author": "Andrew Chen",
     "date": "2026-10-18T12:15:34.000Z",
     "branch": "main"
   },
   "summary": {
     "lines": {
-      "total": 3595,
-      "covered": 2335,
-      "skipped": 1260,
-      "pct": 64.95
+      "total": 3574,
+      "covered": 1907,
+      "skipped": 1667,
+      "pct": 53.36
     },
     "functions": {
-      "total": 142,
-      "covered": 104,
-      "skipped": 38,
-      "pct": 73.24
+      "total": 102,
+      "covered": 82,
+      "skipped": 20,
+      "pct": 80.39
     },
     "branches": {
-      "total": 708,
-      "covered": 457,
-      "skipped": 251,
-      "pct": 64.55
+      "total": 602,
+      "covered": 434,
+      "skipped": 168,
+      "pct": 72.09
     }
   },
   "folderSummaries": {
     "": {
       "lines": {
-        "total": 3595,
-        "covered": 2335,
-        "skipped": 1260,
-        "pct": 64.95
+        "total": 3574,
+        "covered": 1907,
+        "skipped": 1667,
+        "pct": 53.36
       },
       "functions": {
-        "total": 142,
-        "covered": 104,
-        "skipped": 38,
-        "pct": 73.24
+        "total": 102,
+        "covered": 82,
+        "skipped": 20,
+        "pct": 80.39
       },
       "branches": {
-        "total": 708,
-        "covered": 457,
-        "skipped": 251,
-        "pct": 64.55
+        "total": 602,
+        "covered": 434,
+        "skipped": 168,
+        "pct": 72.09
       }
     },
     "src": {
       "lines": {
-        "total": 3595,
-        "covered": 2335,
-        "skipped": 1260,
-        "pct": 64.95
+        "total": 3574,
+        "covered": 1907,
+        "skipped": 1667,
+        "pct": 53.36
       },
       "functions": {
-        "total": 142,
-        "covered": 104,
-        "skipped": 38,
-        "pct": 73.24
+        "total": 102,
+        "covered": 82,
+        "skipped": 20,
+        "pct": 80.39
       },
       "branches": {
-        "total": 708,
-        "covered": 457,
-        "skipped": 251,
-        "pct": 64.55
+        "total": 602,
+        "covered": 434,
+        "skipped": 168,
+        "pct": 72.09
       }
     },
     "src/core": {
@@ -82,50 +82,50 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 257,
-        "covered": 199,
-        "skipped": 58,
-        "pct": 77.43
+        "total": 259,
+        "covered": 203,
+        "skipped": 56,
+        "pct": 78.38
       }
     },
     "src/mcp": {
       "lines": {
-        "total": 1354,
-        "covered": 650,
-        "skipped": 704,
-        "pct": 48.01
+        "total": 1333,
+        "covered": 222,
+        "skipped": 1111,
+        "pct": 16.65
       },
       "functions": {
-        "total": 52,
-        "covered": 27,
-        "skipped": 25,
-        "pct": 51.92
+        "total": 12,
+        "covered": 5,
+        "skipped": 7,
+        "pct": 41.67
       },
       "branches": {
-        "total": 166,
-        "covered": 68,
-        "skipped": 98,
-        "pct": 40.96
+        "total": 58,
+        "covered": 41,
+        "skipped": 17,
+        "pct": 70.69
       }
     },
     "src/mcp/web": {
       "lines": {
-        "total": 1129,
-        "covered": 426,
-        "skipped": 703,
-        "pct": 37.73
+        "total": 1110,
+        "covered": 0,
+        "skipped": 1110,
+        "pct": 0
       },
       "functions": {
-        "total": 47,
-        "covered": 22,
-        "skipped": 25,
-        "pct": 46.81
+        "total": 7,
+        "covered": 0,
+        "skipped": 7,
+        "pct": 0
       },
       "branches": {
-        "total": 115,
-        "covered": 27,
-        "skipped": 88,
-        "pct": 23.48
+        "total": 7,
+        "covered": 0,
+        "skipped": 7,
+        "pct": 0
       }
     },
     "src/parsers": {
@@ -365,9 +365,9 @@
       },
       "branches": {
         "total": 42,
-        "covered": 25,
-        "skipped": 17,
-        "pct": 59.52
+        "covered": 27,
+        "skipped": 15,
+        "pct": 64.29
       }
     },
     "src/core/history.ts": {
@@ -384,10 +384,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 49,
-        "covered": 35,
+        "total": 50,
+        "covered": 36,
         "skipped": 14,
-        "pct": 71.43
+        "pct": 72
       }
     },
     "src/core/lcov-normalizer.ts": {
@@ -444,10 +444,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 43,
-        "covered": 31,
+        "total": 44,
+        "covered": 32,
         "skipped": 12,
-        "pct": 72.09
+        "pct": 72.73
       }
     },
     "src/mcp/index.ts": {
@@ -472,8 +472,8 @@
     },
     "src/mcp/render.ts": {
       "lines": {
-        "total": 181,
-        "covered": 181,
+        "total": 179,
+        "covered": 179,
         "skipped": 0,
         "pct": 100
       },
@@ -513,61 +513,61 @@
     "src/mcp/web/client.mjs": {
       "lines": {
         "total": 252,
-        "covered": 86,
-        "skipped": 166,
-        "pct": 34.13
+        "covered": 0,
+        "skipped": 252,
+        "pct": 0
       },
       "functions": {
-        "total": 11,
-        "covered": 5,
-        "skipped": 6,
-        "pct": 45.45
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       },
       "branches": {
-        "total": 13,
-        "covered": 5,
-        "skipped": 8,
-        "pct": 38.46
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/mcp/web/dispatch.mjs": {
       "lines": {
         "total": 159,
-        "covered": 18,
-        "skipped": 141,
-        "pct": 11.32
+        "covered": 0,
+        "skipped": 159,
+        "pct": 0
       },
       "functions": {
-        "total": 3,
-        "covered": 1,
-        "skipped": 2,
-        "pct": 33.33
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       },
       "branches": {
-        "total": 5,
-        "covered": 1,
-        "skipped": 4,
-        "pct": 20
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/mcp/web/handshake.mjs": {
       "lines": {
         "total": 61,
-        "covered": 22,
-        "skipped": 39,
-        "pct": 36.07
+        "covered": 0,
+        "skipped": 61,
+        "pct": 0
       },
       "functions": {
         "total": 1,
-        "covered": 1,
-        "skipped": 0,
-        "pct": 100
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       },
       "branches": {
-        "total": 21,
-        "covered": 1,
-        "skipped": 20,
-        "pct": 4.76
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/mcp/web/index.mjs": {
@@ -593,61 +593,61 @@
     "src/mcp/web/model-context.mjs": {
       "lines": {
         "total": 247,
-        "covered": 131,
-        "skipped": 116,
-        "pct": 53.04
+        "covered": 0,
+        "skipped": 247,
+        "pct": 0
       },
       "functions": {
-        "total": 18,
-        "covered": 8,
-        "skipped": 10,
-        "pct": 44.44
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       },
       "branches": {
-        "total": 34,
-        "covered": 11,
-        "skipped": 23,
-        "pct": 32.35
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/mcp/web/ui.mjs": {
       "lines": {
-        "total": 256,
-        "covered": 146,
-        "skipped": 110,
-        "pct": 57.03
+        "total": 237,
+        "covered": 0,
+        "skipped": 237,
+        "pct": 0
       },
       "functions": {
-        "total": 7,
-        "covered": 6,
+        "total": 1,
+        "covered": 0,
         "skipped": 1,
-        "pct": 85.71
+        "pct": 0
       },
       "branches": {
-        "total": 35,
-        "covered": 8,
-        "skipped": 27,
-        "pct": 22.86
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/mcp/web/url.mjs": {
       "lines": {
         "total": 148,
-        "covered": 23,
-        "skipped": 125,
-        "pct": 15.54
+        "covered": 0,
+        "skipped": 148,
+        "pct": 0
       },
       "functions": {
-        "total": 6,
-        "covered": 1,
-        "skipped": 5,
-        "pct": 16.67
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       },
       "branches": {
-        "total": 6,
-        "covered": 1,
-        "skipped": 5,
-        "pct": 16.67
+        "total": 1,
+        "covered": 0,
+        "skipped": 1,
+        "pct": 0
       }
     },
     "src/parsers/cobertura.ts": {

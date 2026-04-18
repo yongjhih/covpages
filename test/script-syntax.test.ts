@@ -395,7 +395,11 @@ describe('Emitted client scripts are valid JavaScript', () => {
          function bindActions() {}
          function saveHistory() {}
          function formatMarkdown(m) { return m; }
+         ${ASK_AI_CLIENT_SCRIPT.match(/function getAppRoot\(\)[\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/var PRESETS = [\s\S]*?;\n/)![0]}
          ${ASK_AI_CLIENT_SCRIPT.match(/async function ensureCoverageData\(\)[\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/var toolExecutors = \{[\s\S]*?\n  \};/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/async function callWebMcp\([\s\S]*?\n  \}/)![0]}
          ${ASK_AI_CLIENT_SCRIPT.match(/function computeHighValueTargets\([\s\S]*?\n  \}/)![0]}
          ${fnMatch![0]}
          return handleUserQuery;`
