@@ -780,6 +780,8 @@ export function renderMcpHtml(options: {
 
     const IS_COVERAGE_MODE = ${isCoverage ? 'true' : 'false'};
     const PRESETS = ${serializedPresets};
+    const title = ${JSON.stringify(title)};
+    const repo = ${JSON.stringify(repo)};
 
     let cachedCoverageData = null;
     async function loadCoverageData(signal) {
