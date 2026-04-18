@@ -1,4 +1,44 @@
 import { ICONS } from '../templates/icons.js';
+import { PRISM_JS } from '../templates/prism.bundle.js';
+
+// Pre-configured server-side syntax highlighter for code snippets
+function createHighlighter() {
+  const sandbox: { Prism?: any } = {};
+  const fn = new Function('window', PRISM_JS + '; return Prism;');
+  const Prism = fn(sandbox);
+
+  // Extend JSX grammar
+  if (Prism.languages.javascript && Prism.languages.markup) {
+    Prism.languages.jsx = Prism.languages.extend('javascript', {});
+    Prism.languages.insertBefore('jsx', 'keyword', {
+      'tag': Prism.languages.markup.tag,
+    });
+  }
+
+  // Extend Bash grammar with modern CLI tools and subcommands
+  if (Prism.languages.bash) {
+    Prism.languages.insertBefore('bash', 'function', {
+      'cli-tool': {
+        pattern: /(^|[\s;|&]|[<>]\()(?:npx|covpages|vitest|jest|flutter|dart|go|pytest|python|python3|pip|cargo|llvm-cov|rustup|docker|gh)(?=$|[)\s;|&])/,
+        lookbehind: true,
+        alias: 'function',
+      },
+      'cli-subcommand': {
+        pattern: /(\b(?:git|npx|covpages|cargo|flutter|go|docker)\s+)(?:init|generate|add|commit|push|run|test|install|llvm-cov|build|pull)(?=$|\s)/,
+        lookbehind: true,
+        alias: 'property',
+      },
+    });
+  }
+
+  return function highlightCode(code: string, lang: string): string {
+    const grammar = Prism.languages[lang] || Prism.languages.plain || Prism.languages.clike;
+    if (!grammar) return code;
+    return Prism.highlight(code, grammar, lang);
+  };
+}
+
+const highlight = createHighlighter();
 
 export function renderWebsiteHtml(options: {
   repo?: string;
@@ -35,12 +75,13 @@ export function renderWebsiteHtml(options: {
       --color-success-emphasis: #1f883d;
       --color-success-subtle: rgba(26, 127, 55, 0.08);
       --color-neutral-subtle: rgba(129, 139, 152, 0.1);
-      --color-btn-bg: #ffffff;
+      --color-btn-bg: #f6f8fa;
       --color-btn-border: #d0d7de;
-      --color-btn-hover-bg: #f6f8fa;
-      --color-btn-primary-bg: #1f2328;
+      --color-btn-hover-bg: #eaeef2;
+      --color-btn-primary-bg: #1f883d;
       --color-btn-primary-fg: #ffffff;
-      --color-btn-primary-border: #1f2328;
+      --color-btn-primary-border: #1a7f37;
+      --color-btn-primary-hover-bg: #1a7f37;
       --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
       --radius-sm: 4px;
@@ -67,12 +108,13 @@ export function renderWebsiteHtml(options: {
       --color-success-emphasis: #238636;
       --color-success-subtle: rgba(46, 160, 67, 0.1);
       --color-neutral-subtle: rgba(110, 118, 129, 0.12);
-      --color-btn-bg: #161b22;
+      --color-btn-bg: #21262d;
       --color-btn-border: #30363d;
-      --color-btn-hover-bg: #21262d;
-      --color-btn-primary-bg: #e6edf3;
-      --color-btn-primary-fg: #0d1117;
-      --color-btn-primary-border: #e6edf3;
+      --color-btn-hover-bg: #30363d;
+      --color-btn-primary-bg: #238636;
+      --color-btn-primary-fg: #ffffff;
+      --color-btn-primary-border: rgba(240, 246, 252, 0.1);
+      --color-btn-primary-hover-bg: #1a7f37;
       --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
     }
 
@@ -94,12 +136,13 @@ export function renderWebsiteHtml(options: {
         --color-success-emphasis: #238636;
         --color-success-subtle: rgba(46, 160, 67, 0.1);
         --color-neutral-subtle: rgba(110, 118, 129, 0.12);
-        --color-btn-bg: #161b22;
+        --color-btn-bg: #21262d;
         --color-btn-border: #30363d;
-        --color-btn-hover-bg: #21262d;
-        --color-btn-primary-bg: #e6edf3;
-        --color-btn-primary-fg: #0d1117;
-        --color-btn-primary-border: #e6edf3;
+        --color-btn-hover-bg: #30363d;
+        --color-btn-primary-bg: #238636;
+        --color-btn-primary-fg: #ffffff;
+        --color-btn-primary-border: rgba(240, 246, 252, 0.1);
+        --color-btn-primary-hover-bg: #1a7f37;
         --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
       }
     }
@@ -227,8 +270,9 @@ export function renderWebsiteHtml(options: {
       font-weight: 500;
     }
     .btn-primary:hover {
-      background-color: var(--color-btn-primary-bg);
-      opacity: 0.9;
+      background-color: var(--color-btn-primary-hover-bg);
+      border-color: var(--color-btn-primary-border);
+      opacity: 1;
     }
     .btn-sm {
       padding: 3px 10px;
@@ -569,6 +613,81 @@ export function renderWebsiteHtml(options: {
       overflow-x: auto;
       white-space: pre;
       color: var(--color-fg-default);
+    }
+    .tab-content code {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    /* GitHub Primer Syntax Highlighting Tokens (Light) */
+    .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #59636e; font-style: italic; }
+    .token.punctuation { color: #1f2328; }
+    .token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol { color: #0550ae; }
+    .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin { color: #0a3069; }
+    .token.operator, .token.entity, .token.url { color: #0550ae; }
+    .token.atrule, .token.attr-value, .token.keyword { color: #cf222e; font-weight: 500; }
+    .token.function, .token.class-name { color: #6639ba; }
+    .token.regex, .token.important, .token.variable, .token.parameter { color: #953800; }
+
+    /* GitHub Primer Syntax Highlighting Tokens (Dark Mode) */
+    [data-color-mode="dark"] .token.comment,
+    [data-color-mode="dark"] .token.prolog,
+    [data-color-mode="dark"] .token.doctype,
+    [data-color-mode="dark"] .token.cdata { color: #8b949e; font-style: italic; }
+    [data-color-mode="dark"] .token.punctuation { color: #e6edf3; }
+    [data-color-mode="dark"] .token.property,
+    [data-color-mode="dark"] .token.tag,
+    [data-color-mode="dark"] .token.boolean,
+    [data-color-mode="dark"] .token.number,
+    [data-color-mode="dark"] .token.constant,
+    [data-color-mode="dark"] .token.symbol { color: #79c0ff; }
+    [data-color-mode="dark"] .token.selector,
+    [data-color-mode="dark"] .token.attr-name,
+    [data-color-mode="dark"] .token.string,
+    [data-color-mode="dark"] .token.char,
+    [data-color-mode="dark"] .token.builtin { color: #a5d6ff; }
+    [data-color-mode="dark"] .token.operator,
+    [data-color-mode="dark"] .token.entity,
+    [data-color-mode="dark"] .token.url { color: #79c0ff; }
+    [data-color-mode="dark"] .token.atrule,
+    [data-color-mode="dark"] .token.attr-value,
+    [data-color-mode="dark"] .token.keyword { color: #ff7b72; font-weight: 500; }
+    [data-color-mode="dark"] .token.function,
+    [data-color-mode="dark"] .token.class-name { color: #d2a8ff; }
+    [data-color-mode="dark"] .token.regex,
+    [data-color-mode="dark"] .token.important,
+    [data-color-mode="dark"] .token.variable,
+    [data-color-mode="dark"] .token.parameter { color: #ffa657; }
+
+    @media (prefers-color-scheme: dark) {
+      [data-color-mode="auto"] .token.comment,
+      [data-color-mode="auto"] .token.prolog,
+      [data-color-mode="auto"] .token.doctype,
+      [data-color-mode="auto"] .token.cdata { color: #8b949e; font-style: italic; }
+      [data-color-mode="auto"] .token.punctuation { color: #e6edf3; }
+      [data-color-mode="auto"] .token.property,
+      [data-color-mode="auto"] .token.tag,
+      [data-color-mode="auto"] .token.boolean,
+      [data-color-mode="auto"] .token.number,
+      [data-color-mode="auto"] .token.constant,
+      [data-color-mode="auto"] .token.symbol { color: #79c0ff; }
+      [data-color-mode="auto"] .token.selector,
+      [data-color-mode="auto"] .token.attr-name,
+      [data-color-mode="auto"] .token.string,
+      [data-color-mode="auto"] .token.char,
+      [data-color-mode="auto"] .token.builtin { color: #a5d6ff; }
+      [data-color-mode="auto"] .token.operator,
+      [data-color-mode="auto"] .token.entity,
+      [data-color-mode="auto"] .token.url { color: #79c0ff; }
+      [data-color-mode="auto"] .token.atrule,
+      [data-color-mode="auto"] .token.attr-value,
+      [data-color-mode="auto"] .token.keyword { color: #ff7b72; font-weight: 500; }
+      [data-color-mode="auto"] .token.function,
+      [data-color-mode="auto"] .token.class-name { color: #d2a8ff; }
+      [data-color-mode="auto"] .token.regex,
+      [data-color-mode="auto"] .token.important,
+      [data-color-mode="auto"] .token.variable,
+      [data-color-mode="auto"] .token.parameter { color: #ffa657; }
     }
 
     /* Toast */
@@ -924,7 +1043,7 @@ export function renderWebsiteHtml(options: {
           <button class="tab-btn" data-tab="tab-docker">Docker / Container</button>
         </div>
 
-        <div class="tab-content" id="tab-cli"># 1. Initialize GitHub Actions Workflow in your repository
+        <div class="tab-content" id="tab-cli"><code class="language-bash">${highlight(`# 1. Initialize GitHub Actions Workflow in your repository
 npx covpages init
 
 # 2. Push to GitHub!
@@ -932,9 +1051,9 @@ git add .github/workflows/covpages.yml
 git commit -m "ci: add covpages coverage report workflow"
 git push origin main
 
-# Your coverage will be automatically published to https://&lt;owner&gt;.github.io/&lt;repo&gt;/</div>
+# Your coverage will be automatically published to https://<owner>.github.io/<repo>/`, 'bash')}</code></div>
 
-        <div class="tab-content" id="tab-vitest" style="display: none;"># vitest.config.ts
+        <div class="tab-content" id="tab-vitest" style="display: none;"><code class="language-typescript">${highlight(`// vitest.config.ts
 export default {
   test: {
     coverage: {
@@ -944,45 +1063,45 @@ export default {
   },
 };
 
-# Run tests and generate covpages
-npx vitest run --coverage
-npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+// Run tests and generate covpages:
+// npx vitest run --coverage
+// npx covpages generate --input coverage/lcov.info --output docs/covpages`, 'typescript')}</code></div>
 
-        <div class="tab-content" id="tab-flutter" style="display: none;"># Run Flutter test coverage
+        <div class="tab-content" id="tab-flutter" style="display: none;"><code class="language-bash">${highlight(`# Run Flutter test coverage
 flutter test --coverage
 
 # Generate Covpages report from coverage/lcov.info
-npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+npx covpages generate --input coverage/lcov.info --output docs/covpages`, 'bash')}</code></div>
 
-        <div class="tab-content" id="tab-go" style="display: none;"># Run Go tests with coverage profile
+        <div class="tab-content" id="tab-go" style="display: none;"><code class="language-bash">${highlight(`# Run Go tests with coverage profile
 go test -coverprofile=coverage.out ./...
 
 # Convert or use covpages parser
-npx covpages generate --input coverage.out --output docs/covpages</div>
+npx covpages generate --input coverage.out --output docs/covpages`, 'bash')}</code></div>
 
-        <div class="tab-content" id="tab-python" style="display: none;"># Run pytest with lcov output
+        <div class="tab-content" id="tab-python" style="display: none;"><code class="language-bash">${highlight(`# Run pytest with lcov output
 pytest --cov=src --cov-report=lcov:coverage/lcov.info
 
 # Generate Covpages report
-npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+npx covpages generate --input coverage/lcov.info --output docs/covpages`, 'bash')}</code></div>
 
-        <div class="tab-content" id="tab-rust" style="display: none;"># Install cargo-llvm-cov
+        <div class="tab-content" id="tab-rust" style="display: none;"><code class="language-bash">${highlight(`# Install cargo-llvm-cov
 cargo install cargo-llvm-cov
 
 # Run tests and generate lcov
 cargo llvm-cov --lcov --output-path coverage/lcov.info
 
 # Generate Covpages report
-npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
+npx covpages generate --input coverage/lcov.info --output docs/covpages`, 'bash')}</code></div>
 
-        <div class="tab-content" id="tab-docker" style="display: none;"># Run via Docker-wrapper CLI (Zero Node.js required on host)
+        <div class="tab-content" id="tab-docker" style="display: none;"><code class="language-bash">${highlight(`# Run via Docker-wrapper CLI (Zero Node.js required on host)
 ./bin/covpages-docker.sh generate --input coverage/lcov.info --output docs/covpages
 
 # Or run official container image directly
 docker run --rm -v "$PWD:/workspace" -w /workspace \\
   ghcr.io/yongjhih/covpages:latest generate --input coverage/lcov.info --output docs/covpages
 
-# Devcontainer: open directly in VS Code or GitHub Codespaces via .devcontainer/</div>
+# Devcontainer: open directly in VS Code or GitHub Codespaces via .devcontainer/`, 'bash')}</code></div>
       </div>
     </div>
   </section>
@@ -1001,7 +1120,7 @@ docker run --rm -v "$PWD:/workspace" -w /workspace \\
         <div class="tabs-header">
           <button class="tab-btn active">React (Vite / Next.js / Docusaurus)</button>
         </div>
-        <div class="tab-content">import React, { useState, useEffect } from 'react';
+        <div class="tab-content"><code class="language-jsx">${highlight(`import React, { useState, useEffect } from 'react';
 import { Covpages } from 'covpages/react';
 import 'covpages/style.css';
 
@@ -1014,14 +1133,14 @@ export function CoveragePortal() {
       .then(setData);
   }, []);
 
-  if (!data) return &lt;div&gt;Loading coverage report...&lt;/div&gt;;
+  if (!data) return <div>Loading coverage report...</div>;
 
   return (
-    &lt;div style={{ height: '100vh', width: '100%' }}&gt;
-      &lt;Covpages data={data} theme="auto" initialTab="files" /&gt;
-    &lt;/div&gt;
+    <div style={{ height: '100vh', width: '100%' }}>
+      <Covpages data={data} theme="auto" initialTab="files" />
+    </div>
   );
-}</div>
+}`, 'jsx')}</code></div>
       </div>
     </div>
   </section>
@@ -1128,7 +1247,11 @@ export function CoveragePortal() {
 
         previewImg.src = badgeFile;
         const mdSnippet = '[![' + altText + '](' + fullBadgeUrl + ')](' + fullLinkUrl + ')';
-        mdCode.textContent = mdSnippet;
+        mdCode.setAttribute('data-raw', mdSnippet);
+        mdCode.innerHTML = '<span class="token punctuation">[![' + altText + '](' + fullBadgeUrl + ')](' + fullLinkUrl + ')</span>'.replace(
+          /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/,
+          '<span class="token punctuation">[</span><span class="token punctuation">![</span><span class="token content">$1</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token url">$2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token url">$3</span><span class="token punctuation">)</span>'
+        );
       }
 
       scopeSelect.addEventListener('change', updateBadgePreview);
@@ -1137,7 +1260,8 @@ export function CoveragePortal() {
       updateBadgePreview();
 
       document.getElementById('copy-badge-md').addEventListener('click', () => {
-        navigator.clipboard.writeText(mdCode.textContent).then(() => {
+        const textToCopy = mdCode.getAttribute('data-raw') || mdCode.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
           showToast('Copied Badge Markdown to clipboard!');
         });
       });
