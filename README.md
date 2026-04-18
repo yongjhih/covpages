@@ -1,6 +1,7 @@
 # covpages
 
 [![Coverage](https://yongjhih.github.io/covpages/badge.svg)](https://yongjhih.github.io/covpages/)
+[![MCP Pages: Connect](https://img.shields.io/badge/MCP%20Pages-Connect-238636?logo=github&logoColor=white)](https://yongjhih.github.io/ai-proxy/dashboard.html#add-url=https%3A%2F%2Fyongjhih.github.io%2Fcovpages%2Fcovpages%2Fmcp)
 [![Specification](https://img.shields.io/badge/docs-specification-blue.svg)](docs/SPECIFICATION.md)
 [![Benchmark](https://img.shields.io/badge/benchmark-97.6%25%20savings-success.svg)](docs/BENCHMARK.md)
 [![Devcontainer](https://img.shields.io/badge/devcontainer-ready-blue.svg)](.devcontainer/README.md)
