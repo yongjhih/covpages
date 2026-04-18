@@ -215,5 +215,145 @@ describe('Emitted client scripts are valid JavaScript', () => {
       (globalThis as any).localStorage = originalLocalStorage;
     }
   });
+
+  it('bypasses ai-proxy dummy fallback echo and computes high-value coverage targets client-side', async () => {
+    const originalWindow = (globalThis as any).window;
+    const originalDocument = (globalThis as any).document;
+    const originalFetch = (globalThis as any).fetch;
+
+    try {
+      const mockStorage: Record<string, string> = {};
+      const fakeStorage = {
+        getItem: (k: string) => mockStorage[k] || null,
+        setItem: (k: string, v: string) => { mockStorage[k] = v; },
+        removeItem: (k: string) => { delete mockStorage[k]; },
+      };
+
+      const elements: Record<string, any> = {};
+      function createMockEl(id: string) {
+        const el: any = {
+          id,
+          children: [] as any[],
+          innerHTML: '',
+          value: '',
+          style: {},
+          attributes: {} as Record<string, string>,
+          setAttribute: (k: string, v: string) => { el.attributes[k] = v; },
+          getAttribute: (k: string) => el.attributes[k] || null,
+          appendChild: (c: any) => el.children.push(c),
+          querySelectorAll: () => [],
+          addEventListener: () => {},
+          remove: () => {},
+          scrollTop: 0,
+          scrollHeight: 100,
+        };
+        return el;
+      }
+
+      (globalThis as any).document = {
+        getElementById: (id: string) => {
+          if (!elements[id]) elements[id] = createMockEl(id);
+          return elements[id];
+        },
+        createElement: (tag: string) => createMockEl(tag),
+        addEventListener: () => {},
+      };
+
+      const mockData = {
+        summary: {
+          lines: { total: 1000, covered: 600, pct: 60.0 },
+          functions: { total: 100, covered: 70, pct: 70.0 },
+          branches: { total: 50, covered: 30, pct: 60.0 },
+        },
+        files: {
+          'src/cli.ts': {
+            path: 'src/cli.ts',
+            lines: { total: 300, covered: 100, pct: 33.3 },
+          },
+          'src/index.ts': {
+            path: 'src/index.ts',
+            lines: { total: 200, covered: 180, pct: 90.0 },
+          },
+        },
+      };
+
+      (globalThis as any).window = {
+        location: { href: 'https://user.github.io/covpages/', pathname: '/covpages/', hash: '' },
+        sessionStorage: fakeStorage,
+        localStorage: fakeStorage,
+        __COVPAGES_DATA__: mockData,
+      };
+
+      // Mock fetch: ai-proxy returns dummy echo response
+      (globalThis as any).fetch = async (url: string) => {
+        if (url.includes('chat/completions')) {
+          return {
+            ok: true,
+            json: async () => ({
+              choices: [
+                {
+                  message: {
+                    content: 'ai-proxy local assistant received: "Find high-value coverage targets". Permitted read-only tools: [none].',
+                  },
+                },
+              ],
+            }),
+          };
+        }
+        return { ok: false };
+      };
+
+      // Run script
+      new Function(ASK_AI_CLIENT_SCRIPT)();
+
+      // Submit query
+      const inputEl = (globalThis as any).document.getElementById('ask-ai-input');
+      const formEl = (globalThis as any).document.getElementById('ask-ai-form');
+
+      // Extract handleUserQuery directly by testing matching keywords
+      const fnMatch = ASK_AI_CLIENT_SCRIPT.match(/async function handleUserQuery\([\s\S]*?\n  \}/);
+      expect(fnMatch).not.toBeNull();
+
+      const messagesEl = (globalThis as any).document.getElementById('ask-ai-messages');
+      const prevCount = messagesEl.children.length;
+
+      // Call handleUserQuery
+      const handleUserQuery = new Function(
+        'window', 'document', 'fetch',
+        `let conversationHistory = [];
+         let messagesEl = document.getElementById('ask-ai-messages');
+         let input = document.getElementById('ask-ai-input');
+         let statusPill = document.getElementById('ask-ai-status-pill');
+         function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+         function appendMessage(role, html) {
+           const el = document.createElement('div');
+           el.className = 'ask-ai-msg ask-ai-msg-' + role;
+           el.innerHTML = html;
+           messagesEl.appendChild(el);
+           return el;
+         }
+         function bindActions() {}
+         function saveHistory() {}
+         function formatMarkdown(m) { return m; }
+         ${ASK_AI_CLIENT_SCRIPT.match(/async function ensureCoverageData\(\)[\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function computeHighValueTargets\([\s\S]*?\n  \}/)![0]}
+         ${fnMatch![0]}
+         return handleUserQuery;`
+      )((globalThis as any).window, (globalThis as any).document, (globalThis as any).fetch);
+
+      await handleUserQuery('Find high-value coverage targets');
+
+      expect(messagesEl.children.length).toBeGreaterThan(prevCount);
+      const lastMsg = messagesEl.children[messagesEl.children.length - 1];
+      expect(lastMsg.innerHTML).not.toContain('ai-proxy local assistant received:');
+      expect(lastMsg.innerHTML).toContain('Highest Value Targets to Improve Coverage');
+      expect(lastMsg.innerHTML).toContain('src/cli.ts');
+      expect(lastMsg.innerHTML).toContain('data-jump="#file=src%2Fcli.ts"');
+    } finally {
+      (globalThis as any).window = originalWindow;
+      (globalThis as any).document = originalDocument;
+      (globalThis as any).fetch = originalFetch;
+    }
+  });
 });
 
