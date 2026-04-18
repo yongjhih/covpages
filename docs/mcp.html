@@ -1238,12 +1238,48 @@
     }
   });
 
+  function isScrollAtBottom(el, threshold) {
+    if (!el) return true;
+    threshold = typeof threshold === 'number' ? threshold : 60;
+    var ch = typeof el.clientHeight === 'number' ? el.clientHeight : 0;
+    var sh = typeof el.scrollHeight === 'number' ? el.scrollHeight : 0;
+    var st = typeof el.scrollTop === 'number' ? el.scrollTop : 0;
+    return (sh - st - ch) <= threshold;
+  }
+
+  function scrollToBottom(el) {
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }
+
+  var scrollTimer = null;
+  function ensureScrollBottom(el, wasAtBottom) {
+    if (!el || wasAtBottom === false) return;
+    scrollToBottom(el);
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(function () {
+        if (isScrollAtBottom(el, 60)) {
+          scrollToBottom(el);
+        }
+      });
+    }
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      if (isScrollAtBottom(el, 60)) {
+        scrollToBottom(el);
+      }
+    }, 50);
+  }
+
   function appendMessage(sender, htmlContent, shouldSave, rawText) {
+    var wasAtBottom = isScrollAtBottom(messagesEl, 60);
     var msgEl = document.createElement('div');
     msgEl.className = 'ask-ai-msg ask-ai-msg-' + sender;
     msgEl.innerHTML = htmlContent;
     messagesEl.appendChild(msgEl);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    if (sender === 'user' || wasAtBottom) {
+      ensureScrollBottom(messagesEl, true);
+    }
     bindActions(msgEl);
 
     if (shouldSave) {
@@ -1755,6 +1791,39 @@
     messagesEl.appendChild(typingEl);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
+    function updateTypingContent(html, rawText) {
+      var isAtBottomNow = typeof isScrollAtBottom === 'function' ? isScrollAtBottom(messagesEl, 60) : true;
+      typingEl.innerHTML = html;
+      bindActions(typingEl);
+      if (isAtBottomNow) {
+        if (typeof ensureScrollBottom === 'function') {
+          ensureScrollBottom(messagesEl, true);
+        } else {
+          messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+      }
+      var imgs = typingEl.querySelectorAll('img');
+      for (var m = 0; m < imgs.length; m++) {
+        if (!imgs[m].complete) {
+          imgs[m].addEventListener('load', function () {
+            if (isAtBottomNow) {
+              if (typeof ensureScrollBottom === 'function') {
+                ensureScrollBottom(messagesEl, true);
+              } else {
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+              }
+            }
+          });
+        }
+      }
+      conversationHistory.push({
+        role: 'assistant',
+        html: html,
+        text: rawText || html.replace(/<[^>]+>/g, ' ').trim()
+      });
+      saveHistory();
+    }
+
     // 1. Try local ai-proxy /v1/chat/completions relay
     var relaySuccess = false;
     try {
@@ -1795,14 +1864,7 @@
                                replyText.indexOf('Permitted read-only tools:') !== -1;
           if (!isFallbackEcho) {
             var formatted = formatMarkdown(replyText);
-            typingEl.innerHTML = formatted;
-            bindActions(typingEl);
-            conversationHistory.push({
-              role: 'assistant',
-              html: formatted,
-              text: replyText
-            });
-            saveHistory();
+            updateTypingContent(formatted, replyText);
             if (statusPill) {
               statusPill.textContent = 'ai-proxy /v1 Connected';
               statusPill.setAttribute('data-connected', 'true');
@@ -1983,14 +2045,7 @@
         '<p>You can also query tools directly on the <a href="mcp">MCP Tools Catalog</a> page.</p>';
     }
 
-    typingEl.innerHTML = replyHtml;
-    bindActions(typingEl);
-    conversationHistory.push({
-      role: 'assistant',
-      html: replyHtml,
-      text: replyHtml.replace(/<[^>]+>/g, ' ').trim()
-    });
-    saveHistory();
+    updateTypingContent(replyHtml);
   }
 
   if (form) {
