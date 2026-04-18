@@ -126,5 +126,94 @@ describe('Emitted client scripts are valid JavaScript', () => {
     const codeBlockResult = formatMarkdown('```sh\n$ npx covpages\n```');
     expect(codeBlockResult).toContain('<pre><code>$ npx covpages</code></pre>');
   });
+
+  it('Ask AI restores conversation history across page navigation and jumps', () => {
+    const storage: Record<string, string> = {
+      covpages_ask_ai_history: JSON.stringify([
+        { role: 'user', html: '<p>如何快速開始？</p>', text: '如何快速開始？' },
+        {
+          role: 'assistant',
+          html: '<p><button type="button" class="btn btn-sm ask-ai-jump-btn" data-jump="#quickstart">🚀 前往快速上手指南</button></p>',
+          text: '🚀 前往快速上手指南',
+        },
+      ]),
+    };
+
+    const originalWindow = globalThis.window;
+    const originalDocument = globalThis.document;
+    const originalSessionStorage = globalThis.sessionStorage;
+    const originalLocalStorage = globalThis.localStorage;
+
+    try {
+      (globalThis as any).window = globalThis;
+      (globalThis as any).sessionStorage = {
+        getItem: (k: string) => storage[k] || null,
+        setItem: (k: string, v: string) => {
+          storage[k] = String(v);
+        },
+        removeItem: (k: string) => {
+          delete storage[k];
+        },
+      };
+      (globalThis as any).localStorage = {
+        getItem: (k: string) => storage[k] || null,
+        setItem: (k: string, v: string) => {
+          storage[k] = String(v);
+        },
+        removeItem: (k: string) => {
+          delete storage[k];
+        },
+      };
+
+      const elements: Record<string, any> = {};
+      function createMockEl(id: string) {
+        const children: any[] = [];
+        const el: any = {
+          id,
+          children,
+          style: {},
+          setAttribute: () => {},
+          getAttribute: () => null,
+          addEventListener: () => {},
+          appendChild: (child: any) => children.push(child),
+          querySelectorAll: (sel: string) => (sel.includes('.ask-ai-msg') ? children : []),
+          remove: () => {},
+          scrollTop: 0,
+          scrollHeight: 100,
+        };
+        return el;
+      }
+
+      (globalThis as any).document = {
+        getElementById: (id: string) => {
+          if (!elements[id]) elements[id] = createMockEl(id);
+          return elements[id];
+        },
+        createElement: (tag: string) => createMockEl(tag),
+        addEventListener: () => {},
+      };
+
+      const messagesEl = (globalThis as any).document.getElementById('ask-ai-messages');
+      messagesEl.children.push(createMockEl('initial-greeting'));
+
+      // Run script in mock environment
+      new Function(ASK_AI_CLIENT_SCRIPT)();
+
+      // Initial greeting + 2 restored history messages
+      expect(messagesEl.children.length).toBe(3);
+      expect(messagesEl.children[1].innerHTML).toContain('如何快速開始？');
+      expect(messagesEl.children[2].innerHTML).toContain('data-jump="#quickstart"');
+      expect(messagesEl.children[2].innerHTML).toContain('🚀 前往快速上手指南');
+
+      // Clear button should be shown
+      const clearBtn = (globalThis as any).document.getElementById('ask-ai-clear');
+      expect(clearBtn.style.display).toBe('inline-flex');
+    } finally {
+      (globalThis as any).window = originalWindow;
+      (globalThis as any).document = originalDocument;
+      (globalThis as any).sessionStorage = originalSessionStorage;
+      (globalThis as any).localStorage = originalLocalStorage;
+    }
+  });
 });
 
