@@ -192,4 +192,68 @@ describe('MCP Page & ai-proxy integration', () => {
     expect(runScriptWithUrl('https://yongjhih.github.io/covpages/covpages/mcp'))
       .toBe('npx ai-proxy add https://yongjhih.github.io/covpages/covpages/mcp --name covpages-covpages');
   });
+
+  it('mountMcpPageUi handles form submission and displays result in .mcp-tool-result', async () => {
+    // @ts-ignore
+    const { mountMcpPageUi } = await import('../src/mcp/web/ui.mjs');
+
+    let submitListener: ((ev: any) => Promise<void>) | null = null;
+    let resultText = '';
+    let resultHidden = true;
+
+    const mockForm = {
+      getAttribute: (attr: string) => (attr === 'data-tool' ? 'test_tool' : null),
+      querySelector: (sel: string) => {
+        if (sel === '.mcp-tool-result') {
+          return {
+            set hidden(val: boolean) { resultHidden = val; },
+            get hidden() { return resultHidden; },
+            set textContent(val: string) { resultText = val; },
+            get textContent() { return resultText; }
+          };
+        }
+        return null;
+      },
+      querySelectorAll: () => []
+    };
+
+    const container = {
+      innerHTML: '',
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      addEventListener: (evt: string, cb: any) => {
+        if (evt === 'submit') submitListener = cb;
+      }
+    };
+
+    const testTool = {
+      name: 'test_tool',
+      description: 'A test tool',
+      inputSchema: { type: 'object', properties: {} },
+      annotations: { readOnlyHint: true },
+      async execute() {
+        return { success: true, message: 'Hello from test tool' };
+      }
+    };
+
+    await mountMcpPageUi({
+      container: container as any,
+      title: 'Test Tools',
+      tools: [testTool],
+      win: { location: { href: 'https://example.com/mcp', search: '' } } as any
+    });
+
+    expect(submitListener).toBeTruthy();
+
+    const mockEvent = {
+      preventDefault: () => {},
+      target: {
+        closest: (sel: string) => (sel === '.mcp-tool-form' ? mockForm : null)
+      }
+    };
+
+    await submitListener!(mockEvent);
+    expect(resultHidden).toBe(false);
+    expect(resultText).toContain('Hello from test tool');
+  });
 });

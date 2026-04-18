@@ -54,6 +54,53 @@ describe('Emitted client scripts are valid JavaScript', () => {
     }
   });
 
+  it('all module scripts in mcp.html execute without runtime reference errors', async () => {
+    const vm = await import('node:vm');
+    for (const scope of ['project', 'coverage'] as const) {
+      const html = renderMcpHtml({ repo: 'yongjhih/covpages', scope });
+      const matches = [...html.matchAll(/<script type="module">([\s\S]*?)<\/script>/gi)];
+      expect(matches.length).toBeGreaterThan(0);
+      for (const m of matches) {
+        const sandbox = {
+          registeredTools: [] as any[],
+          mountedTitle: '',
+          window: {
+            location: { href: 'https://yongjhih.github.io/covpages/mcp', search: '' }
+          },
+          document: {
+            getElementById: () => ({ innerHTML: '' })
+          },
+          fetch: () => Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({
+              summary: { lines: { total: 100, covered: 80, pct: 80 } },
+              commits: [],
+              files: {}
+            })
+          }),
+          navigator: {},
+          console,
+          setTimeout,
+          clearTimeout,
+          URL,
+          URLSearchParams
+        };
+
+        const code = m[1].replace(
+          /import\s+[\s\S]*?from\s+['"][^'"]+['"];?/g,
+          'function mountMcpPageUi(opts) { registeredTools.push(...opts.tools); mountedTitle = opts.title; }'
+        );
+
+        expect(() => {
+          vm.runInNewContext(code, sandbox);
+        }).not.toThrow();
+
+        expect(sandbox.registeredTools.length).toBe(11);
+        expect(sandbox.mountedTitle).toBeTruthy();
+      }
+    }
+  });
+
   it('renderTrendChart decimates x-axis SHA labels to prevent overlap on dense history', () => {
     const match = APP_JS.match(/  function renderTrendChart\(title, points, metricKey = 'linesPct'\) \{[\s\S]*?\n  \}/);
     expect(match).not.toBeNull();
