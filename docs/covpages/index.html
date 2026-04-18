@@ -3021,7 +3021,7 @@ prismjs/prism.js:
     const width = 800;
     const height = 220;
     const paddingLeft = 45;
-    const paddingRight = 20;
+    const paddingRight = 28;
     const paddingTop = 25;
     const paddingBottom = 35;
 
@@ -3044,6 +3044,24 @@ prismjs/prism.js:
       const y = paddingTop + chartH - (((p[metricKey] ?? 0) - minVal) / valRange) * chartH;
       return { x, y, point: p };
     });
+
+    // Prevent x-axis label collision: each 7-char monospace SHA needs ~58px clearance
+    const minLabelGap = 62;
+    const maxLabels = Math.max(2, Math.floor(chartW / minLabelGap));
+    const labelStep = coords.length <= maxLabels ? 1 : Math.ceil((coords.length - 1) / (maxLabels - 1));
+    const visibleLabelIndices = new Set();
+    for (let i = 0; i < coords.length; i += labelStep) {
+      visibleLabelIndices.add(i);
+    }
+    if (coords.length > 1) {
+      const lastIdx = coords.length - 1;
+      for (const prevIdx of Array.from(visibleLabelIndices)) {
+        if (prevIdx !== lastIdx && Math.abs(coords[lastIdx].x - coords[prevIdx].x) < minLabelGap * 0.75) {
+          visibleLabelIndices.delete(prevIdx);
+        }
+      }
+      visibleLabelIndices.add(lastIdx);
+    }
 
     let pathD = '';
     if (coords.length === 1) {
@@ -3075,18 +3093,22 @@ prismjs/prism.js:
     const circles = coords.map((c, i) => {
       const p = c.point;
       const isSelected = p.sha === state.selectedCommitSha;
-      const r = isSelected ? 6 : 4;
-      const fill = isSelected ? 'var(--color-attention-fg)' : 'var(--chart-line)';
+      const r = isSelected ? 5.5 : 3.5;
+      const fill = isSelected ? 'var(--color-fg-default)' : 'var(--chart-line)';
       const stroke = 'var(--color-canvas-default)';
+      const showLabel = visibleLabelIndices.has(i);
       return `
         <circle class="chart-dot" cx="${c.x}" cy="${c.y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="2"
           data-sha="${p.sha}" data-date="${escapeHtml(p.date)}" data-msg="${escapeHtml(p.message)}"
           data-lines="${p.linesPct}%" data-fn="${p.functionsPct}%" data-br="${p.branchesPct}%"
           data-covered="${p.linesCovered}" data-total="${p.linesTotal}"
         />
-        <text x="${c.x}" y="${paddingTop + chartH + 18}" text-anchor="middle" fill="var(--color-fg-muted)" font-size="10" font-family="var(--font-mono)">
-          ${escapeHtml(p.shortSha)}
-        </text>
+        ${showLabel ? `
+          <line x1="${c.x}" y1="${paddingTop + chartH}" x2="${c.x}" y2="${paddingTop + chartH + 4}" stroke="var(--color-border-default)" stroke-width="1"/>
+          <text x="${c.x}" y="${paddingTop + chartH + 18}" text-anchor="middle" fill="${isSelected ? 'var(--color-fg-default)' : 'var(--color-fg-muted)'}" font-weight="${isSelected ? '600' : '400'}" font-size="10" font-family="var(--font-mono)">
+            ${escapeHtml(p.shortSha)}
+          </text>
+        ` : ''}
       `;
     }).join('');
 
