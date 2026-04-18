@@ -2056,6 +2056,13 @@ export const APP_JS = `
             <span class="gh-repo-title">/ Drop-in Coverage</span>
           </div>
           <div class="gh-header-actions">
+            <button class="gh-btn" id="ask-ai-trigger" title="Ask AI about test coverage" aria-label="Ask AI">
+              \${icons.sparkles || ''}
+              <span>Ask AI</span>
+            </button>
+            <a href="mcp" class="gh-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
+              <span>MCP</span>
+            </a>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
               \${icons.moon}
             </button>
@@ -2160,6 +2167,17 @@ export const APP_JS = `
   }
 
   function bindEmptyEvents() {
+    const askAiBtn = document.getElementById('ask-ai-trigger');
+    if (askAiBtn) {
+      askAiBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.toggleAskAiDrawer === 'function') {
+          window.toggleAskAiDrawer();
+        }
+      });
+    }
+
     const themeBtn = document.getElementById('theme-toggle-btn');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
@@ -2223,6 +2241,17 @@ export const APP_JS = `
 
   // Event handlers
   function bindEvents() {
+    const askAiBtn = document.getElementById('ask-ai-trigger');
+    if (askAiBtn) {
+      askAiBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.toggleAskAiDrawer === 'function') {
+          window.toggleAskAiDrawer();
+        }
+      });
+    }
+
     const themeBtn = document.getElementById('theme-toggle-btn');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
