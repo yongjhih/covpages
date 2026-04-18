@@ -2,27 +2,27 @@
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-18T12:14:04.903Z",
+  "generatedAt": "2026-10-18T12:15:08.326Z",
   "currentCommit": {
-    "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
-    "shortSha": "3b81651",
+    "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+    "shortSha": "7b04618",
     "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-    "author": "Andrew Chen",
-    "date": "2026-10-18T12:06:58.000Z",
+    "author": "covpages-bot",
+    "date": "2026-10-18T12:14:21.000Z",
     "branch": "main"
   },
   "previousCommit": {
-    "sha": "a91a0def93a2c2bcfcfd8df9ec3091d5a222adfa",
-    "shortSha": "a91a0de",
-    "message": "fix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
-    "author": "covpages-bot",
-    "date": "2026-10-18T12:05:25.000Z",
+    "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
+    "shortSha": "3b81651",
+    "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+    "author": "yongjhih",
+    "date": "2026-10-18T12:06:58.000Z",
     "branch": "main"
   },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": 0
+    "branchesPct": 0.42
   },
   "summary": {
     "lines": {
@@ -46709,9 +46709,972 @@
       "commit": {
         "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
         "shortSha": "3b81651",
-        "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-        "author": "Andrew Chen",
+        "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+        "author": "yongjhih",
         "date": "2026-10-18T12:06:58.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3574,
+          "covered": 1907,
+          "skipped": 1667,
+          "pct": 53.36
+        },
+        "functions": {
+          "total": 102,
+          "covered": 82,
+          "skipped": 20,
+          "pct": 80.39
+        },
+        "branches": {
+          "total": 600,
+          "covered": 430,
+          "skipped": 170,
+          "pct": 71.67
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3574,
+            "covered": 1907,
+            "skipped": 1667,
+            "pct": 53.36
+          },
+          "functions": {
+            "total": 102,
+            "covered": 82,
+            "skipped": 20,
+            "pct": 80.39
+          },
+          "branches": {
+            "total": 600,
+            "covered": 430,
+            "skipped": 170,
+            "pct": 71.67
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3574,
+            "covered": 1907,
+            "skipped": 1667,
+            "pct": 53.36
+          },
+          "functions": {
+            "total": 102,
+            "covered": 82,
+            "skipped": 20,
+            "pct": 80.39
+          },
+          "branches": {
+            "total": 600,
+            "covered": 430,
+            "skipped": 170,
+            "pct": 71.67
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 906,
+            "covered": 700,
+            "skipped": 206,
+            "pct": 77.26
+          },
+          "functions": {
+            "total": 41,
+            "covered": 38,
+            "skipped": 3,
+            "pct": 92.68
+          },
+          "branches": {
+            "total": 257,
+            "covered": 199,
+            "skipped": 58,
+            "pct": 77.43
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1333,
+            "covered": 222,
+            "skipped": 1111,
+            "pct": 16.65
+          },
+          "functions": {
+            "total": 12,
+            "covered": 5,
+            "skipped": 7,
+            "pct": 41.67
+          },
+          "branches": {
+            "total": 58,
+            "covered": 41,
+            "skipped": 17,
+            "pct": 70.69
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1110,
+            "covered": 0,
+            "skipped": 1110,
+            "pct": 0
+          },
+          "functions": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          },
+          "branches": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 85,
+            "covered": 85,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 102,
+            "covered": 86,
+            "skipped": 16,
+            "pct": 84.31
+          },
+          "functions": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          },
+          "branches": {
+            "total": 10,
+            "covered": 6,
+            "skipped": 4,
+            "pct": 60
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 252,
+            "covered": 139,
+            "skipped": 113,
+            "pct": 55.16
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 17,
+            "skipped": 26,
+            "pct": 39.53
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 221,
+            "covered": 182,
+            "skipped": 39,
+            "pct": 82.35
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 34,
+            "skipped": 16,
+            "pct": 68
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 34,
+            "skipped": 1,
+            "pct": 97.14
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 8,
+            "covered": 7,
+            "skipped": 1,
+            "pct": 87.5
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 179,
+            "covered": 179,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 34,
+            "skipped": 9,
+            "pct": 79.07
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 0,
+            "skipped": 252,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 0,
+            "skipped": 159,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 0,
+            "skipped": 61,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 0,
+            "skipped": 247,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 237,
+            "covered": 0,
+            "skipped": 237,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 0,
+            "skipped": 148,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/ask-ai.ts": {
+          "lines": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 7,
+            "covered": 7,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 26,
+            "covered": 26,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 38,
+            "covered": 38,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 16,
+            "covered": 0,
+            "skipped": 16,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 86,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 6,
+            "skipped": 3,
+            "pct": 66.67
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/3b/81651a1c57c6c14b0be3e87bcb5102fc3847ab.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/3b/81651a1c57c6c14b0be3e87bcb5102fc3847ab.lcov.info"
+          }
+        ]
+      }
+    },
+    {
+      "commit": {
+        "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+        "shortSha": "7b04618",
+        "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
+        "author": "covpages-bot",
+        "date": "2026-10-18T12:14:21.000Z",
         "branch": "main"
       },
       "summary": {
@@ -47659,11 +48622,11 @@
         }
       },
       "artifacts": {
-        "lcov": "objects/3b/81651a1c57c6c14b0be3e87bcb5102fc3847ab.lcov",
+        "lcov": "objects/7b/046180d28d7097d4ac1c46cf349001352c8108.lcov",
         "sources": [
           {
             "format": "lcov",
-            "path": "objects/3b/81651a1c57c6c14b0be3e87bcb5102fc3847ab.lcov.info"
+            "path": "objects/7b/046180d28d7097d4ac1c46cf349001352c8108.lcov.info"
           }
         ]
       }
@@ -47671,7 +48634,7 @@
   ],
   "refs": {
     "branches": {
-      "main": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
+      "main": "7b046180d28d7097d4ac1c46cf349001352c8108",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -48215,8 +49178,21 @@
         "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
         "shortSha": "3b81651",
         "date": "2026-10-18T12:06:58.000Z",
+        "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 53.36,
+        "functionsPct": 80.39,
+        "branchesPct": 71.67,
+        "linesCovered": 1907,
+        "linesTotal": 3574
+      },
+      {
+        "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+        "shortSha": "7b04618",
+        "date": "2026-10-18T12:14:21.000Z",
         "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-        "author": "Andrew Chen",
+        "author": "covpages-bot",
         "branch": "main",
         "linesPct": 53.36,
         "functionsPct": 80.39,
@@ -48764,8 +49740,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.36,
+          "functionsPct": 80.39,
+          "branchesPct": 71.67,
+          "linesCovered": 1907,
+          "linesTotal": 3574
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 53.36,
           "functionsPct": 80.39,
@@ -49312,8 +50301,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.36,
+          "functionsPct": 80.39,
+          "branchesPct": 71.67,
+          "linesCovered": 1907,
+          "linesTotal": 3574
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 53.36,
           "functionsPct": 80.39,
@@ -49860,8 +50862,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.26,
+          "functionsPct": 92.68,
+          "branchesPct": 77.43,
+          "linesCovered": 700,
+          "linesTotal": 906
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 77.26,
           "functionsPct": 92.68,
@@ -50408,8 +51423,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -50956,8 +51984,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 85,
+          "linesTotal": 85
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -51452,8 +52493,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -51948,8 +53002,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 84.31,
+          "functionsPct": 75,
+          "branchesPct": 60,
+          "linesCovered": 86,
+          "linesTotal": 102
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 84.31,
           "functionsPct": 75,
@@ -52197,8 +53264,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 16.65,
+          "functionsPct": 41.67,
+          "branchesPct": 70.69,
+          "linesCovered": 222,
+          "linesTotal": 1333
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 16.65,
           "functionsPct": 41.67,
@@ -52446,8 +53526,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 1110
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -52996,8 +54089,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 55.16,
+          "functionsPct": 100,
+          "branchesPct": 39.53,
+          "linesCovered": 139,
+          "linesTotal": 252
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 55.16,
           "functionsPct": 100,
@@ -53544,8 +54650,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 82.35,
+          "functionsPct": 100,
+          "branchesPct": 68,
+          "linesCovered": 182,
+          "linesTotal": 221
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 82.35,
           "functionsPct": 100,
@@ -54092,8 +55211,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 18.75,
           "functionsPct": 0,
@@ -54640,8 +55772,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -55188,8 +56333,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.6,
           "functionsPct": 100,
@@ -55736,8 +56894,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -56284,8 +57455,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 96.77,
           "functionsPct": 100,
@@ -56832,8 +58016,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 89.66,
           "functionsPct": 100,
@@ -57380,8 +58577,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 94.85,
           "functionsPct": 100,
@@ -57928,8 +59138,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -58476,8 +59699,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 92.86,
           "functionsPct": 100,
@@ -59024,8 +60260,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -59572,8 +60821,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 88.46,
           "functionsPct": 100,
@@ -60120,8 +61382,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -60668,8 +61943,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.3,
           "functionsPct": 100,
@@ -61216,8 +62504,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -61764,8 +63065,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 26,
+          "linesTotal": 26
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -62312,8 +63626,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 38,
+          "linesTotal": 38
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -62860,8 +64187,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -63356,8 +64696,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -63852,8 +65205,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -64348,8 +65714,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -64844,8 +66223,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 16
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -65340,8 +66732,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 86,
+          "linesTotal": 86
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -65771,8 +67176,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 99.05,
           "functionsPct": 100,
@@ -66150,8 +67568,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 85.19,
           "functionsPct": 50,
@@ -66399,8 +67830,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.14,
+          "functionsPct": 100,
+          "branchesPct": 87.5,
+          "linesCovered": 34,
+          "linesTotal": 35
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.14,
           "functionsPct": 100,
@@ -66648,8 +68092,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 79.07,
+          "linesCovered": 179,
+          "linesTotal": 179
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -66897,8 +68354,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -67146,8 +68616,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 252
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -67395,8 +68878,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 159
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -67644,8 +69140,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 61
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -67893,8 +69402,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -68142,8 +69664,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 247
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -68391,8 +69926,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 237
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -68640,8 +70188,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 148
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -68824,8 +70385,21 @@
           "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
           "shortSha": "3b81651",
           "date": "2026-10-18T12:06:58.000Z",
+          "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 18,
+          "linesTotal": 18
+        },
+        {
+          "sha": "7b046180d28d7097d4ac1c46cf349001352c8108",
+          "shortSha": "7b04618",
+          "date": "2026-10-18T12:14:21.000Z",
           "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-          "author": "Andrew Chen",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
