@@ -770,7 +770,10 @@
         <span>Ask AI Assistant</span>
         <span class="ask-ai-status-pill" id="ask-ai-status-pill" data-connected="false">Local AI / Client</span>
       </div>
-      <button type="button" class="btn btn-sm" id="ask-ai-close" aria-label="Close Ask AI">&times; Close</button>
+      <div class="ask-ai-header-actions" style="display: flex; gap: 6px; align-items: center;">
+        <button type="button" class="btn btn-sm" id="ask-ai-clear" title="Clear chat history" aria-label="Clear chat history" style="display: none;">Clear</button>
+        <button type="button" class="btn btn-sm" id="ask-ai-close" aria-label="Close Ask AI">&times; Close</button>
+      </div>
     </div>
 
     <div class="ask-ai-body" id="ask-ai-messages">
@@ -857,12 +860,87 @@
   var drawer = document.getElementById('ask-ai-drawer');
   var backdrop = document.getElementById('ask-ai-backdrop');
   var closeBtn = document.getElementById('ask-ai-close');
+  var clearBtn = document.getElementById('ask-ai-clear');
   var form = document.getElementById('ask-ai-form');
   var input = document.getElementById('ask-ai-input');
   var messagesEl = document.getElementById('ask-ai-messages');
   var statusPill = document.getElementById('ask-ai-status-pill');
 
   if (!drawer || !form || !input || !messagesEl) return;
+
+  var STORAGE_KEY = 'covpages_ask_ai_history';
+  var conversationHistory = [];
+
+  function loadHistory() {
+    try {
+      var raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {}
+    return [];
+  }
+
+  function updateClearBtn() {
+    if (clearBtn) {
+      clearBtn.style.display = conversationHistory.length > 0 ? 'inline-flex' : 'none';
+    }
+  }
+
+  function saveHistory() {
+    try {
+      if (conversationHistory.length > 50) {
+        conversationHistory = conversationHistory.slice(-50);
+      }
+      var data = JSON.stringify(conversationHistory);
+      sessionStorage.setItem(STORAGE_KEY, data);
+      try { localStorage.setItem(STORAGE_KEY, data); } catch (e) {}
+    } catch (e) {}
+    updateClearBtn();
+  }
+
+  function clearHistory() {
+    conversationHistory = [];
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {}
+    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');
+    for (var i = 1; i < allMsgs.length; i++) {
+      allMsgs[i].remove();
+    }
+    updateClearBtn();
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      clearHistory();
+    });
+  }
+
+  function restoreHistory() {
+    conversationHistory = loadHistory();
+    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');
+    for (var m = 1; m < allMsgs.length; m++) {
+      allMsgs[m].remove();
+    }
+    if (conversationHistory && conversationHistory.length > 0) {
+      for (var i = 0; i < conversationHistory.length; i++) {
+        var item = conversationHistory[i];
+        if (item && item.role && item.html) {
+          var msgEl = document.createElement('div');
+          msgEl.className = 'ask-ai-msg ask-ai-msg-' + item.role;
+          msgEl.innerHTML = item.html;
+          messagesEl.appendChild(msgEl);
+          bindActions(msgEl);
+        }
+      }
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+    updateClearBtn();
+  }
 
   var lastToggleTime = 0;
   function toggleDrawer(open) {
@@ -878,6 +956,10 @@
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
     if (backdrop) backdrop.setAttribute('data-open', open ? 'true' : 'false');
     if (open) {
+      if (messagesEl.children.length <= 1) {
+        restoreHistory();
+      }
+      messagesEl.scrollTop = messagesEl.scrollHeight;
       setTimeout(function () { input.focus(); }, 100);
     }
   }
@@ -916,14 +998,27 @@
     }
   });
 
-  function appendMessage(sender, htmlContent) {
+  function appendMessage(sender, htmlContent, shouldSave, rawText) {
     var msgEl = document.createElement('div');
     msgEl.className = 'ask-ai-msg ask-ai-msg-' + sender;
     msgEl.innerHTML = htmlContent;
     messagesEl.appendChild(msgEl);
     messagesEl.scrollTop = messagesEl.scrollHeight;
     bindActions(msgEl);
+
+    if (shouldSave) {
+      conversationHistory.push({
+        role: sender,
+        html: htmlContent,
+        text: rawText || (htmlContent ? htmlContent.replace(/<[^>]+>/g, ' ').trim() : '')
+      });
+      saveHistory();
+    }
+    return msgEl;
   }
+
+  // Restore history on script startup
+  restoreHistory();
 
   function handleJump(hash) {
     if (!hash || !hash.startsWith('#')) return;
@@ -1044,7 +1139,7 @@
     text = (text || '').trim();
     if (!text) return;
 
-    appendMessage('user', '<p>' + escapeHtml(text) + '</p>');
+    appendMessage('user', '<p>' + escapeHtml(text) + '</p>', true, text);
     input.value = '';
 
     // Show typing placeholder
@@ -1057,18 +1152,30 @@
     // 1. Try local ai-proxy /v1/chat/completions relay
     var relaySuccess = false;
     try {
+      var promptMessages = [
+        {
+          role: 'system',
+          content: 'You are the Covpages Assistant. Covpages is a git-native test coverage reporting tool for GitHub Pages with multi-commit trends, scoped badges, and zero backend required.'
+        }
+      ];
+
+      var recent = conversationHistory.slice(-6);
+      for (var r = 0; r < recent.length; r++) {
+        var hist = recent[r];
+        if (hist && hist.role) {
+          promptMessages.push({
+            role: hist.role === 'user' ? 'user' : 'assistant',
+            content: hist.text || (hist.html ? hist.html.replace(/<[^>]+>/g, ' ').trim() : '')
+          });
+        }
+      }
+
       var relayRes = await fetch('http://127.0.0.1:8788/v1/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'local',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are the Covpages Assistant. Covpages is a git-native test coverage reporting tool for GitHub Pages with multi-commit trends, scoped badges, and zero backend required.'
-            },
-            { role: 'user', content: text }
-          ]
+          messages: promptMessages
         }),
         signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(1500) : undefined
       });
@@ -1077,8 +1184,15 @@
         var replyData = await relayRes.json();
         var replyText = replyData && replyData.choices && replyData.choices[0] && replyData.choices[0].message && replyData.choices[0].message.content;
         if (replyText) {
-          typingEl.innerHTML = formatMarkdown(replyText);
+          var formatted = formatMarkdown(replyText);
+          typingEl.innerHTML = formatted;
           bindActions(typingEl);
+          conversationHistory.push({
+            role: 'assistant',
+            html: formatted,
+            text: replyText
+          });
+          saveHistory();
           if (statusPill) {
             statusPill.textContent = 'ai-proxy /v1 Connected';
             statusPill.setAttribute('data-connected', 'true');
@@ -1182,6 +1296,12 @@
 
     typingEl.innerHTML = replyHtml;
     bindActions(typingEl);
+    conversationHistory.push({
+      role: 'assistant',
+      html: replyHtml,
+      text: replyHtml.replace(/<[^>]+>/g, ' ').trim()
+    });
+    saveHistory();
   }
 
   if (form) {
