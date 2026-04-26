@@ -264,6 +264,107 @@
       margin-bottom: 40px;
     }
 
+    .hero-tagline {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      margin-bottom: 8px;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 20px;
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      color: var(--color-fg-default);
+    }
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .how-it-works-card {
+      background: var(--color-canvas-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .how-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-fg);
+      font-weight: 700;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      margin-bottom: 6px;
+      border: 1px solid var(--color-border-default);
+    }
+    .how-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .how-step-desc {
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      line-height: 1.6;
+    }
+    .takeaway-banner {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-left: 4px solid var(--color-accent-emphasis);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--color-fg-default);
+      line-height: 1.6;
+    }
+    .quickstart-lead {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .quickstart-lead-text {
+      font-size: 13px;
+      color: var(--color-fg-default);
+    }
+    .quickstart-lead-text strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
     /* Live Preview Mock Frame */
     .preview-card {
       background: var(--color-canvas-default);
@@ -978,6 +1079,7 @@
 
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">Overview</a>
+      <a href="#how-it-works" class="nav-link">How it Works</a>
       <a href="covpages/" class="nav-link">Live Demo <svg height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>
       <a href="mcp" class="nav-link">MCP Page</a>
       <a href="#features" class="nav-link">Architecture</a>
@@ -1000,9 +1102,18 @@
   <section class="hero" id="overview">
     <div class="container">
       <h1>Git-Native Code Coverage for GitHub Pages</h1>
+      <div class="hero-tagline">Host beautiful test coverage reports for free on GitHub Pages.</div>
       <p>
         Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP support.
       </p>
+
+      <div class="hero-pills">
+        <span class="hero-pill"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"></path></svg> Zero Server・100% Free</span>
+        <span class="hero-pill"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path></svg> 100% In-Repo Privacy</span>
+        <span class="hero-pill"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 3.53 10.53a.75.75 0 0 1-1.06-1.06l4-4a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.75.75 0 0 1 1.06 1.06Z"></path></svg> Multi-Commit Trends</span>
+        <span class="hero-pill"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg> Scoped SVG Badges</span>
+        <span class="hero-pill"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M7.53 1.282a.5.5 0 0 1 .94 0l.965 2.569a3.5 3.5 0 0 0 2.062 2.062l2.569.965a.5.5 0 0 1 0 .944l-2.569.965a3.5 3.5 0 0 0-2.062 2.062l-.965 2.569a.5.5 0 0 1-.94 0l-.965-2.569a3.5 3.5 0 0 0-2.062-2.062l-2.569-.965a.5.5 0 0 1 0-.944l2.569-.965a3.5 3.5 0 0 0 2.062-2.062l.965-2.569Z"></path></svg> AI Assistant & WebMCP</span>
+      </div>
 
       <div class="hero-ctas">
         <a href="covpages/" class="btn btn-primary">
@@ -1082,6 +1193,44 @@
     </div>
   </section>
 
+  <!-- How it Works (深入淺出 3 步驟) -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How It Works: 3 Simple Steps</h2>
+        <p class="section-subtitle">
+          No complicated backend needed. Using standard coverage formats and native GitHub infrastructure, get your portal in 3 simple steps.
+        </p>
+      </div>
+
+      <div class="how-it-works-grid">
+        <div class="how-it-works-card">
+          <span class="how-step-num">1</span>
+          <h3 class="how-step-title"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.75h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path></svg> <span>1. Run Tests & Output Report</span></h3>
+          <p class="how-step-desc">
+            Whether using Jest, Vitest, pytest, go test, cargo-llvm-cov, or Flutter, your test runner emits a standard <code>lcov.info</code> or <code>clover.xml</code>. That is all Covpages needs.
+          </p>
+        </div>
+
+        <div class="how-it-works-card">
+          <span class="how-step-num">2</span>
+          <h3 class="how-step-title"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"></path></svg> <span>2. Compile to Static Portal</span></h3>
+          <p class="how-step-desc">
+            Covpages reads your coverage and Git commits, generating lightweight static HTML, trend history, and scoped SVG badges. 100% serverless.
+          </p>
+        </div>
+
+        <div class="how-it-works-card">
+          <span class="how-step-num">3</span>
+          <h3 class="how-step-title"><svg height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg> <span>3. Publish to GitHub Pages</span></h3>
+          <p class="how-step-desc">
+            Automatically deploy to GitHub Pages via GitHub Actions. Your team and contributors can instantly inspect live coverage, hit counts, and uncovered code.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="section" id="features">
     <div class="container">
@@ -1136,7 +1285,7 @@
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">undefined <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
+          <h3 class="spec-title"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.75h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path></svg> <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
           <p class="spec-desc">
             Turns your coverage site into an <a href="mcp">MCP Page</a> with 11 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
           </p>
@@ -1203,6 +1352,11 @@
         <p class="section-subtitle">
           Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.
         </p>
+      </div>
+
+      <div class="takeaway-banner">
+        <strong>💡 Key Takeaway:</strong>
+        Zero server cost, extreme Git compression, and lifetime retention. Save thousands of dollars annually on commercial SaaS while maintaining full code ownership.
       </div>
 
       <div class="benchmarks-table-wrap">
@@ -1285,6 +1439,13 @@
         <p class="section-subtitle">
           Get up and running in under 5 minutes with zero configuration.
         </p>
+      </div>
+
+      <div class="quickstart-lead">
+        <div class="quickstart-lead-text">
+          <strong>⚡ 30-Second Automated CI Workflow</strong>
+          <span>Run this single command in your project root to generate the GitHub Actions workflow and deploy directly to GitHub Pages:</span>
+        </div>
       </div>
 
       <div class="code-tabs">
@@ -1543,7 +1704,7 @@
   <aside class="ask-ai-drawer" id="ask-ai-drawer" data-open="false" aria-hidden="true" aria-label="Ask AI Assistant">
     <div class="ask-ai-header">
       <div class="ask-ai-title">
-        
+        <svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.75h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path></svg>
         <span>Ask AI Assistant</span>
         <span class="ask-ai-status-pill" id="ask-ai-status-pill" data-connected="false">Local AI / Client</span>
       </div>

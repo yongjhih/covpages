@@ -333,6 +333,107 @@ export function renderWebsiteHtml(options: {
       margin-bottom: 40px;
     }
 
+    .hero-tagline {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      margin-bottom: 8px;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 20px;
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      color: var(--color-fg-default);
+    }
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .how-it-works-card {
+      background: var(--color-canvas-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .how-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-fg);
+      font-weight: 700;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      margin-bottom: 6px;
+      border: 1px solid var(--color-border-default);
+    }
+    .how-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .how-step-desc {
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      line-height: 1.6;
+    }
+    .takeaway-banner {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-left: 4px solid var(--color-accent-emphasis);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--color-fg-default);
+      line-height: 1.6;
+    }
+    .quickstart-lead {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .quickstart-lead-text {
+      font-size: 13px;
+      color: var(--color-fg-default);
+    }
+    .quickstart-lead-text strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
     /* Live Preview Mock Frame */
     .preview-card {
       background: var(--color-canvas-default);
@@ -755,6 +856,7 @@ export function renderWebsiteHtml(options: {
 
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">${isZh ? '總覽' : 'Overview'}</a>
+      <a href="#how-it-works" class="nav-link">${isZh ? '運作原理' : 'How it Works'}</a>
       <a href="${liveDemoUrl}" class="nav-link">${isZh ? '即時展示' : 'Live Demo'} ${ICONS.linkExternal}</a>
       <a href="${mcpUrl}" class="nav-link">${isZh ? 'MCP 頁面' : 'MCP Page'}</a>
       <a href="#features" class="nav-link">${isZh ? '架構特點' : 'Architecture'}</a>
@@ -777,11 +879,20 @@ export function renderWebsiteHtml(options: {
   <section class="hero" id="overview">
     <div class="container">
       <h1>${isZh ? '專為 GitHub Pages 打造的原生 Git 測試覆蓋率報告' : 'Git-Native Code Coverage for GitHub Pages'}</h1>
+      <div class="hero-tagline">${isZh ? '把測試覆蓋率報告，免費託管在你的 GitHub Pages。' : 'Host beautiful test coverage reports for free on GitHub Pages.'}</div>
       <p>
         ${isZh
-          ? '零伺服器。零每月 SaaS 訂閱費用。100% 存放於您的 Git 儲存庫內。典雅的原生 GitHub Primer 介面，支援多 commit 覆蓋率趨勢圖、分區塊 SVG 徽章、語法高亮及瀏覽器端 WebMCP 支援。'
+          ? '不用花錢買昂貴的 SaaS 訂閱，也不用自己架伺服器。Covpages 能將任何程式語言（Node.js、Go、Python、Rust、Flutter 等）的測試報告，一鍵轉為原生 GitHub Primer 風格的互動式網站，支援歷史 Commit 趨勢圖、分目錄向量徽章，以及 AI 測試諮詢。'
           : 'Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP support.'}
       </p>
+
+      <div class="hero-pills">
+        <span class="hero-pill">${ICONS.zap} ${isZh ? '零伺服器・完全免費' : 'Zero Server・100% Free'}</span>
+        <span class="hero-pill">${ICONS.code} ${isZh ? '程式碼隱私 100% 自主' : '100% In-Repo Privacy'}</span>
+        <span class="hero-pill">${ICONS.graph} ${isZh ? '多 Commit 趨勢圖' : 'Multi-Commit Trends'}</span>
+        <span class="hero-pill">${ICONS.tag} ${isZh ? '分目錄向量 SVG 徽章' : 'Scoped SVG Badges'}</span>
+        <span class="hero-pill">${ICONS.sparkles} ${isZh ? 'AI 測試顧問與 WebMCP' : 'AI Assistant & WebMCP'}</span>
+      </div>
 
       <div class="hero-ctas">
         <a href="${liveDemoUrl}" class="btn btn-primary">
@@ -861,6 +972,52 @@ export function renderWebsiteHtml(options: {
     </div>
   </section>
 
+  <!-- How it Works (深入淺出 3 步驟) -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">${isZh ? '運作原理：3 步驟深入淺出' : 'How It Works: 3 Simple Steps'}</h2>
+        <p class="section-subtitle">
+          ${isZh
+            ? '無需複雜後端，透過標準覆蓋率報告與 GitHub 原生機制，簡單 3 步即可擁有專屬的覆蓋率入口。'
+            : 'No complicated backend needed. Using standard coverage formats and native GitHub infrastructure, get your portal in 3 simple steps.'}
+        </p>
+      </div>
+
+      <div class="how-it-works-grid">
+        <div class="how-it-works-card">
+          <span class="how-step-num">1</span>
+          <h3 class="how-step-title">${ICONS.terminal} <span>${isZh ? '1. 跑測試，輸出標準報告' : '1. Run Tests & Output Report'}</span></h3>
+          <p class="how-step-desc">
+            ${isZh
+              ? '不論你用 Jest、Vitest、pytest、go test、cargo-llvm-cov 或 Flutter，在測試時產生 <code>lcov.info</code> 或 <code>clover.xml</code>，這就是唯一的輸入。'
+              : 'Whether using Jest, Vitest, pytest, go test, cargo-llvm-cov, or Flutter, your test runner emits a standard <code>lcov.info</code> or <code>clover.xml</code>. That is all Covpages needs.'}
+          </p>
+        </div>
+
+        <div class="how-it-works-card">
+          <span class="how-step-num">2</span>
+          <h3 class="how-step-title">${ICONS.zap} <span>${isZh ? '2. 一鍵打包成純靜態網站' : '2. Compile to Static Portal'}</span></h3>
+          <p class="how-step-desc">
+            ${isZh
+              ? 'Covpages 讀取覆蓋率與 Git commit 歷程，自動編譯出極致輕量的靜態 HTML、歷史趨勢資料與各目錄 SVG 徽章。100% 無伺服器。'
+              : 'Covpages reads your coverage and Git commits, generating lightweight static HTML, trend history, and scoped SVG badges. 100% serverless.'}
+          </p>
+        </div>
+
+        <div class="how-it-works-card">
+          <span class="how-step-num">3</span>
+          <h3 class="how-step-title">${ICONS.linkExternal} <span>${isZh ? '3. 推送到 GitHub Pages 免費託管' : '3. Publish to GitHub Pages'}</span></h3>
+          <p class="how-step-desc">
+            ${isZh
+              ? '透過 GitHub Actions 自動發布至免費的 GitHub Pages。整個團隊與開源貢獻者隨時都能點擊查看即時報告、逐行執行次數與未覆蓋盲點。'
+              : 'Automatically deploy to GitHub Pages via GitHub Actions. Your team and contributors can instantly inspect live coverage, hit counts, and uncovered code.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="section" id="features">
     <div class="container">
@@ -873,51 +1030,65 @@ export function renderWebsiteHtml(options: {
 
       <div class="spec-grid">
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.package} <span>${isZh ? '97.6% Git Delta 壓縮' : '97.6% Git Delta Compression'}</span></h3>
+          <h3 class="spec-title">${ICONS.package} <span>${isZh ? '極致輕量：Git 原生差分壓縮 (97.6% 節省)' : '97.6% Git Delta Compression'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? 'Covpages 將換行符號正規化並以確定性方式排列 LCOV 記錄。100 個歷史 commit 在 Git packfile 中壓縮後僅需 1.24 MB。' : 'Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.'}
+            ${isZh
+              ? '很多人擔心歷史覆蓋率會把 Git repo 撐爆。Covpages 透過行排序正規化，讓 Git packfile 極致壓縮——累積 100 次 Commit 的歷史記錄僅約 1.24 MB，比一張網頁截圖還小！'
+              : 'Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.'}
           </p>
         </div>
 
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.tag} <span>${isZh ? '一鍵複製的分區塊 SVG 徽章' : 'Scoped SVG Badges with 1-Click Copy'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? '不僅能為整個儲存庫生成覆蓋率徽章，還支援個別分支、子目錄與檔案。點擊即可複製 Markdown 語法直接貼入 README。' : 'Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.'}
+            ${isZh
+              ? '不僅能為整個儲存庫生成覆蓋率徽章，還支援個別分支、子目錄與重要檔案。點擊即可複製 Markdown 語法直接貼入 README。'
+              : 'Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.code} <span>${isZh ? 'GitHub Primer UI 與語法高亮' : 'GitHub Primer UI & Syntax Highlighting'}</span></h3>
+          <h3 class="spec-title">${ICONS.code} <span>${isZh ? '就跟瀏覽 GitHub 一樣親切 (Primer 介面)' : 'GitHub Primer UI & Syntax Highlighting'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? '純正的 tree/blob 路由切換、鍵盤快捷鍵（t、n、ESC）、行號、命中次數計數欄與 Prism.js 程式碼語法高亮。' : 'Authentic tree/blob routing, keyboard shortcuts (<code>t</code>, <code>n</code>, <code>ESC</code>), line numbers, hit gutters, and Prism.js syntax highlighting.'}
+            ${isZh
+              ? '純正的 tree/blob 路由切換、鍵盤快捷鍵（<code>t</code> 快速搜尋、<code>n</code> 跳轉未覆蓋行、<code>ESC</code> 返回）、行號、命中次數計數欄與 Prism.js 程式碼語法高亮。'
+              : 'Authentic tree/blob routing, keyboard shortcuts (<code>t</code>, <code>n</code>, <code>ESC</code>), line numbers, hit gutters, and Prism.js syntax highlighting.'}
           </p>
         </div>
 
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.graph} <span>${isZh ? '依目錄與檔案的多 Commit 趨勢圖' : 'Multi-Commit Trends by Folder & File'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? '追蹤測試覆蓋率隨 commit 推進的演變。可按整個儲存庫、個別目錄或特定原始碼檔案查看歷史趨勢曲線。' : 'Track coverage progression across commits. Inspect historical trendlines by repository, individual directory, or specific source file.'}
+            ${isZh
+              ? '不只知道專案總覆蓋率，還能深鑽個別目錄或特定原始碼檔案在過去幾十次 commit 的歷史演變曲線，一眼看出哪次改動造成覆蓋率退步。'
+              : 'Track coverage progression across commits. Inspect historical trendlines by repository, individual directory, or specific source file.'}
           </p>
         </div>
 
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.sidebar} <span>${isZh ? '+React 與組件複用' : '+React & Component Reusability'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? '可直接將 <code>&lt;Covpages /&gt;</code> 引入 React、Next.js 或 Docusaurus 文件站點，亦可作為標準 Web Component 嵌入。' : 'Import <code>&lt;Covpages /&gt;</code> directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard Web Component.'}
+            ${isZh
+              ? '可直接將 <code>&lt;Covpages /&gt;</code> 引入 React、Next.js 或 Docusaurus 文件站點，亦可作為標準 Web Component 嵌入任何網頁。'
+              : 'Import <code>&lt;Covpages /&gt;</code> directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard Web Component.'}
           </p>
         </div>
 
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.zap} <span>${isZh ? '零伺服器一鍵 GitHub Actions' : 'Zero-Server 1-Click GitHub Actions'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? '執行 <code>npx covpages init</code> 即可產生零配置的 GitHub Actions 工作流程，每次 push 自動發布至 GitHub Pages。' : 'Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.'}
+            ${isZh
+              ? '執行 <code>npx covpages init</code> 即可產生零配置的 GitHub Actions 工作流程，每次 push 自動發布至 GitHub Pages，完全不花費額外主機費用。'
+              : 'Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.'}
           </p>
         </div>
 
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.terminal} <span>${isZh ? 'WebMCP 與 ai-proxy 原生端點' : 'WebMCP &amp; ai-proxy Native Endpoint'}</span></h3>
           <p class="spec-desc">
-            ${isZh ? `將您的覆蓋率站點轉化為具備 11 項客戶端 WebMCP 工具的 <a href="${mcpUrl}">MCP 頁面</a>。透過 <code>npx ai-proxy add</code> 即可連接 Claude 或 Cursor，完全無需後端。` : `Turns your coverage site into an <a href="${mcpUrl}">MCP Page</a> with 11 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.`}
+            ${isZh
+              ? `將您的覆蓋率站點轉化為具備 11 項客戶端 WebMCP 工具的 <a href="${mcpUrl}">MCP 頁面</a>。透過 <code>npx ai-proxy add</code> 即可連接 Claude 或 Cursor，隨時詢問未測盲點，完全無需後端。`
+              : `Turns your coverage site into an <a href="${mcpUrl}">MCP Page</a> with 11 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.`}
           </p>
         </div>
       </div>
@@ -982,6 +1153,13 @@ export function renderWebsiteHtml(options: {
         <p class="section-subtitle">
           ${isZh ? '經正規化的 LCOV 檔案在 100 個 commit 的 Git packfile 中實現了 97.6% 的空間節省。' : 'Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.'}
         </p>
+      </div>
+
+      <div class="takeaway-banner">
+        <strong>${isZh ? '💡 一句話結論：' : '💡 Key Takeaway:'}</strong>
+        ${isZh
+          ? '零主機月租、極致壓縮、永久留存。每年為團隊省下數千美元的第三方商業 SaaS 訂閱，且代碼與測試歷史 100% 儲存在你的 Git 儲存庫內。'
+          : 'Zero server cost, extreme Git compression, and lifetime retention. Save thousands of dollars annually on commercial SaaS while maintaining full code ownership.'}
       </div>
 
       <div class="benchmarks-table-wrap">
@@ -1064,6 +1242,13 @@ export function renderWebsiteHtml(options: {
         <p class="section-subtitle">
           ${isZh ? '零配置即可在 5 分鐘內建置並運行。' : 'Get up and running in under 5 minutes with zero configuration.'}
         </p>
+      </div>
+
+      <div class="quickstart-lead">
+        <div class="quickstart-lead-text">
+          <strong>${isZh ? '⚡ 30 秒自動建立 CI 工作流程' : '⚡ 30-Second Automated CI Workflow'}</strong>
+          <span>${isZh ? '在你的專案根目錄執行以下指令，即刻生成 GitHub Actions 腳本並自動發布至 GitHub Pages：' : 'Run this single command in your project root to generate the GitHub Actions workflow and deploy directly to GitHub Pages:'}</span>
+        </div>
       </div>
 
       <div class="code-tabs">
