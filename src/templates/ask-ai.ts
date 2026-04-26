@@ -298,41 +298,77 @@ export const ASK_AI_CSS = `
 export function renderAskAiDrawerHtml(options: {
   mode: 'project' | 'coverage';
   baseUrl?: string;
+  lang?: 'en' | 'zh-TW';
 }): string {
   const isCoverage = options.mode === 'coverage';
+  const isZh = options.lang === 'zh-TW';
 
-  const defaultGreeting = isCoverage
-    ? `<p>Hello! I am your <strong>Covpages Coverage Assistant</strong>. I can help analyze your code coverage data, identify high-value test targets, inspect file metrics, or guide you through coverage trends.</p>`
-    : `<p>Hello! I am your <strong>Covpages AI Assistant</strong>. Ask me how to configure covpages, generate framework presets (Flutter, Vitest, Jest, Rust, Python, Go), set up zero-build drop-in sites, or query MCP endpoints.</p>`;
+  let defaultGreeting = '';
+  let chipsHtml = '';
 
-  const chipsHtml = isCoverage
-    ? `<div class="ask-ai-chips">
-        <button type="button" class="ask-ai-chip" data-ask="Find high-value coverage targets">🎯 High-Value Targets</button>
-        <button type="button" class="ask-ai-chip" data-ask="Which files have the most uncovered lines?">📊 Top Uncovered Files</button>
-        <button type="button" class="ask-ai-chip" data-ask="What is the current coverage summary and delta?">📈 Summary &amp; Delta</button>
-        <button type="button" class="ask-ai-chip" data-ask="Show multi-commit trend">🕒 Trend History</button>
-        <button type="button" class="ask-ai-chip" data-ask="How to register this MCP in ai-proxy?">🔌 WebMCP Registration</button>
-      </div>`
-    : `<div class="ask-ai-chips">
-        <button type="button" class="ask-ai-chip" data-ask="How do I set up covpages in 5 minutes?">🚀 Quickstart</button>
-        <button type="button" class="ask-ai-chip" data-ask="Show Vitest GitHub Actions workflow">⚡ Vitest Preset</button>
-        <button type="button" class="ask-ai-chip" data-ask="Show Flutter coverage workflow">💙 Flutter Preset</button>
-        <button type="button" class="ask-ai-chip" data-ask="How does zero-build drop-in mode work?">📦 Drop-in Mode</button>
-        <button type="button" class="ask-ai-chip" data-ask="Open live demo">👁️ Open Live Demo</button>
-      </div>`;
+  if (isZh) {
+    defaultGreeting = isCoverage
+      ? `<p>您好！我是您的 <strong>Covpages 覆蓋率分析助理</strong>。我可以協助您分析代碼覆蓋率數據、找出最具價值優先測試的目標、檢視檔案指標或掌握歷史趨勢。</p>`
+      : `<p>您好！我是您的 <strong>Covpages AI 助理</strong>。歡迎向我詢問如何配置 covpages、產出主流框架（Flutter、Vitest、Jest、Rust、Python、Go）的 CI 設定、建置免建置隨放即用站點，或調用本機 WebMCP 工具。</p>`;
+
+    chipsHtml = isCoverage
+      ? `<div class="ask-ai-chips">
+          <button type="button" class="ask-ai-chip" data-ask="找出最有價值的測試覆蓋率目標">🎯 高價值測試目標</button>
+          <button type="button" class="ask-ai-chip" data-ask="哪一個檔案有最多未覆蓋行數？">📊 最多未覆蓋檔案</button>
+          <button type="button" class="ask-ai-chip" data-ask="目前的覆蓋率摘要與變化為何？">📈 覆蓋率摘要與變化</button>
+          <button type="button" class="ask-ai-chip" data-ask="顯示多 commit 覆蓋率歷史趨勢">🕒 歷史趨勢圖</button>
+          <button type="button" class="ask-ai-chip" data-ask="如何在 ai-proxy 中註冊此 MCP 端點？">🔌 WebMCP 註冊</button>
+        </div>`
+      : `<div class="ask-ai-chips">
+          <button type="button" class="ask-ai-chip" data-ask="如何快速開始使用 covpages？">🚀 快速上手 (5 分鐘)</button>
+          <button type="button" class="ask-ai-chip" data-ask="顯示 Vitest 的 GitHub Actions 工作流程">⚡ Vitest 預設配置</button>
+          <button type="button" class="ask-ai-chip" data-ask="顯示 Flutter 的覆蓋率工作流程">💙 Flutter 預設配置</button>
+          <button type="button" class="ask-ai-chip" data-ask="零建置隨放即用模式如何運作？">📦 隨放即用模式</button>
+          <button type="button" class="ask-ai-chip" data-ask="前往即時展示">👁️ 開啟即時展示</button>
+        </div>`;
+  } else {
+    defaultGreeting = isCoverage
+      ? `<p>Hello! I am your <strong>Covpages Coverage Assistant</strong>. I can help analyze your code coverage data, identify high-value test targets, inspect file metrics, or guide you through coverage trends.</p>`
+      : `<p>Hello! I am your <strong>Covpages AI Assistant</strong>. Ask me how to configure covpages, generate framework presets (Flutter, Vitest, Jest, Rust, Python, Go), set up zero-build drop-in sites, or query MCP endpoints.</p>`;
+
+    chipsHtml = isCoverage
+      ? `<div class="ask-ai-chips">
+          <button type="button" class="ask-ai-chip" data-ask="Find high-value coverage targets">🎯 High-Value Targets</button>
+          <button type="button" class="ask-ai-chip" data-ask="Which files have the most uncovered lines?">📊 Top Uncovered Files</button>
+          <button type="button" class="ask-ai-chip" data-ask="What is the current coverage summary and delta?">📈 Summary &amp; Delta</button>
+          <button type="button" class="ask-ai-chip" data-ask="Show multi-commit trend">🕒 Trend History</button>
+          <button type="button" class="ask-ai-chip" data-ask="How to register this MCP in ai-proxy?">🔌 WebMCP Registration</button>
+        </div>`
+      : `<div class="ask-ai-chips">
+          <button type="button" class="ask-ai-chip" data-ask="How do I set up covpages in 5 minutes?">🚀 Quickstart</button>
+          <button type="button" class="ask-ai-chip" data-ask="Show Vitest GitHub Actions workflow">⚡ Vitest Preset</button>
+          <button type="button" class="ask-ai-chip" data-ask="Show Flutter coverage workflow">💙 Flutter Preset</button>
+          <button type="button" class="ask-ai-chip" data-ask="How does zero-build drop-in mode work?">📦 Drop-in Mode</button>
+          <button type="button" class="ask-ai-chip" data-ask="Open live demo">👁️ Open Live Demo</button>
+        </div>`;
+  }
+
+  const titleText = isZh ? 'Ask AI 智慧助理' : 'Ask AI Assistant';
+  const statusText = isZh ? '本機 AI / 客戶端' : 'Local AI / Client';
+  const clearText = isZh ? '清除' : 'Clear';
+  const closeText = isZh ? '&times; 關閉' : '&times; Close';
+  const sendText = isZh ? '送出' : 'Send';
+  const placeholderText = isZh
+    ? (isCoverage ? '詢問高價值目標、檔案指標、趨勢...' : '詢問設定、框架預設、徽章、CLI 指令...')
+    : (isCoverage ? 'Ask about high-value targets, files, trends...' : 'Ask about setup, presets, badges, CLI...');
 
   return `
   <div class="ask-ai-backdrop" id="ask-ai-backdrop" data-open="false"></div>
-  <aside class="ask-ai-drawer" id="ask-ai-drawer" data-open="false" aria-hidden="true" aria-label="Ask AI Assistant">
+  <aside class="ask-ai-drawer" id="ask-ai-drawer" data-open="false" aria-hidden="true" aria-label="${titleText}">
     <div class="ask-ai-header">
       <div class="ask-ai-title">
         ${ICONS.terminal || ''}
-        <span>Ask AI Assistant</span>
-        <span class="ask-ai-status-pill" id="ask-ai-status-pill" data-connected="false">Local AI / Client</span>
+        <span>${titleText}</span>
+        <span class="ask-ai-status-pill" id="ask-ai-status-pill" data-connected="false">${statusText}</span>
       </div>
       <div class="ask-ai-header-actions" style="display: flex; gap: 6px; align-items: center;">
-        <button type="button" class="btn btn-sm" id="ask-ai-clear" title="Clear chat history" aria-label="Clear chat history" style="display: none;">Clear</button>
-        <button type="button" class="btn btn-sm" id="ask-ai-close" aria-label="Close Ask AI">&times; Close</button>
+        <button type="button" class="btn btn-sm" id="ask-ai-clear" title="${isZh ? '清除對話紀錄' : 'Clear chat history'}" aria-label="${isZh ? '清除對話紀錄' : 'Clear chat history'}" style="display: none;">${clearText}</button>
+        <button type="button" class="btn btn-sm" id="ask-ai-close" aria-label="${isZh ? '關閉 AI 側邊欄' : 'Close Ask AI'}">${closeText}</button>
       </div>
     </div>
 
@@ -345,8 +381,8 @@ export function renderAskAiDrawerHtml(options: {
 
     <div class="ask-ai-footer">
       <form class="ask-ai-form" id="ask-ai-form">
-        <input type="text" class="ask-ai-input" id="ask-ai-input" placeholder="${isCoverage ? 'Ask about high-value targets, files, trends...' : 'Ask about setup, presets, badges, CLI...'}" autocomplete="off" required />
-        <button type="submit" class="btn btn-primary btn-sm" id="ask-ai-submit">Send</button>
+        <input type="text" class="ask-ai-input" id="ask-ai-input" placeholder="${placeholderText}" autocomplete="off" required />
+        <button type="submit" class="btn btn-primary btn-sm" id="ask-ai-submit">${sendText}</button>
       </form>
     </div>
   </aside>
