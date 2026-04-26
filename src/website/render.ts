@@ -45,19 +45,36 @@ export function renderWebsiteHtml(options: {
   repo?: string;
   badgeUrl?: string;
   liveDemoUrl?: string;
+  lang?: 'en' | 'zh-TW';
+  baseUrl?: string;
 } = {}): string {
   const repo = options.repo || 'yongjhih/covpages';
-  const badgeUrl = options.badgeUrl || 'badges/overall.svg';
-  const liveDemoUrl = options.liveDemoUrl || 'covpages/';
+  const lang = options.lang || 'en';
+  const isZh = lang === 'zh-TW';
+  const baseUrl = options.baseUrl || './';
+  const badgeUrl = options.badgeUrl || (baseUrl === '../' ? '../badges/overall.svg' : 'badges/overall.svg');
+  const liveDemoUrl = options.liveDemoUrl || (baseUrl === '../' ? '../covpages/' : 'covpages/');
+  const mcpUrl = baseUrl === '../' ? '../mcp' : 'mcp';
+
+  const metaTitle = isZh
+    ? 'Covpages - 專為 GitHub Pages 打造的原生 Git 測試覆蓋率報告'
+    : 'Covpages - Git-Native Coverage for GitHub Pages';
+  const metaDesc = isZh
+    ? 'Covpages - 零伺服器、原生 Git 的 GitHub Pages 測試覆蓋率報告產生器，具備多 commit 覆蓋率趨勢圖與分區塊 SVG 徽章。'
+    : 'Covpages - Git-Native, Zero-Server Code Coverage for GitHub Pages with multi-commit trends and scoped SVG badges.';
+
+  const langToggleHtml = isZh
+    ? `<a href="${baseUrl === '../' ? '../' : 'index.html'}" class="btn btn-sm" id="lang-toggle" title="Switch to English" aria-label="Switch to English">English</a>`
+    : `<a href="${baseUrl === './' ? 'zh/' : '../'}" class="btn btn-sm" id="lang-toggle" title="切換至繁體中文" aria-label="切換至繁體中文">繁體中文</a>`;
 
   return `<!DOCTYPE html>
-<html lang="en" data-color-mode="auto">
+<html lang="${isZh ? 'zh-TW' : 'en'}" data-color-mode="auto">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Covpages - Git-Native, Zero-Server Code Coverage for GitHub Pages with multi-commit trends and scoped SVG badges.">
+  <meta name="description" content="${metaDesc}">
   <meta name="color-scheme" content="light dark">
-  <title>Covpages - Git-Native Coverage for GitHub Pages</title>
+  <title>${metaTitle}</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -737,45 +754,48 @@ export function renderWebsiteHtml(options: {
     </a>
 
     <nav class="nav-links">
-      <a href="#overview" class="nav-link active">Overview</a>
-      <a href="${liveDemoUrl}" class="nav-link">Live Demo ${ICONS.linkExternal}</a>
-      <a href="mcp" class="nav-link">MCP Page</a>
-      <a href="#features" class="nav-link">Architecture</a>
-      <a href="#benchmarks" class="nav-link">Benchmarks</a>
-      <a href="#badges" class="nav-link">Badges</a>
-      <a href="#quickstart" class="nav-link">Quickstart</a>
+      <a href="#overview" class="nav-link active">${isZh ? '總覽' : 'Overview'}</a>
+      <a href="${liveDemoUrl}" class="nav-link">${isZh ? '即時展示' : 'Live Demo'} ${ICONS.linkExternal}</a>
+      <a href="${mcpUrl}" class="nav-link">${isZh ? 'MCP 頁面' : 'MCP Page'}</a>
+      <a href="#features" class="nav-link">${isZh ? '架構特點' : 'Architecture'}</a>
+      <a href="#benchmarks" class="nav-link">${isZh ? '效能評測' : 'Benchmarks'}</a>
+      <a href="#badges" class="nav-link">${isZh ? '徽章生成器' : 'Badges'}</a>
+      <a href="#quickstart" class="nav-link">${isZh ? '快速上手' : 'Quickstart'}</a>
       <a href="#react" class="nav-link">+React</a>
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-sm" id="ask-ai-trigger" title="Ask AI about covpages" aria-label="Ask AI">${ICONS.sparkles} <span>Ask AI</span></button>
-      <button class="btn btn-sm" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">${ICONS.moon} <span>Theme</span></button>
+      <button class="btn btn-sm" id="ask-ai-trigger" title="${isZh ? '向 AI 諮詢 covpages' : 'Ask AI about covpages'}" aria-label="Ask AI">${ICONS.sparkles} <span>${isZh ? 'AI 諮詢' : 'Ask AI'}</span></button>
+      <button class="btn btn-sm" id="theme-toggle" title="${isZh ? '切換深淺色彩主題' : 'Toggle theme'}" aria-label="Toggle theme">${ICONS.moon} <span>${isZh ? '主題' : 'Theme'}</span></button>
+      ${langToggleHtml}
       <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ${ICONS.linkExternal}</a>
-      <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">Live Coverage</a>
+      <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">${isZh ? '即時覆蓋率' : 'Live Coverage'}</a>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero" id="overview">
     <div class="container">
-      <h1>Git-Native Code Coverage for GitHub Pages</h1>
+      <h1>${isZh ? '專為 GitHub Pages 打造的原生 Git 測試覆蓋率報告' : 'Git-Native Code Coverage for GitHub Pages'}</h1>
       <p>
-        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP support.
+        ${isZh
+          ? '零伺服器。零每月 SaaS 訂閱費用。100% 存放於您的 Git 儲存庫內。典雅的原生 GitHub Primer 介面，支援多 commit 覆蓋率趨勢圖、分區塊 SVG 徽章、語法高亮及瀏覽器端 WebMCP 支援。'
+          : 'Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP support.'}
       </p>
 
       <div class="hero-ctas">
         <a href="${liveDemoUrl}" class="btn btn-primary">
-          <span>Explore Live Demo</span>
+          <span>${isZh ? '探索即時展示' : 'Explore Live Demo'}</span>
           ${ICONS.linkExternal}
         </a>
         <a href="#quickstart" class="btn">
-          Get Started in 5 Min
+          ${isZh ? '5 分鐘快速上手' : 'Get Started in 5 Min'}
         </a>
         <a href="#badges" class="btn">
-          Badge Generator
+          ${isZh ? '徽章生成器' : 'Badge Generator'}
         </a>
-        <a href="mcp" class="btn">
-          MCP Page (AI Tools)
+        <a href="${mcpUrl}" class="btn">
+          ${isZh ? 'MCP 頁面 (AI 工具)' : 'MCP Page (AI Tools)'}
         </a>
       </div>
 
@@ -795,11 +815,11 @@ export function renderWebsiteHtml(options: {
           <table class="preview-table">
             <thead>
               <tr>
-                <th>Path</th>
-                <th>Coverage</th>
-                <th>Lines</th>
-                <th>Functions</th>
-                <th>Branches</th>
+                <th>${isZh ? '路徑' : 'Path'}</th>
+                <th>${isZh ? '覆蓋率' : 'Coverage'}</th>
+                <th>${isZh ? '行數' : 'Lines'}</th>
+                <th>${isZh ? '函式' : 'Functions'}</th>
+                <th>${isZh ? '分支' : 'Branches'}</th>
               </tr>
             </thead>
             <tbody>
@@ -830,10 +850,10 @@ export function renderWebsiteHtml(options: {
 
         <div class="preview-actions">
           <div style="font-size: 12px; color: var(--color-fg-muted);">
-            Inspect directory trees, line-by-line execution counts, and historical commit deltas directly on GitHub Pages.
+            ${isZh ? '直接在 GitHub Pages 上檢視目錄樹狀圖、逐行執行次數與歷史 commit 差異。' : 'Inspect directory trees, line-by-line execution counts, and historical commit deltas directly on GitHub Pages.'}
           </div>
           <a href="${liveDemoUrl}" class="btn btn-sm">
-            <span>Open Interactive Coverage Viewer</span>
+            <span>${isZh ? '開啟互動式覆蓋率檢視器' : 'Open Interactive Coverage Viewer'}</span>
             ${ICONS.linkExternal}
           </a>
         </div>
@@ -845,59 +865,59 @@ export function renderWebsiteHtml(options: {
   <section class="section" id="features">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Why Choose Covpages?</h2>
+        <h2 class="section-title">${isZh ? '為什麼選擇 Covpages？' : 'Why Choose Covpages?'}</h2>
         <p class="section-subtitle">
-          Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.
+          ${isZh ? '透過原生 GitHub Pages 工作流程，徹底告別外部 SaaS 訂閱、隱私外洩風險與緩慢的 CI 步驟。' : 'Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.'}
         </p>
       </div>
 
       <div class="spec-grid">
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.package} <span>97.6% Git Delta Compression</span></h3>
+          <h3 class="spec-title">${ICONS.package} <span>${isZh ? '97.6% Git Delta 壓縮' : '97.6% Git Delta Compression'}</span></h3>
           <p class="spec-desc">
-            Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.
+            ${isZh ? 'Covpages 將換行符號正規化並以確定性方式排列 LCOV 記錄。100 個歷史 commit 在 Git packfile 中壓縮後僅需 1.24 MB。' : 'Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.tag} <span>Scoped SVG Badges with 1-Click Copy</span></h3>
+          <h3 class="spec-title">${ICONS.tag} <span>${isZh ? '一鍵複製的分區塊 SVG 徽章' : 'Scoped SVG Badges with 1-Click Copy'}</span></h3>
           <p class="spec-desc">
-            Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.
+            ${isZh ? '不僅能為整個儲存庫生成覆蓋率徽章，還支援個別分支、子目錄與檔案。點擊即可複製 Markdown 語法直接貼入 README。' : 'Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.code} <span>GitHub Primer UI & Syntax Highlighting</span></h3>
+          <h3 class="spec-title">${ICONS.code} <span>${isZh ? 'GitHub Primer UI 與語法高亮' : 'GitHub Primer UI & Syntax Highlighting'}</span></h3>
           <p class="spec-desc">
-            Authentic tree/blob routing, keyboard shortcuts (<code>t</code>, <code>n</code>, <code>ESC</code>), line numbers, hit gutters, and Prism.js syntax highlighting.
+            ${isZh ? '純正的 tree/blob 路由切換、鍵盤快捷鍵（t、n、ESC）、行號、命中次數計數欄與 Prism.js 程式碼語法高亮。' : 'Authentic tree/blob routing, keyboard shortcuts (<code>t</code>, <code>n</code>, <code>ESC</code>), line numbers, hit gutters, and Prism.js syntax highlighting.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.graph} <span>Multi-Commit Trends by Folder & File</span></h3>
+          <h3 class="spec-title">${ICONS.graph} <span>${isZh ? '依目錄與檔案的多 Commit 趨勢圖' : 'Multi-Commit Trends by Folder & File'}</span></h3>
           <p class="spec-desc">
-            Track coverage progression across commits. Inspect historical trendlines by repository, individual directory, or specific source file.
+            ${isZh ? '追蹤測試覆蓋率隨 commit 推進的演變。可按整個儲存庫、個別目錄或特定原始碼檔案查看歷史趨勢曲線。' : 'Track coverage progression across commits. Inspect historical trendlines by repository, individual directory, or specific source file.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.sidebar} <span>+React & Component Reusability</span></h3>
+          <h3 class="spec-title">${ICONS.sidebar} <span>${isZh ? '+React 與組件複用' : '+React & Component Reusability'}</span></h3>
           <p class="spec-desc">
-            Import <code>&lt;Covpages /&gt;</code> directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard Web Component.
+            ${isZh ? '可直接將 <code>&lt;Covpages /&gt;</code> 引入 React、Next.js 或 Docusaurus 文件站點，亦可作為標準 Web Component 嵌入。' : 'Import <code>&lt;Covpages /&gt;</code> directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard Web Component.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.zap} <span>Zero-Server 1-Click GitHub Actions</span></h3>
+          <h3 class="spec-title">${ICONS.zap} <span>${isZh ? '零伺服器一鍵 GitHub Actions' : 'Zero-Server 1-Click GitHub Actions'}</span></h3>
           <p class="spec-desc">
-            Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.
+            ${isZh ? '執行 <code>npx covpages init</code> 即可產生零配置的 GitHub Actions 工作流程，每次 push 自動發布至 GitHub Pages。' : 'Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.'}
           </p>
         </div>
 
         <div class="spec-item">
-          <h3 class="spec-title">${ICONS.terminal} <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
+          <h3 class="spec-title">${ICONS.terminal} <span>${isZh ? 'WebMCP 與 ai-proxy 原生端點' : 'WebMCP &amp; ai-proxy Native Endpoint'}</span></h3>
           <p class="spec-desc">
-            Turns your coverage site into an <a href="mcp">MCP Page</a> with 5 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
+            ${isZh ? `將您的覆蓋率站點轉化為具備 11 項客戶端 WebMCP 工具的 <a href="${mcpUrl}">MCP 頁面</a>。透過 <code>npx ai-proxy add</code> 即可連接 Claude 或 Cursor，完全無需後端。` : `Turns your coverage site into an <a href="${mcpUrl}">MCP Page</a> with 11 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.`}
           </p>
         </div>
       </div>
@@ -908,31 +928,31 @@ export function renderWebsiteHtml(options: {
   <section class="section" id="badges">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Interactive Badge Generator</h2>
+        <h2 class="section-title">${isZh ? '互動式徽章生成器' : 'Interactive Badge Generator'}</h2>
         <p class="section-subtitle">
-          Embed live SVG coverage badges into your README.md for your entire project or specific folders.
+          ${isZh ? '為您的整體專案或指定子目錄生成即時向量 SVG 覆蓋率徽章並嵌入 README.md。' : 'Embed live SVG coverage badges into your README.md for your entire project or specific folders.'}
         </p>
       </div>
 
       <div class="badge-builder">
         <div class="badge-builder-grid">
           <div class="form-group">
-            <label class="form-label" for="badge-repo">GitHub Repository</label>
+            <label class="form-label" for="badge-repo">${isZh ? 'GitHub 儲存庫' : 'GitHub Repository'}</label>
             <input type="text" id="badge-repo" class="form-input" value="${repo}">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="badge-scope">Scope</label>
+            <label class="form-label" for="badge-scope">${isZh ? '範疇' : 'Scope'}</label>
             <select id="badge-scope" class="form-select">
-              <option value="overall">Overall Repository</option>
-              <option value="branch">Branch (e.g. main)</option>
-              <option value="folder">Directory (e.g. src)</option>
-              <option value="file">File (e.g. src/index.ts)</option>
+              <option value="overall">${isZh ? '整體儲存庫' : 'Overall Repository'}</option>
+              <option value="branch">${isZh ? '分支（例如 main）' : 'Branch (e.g. main)'}</option>
+              <option value="folder">${isZh ? '目錄（例如 src）' : 'Directory (e.g. src)'}</option>
+              <option value="file">${isZh ? '檔案（例如 src/index.ts）' : 'File (e.g. src/index.ts)'}</option>
             </select>
           </div>
 
           <div class="form-group" id="badge-target-group" style="display: none;">
-            <label class="form-label" id="badge-target-label" for="badge-target">Target Name</label>
+            <label class="form-label" id="badge-target-label" for="badge-target">${isZh ? '目標名稱' : 'Target Name'}</label>
             <input type="text" id="badge-target" class="form-input" value="src">
           </div>
         </div>
@@ -943,8 +963,8 @@ export function renderWebsiteHtml(options: {
               <img id="badge-preview-img" src="${badgeUrl}" alt="Badge Preview" height="20">
             </div>
             <div style="display:flex; gap:8px;">
-              <button class="btn btn-sm btn-primary" id="copy-badge-md">${ICONS.copy} <span>Copy Markdown</span></button>
-              <button class="btn btn-sm" id="copy-badge-url">Copy Badge URL</button>
+              <button class="btn btn-sm btn-primary" id="copy-badge-md">${ICONS.copy} <span>${isZh ? '複製 Markdown' : 'Copy Markdown'}</span></button>
+              <button class="btn btn-sm" id="copy-badge-url">${isZh ? '複製徽章 URL' : 'Copy Badge URL'}</button>
             </div>
           </div>
 
@@ -958,9 +978,9 @@ export function renderWebsiteHtml(options: {
   <section class="section" id="benchmarks">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Storage & Bandwidth Benchmarks</h2>
+        <h2 class="section-title">${isZh ? '儲存空間與頻寬評測' : 'Storage & Bandwidth Benchmarks'}</h2>
         <p class="section-subtitle">
-          Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.
+          ${isZh ? '經正規化的 LCOV 檔案在 100 個 commit 的 Git packfile 中實現了 97.6% 的空間節省。' : 'Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.'}
         </p>
       </div>
 
@@ -968,30 +988,30 @@ export function renderWebsiteHtml(options: {
         <table class="benchmarks-table">
           <thead>
             <tr>
-              <th>Storage Strategy (100 Commits)</th>
-              <th>Raw Disk Size</th>
-              <th>Git Packfile Size</th>
-              <th>Compression Ratio</th>
-              <th>Growth / Commit</th>
+              <th>${isZh ? '儲存策略 (100 個 Commit)' : 'Storage Strategy (100 Commits)'}</th>
+              <th>${isZh ? '原始磁碟大小' : 'Raw Disk Size'}</th>
+              <th>${isZh ? 'Git Packfile 大小' : 'Git Packfile Size'}</th>
+              <th>${isZh ? '壓縮比例' : 'Compression Ratio'}</th>
+              <th>${isZh ? '每個 Commit 增長量' : 'Growth / Commit'}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Naive Unnormalized LCOV</td>
+              <td>${isZh ? '未經正規化 LCOV' : 'Naive Unnormalized LCOV'}</td>
               <td>52.4 MB</td>
               <td>18.7 MB</td>
               <td>64.3%</td>
               <td>~187 KB / commit</td>
             </tr>
             <tr style="background: var(--color-canvas-subtle);">
-              <td><strong>Covpages Normalized LCOV</strong></td>
+              <td><strong>${isZh ? 'Covpages 正規化 LCOV' : 'Covpages Normalized LCOV'}</strong></td>
               <td>52.4 MB</td>
               <td class="highlight-cell">1.24 MB</td>
               <td class="highlight-cell">97.6%</td>
               <td class="highlight-cell">~12.4 KB / commit</td>
             </tr>
             <tr>
-              <td><strong>Covpages Compiled history.json</strong></td>
+              <td><strong>${isZh ? 'Covpages 編譯之 history.json' : 'Covpages Compiled history.json'}</strong></td>
               <td>2.4 MB</td>
               <td class="highlight-cell">180 KB</td>
               <td class="highlight-cell">92.5%</td>
@@ -1005,30 +1025,30 @@ export function renderWebsiteHtml(options: {
         <table class="benchmarks-table">
           <thead>
             <tr>
-              <th>Total Cost of Ownership (TCO)</th>
-              <th>Commercial SaaS (Codecov/Coveralls)</th>
-              <th>Self-Hosted (SonarQube)</th>
+              <th>${isZh ? '總持有成本 (TCO)' : 'Total Cost of Ownership (TCO)'}</th>
+              <th>${isZh ? '商業 SaaS (Codecov/Coveralls)' : 'Commercial SaaS (Codecov/Coveralls)'}</th>
+              <th>${isZh ? '自架伺服器 (SonarQube)' : 'Self-Hosted (SonarQube)'}</th>
               <th>Covpages (GitHub Pages)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Monthly Cost</strong></td>
-              <td>$10 to $50 / user / month</td>
-              <td>$40 to $200 / mo (Cloud VM + DB)</td>
-              <td class="highlight-cell">$0 / month (100% Free)</td>
+              <td><strong>${isZh ? '每月費用' : 'Monthly Cost'}</strong></td>
+              <td>${isZh ? '每人每月 $10 至 $50' : '$10 to $50 / user / month'}</td>
+              <td>${isZh ? '每月 $40 至 $200 (雲端 VM + DB)' : '$40 to $200 / mo (Cloud VM + DB)'}</td>
+              <td class="highlight-cell">${isZh ? '$0 / 月（100% 免費）' : '$0 / month (100% Free)'}</td>
             </tr>
             <tr>
-              <td><strong>Maintenance Overhead</strong></td>
-              <td>Token rotation, billing setup</td>
-              <td>OS updates, DB migrations</td>
-              <td class="highlight-cell">Zero (Native Git commit)</td>
+              <td><strong>${isZh ? '維護負擔' : 'Maintenance Overhead'}</strong></td>
+              <td>${isZh ? 'Token 輪替、計費設定' : 'Token rotation, billing setup'}</td>
+              <td>${isZh ? '作業系統更新、資料庫遷移' : 'OS updates, DB migrations'}</td>
+              <td class="highlight-cell">${isZh ? '零負擔（原生 Git commit）' : 'Zero (Native Git commit)'}</td>
             </tr>
             <tr>
-              <td><strong>Security & Privacy</strong></td>
-              <td>Proprietary third-party SaaS</td>
-              <td>Private, extra attack surface</td>
-              <td class="highlight-cell">100% inside your GitHub Org</td>
+              <td><strong>${isZh ? '安全性與隱私' : 'Security & Privacy'}</strong></td>
+              <td>${isZh ? '第三方閉源 SaaS' : 'Proprietary third-party SaaS'}</td>
+              <td>${isZh ? '私有但增加攻擊面' : 'Private, extra attack surface'}</td>
+              <td class="highlight-cell">${isZh ? '100% 存放於您的 GitHub 組織內' : '100% inside your GitHub Org'}</td>
             </tr>
           </tbody>
         </table>
@@ -1040,21 +1060,21 @@ export function renderWebsiteHtml(options: {
   <section class="section" id="quickstart">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Quickstart & Setup</h2>
+        <h2 class="section-title">${isZh ? '快速上手與設定' : 'Quickstart & Setup'}</h2>
         <p class="section-subtitle">
-          Get up and running in under 5 minutes with zero configuration.
+          ${isZh ? '零配置即可在 5 分鐘內建置並運行。' : 'Get up and running in under 5 minutes with zero configuration.'}
         </p>
       </div>
 
       <div class="code-tabs">
         <div class="tabs-header">
-          <button class="tab-btn active" data-tab="tab-cli">1. Automated CI Setup</button>
+          <button class="tab-btn active" data-tab="tab-cli">${isZh ? '1. 自動化 CI 設定' : '1. Automated CI Setup'}</button>
           <button class="tab-btn" data-tab="tab-vitest">Vitest / Jest</button>
           <button class="tab-btn" data-tab="tab-flutter">Flutter / Dart</button>
           <button class="tab-btn" data-tab="tab-go">Go</button>
           <button class="tab-btn" data-tab="tab-python">Python</button>
           <button class="tab-btn" data-tab="tab-rust">Rust</button>
-          <button class="tab-btn" data-tab="tab-docker">Docker / Container</button>
+          <button class="tab-btn" data-tab="tab-docker">${isZh ? 'Docker / 容器' : 'Docker / Container'}</button>
         </div>
 
         <div class="tab-content" id="tab-cli"><code class="language-bash">${highlight(`# 1. Initialize GitHub Actions Workflow in your repository
@@ -1124,9 +1144,9 @@ docker run --rm -v "$PWD:/workspace" -w /workspace \\
   <section class="section" id="react">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">+React & Component Reusability</h2>
+        <h2 class="section-title">${isZh ? '+React 與組件複用' : '+React & Component Reusability'}</h2>
         <p class="section-subtitle">
-          Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.
+          ${isZh ? '輕鬆將 Covpages 整合至 React 應用、Next.js 與 Docusaurus 入口站。' : 'Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.'}
         </p>
       </div>
 
@@ -1160,16 +1180,20 @@ export function CoveragePortal() {
   </section>
 
   <!-- Toast -->
-  <div id="toast" class="toast">Copied to clipboard!</div>
+  <div id="toast" class="toast">${isZh ? '已複製到剪貼簿！' : 'Copied to clipboard!'}</div>
 
   <!-- Footer -->
   <footer class="container">
     <div class="site-footer">
       <div>
-        Covpages is open source software released under the <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+        ${isZh
+          ? `Covpages 為採用 <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT 授權條款</a> 釋出的開源軟體。`
+          : `Covpages is open source software released under the <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.`}
       </div>
       <div>
-        Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.
+        ${isZh
+          ? '遵循 GitHub Primer 設計規範打造。零外部依賴、Git 原生、高度隱私。'
+          : 'Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.'}
       </div>
     </div>
   </footer>
@@ -1187,6 +1211,14 @@ export function CoveragePortal() {
         document.documentElement.setAttribute('data-color-mode', currentMode);
         localStorage.setItem('covpages-theme', currentMode);
       });
+
+      // Language Toggle Preference Persistence
+      const langToggle = document.getElementById('lang-toggle');
+      if (langToggle) {
+        langToggle.addEventListener('click', () => {
+          localStorage.setItem('covpages-lang', '${isZh ? 'en' : 'zh-TW'}');
+        });
+      }
 
       // Tab switcher
       const tabBtns = document.querySelectorAll('.tab-btn');
@@ -1233,25 +1265,26 @@ export function CoveragePortal() {
           targetGroup.style.display = 'none';
         } else {
           targetGroup.style.display = 'flex';
-          targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');
+          targetLabel.textContent = scope === 'branch' ? '${isZh ? '分支名稱' : 'Branch Name'}' : (scope === 'folder' ? '${isZh ? '目錄路徑' : 'Directory Path'}' : '${isZh ? '檔案路徑' : 'File Path'}');
         }
 
-        let badgeFile = 'badges/overall.svg';
+        const isZhMode = ${isZh};
+        let badgeFile = '${baseUrl === '../' ? '../' : ''}badges/overall.svg';
         let linkPath = '';
-        let altText = 'Coverage';
+        let altText = isZhMode ? '測試覆蓋率' : 'Coverage';
 
         if (scope === 'branch') {
-          badgeFile = 'badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';
+          badgeFile = '${baseUrl === '../' ? '../' : ''}badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';
           linkPath = 'tree/' + (target || 'main');
-          altText = 'Coverage: ' + (target || 'main');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'main');
         } else if (scope === 'folder') {
-          badgeFile = 'badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';
+          badgeFile = '${baseUrl === '../' ? '../' : ''}badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';
           linkPath = 'tree/main/' + (target || 'src');
-          altText = 'Coverage: ' + (target || 'src');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'src');
         } else if (scope === 'file') {
-          badgeFile = 'badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';
+          badgeFile = '${baseUrl === '../' ? '../' : ''}badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';
           linkPath = 'blob/main/' + (target || 'src/index.ts');
-          altText = 'Coverage: ' + (target || 'src/index.ts');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'src/index.ts');
         }
 
         const origin = window.location.origin;
@@ -1276,19 +1309,19 @@ export function CoveragePortal() {
       document.getElementById('copy-badge-md').addEventListener('click', () => {
         const textToCopy = mdCode.getAttribute('data-raw') || mdCode.textContent;
         navigator.clipboard.writeText(textToCopy).then(() => {
-          showToast('Copied Badge Markdown to clipboard!');
+          showToast('${isZh ? '已複製徽章 Markdown 至剪貼簿！' : 'Copied Badge Markdown to clipboard!'}');
         });
       });
 
       document.getElementById('copy-badge-url').addEventListener('click', () => {
         navigator.clipboard.writeText(previewImg.src).then(() => {
-          showToast('Copied Badge URL to clipboard!');
+          showToast('${isZh ? '已複製徽章 URL 至剪貼簿！' : 'Copied Badge URL to clipboard!'}');
         });
       });
     })();
   </script>
 
-  ${renderAskAiDrawerHtml({ mode: 'project' })}
+  ${renderAskAiDrawerHtml({ mode: 'project', lang, baseUrl })}
   <script type="module">
     ${ASK_AI_CLIENT_SCRIPT}
   </script>
