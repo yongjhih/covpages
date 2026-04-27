@@ -940,26 +940,12 @@ table.gh-table tbody tr:hover td {
 }
 
 .chart-dot {
-  cursor: pointer;
-  transition: r 0.15s cubic-bezier(0.25, 1, 0.5, 1), fill 0.15s cubic-bezier(0.25, 1, 0.5, 1), stroke-width 0.15s ease;
+  transition: r 0.15s cubic-bezier(0.25, 1, 0.5, 1), fill 0.15s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.chart-dot:hover,
-.chart-dot:focus {
-  r: 6;
+.chart-dot:hover {
+  r: 5;
   fill: var(--color-fg-default);
-  outline: none;
-}
-
-.chart-label {
-  cursor: pointer;
-  user-select: none;
-  transition: fill 0.15s ease;
-}
-
-.chart-label:hover {
-  fill: var(--color-accent-fg) !important;
-  text-decoration: underline;
 }
 
 .git-blob-link {

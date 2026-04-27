@@ -1462,11 +1462,10 @@ export const APP_JS = `
           data-sha="\${p.sha}" data-date="\${escapeHtml(p.date)}" data-msg="\${escapeHtml(p.message)}"
           data-lines="\${p.linesPct}%" data-fn="\${p.functionsPct}%" data-br="\${p.branchesPct}%"
           data-covered="\${p.linesCovered}" data-total="\${p.linesTotal}"
-          role="button" tabindex="0" aria-label="Commit \${escapeHtml(p.shortSha)}: \${escapeHtml(p.message)}"
         />
         \${showLabel ? \`
           <line x1="\${c.x}" y1="\${paddingTop + chartH}" x2="\${c.x}" y2="\${paddingTop + chartH + 4}" stroke="var(--color-border-default)" stroke-width="1"/>
-          <text x="\${c.x}" y="\${paddingTop + chartH + 18}" text-anchor="middle" class="chart-label" fill="\${isSelected ? 'var(--color-fg-default)' : 'var(--color-fg-muted)'}" font-weight="\${isSelected ? '600' : '400'}" font-size="10" font-family="var(--font-mono)" data-sha="\${p.sha}" role="button" tabindex="0" title="Click to view commit \${escapeHtml(p.shortSha)}">
+          <text x="\${c.x}" y="\${paddingTop + chartH + 18}" text-anchor="middle" fill="\${isSelected ? 'var(--color-fg-default)' : 'var(--color-fg-muted)'}" font-weight="\${isSelected ? '600' : '400'}" font-size="10" font-family="var(--font-mono)">
             \${escapeHtml(p.shortSha)}
           </text>
         \` : ''}
@@ -2887,35 +2886,6 @@ export const APP_JS = `
       });
     }
 
-    document.querySelectorAll('.chart-dot, .chart-label').forEach(el => {
-      el.addEventListener('click', () => {
-        const sha = el.getAttribute('data-sha');
-        if (!sha) return;
-        let targetFile = state.selectedFile;
-        let targetFolder = state.currentFolder;
-        if (state.activeTab === 'trends') {
-          if (state.trendScope === 'file' && state.trendTarget) {
-            targetFile = state.trendTarget;
-            targetFolder = '';
-          } else if (state.trendScope === 'folder' && state.trendTarget) {
-            targetFolder = state.trendTarget;
-            targetFile = null;
-          } else {
-            targetFolder = '';
-            targetFile = null;
-          }
-        }
-        openCommitSnapshot(sha, targetFile, targetFolder);
-      });
-
-      el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          el.click();
-        }
-      });
-    });
-
     document.querySelectorAll('.chart-dot').forEach(dot => {
       dot.addEventListener('mouseenter', (e) => {
         if (!tooltipEl) return;
@@ -2929,10 +2899,7 @@ export const APP_JS = `
         tooltipEl.innerHTML = \`
           <div style="font-weight:600; margin-bottom:4px;">\${escapeHtml(msg)}</div>
           <div style="color:var(--color-fg-muted); margin-bottom:6px;">\${sha} • \${date}</div>
-          <div style="margin-bottom:6px;">Lines: <strong>\${lines}</strong> • Functions: <strong>\${fn}</strong> • Branches: <strong>\${br}</strong></div>
-          <div style="font-size:11px; color:var(--color-accent-fg); border-top:1px solid var(--color-border-muted); padding-top:4px;">
-            Click to view commit snapshot
-          </div>
+          <div>Lines: <strong>\${lines}</strong> • Functions: <strong>\${fn}</strong> • Branches: <strong>\${br}</strong></div>
         \`;
         tooltipEl.style.opacity = '1';
         tooltipEl.style.left = (e.pageX + 10) + 'px';
