@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import path from 'node:path';
 import fs from 'node:fs';
-import { generateCoveragePages } from '../src/index.js';
+import { generateCoveragePages, createDropinSite } from '../src/index.js';
 
 describe('Coverage Site Generator', () => {
   const fixturesDir = path.resolve(__dirname, 'fixtures');
@@ -203,6 +203,31 @@ describe('Coverage Site Generator', () => {
     const fileBadge = fs.readFileSync(path.join(outDir, 'badges', 'file-src-index.ts.svg'), 'utf-8');
     expect(fileBadge).toContain('coverage&amp;src/index.ts: 83.3%');
     expect(fileBadge).toContain('coverage&amp;src/index.ts');
+  });
+
+  it('generates parent 404.html when outputDir is a subfolder named covpages', () => {
+    const parentDir = path.join(outDir, 'docs');
+    const covpagesDir = path.join(parentDir, 'covpages');
+
+    generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'commit1.lcov')],
+      outputDir: covpagesDir,
+      commitSha: '1111111111111111111111111111111111111111',
+      branch: 'main',
+    });
+
+    expect(fs.existsSync(path.join(covpagesDir, '404.html'))).toBe(true);
+    expect(fs.existsSync(path.join(parentDir, '404.html'))).toBe(true);
+
+    const parent404Content = fs.readFileSync(path.join(parentDir, '404.html'), 'utf-8');
+    expect(parent404Content).toContain('Redirecting to Covpages');
+
+    // Also verify dropin generator respects parent 404
+    const dropinParent = path.join(outDir, 'dropin-docs');
+    const dropinCovpages = path.join(dropinParent, 'covpages');
+    createDropinSite(dropinCovpages);
+    expect(fs.existsSync(path.join(dropinCovpages, '404.html'))).toBe(true);
+    expect(fs.existsSync(path.join(dropinParent, '404.html'))).toBe(true);
   });
 });
 

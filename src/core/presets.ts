@@ -183,7 +183,7 @@ ${preset.workflowStep}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/covpages
+          git add docs/covpages docs/404.html 2>/dev/null || true
           git diff --staged --quiet || git commit -m "docs(coverage): update covpages report [skip ci]"
           git push
 `;

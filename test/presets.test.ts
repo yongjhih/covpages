@@ -29,5 +29,8 @@ describe('Framework Presets', () => {
 
     const rustWf = generatePresetWorkflow('rust');
     expect(rustWf).toContain('cargo-llvm-cov');
+
+    const docsWf = generatePresetWorkflow('vitest', { docs: true });
+    expect(docsWf).toContain('git add docs/covpages docs/404.html');
   });
 });
