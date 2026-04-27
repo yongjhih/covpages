@@ -685,7 +685,7 @@ describe('Emitted client scripts are valid JavaScript', () => {
     );
   });
 
-  it('renders interactive trend chart dots and labels with click attributes and accessible buttons', () => {
+  it('renders trend chart dots with data attributes for hover tooltips', () => {
     const match = APP_JS.match(/function renderTrendChart\([\s\S]*?\n  \}/);
     expect(match).toBeTruthy();
 
@@ -701,15 +701,11 @@ describe('Emitted client scripts are valid JavaScript', () => {
 
     const html: string = fn('Coverage Trend', points, 'linesPct');
 
-    // Dot elements have data-sha, role="button", and tabindex="0"
+    // Dot elements have data-sha and metadata for tooltips
     expect(html).toContain('class="chart-dot"');
     expect(html).toContain('data-sha="111111111111"');
     expect(html).toContain('data-sha="222222222222"');
-    expect(html).toContain('role="button" tabindex="0"');
-
-    // Labels also have class="chart-label" and data-sha
-    expect(html).toContain('class="chart-label"');
-    expect(html).toContain('title="Click to view commit 1111111"');
+    expect(html).not.toContain('role="button"');
   });
 });
 
