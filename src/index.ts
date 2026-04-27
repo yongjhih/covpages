@@ -7,7 +7,7 @@ import type {
   CommitHistoryEntry,
 } from './types.js';
 import { parseCoverageFile, resolveParser } from './parsers/index.js';
-import { resolveCommitInfo } from './core/git.js';
+import { resolveCommitInfo, resolveRepoInfo } from './core/git.js';
 import { aggregateCoverage } from './core/aggregator.js';
 import {
   createCommitHistoryEntry,
@@ -230,12 +230,15 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   writeHead(outputDir, defaultBranch);
 
   // 8. Assemble CovpagesData
-  const repoName = options.repoName || path.basename(rootDir) || 'coverage';
+  const repoInfo = resolveRepoInfo({ cwd: rootDir, repo: options.repoName });
+  const repoName = options.repoName || repoInfo.repoName || path.basename(rootDir) || 'coverage';
+  const repoUrl = options.repoUrl || repoInfo.repoUrl;
   const title = options.title || 'Coverage Report';
 
   const covpagesData: CovpagesData = {
     title,
     repoName,
+    repoUrl,
     baseUrl: options.baseUrl,
     defaultBranch,
     generatedAt: new Date().toISOString(),
