@@ -387,6 +387,8 @@ export const APP_JS = `
       if (data.folderChildren?.['']?.subfolders) {
         for (const sf of data.folderChildren[''].subfolders) {
           state.expandedFolders.add(sf);
+          const comp = getCompactedFolder(sf, '', data.folderChildren);
+          state.expandedFolders.add(comp.targetFolder);
         }
       }
       parseRoute();
@@ -1001,6 +1003,40 @@ export const APP_JS = `
     return 'var(--color-danger-fg)';
   }
 
+  // Helper: compact single-child empty directory chains like GitHub (e.g. x/xx/xxx)
+  function getCompactedFolder(startFolder, baseFolder, vChildren) {
+    let current = startFolder;
+    const visited = new Set([current]);
+    while (true) {
+      const node = vChildren[current];
+      if (!node) break;
+      // An intermediate empty folder contains NO files and EXACTLY 1 subfolder
+      if ((!node.files || node.files.length === 0) && node.subfolders && node.subfolders.length === 1) {
+        const next = node.subfolders[0];
+        if (visited.has(next)) break;
+        visited.add(next);
+        current = next;
+      } else {
+        break;
+      }
+    }
+    let displayName = current;
+    if (baseFolder) {
+      if (current.startsWith(baseFolder + '/')) {
+        displayName = current.slice(baseFolder.length + 1);
+      } else {
+        displayName = current.split('/').pop() || current;
+      }
+    } else {
+      displayName = current;
+    }
+    return {
+      targetFolder: current,
+      displayName: displayName,
+      hasCompacted: current !== startFolder,
+    };
+  }
+
   function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -1473,17 +1509,23 @@ export const APP_JS = `
     let html = '';
 
     for (const subfolder of node.subfolders) {
-      const isExpanded = state.expandedFolders.has(subfolder);
-      const folderCov = vFolders[subfolder];
-      const folderName = subfolder.split('/').pop() || subfolder;
-      const isCurrent = state.currentFolder === subfolder && !state.selectedFile;
+      const compacted = getCompactedFolder(subfolder, folderPath, vChildren);
+      const targetFolder = compacted.targetFolder;
+      const folderName = compacted.displayName;
+      const isExpanded = state.expandedFolders.has(targetFolder) || state.expandedFolders.has(subfolder);
+      const folderCov = vFolders[targetFolder] || vFolders[subfolder];
+      const isCurrent = (
+        state.currentFolder === targetFolder ||
+        state.currentFolder === subfolder ||
+        (state.currentFolder.startsWith(subfolder + '/') && targetFolder.startsWith(state.currentFolder + '/'))
+      ) && !state.selectedFile;
       const level = folderCov ? getCovLevel(folderCov.lines.pct) : 'high';
       const pct = folderCov ? folderCov.lines.pct : 100;
       const indent = 8 + depth * 14;
 
       html += \`
-        <div class="tree-node \${isCurrent ? 'selected' : ''}" style="padding-left: \${indent}px;" data-tree-folder="\${escapeHtml(subfolder)}" role="treeitem" aria-expanded="\${isExpanded}">
-          <button class="tree-toggle-btn" data-tree-toggle="\${escapeHtml(subfolder)}" aria-label="\${isExpanded ? 'Collapse' : 'Expand'} \${escapeHtml(folderName)}" tabindex="-1">
+        <div class="tree-node \${isCurrent ? 'selected' : ''}" style="padding-left: \${indent}px;" data-tree-folder="\${escapeHtml(targetFolder)}" data-tree-start="\${escapeHtml(subfolder)}" role="treeitem" aria-expanded="\${isExpanded}">
+          <button class="tree-toggle-btn" data-tree-toggle="\${escapeHtml(targetFolder)}" data-tree-start="\${escapeHtml(subfolder)}" aria-label="\${isExpanded ? 'Collapse' : 'Expand'} \${escapeHtml(folderName)}" tabindex="-1">
             \${isExpanded ? (icons.chevronDown || '▼') : (icons.chevronRight || '▶')}
           </button>
           <span class="tree-icon" aria-hidden="true">\${icons.folder || ''}</span>
@@ -1493,7 +1535,7 @@ export const APP_JS = `
       \`;
 
       if (isExpanded) {
-        html += renderTreeBranch(subfolder, depth + 1);
+        html += renderTreeBranch(targetFolder, depth + 1);
       }
     }
 
@@ -1564,17 +1606,19 @@ export const APP_JS = `
     let rows = [];
 
     children.subfolders.forEach(subPath => {
-      const name = subPath.split('/').pop() || subPath;
-      if (query && !name.toLowerCase().includes(query) && !subPath.toLowerCase().includes(query)) return;
-      const fCov = vFolders[subPath];
+      const compacted = getCompactedFolder(subPath, state.currentFolder, vChildren);
+      const targetFolder = compacted.targetFolder;
+      const name = compacted.displayName;
+      if (query && !name.toLowerCase().includes(query) && !targetFolder.toLowerCase().includes(query)) return;
+      const fCov = vFolders[targetFolder] || vFolders[subPath];
       if (!fCov) return;
 
-      const trendPoints = data.trends?.folders?.[subPath];
+      const trendPoints = data.trends?.folders?.[targetFolder] || data.trends?.folders?.[subPath];
 
       rows.push({
         type: 'folder',
         name,
-        path: subPath,
+        path: targetFolder,
         lines: fCov.lines,
         functions: fCov.functions,
         branches: fCov.branches,
@@ -1633,13 +1677,25 @@ export const APP_JS = `
     } else {
       tableRows = rows.map(r => {
         const icon = r.type === 'folder' ? icons.folder : icons.file;
-        const clickAttr = r.type === 'folder' ? \`data-nav-folder="\${r.path}"\` : \`data-nav-file="\${r.path}"\`;
+        let fileLinkHtml = '';
+        if (r.type === 'folder' && r.name.includes('/')) {
+          const segs = r.name.split('/');
+          let curAccum = state.currentFolder || '';
+          fileLinkHtml = segs.map((seg, i) => {
+            curAccum = curAccum ? curAccum + '/' + seg : seg;
+            const sep = i < segs.length - 1 ? '<span style="color:var(--color-fg-muted); margin:0 1px;">/</span>' : '';
+            return \`<a class="file-link" data-nav-folder="\${escapeHtml(curAccum)}">\${escapeHtml(seg)}</a>\${sep}\`;
+          }).join('');
+        } else {
+          const clickAttr = r.type === 'folder' ? \`data-nav-folder="\${r.path}"\` : \`data-nav-file="\${r.path}"\`;
+          fileLinkHtml = \`<a class="file-link" \${clickAttr}>\${escapeHtml(r.name)}</a>\`;
+        }
         return \`
           <tr>
             <td>
               <div class="file-name-cell">
                 <span>\${icon}</span>
-                <a class="file-link" \${clickAttr}>\${escapeHtml(r.name)}</a>
+                \${fileLinkHtml}
               </div>
             </td>
             <td>
@@ -2529,8 +2585,10 @@ export const APP_JS = `
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const folder = btn.getAttribute('data-tree-toggle');
-        if (state.expandedFolders.has(folder)) {
+        const start = btn.getAttribute('data-tree-start') || folder;
+        if (state.expandedFolders.has(folder) || state.expandedFolders.has(start)) {
           state.expandedFolders.delete(folder);
+          state.expandedFolders.delete(start);
         } else {
           state.expandedFolders.add(folder);
         }
