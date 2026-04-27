@@ -640,7 +640,8 @@ describe('Emitted client scripts are valid JavaScript', () => {
       ${extractFn('getGitBlobUrl')}
       ${extractFn('getGitTreeUrl')}
       ${extractFn('getGitCommitUrl')}
-      return { getRepoBaseUrl, getGitRef, getGitBlobUrl, getGitTreeUrl, getGitCommitUrl };
+      ${extractFn('getGitRawUrl')}
+      return { getRepoBaseUrl, getGitRef, getGitBlobUrl, getGitTreeUrl, getGitCommitUrl, getGitRawUrl };
     `;
 
     // 1. GitHub owner/repo format
@@ -660,6 +661,9 @@ describe('Emitted client scripts are valid JavaScript', () => {
     expect(mockEnv1.getGitCommitUrl('abcdef123456')).toBe(
       'https://github.com/yongjhih/covpages/commit/abcdef123456',
     );
+    expect(mockEnv1.getGitRawUrl('src/parsers/json.ts')).toBe(
+      'https://raw.githubusercontent.com/yongjhih/covpages/main/src/parsers/json.ts',
+    );
 
     // 2. Historical commit selected -> blob URL uses commit SHA
     const mockEnv2 = new Function('data', 'state', 'location', script)(
@@ -670,6 +674,9 @@ describe('Emitted client scripts are valid JavaScript', () => {
 
     expect(mockEnv2.getGitBlobUrl('src/index.ts')).toBe(
       'https://github.com/yongjhih/covpages/blob/past456/src/index.ts',
+    );
+    expect(mockEnv2.getGitRawUrl('src/parsers/json.ts')).toBe(
+      'https://raw.githubusercontent.com/yongjhih/covpages/past456/src/parsers/json.ts',
     );
 
     // 3. GitLab repoUrl support
@@ -771,6 +778,97 @@ describe('Emitted client scripts are valid JavaScript', () => {
     // If viewing a file, route becomes blob
     env.openCommitSnapshot('2222222222222222222222222222222222222222', 'src/core/git.ts', null);
     expect(pushedUrl).toBe('/covpages/blob/2222222/src/core/git.ts');
+  });
+
+  it('fetches source code on demand for historical commit blob view and avoids blank code block', async () => {
+    const originalFetch = (globalThis as any).fetch;
+    const originalWindow = (globalThis as any).window;
+
+    try {
+      let fetchedUrl = '';
+      (globalThis as any).fetch = async (url: string) => {
+        fetchedUrl = url;
+        return {
+          ok: true,
+          text: async () => 'export function testCode() {\n  return 42;\n}',
+        };
+      };
+
+      (globalThis as any).window = {
+        location: { protocol: 'https:', pathname: '/covpages/', hostname: 'localhost' },
+        history: { pushState: () => {}, replaceState: () => {} },
+      };
+
+      function extractFn(name: string) {
+        const match = APP_JS.match(new RegExp(`(?:async\\s+)?function\\s+${name}\\s*\\([\\s\\S]*?\\n  \\}`));
+        expect(match).toBeTruthy();
+        return match![0];
+      }
+
+      const script = `
+        const sourceCodeCache = {};
+        const loadingSourceFiles = new Set();
+        let renderedCount = 0;
+        const icons = { github: '', file: '', linkExternal: '' };
+        function render() { renderedCount++; }
+        function generateClientBadgeSvg() { return ''; }
+        function escapeHtml(s) { return String(s || ''); }
+        function highlightSourceCodeLines(code) { return code.split(/\\r?\\n/).map(escapeHtml); }
+        function getRepoBaseUrl() { return 'https://github.com/yongjhih/covpages'; }
+        function getGitRef() { return state.selectedCommitSha || 'main'; }
+        function getGitBlobUrl(fp) { return 'https://github.com/yongjhih/covpages/blob/' + getGitRef() + '/' + fp; }
+        function renderBreadcrumbs() { return '<nav></nav>'; }
+        function renderMetrics() { return '<metrics></metrics>'; }
+        function renderTrendChart() { return ''; }
+
+        ${extractFn('getGitRawUrl')}
+        ${extractFn('fetchSourceCode')}
+        ${extractFn('renderFileViewer')}
+
+        return { sourceCodeCache, fetchSourceCode, renderFileViewer, getRenderedCount: () => renderedCount };
+      `;
+
+      const activeView = {
+        commit: { sha: '037f224e9dc6c6f95cac15c03f4bca75200b5043', shortSha: '037f224' },
+        files: {
+          'src/parsers/json.ts': {
+            path: 'src/parsers/json.ts',
+            lines: { total: 2, covered: 2, pct: 100 },
+            lineDetails: { 1: { hits: 1 }, 2: { hits: 1 } },
+          },
+        },
+      };
+
+      const state = {
+        selectedCommitSha: '037f224',
+        selectedFile: 'src/parsers/json.ts',
+        activeRefName: '037f224',
+      };
+
+      const env = new Function('data', 'state', 'activeView', 'loadingLcovSha', script)(
+        { repoName: 'yongjhih/covpages', files: {} },
+        state,
+        activeView,
+        null,
+      );
+
+      // Initial render triggers fetchSourceCode
+      const loadingHtml = env.renderFileViewer();
+      expect(loadingHtml).toContain('Loading source code for commit 037f224');
+
+      // Await fetch
+      await env.fetchSourceCode('src/parsers/json.ts', '037f224', '037f224');
+      expect(fetchedUrl).toBe('https://raw.githubusercontent.com/yongjhih/covpages/037f224/src/parsers/json.ts');
+
+      // Subsequent render produces populated code rows, not blank code
+      const populatedHtml = env.renderFileViewer();
+      expect(populatedHtml).toContain('export function testCode()');
+      expect(populatedHtml).toContain('return 42;');
+      expect(populatedHtml).toContain('class="line-covered"');
+    } finally {
+      (globalThis as any).fetch = originalFetch;
+      (globalThis as any).window = originalWindow;
+    }
   });
 });
 

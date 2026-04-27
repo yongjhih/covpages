@@ -152,6 +152,24 @@ export const APP_JS = `
     return baseUrl + commitPrefix + sha;
   }
 
+  function getGitRawUrl(filePath, targetRef) {
+    const baseUrl = getRepoBaseUrl();
+    if (!baseUrl || !filePath) return '';
+    const ref = targetRef || getGitRef();
+    const cleanPath = filePath.replace(/^\\/+/, '');
+    if (baseUrl.includes('github.com/')) {
+      const parts = baseUrl.split('github.com/')[1];
+      if (parts) return 'https://raw.githubusercontent.com/' + parts + '/' + encodeURI(ref) + '/' + cleanPath;
+    }
+    if (baseUrl.includes('gitlab.')) {
+      return baseUrl + '/-/raw/' + encodeURI(ref) + '/' + cleanPath;
+    }
+    if (baseUrl.includes('bitbucket.org/')) {
+      return baseUrl + '/raw/' + encodeURI(ref) + '/' + cleanPath;
+    }
+    return '';
+  }
+
   function openCommitSnapshot(sha, targetFile, targetFolder) {
     if (!sha) return;
     const found = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === sha || c.commit.sha.startsWith(sha));
@@ -488,6 +506,37 @@ export const APP_JS = `
 
   const lcovCache = {};
   let loadingLcovSha = null;
+  const sourceCodeCache = {};
+  const loadingSourceFiles = new Set();
+
+  async function fetchSourceCode(filePath, sha, ref) {
+    const key = (sha || ref || 'current') + ':' + filePath;
+    if (!filePath || sourceCodeCache[key] !== undefined || loadingSourceFiles.has(key)) return;
+    loadingSourceFiles.add(key);
+
+    const rawUrl = getGitRawUrl(filePath, sha || ref);
+    if (rawUrl) {
+      try {
+        const resp = await fetch(rawUrl);
+        if (resp.ok) {
+          const text = await resp.text();
+          sourceCodeCache[key] = text;
+          loadingSourceFiles.delete(key);
+          render();
+          return;
+        }
+      } catch {}
+    }
+
+    if (data?.files?.[filePath]?.sourceCode) {
+      sourceCodeCache[key] = data.files[filePath].sourceCode;
+    } else {
+      sourceCodeCache[key] = null;
+    }
+
+    loadingSourceFiles.delete(key);
+    render();
+  }
 
   async function fetchCommitLcov(sha, shortSha) {
     const key = sha || shortSha;
@@ -547,6 +596,12 @@ export const APP_JS = `
     if (!cachedFiles && !loadingLcovSha && (state.selectedFile || state.activeTab === 'files')) {
       fetchCommitLcov(sha, shortSha);
     }
+    if (state.selectedFile) {
+      const sourceKey = (sha || shortSha || 'current') + ':' + state.selectedFile;
+      if (sourceCodeCache[sourceKey] === undefined && !loadingSourceFiles.has(sourceKey)) {
+        fetchSourceCode(state.selectedFile, sha || shortSha, state.activeRefName);
+      }
+    }
 
     const folders = {};
     const files = {};
@@ -578,12 +633,14 @@ export const APP_JS = `
     if (cEntry.fileSummaries) {
       for (const [fp, sm] of Object.entries(cEntry.fileSummaries)) {
         const cf = cachedFiles?.[fp];
+        const sourceKey = (sha || shortSha) + ':' + fp;
+        const cachedSource = sourceCodeCache[sourceKey];
         files[fp] = {
           path: fp,
           lines: cf ? cf.lines : sm.lines,
           functions: cf ? cf.functions : sm.functions,
           branches: cf ? cf.branches : sm.branches,
-          sourceCode: cf?.sourceCode || (cEntry.commit.sha === data.currentCommit?.sha ? data.files?.[fp]?.sourceCode : undefined),
+          sourceCode: cachedSource !== undefined ? cachedSource : (cf?.sourceCode || (cEntry.commit.sha === data.currentCommit?.sha ? data.files?.[fp]?.sourceCode : undefined)),
           lineDetails: cf?.lineDetails || (cEntry.commit.sha === data.currentCommit?.sha ? data.files?.[fp]?.lineDetails : undefined),
         };
         const parts = fp.split('/');
@@ -1954,10 +2011,18 @@ export const APP_JS = `
     const gitBlobUrl = getGitBlobUrl(filePath);
     const trendPoints = data.trends?.files?.[filePath] || [];
 
-    const sourceCode = fileCov.sourceCode;
-    const lineDetails = fileCov.lineDetails || {};
+    const currentSha = activeView?.commit?.sha || activeView?.commit?.shortSha || state.selectedCommitSha || '';
+    const sourceKey = (currentSha || state.activeRefName || 'current') + ':' + filePath;
 
-    if (loadingLcovSha && (!lineDetails || Object.keys(lineDetails).length === 0) && !sourceCode) {
+    if (!fileCov.sourceCode && sourceCodeCache[sourceKey] === undefined && !loadingSourceFiles.has(sourceKey)) {
+      fetchSourceCode(filePath, currentSha, state.activeRefName);
+    }
+
+    const sourceCode = fileCov.sourceCode || sourceCodeCache[sourceKey];
+    const lineDetails = fileCov.lineDetails || {};
+    const isLoadingSource = loadingSourceFiles.has(sourceKey);
+
+    if ((loadingLcovSha || isLoadingSource) && !sourceCode) {
       return \`
         <div class="file-toolbar">
           \${renderBreadcrumbs()}
@@ -1971,21 +2036,13 @@ export const APP_JS = `
         </div>
         \${renderMetrics(fileCov, null)}
         <div class="blob-wrapper" style="padding: 48px 24px; text-align: center; color: var(--color-fg-muted);">
-          <div style="font-size: 14px; font-weight: 600; color: var(--color-fg-default); margin-bottom: 8px;">Loading coverage details for commit \${escapeHtml(activeView?.commit?.shortSha || '')}...</div>
-          <div style="font-size: 12px;">Fetching normalized LCOV data on demand</div>
+          <div style="font-size: 14px; font-weight: 600; color: var(--color-fg-default); margin-bottom: 8px;">Loading source code for commit \${escapeHtml(activeView?.commit?.shortSha || state.selectedCommitSha || '')}...</div>
+          <div style="font-size: 12px;">Fetching from git repository on demand</div>
         </div>
       \`;
     }
 
-    let linesArray = [];
-    if (sourceCode) {
-      linesArray = sourceCode.split(/\\r?\\n/);
-    } else if (Object.keys(lineDetails).length > 0) {
-      const maxLine = Math.max(...Object.keys(lineDetails).map(Number), 1);
-      for (let i = 1; i <= maxLine; i++) {
-        linesArray.push('');
-      }
-    } else {
+    if (!sourceCode && (!lineDetails || Object.keys(lineDetails).length === 0)) {
       return \`
         <div class="file-toolbar">
           \${renderBreadcrumbs()}
@@ -2006,10 +2063,30 @@ export const APP_JS = `
       \`;
     }
 
-    let highlightedLines = [];
-    if (sourceCode) {
-      highlightedLines = highlightSourceCodeLines(sourceCode, filePath);
+    if (!sourceCode) {
+      return \`
+        <div class="file-toolbar">
+          \${renderBreadcrumbs()}
+          \${gitBlobUrl ? \`
+            <a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="gh-btn btn-sm" id="view-git-blob-btn" title="View file on GitHub / Git host" style="display:inline-flex; align-items:center; gap:5px; text-decoration:none;">
+              \${icons.github || icons.file || ''}
+              <span>View blob</span>
+              \${icons.linkExternal || ''}
+            </a>
+          \` : ''}
+        </div>
+        \${renderMetrics(fileCov, null)}
+        \${trendPoints.length > 1 ? renderTrendChart('Trend for ' + escapeHtml(filePath), trendPoints, state.trendMetric) : ''}
+        <div class="blob-wrapper" style="padding: 48px 24px; text-align: center; color: var(--color-fg-muted);">
+          <div style="font-size: 14px; font-weight: 600; color: var(--color-fg-default); margin-bottom: 8px;">Source code for commit \${escapeHtml(activeView?.commit?.shortSha || state.selectedCommitSha || '')} not available</div>
+          <div style="font-size: 12px; margin-bottom: 16px;">Coverage summary: \${fileCov.lines.covered}/\${fileCov.lines.total} lines covered (\${fileCov.lines.pct}%).</div>
+          \${gitBlobUrl ? \`<a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="gh-btn btn-sm" style="display:inline-flex; align-items:center; gap:6px;">\${icons.github || ''} View file at commit on GitHub</a>\` : ''}
+        </div>
+      \`;
     }
+
+    const linesArray = sourceCode.split(/\\r?\\n/);
+    const highlightedLines = highlightSourceCodeLines(sourceCode, filePath);
 
     let codeRows = '';
     const totalLines = highlightedLines.length > 0 ? highlightedLines.length : linesArray.length;
