@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="81" height="20" role="img" aria-label="main: 71%">
-  <title>main: 71%</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="20" role="img" aria-label="main: 70.6%">
+  <title>main: 70.6%</title>
   <linearGradient id="covpages-grad" x2="0" y2="100%">
     <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
     <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
   <clipPath id="covpages-r">
-    <rect width="81" height="20" rx="3" fill="#fff"/>
+    <rect width="96" height="20" rx="3" fill="#fff"/>
   </clipPath>
   <g clip-path="url(#covpages-r)">
     <rect width="42" height="20" fill="#555"/>
-    <rect x="42" width="39" height="20" fill="#bf8700"/>
-    <rect width="81" height="20" fill="url(#covpages-grad)"/>
+    <rect x="42" width="54" height="20" fill="#bf8700"/>
+    <rect width="96" height="20" fill="url(#covpages-grad)"/>
   </g>
   <g fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" text-rendering="geometricPrecision" font-size="110">
     <text aria-hidden="true" x="210" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">main</text>
     <text x="210" y="140" transform="scale(.1)" fill="#fff">main</text>
-    <text aria-hidden="true" x="615" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">71%</text>
-    <text x="615" y="140" transform="scale(.1)" fill="#fff">71%</text>
+    <text aria-hidden="true" x="690" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">70.6%</text>
+    <text x="690" y="140" transform="scale(.1)" fill="#fff">70.6%</text>
   </g>
 </svg>
