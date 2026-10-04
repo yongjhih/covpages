@@ -1,0 +1,47 @@
+{
+  "name": "covpages",
+  "version": "0.1.0",
+  "description": "Impeccable GitHub-styled coverage report generator for GitHub Pages with multi-commit trends by repo, folder, and file",
+  "type": "module",
+  "bin": {
+    "covpages": "./bin/covpages.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build && npm test",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "check:impeccable": "~/.impeccable/bin/0.1.6/impeccable detect"
+  },
+  "keywords": [
+    "coverage",
+    "lcov",
+    "github-pages",
+    "gh-pages",
+    "cobertura",
+    "istanbul",
+    "trend",
+    "reporting",
+    "github-style",
+    "codecov",
+    "coveralls"
+  ],
+  "author": "covpages contributors",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@vitest/coverage-v8": "^2.1.2",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.2"
+  }
+}
