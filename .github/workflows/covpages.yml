@@ -28,10 +28,14 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install & Run Tests
-        run: |
-          npm ci
-          npm run test:coverage || npm test
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build covpages
+        run: npm run build
+
+      - name: Run Tests with Coverage
+        run: npm run test:coverage
 
       - name: Restore Previous Coverage History
         uses: actions/cache/restore@v4
@@ -43,11 +47,13 @@ jobs:
 
       - name: Generate covpages with History
         run: |
-          npx covpages generate \
+          node bin/covpages.js generate \
             --output covpages-dist \
             --commit "${{ github.sha }}" \
             --branch "${{ github.ref_name }}" \
-            --message "${{ github.event.head_commit.message }}" \
+            --message "${{ github.event.head_commit.message || 'CI coverage update' }}" \
+            --repo "yongjhih/covpages" \
+            --title "covpages Coverage" \
             coverage/lcov.info
 
       - name: Save Coverage History Cache
