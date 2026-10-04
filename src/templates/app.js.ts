@@ -5,8 +5,19 @@ export const APP_JS = `
   // Read data from window.__COVPAGES_DATA__ or fetch dynamically
   let data = window.__COVPAGES_DATA__ || null;
 
-  // Icons map passed from backend
-  const icons = window.__COVPAGES_ICONS__ || {};
+  // Icons map passed from backend with resilient fallbacks
+  const icons = Object.assign({
+    github: '<svg height="20" aria-hidden="true" viewBox="0 0 16 16" width="20" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>',
+    branch: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>',
+    commit: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>',
+    folder: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="#54aeff"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>',
+    file: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path></svg>',
+    search: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="m10.68 11.745 4.035 4.034a.75.75 0 1 0 1.06-1.06l-4.034-4.035a6.5 6.5 0 1 0-1.06 1.06Zm-4.18 1.255a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z"></path></svg>',
+    chevronRight: '<svg height="14" aria-hidden="true" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 5.72 4.28a.75.75 0 0 1 0-1.06Z"></path></svg>',
+    chevronDown: '<svg height="14" aria-hidden="true" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M12.78 5.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.06 0L3.22 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L8 8.94l3.72-3.72a.75.75 0 0 1 1.06 0Z"></path></svg>',
+    sidebar: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25H5v-13Zm4.75 0v13h7.75a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Z"></path></svg>',
+    x: '<svg height="14" aria-hidden="true" viewBox="0 0 16 16" width="14" fill="currentColor"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg>',
+  }, window.__COVPAGES_ICONS__ || {});
 
   // Application State
   const state = {
@@ -18,14 +29,35 @@ export const APP_JS = `
     trendTarget: '',
     trendMetric: 'linesPct', // 'linesPct' | 'functionsPct' | 'branchesPct'
     filterText: '',
+    gotoFilterText: '',
+    gotoActiveIndex: 0,
     sortColumn: 'name',
     sortAsc: true,
     theme: localStorage.getItem('covpages-theme') || 'auto',
+    sidebarVisible: localStorage.getItem('covpages-sidebar') !== 'false',
+    expandedFolders: new Set(['']),
   };
+
+  function ensureExpanded(filePath) {
+    if (!filePath) return;
+    const parts = filePath.split('/');
+    let cur = '';
+    state.expandedFolders.add('');
+    for (let i = 0; i < parts.length - 1; i++) {
+      cur = cur ? cur + '/' + parts[i] : parts[i];
+      state.expandedFolders.add(cur);
+    }
+  }
 
   function initState() {
     if (data) {
       state.selectedCommitSha = data.currentCommit?.sha || '';
+      state.expandedFolders.add('');
+      if (data.folderChildren?.['']?.subfolders) {
+        for (const sf of data.folderChildren[''].subfolders) {
+          state.expandedFolders.add(sf);
+        }
+      }
     }
   }
 
@@ -255,6 +287,12 @@ export const APP_JS = `
     if (pct >= 80) return 'rate-high';
     if (pct >= 50) return 'rate-medium';
     return 'rate-low';
+  }
+
+  function getCovLevel(pct) {
+    if (pct >= 80) return 'high';
+    if (pct >= 50) return 'med';
+    return 'low';
   }
 
   function getRateColor(pct) {
@@ -584,9 +622,15 @@ export const APP_JS = `
     \`;
   }
 
-  // Render Breadcrumbs
+  // Render Breadcrumbs with sidebar toggle button
   function renderBreadcrumbs() {
-    const parts = state.currentFolder ? state.currentFolder.split('/') : [];
+    let folder = state.currentFolder;
+    if (state.selectedFile) {
+      const parts = state.selectedFile.split('/');
+      parts.pop();
+      folder = parts.join('/');
+    }
+    const parts = folder ? folder.split('/') : [];
     let html = \`<a class="breadcrumb-item" data-folder="">\${escapeHtml(data.repoName || 'root')}</a>\`;
     let accum = '';
 
@@ -605,7 +649,151 @@ export const APP_JS = `
       html += \`<span class="breadcrumb-separator">/</span><span style="font-weight:600; color:var(--color-fg-default);">\${escapeHtml(fileName)}</span>\`;
     }
 
-    return \`<div class="breadcrumbs">\${html}</div>\`;
+    const toggleBtn = !state.sidebarVisible
+      ? \`<button class="sidebar-toggle-btn" id="sidebar-expand-btn" title="Show file tree (b)" aria-label="Show file tree">\${icons.sidebar || ''} <span>Files</span></button>\`
+      : '';
+
+    return \`<div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">\${toggleBtn}<div class="breadcrumbs">\${html}</div></div>\`;
+  }
+
+  function highlightMatch(text, query) {
+    if (!query) return escapeHtml(text);
+    const lower = text.toLowerCase();
+    const qLower = query.toLowerCase();
+    const idx = lower.indexOf(qLower);
+    if (idx === -1) return escapeHtml(text);
+    return escapeHtml(text.slice(0, idx)) + 
+      '<strong class="goto-highlight">' + escapeHtml(text.slice(idx, idx + query.length)) + '</strong>' + 
+      escapeHtml(text.slice(idx + query.length));
+  }
+
+  function renderGotoResults() {
+    const query = state.gotoFilterText.trim().toLowerCase();
+    const allFiles = Object.keys(data.files || {});
+    const matches = allFiles.filter(f => f.toLowerCase().includes(query));
+
+    matches.sort((a, b) => {
+      const aBase = a.split('/').pop()?.toLowerCase() || '';
+      const bBase = b.split('/').pop()?.toLowerCase() || '';
+      const aStarts = aBase.startsWith(query);
+      const bStarts = bBase.startsWith(query);
+      if (aStarts && !bStarts) return -1;
+      if (!aStarts && bStarts) return 1;
+      return a.localeCompare(b);
+    });
+
+    if (matches.length === 0) {
+      return \`
+        <div class="goto-results" role="listbox">
+          <div class="goto-empty">No files matching "\${escapeHtml(state.gotoFilterText)}"</div>
+        </div>
+      \`;
+    }
+
+    const maxItems = 50;
+    const items = matches.slice(0, maxItems).map((filePath, idx) => {
+      const fileCov = data.files[filePath];
+      const isSelected = state.selectedFile === filePath;
+      const isActive = state.gotoActiveIndex === idx;
+      const level = getCovLevel(fileCov.lines.pct);
+      return \`
+        <div class="goto-item \${isSelected ? 'selected' : ''} \${isActive ? 'active' : ''}" data-goto-file="\${escapeHtml(filePath)}" role="option" aria-selected="\${isSelected}">
+          <span class="tree-icon" aria-hidden="true">\${icons.file || ''}</span>
+          <span class="goto-item-path">\${highlightMatch(filePath, state.gotoFilterText)}</span>
+          <span class="tree-badge tree-badge-\${level}">\${fileCov.lines.pct}%</span>
+        </div>
+      \`;
+    }).join('');
+
+    return \`
+      <div class="goto-results" role="listbox" id="goto-results-list">
+        \${items}
+      </div>
+    \`;
+  }
+
+  function renderTreeBranch(folderPath, depth = 0) {
+    const node = data.folderChildren?.[folderPath] || { subfolders: [], files: [] };
+    let html = '';
+
+    for (const subfolder of node.subfolders) {
+      const isExpanded = state.expandedFolders.has(subfolder);
+      const folderCov = data.folders?.[subfolder];
+      const folderName = subfolder.split('/').pop() || subfolder;
+      const isCurrent = state.currentFolder === subfolder && !state.selectedFile;
+      const level = folderCov ? getCovLevel(folderCov.lines.pct) : 'high';
+      const pct = folderCov ? folderCov.lines.pct : 100;
+      const indent = 8 + depth * 14;
+
+      html += \`
+        <div class="tree-node \${isCurrent ? 'selected' : ''}" style="padding-left: \${indent}px;" data-tree-folder="\${escapeHtml(subfolder)}" role="treeitem" aria-expanded="\${isExpanded}">
+          <button class="tree-toggle-btn" data-tree-toggle="\${escapeHtml(subfolder)}" aria-label="\${isExpanded ? 'Collapse' : 'Expand'} \${escapeHtml(folderName)}" tabindex="-1">
+            \${isExpanded ? (icons.chevronDown || '▼') : (icons.chevronRight || '▶')}
+          </button>
+          <span class="tree-icon" aria-hidden="true">\${icons.folder || ''}</span>
+          <span class="tree-label" title="\${escapeHtml(folderName)}">\${escapeHtml(folderName)}</span>
+          <span class="tree-badge tree-badge-\${level}">\${pct}%</span>
+        </div>
+      \`;
+
+      if (isExpanded) {
+        html += renderTreeBranch(subfolder, depth + 1);
+      }
+    }
+
+    for (const filePath of node.files) {
+      const fileCov = data.files?.[filePath];
+      if (!fileCov) continue;
+      const fileName = filePath.split('/').pop() || filePath;
+      const isSelected = state.selectedFile === filePath;
+      const level = getCovLevel(fileCov.lines.pct);
+      const indent = 8 + depth * 14 + 18;
+
+      html += \`
+        <div class="tree-node \${isSelected ? 'selected' : ''}" style="padding-left: \${indent}px;" data-tree-file="\${escapeHtml(filePath)}" role="treeitem" aria-selected="\${isSelected}">
+          <span class="tree-icon" aria-hidden="true">\${icons.file || ''}</span>
+          <span class="tree-label" title="\${escapeHtml(fileName)}">\${escapeHtml(fileName)}</span>
+          <span class="tree-badge tree-badge-\${level}">\${fileCov.lines.pct}%</span>
+        </div>
+      \`;
+    }
+
+    return html;
+  }
+
+  function renderTreeContainer() {
+    return \`
+      <div class="tree-container" role="tree" aria-label="Repository files">
+        \${renderTreeBranch('', 0)}
+      </div>
+    \`;
+  }
+
+  function renderSidebar() {
+    const totalFiles = Object.keys(data.files || {}).length;
+    return \`
+      <div class="sidebar-header">
+        <span class="sidebar-title">
+          <span class="tree-icon" aria-hidden="true">\${icons.sidebar || ''}</span>
+          <span>Files</span>
+          <span class="sidebar-counter">\${totalFiles}</span>
+        </span>
+        <button class="sidebar-btn-icon" id="sidebar-collapse-btn" title="Collapse file tree (b)" aria-label="Collapse file tree">
+          \${icons.chevronRight || '›'}
+        </button>
+      </div>
+      <div class="goto-box">
+        <div class="goto-input-wrapper">
+          <span class="goto-icon" aria-hidden="true">\${icons.search || ''}</span>
+          <input type="text" id="goto-input" class="goto-input" placeholder="Go to file... (t)" value="\${escapeHtml(state.gotoFilterText)}" aria-label="Go to file">
+          \${state.gotoFilterText 
+            ? \`<button class="goto-clear" id="goto-clear" aria-label="Clear file search">\${icons.x || '×'}</button>\` 
+            : '<kbd class="goto-shortcut">t</kbd>'
+          }
+        </div>
+      </div>
+      \${state.gotoFilterText.trim() ? renderGotoResults() : renderTreeContainer()}
+    \`;
   }
 
   // Render Files and Folders Table
@@ -1026,21 +1214,33 @@ export const APP_JS = `
     let mainContent = '';
 
     if (state.activeTab === 'files') {
+      let mainPane = '';
       if (state.selectedFile) {
-        mainContent = renderFileViewer();
+        mainPane = renderFileViewer();
       } else {
         const currentFolderCov = data.folders?.[state.currentFolder] || data.summary;
         const trendPoints = state.currentFolder 
           ? data.trends?.folders?.[state.currentFolder] 
           : data.trends?.overall;
 
-        mainContent = \`
+        mainPane = \`
           \${renderCommitBanner()}
           \${renderMetrics(currentFolderCov, data.delta)}
           \${trendPoints && trendPoints.length > 1 ? renderTrendChart(state.currentFolder ? \`Folder Trend: \${state.currentFolder}\` : 'Overall Coverage Trend', trendPoints, state.trendMetric) : ''}
           \${renderTable()}
         \`;
       }
+
+      mainContent = \`
+        <div class="files-layout \${state.sidebarVisible ? '' : 'sidebar-collapsed'}">
+          <aside class="files-sidebar" aria-label="Files tree">
+            \${renderSidebar()}
+          </aside>
+          <div class="files-main">
+            \${mainPane}
+          </div>
+        </div>
+      \`;
     } else if (state.activeTab === 'trends') {
       mainContent = renderTrendsTab();
     } else if (state.activeTab === 'commits') {
@@ -1133,6 +1333,154 @@ export const APP_JS = `
         render();
       });
     }
+
+    // Sidebar toggle and collapse
+    const collapseBtn = document.getElementById('sidebar-collapse-btn');
+    if (collapseBtn) {
+      collapseBtn.addEventListener('click', () => {
+        state.sidebarVisible = false;
+        localStorage.setItem('covpages-sidebar', 'false');
+        render();
+      });
+    }
+
+    const expandBtn = document.getElementById('sidebar-expand-btn');
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => {
+        state.sidebarVisible = true;
+        localStorage.setItem('covpages-sidebar', 'true');
+        render();
+      });
+    }
+
+    // Go to file search
+    const gotoInput = document.getElementById('goto-input');
+    if (gotoInput) {
+      gotoInput.addEventListener('input', (e) => {
+        state.gotoFilterText = e.target.value;
+        state.gotoActiveIndex = 0;
+        const sidebar = document.querySelector('.files-sidebar');
+        if (sidebar) {
+          sidebar.innerHTML = renderSidebar();
+          bindEvents();
+          const gi = document.getElementById('goto-input');
+          if (gi) {
+            gi.focus();
+            gi.selectionStart = gi.selectionEnd = gi.value.length;
+          }
+        }
+      });
+
+      gotoInput.addEventListener('keydown', (e) => {
+        const query = state.gotoFilterText.trim().toLowerCase();
+        const allFiles = Object.keys(data.files || {}).filter(f => f.toLowerCase().includes(query));
+        allFiles.sort((a, b) => {
+          const aBase = a.split('/').pop()?.toLowerCase() || '';
+          const bBase = b.split('/').pop()?.toLowerCase() || '';
+          const aStarts = aBase.startsWith(query);
+          const bStarts = bBase.startsWith(query);
+          if (aStarts && !bStarts) return -1;
+          if (!aStarts && bStarts) return 1;
+          return a.localeCompare(b);
+        });
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (allFiles.length > 0) {
+            state.gotoActiveIndex = Math.min(state.gotoActiveIndex + 1, Math.min(allFiles.length, 50) - 1);
+            updateGotoActive();
+          }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (allFiles.length > 0) {
+            state.gotoActiveIndex = Math.max(state.gotoActiveIndex - 1, 0);
+            updateGotoActive();
+          }
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (allFiles.length > 0 && allFiles[state.gotoActiveIndex]) {
+            const target = allFiles[state.gotoActiveIndex];
+            state.selectedFile = target;
+            state.gotoFilterText = '';
+            ensureExpanded(target);
+            render();
+          }
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          state.gotoFilterText = '';
+          render();
+        }
+      });
+    }
+
+    function updateGotoActive() {
+      const items = document.querySelectorAll('.goto-item');
+      items.forEach((item, idx) => {
+        if (idx === state.gotoActiveIndex) {
+          item.classList.add('active');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    const gotoClear = document.getElementById('goto-clear');
+    if (gotoClear) {
+      gotoClear.addEventListener('click', () => {
+        state.gotoFilterText = '';
+        render();
+        const gi = document.getElementById('goto-input');
+        if (gi) gi.focus();
+      });
+    }
+
+    // Go to file item click
+    document.querySelectorAll('[data-goto-file]').forEach(el => {
+      el.addEventListener('click', () => {
+        const file = el.getAttribute('data-goto-file');
+        state.selectedFile = file;
+        state.gotoFilterText = '';
+        ensureExpanded(file);
+        render();
+      });
+    });
+
+    // File tree folder toggle (chevron)
+    document.querySelectorAll('[data-tree-toggle]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const folder = btn.getAttribute('data-tree-toggle');
+        if (state.expandedFolders.has(folder)) {
+          state.expandedFolders.delete(folder);
+        } else {
+          state.expandedFolders.add(folder);
+        }
+        render();
+      });
+    });
+
+    // File tree folder row click
+    document.querySelectorAll('[data-tree-folder]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if (e.target.closest('[data-tree-toggle]')) return;
+        const folder = el.getAttribute('data-tree-folder');
+        state.currentFolder = folder;
+        state.selectedFile = null;
+        state.expandedFolders.add(folder);
+        render();
+      });
+    });
+
+    // File tree file click
+    document.querySelectorAll('[data-tree-file]').forEach(el => {
+      el.addEventListener('click', () => {
+        const file = el.getAttribute('data-tree-file');
+        state.selectedFile = file;
+        ensureExpanded(file);
+        render();
+      });
+    });
 
     const brandLink = document.getElementById('brand-link');
     if (brandLink) {
@@ -1303,13 +1651,33 @@ export const APP_JS = `
 
   // Keyboard shortcut '/' to focus search input
   window.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement?.tagName !== 'INPUT') {
+    if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') {
+      return;
+    }
+    if (e.key === 't') {
+      e.preventDefault();
+      if (!state.sidebarVisible) {
+        state.sidebarVisible = true;
+        localStorage.setItem('covpages-sidebar', 'true');
+        render();
+      }
+      const gotoInput = document.getElementById('goto-input');
+      if (gotoInput) {
+        gotoInput.focus();
+        gotoInput.select();
+      }
+    } else if (e.key === 'b') {
+      e.preventDefault();
+      state.sidebarVisible = !state.sidebarVisible;
+      localStorage.setItem('covpages-sidebar', String(state.sidebarVisible));
+      render();
+    } else if (e.key === '/') {
       const input = document.getElementById('filter-input');
       if (input) {
         e.preventDefault();
         input.focus();
       }
-    } else if (e.key === 'n' && state.selectedFile && document.activeElement?.tagName !== 'INPUT') {
+    } else if (e.key === 'n' && state.selectedFile) {
       const jumpBtn = document.getElementById('jump-next-uncovered');
       if (jumpBtn) jumpBtn.click();
     }
