@@ -33,11 +33,24 @@ describe('Devcontainer and Docker Integration', () => {
     const stats = fs.statSync(scriptPath);
     expect(stats.mode & 0o111).toBeTruthy();
 
-    // Run script: when docker is absent, it prints helpful instructions
+    // Test missing engine diagnostic fallback
+    const noPathResult = spawnSync(scriptPath, ['--help'], {
+      encoding: 'utf8',
+      env: { ...process.env, COVPAGES_NO_DOCKER: '1' },
+    });
+    expect(noPathResult.stderr).toContain('Neither \'docker\' nor \'podman\' was found in your PATH');
+    expect(noPathResult.stderr).toContain('https://docs.docker.com/get-docker/');
+  });
+
+  it('prints wrapper help screen when invoked with --help', () => {
+    const scriptPath = path.resolve('bin/covpages-docker.sh');
     const result = spawnSync(scriptPath, ['--help'], { encoding: 'utf8' });
-    if (!result.error && result.stderr) {
+    // If docker/podman is present, it prints wrapper help; if absent, stderr has diagnostic
+    if (result.stdout) {
+      expect(result.stdout).toContain('covpages-docker');
+      expect(result.stdout).toContain('COMMANDS:');
+    } else {
       expect(result.stderr).toContain('Neither \'docker\' nor \'podman\' was found in your PATH');
-      expect(result.stderr).toContain('https://docs.docker.com/get-docker/');
     }
   });
 

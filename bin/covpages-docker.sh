@@ -9,11 +9,16 @@
 set -e
 
 # Detect container runtime (docker or podman)
-if command -v docker >/dev/null 2>&1; then
-  CONTAINER_RUNTIME="docker"
-elif command -v podman >/dev/null 2>&1; then
-  CONTAINER_RUNTIME="podman"
-else
+CONTAINER_RUNTIME=""
+if [ "$COVPAGES_NO_DOCKER" != "1" ]; then
+  if command -v docker >/dev/null 2>&1; then
+    CONTAINER_RUNTIME="docker"
+  elif command -v podman >/dev/null 2>&1; then
+    CONTAINER_RUNTIME="podman"
+  fi
+fi
+
+if [ -z "$CONTAINER_RUNTIME" ]; then
   echo "❌ Error: Neither 'docker' nor 'podman' was found in your PATH." >&2
   echo "" >&2
   echo "To use the Docker-wrapper CLI, please install:" >&2
@@ -25,8 +30,28 @@ else
   exit 1
 fi
 
-# Configuration via environment variables
-COVPAGES_IMAGE="${COVPAGES_IMAGE:-ghcr.io/yongjhih/covpages:latest}"
+# Handle 'help' command for the wrapper itself
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "help" ]; then
+  echo "covpages-docker: Zero-dependency Docker wrapper CLI for Covpages"
+  echo ""
+  echo "USAGE:"
+  echo "  covpages-docker [command] [options]"
+  echo ""
+  echo "COMMANDS:"
+  echo "  build                 Build local Docker image (covpages:latest)"
+  echo "  pull                  Pull official Docker image"
+  echo "  generate [options]    Generate coverage report inside container"
+  echo "  init                  Initialize GitHub Actions workflow"
+  echo "  presets <framework>   View framework preset workflow"
+  echo "  help, --help          Show this wrapper help screen"
+  echo ""
+  echo "ENVIRONMENT VARIABLES:"
+  echo "  COVPAGES_IMAGE        Docker image to run (default: ghcr.io/yongjhih/covpages:latest)"
+  echo ""
+  echo "For full covpages options inside container, run:"
+  echo "  covpages-docker run --help"
+  exit 0
+fi
 
 # Handle 'build' command
 if [ "$1" = "build" ]; then
