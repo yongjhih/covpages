@@ -25,4 +25,12 @@ describe('Coverage Badge Generator', () => {
     expect(svg).toContain('#bf8700');
     expect(svg).toContain('64%');
   });
+
+  it('sanitizes badge names and formats filenames', async () => {
+    const { sanitizeBadgeName, getBadgeFileName } = await import('../src/core/badge.js');
+    expect(sanitizeBadgeName('src/core/index.ts')).toBe('src-core-index.ts');
+    expect(getBadgeFileName('folder', 'src/core')).toBe('folder-src-core.svg');
+    expect(getBadgeFileName('branch', 'main')).toBe('branch-main.svg');
+    expect(getBadgeFileName('overall')).toBe('badge.svg');
+  });
 });

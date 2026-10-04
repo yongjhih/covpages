@@ -20,8 +20,8 @@ import {
   saveRefs,
 } from './core/history.js';
 import { normalizeLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
-import { generateBadgeSvg } from './core/badge.js';
-import { renderIndexHtml } from './templates/index.html.js';
+import { generateBadgeSvg, getBadgeFileName } from './core/badge.js';
+import { renderIndexHtml, render404Html } from './templates/index.html.js';
 
 export * from './types.js';
 export * from './parsers/index.js';
@@ -45,6 +45,7 @@ export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Repor
   fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');
   fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
   fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');
+  fs.writeFileSync(path.join(dir, '404.html'), render404Html(), 'utf-8');
 }
 
 
@@ -199,6 +200,37 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   fs.writeFileSync(path.join(outputDir, '.nojekyll'), '', 'utf-8');
   fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
   fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');
+  fs.writeFileSync(path.join(outputDir, '404.html'), render404Html(), 'utf-8');
+
+  // 10. Generate scoped badges in badges/ directory for folders, files, and branches
+  const badgesDir = path.join(outputDir, 'badges');
+  if (!fs.existsSync(badgesDir)) {
+    fs.mkdirSync(badgesDir, { recursive: true });
+  }
+  fs.writeFileSync(path.join(badgesDir, 'overall.svg'), generateBadgeSvg(aggregated.summary.lines.pct, 'coverage'), 'utf-8');
+
+  if (currentCommit.branch) {
+    const bFile = getBadgeFileName('branch', currentCommit.branch);
+    fs.writeFileSync(path.join(badgesDir, bFile), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.branch), 'utf-8');
+  }
+  if (currentCommit.tag) {
+    const tFile = getBadgeFileName('tag', currentCommit.tag);
+    fs.writeFileSync(path.join(badgesDir, tFile), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.tag), 'utf-8');
+  }
+  if (currentCommit.shortSha) {
+    fs.writeFileSync(path.join(badgesDir, `commit-${currentCommit.shortSha}.svg`), generateBadgeSvg(aggregated.summary.lines.pct, currentCommit.shortSha), 'utf-8');
+  }
+
+  for (const [fPath, fCov] of Object.entries(aggregated.folders)) {
+    if (!fPath) continue;
+    const fFile = getBadgeFileName('folder', fPath);
+    fs.writeFileSync(path.join(badgesDir, fFile), generateBadgeSvg(fCov.lines.pct, fPath), 'utf-8');
+  }
+
+  for (const [filePath, fileCov] of Object.entries(aggregated.files)) {
+    const fileFile = getBadgeFileName('file', filePath);
+    fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, path.basename(filePath)), 'utf-8');
+  }
 
   // 10. Normalize and write lcov.info if an LCOV input file exists
   for (const inp of inputPaths) {

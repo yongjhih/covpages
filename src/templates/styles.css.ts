@@ -1317,6 +1317,223 @@ tr.line-uncovered .blob-hits {
   text-decoration: underline;
 }
 
+/* Badge Copy & Modal */
+.badge-toolbar-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-canvas-subtle);
+  color: var(--color-fg-default);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.badge-btn:hover {
+  background-color: var(--color-neutral-subtle);
+  border-color: var(--color-border-muted);
+}
+
+.badge-btn:focus-visible {
+  outline: 2px solid var(--color-accent-fg);
+}
+
+.badge-svg-display {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.badge-svg-display svg {
+  display: block;
+  height: 18px;
+  width: auto;
+  border-radius: 3px;
+}
+
+.badge-copy-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* Primer Toast Notification */
+.gh-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gh-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.gh-toast-icon {
+  color: var(--color-success-fg);
+  display: flex;
+  align-items: center;
+}
+
+/* Badge Options Dialog / Popover */
+.badge-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.badge-modal {
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+  animation: modalFadeIn 0.15s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.badge-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.badge-modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg-default);
+}
+
+.badge-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-fg-muted);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+}
+
+.badge-modal-close:hover {
+  color: var(--color-fg-default);
+  background-color: var(--color-neutral-subtle);
+}
+
+.badge-modal-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.badge-preview-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--color-canvas-subtle);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border-default);
+}
+
+.badge-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg-default);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-code-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.badge-code-input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 60px 6px 10px;
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  color: var(--color-fg-default);
+  outline: none;
+}
+
+.badge-code-input:focus {
+  border-color: var(--color-accent-fg);
+  box-shadow: 0 0 0 2px var(--color-accent-subtle);
+}
+
+.badge-copy-inline-btn {
+  position: absolute;
+  right: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-canvas-default);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-fg-default);
+  cursor: pointer;
+}
+
+.badge-copy-inline-btn:hover {
+  background-color: var(--color-neutral-subtle);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .gh-header-inner, .file-toolbar, .commit-banner {
