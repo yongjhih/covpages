@@ -1,4 +1,4 @@
-name: Test Coverage Pages
+name: Test Coverage Pages (Docs)
 
 on:
   push:
@@ -8,9 +8,10 @@ on:
 permissions:
   contents: write
   pages: write
+  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "covpages-docs"
   cancel-in-progress: false
 
 jobs:
@@ -36,37 +37,35 @@ jobs:
       - name: Run Tests with Coverage
         run: npm run test:coverage
 
-      - name: Restore Previous Coverage History
-        uses: actions/cache/restore@v4
-        with:
-          path: covpages-dist/history.json
-          key: covpages-history-${{ github.ref_name }}
-          restore-keys: |
-            covpages-history-
-
-      - name: Generate Self-Hosted covpages Report
+      - name: Generate Self-Hosted covpages Report for docs
         run: |
           node bin/covpages.js generate \
             --input coverage/lcov.info \
-            --output covpages-dist \
+            --output docs \
             --commit "${{ github.sha }}" \
             --branch "${{ github.ref_name }}" \
             --message "${{ github.event.head_commit.message || 'Update coverage report' }}" \
             --repo "yongjhih/covpages" \
             --title "covpages Coverage" \
             --save-raw
+          mkdir -p docs/covpages
+          cp docs/index.html docs/covpages/index.html
+          cp docs/badge.svg docs/covpages/badge.svg
+          cp -r docs/history docs/covpages/ 2>/dev/null || true
 
-      - name: Save Coverage History Cache
+      - name: Commit and Push Coverage to main /docs
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        uses: actions/cache/save@v4
-        with:
-          path: covpages-dist/history.json
-          key: covpages-history-${{ github.ref_name }}-${{ github.run_id }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git diff --staged --quiet || git commit -m "docs(coverage): update self-hosted coverage report and badge [skip ci]"
+          git push
 
-      - name: Deploy to gh-pages Branch
+      - name: Deploy to gh-pages Branch as Secondary Target
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./covpages-dist
+          publish_dir: ./docs
           force_orphan: false

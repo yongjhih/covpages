@@ -1107,33 +1107,54 @@ tr.line-uncovered .blob-hits {
 }
 
 .tree-node {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 4px 6px;
+  padding: 4px 8px;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 20px;
   border-radius: var(--radius-sm);
   color: var(--color-fg-default);
   cursor: pointer;
   user-select: none;
   text-decoration: none;
-  gap: 4px;
+  gap: 6px;
   margin: 1px 0;
+  transition: background-color 0.1s ease;
 }
 
 .tree-node:hover {
-  background-color: var(--color-canvas-subtle);
+  background-color: var(--color-neutral-subtle);
   color: var(--color-fg-default);
 }
 
 .tree-node.selected {
   background-color: var(--color-accent-subtle);
-  color: var(--color-accent-fg);
+  color: var(--color-fg-default);
   font-weight: 600;
+}
+
+.tree-node.selected::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 5px;
+  bottom: 5px;
+  width: 3px;
+  background-color: var(--color-accent-fg);
+  border-radius: 2px;
 }
 
 .tree-node:focus-visible {
   outline: 2px solid var(--color-accent-fg);
+}
+
+.tree-node[data-tree-folder] .tree-icon {
+  color: var(--color-accent-fg);
+}
+
+.tree-node[data-tree-file] .tree-icon {
+  color: var(--color-fg-muted);
 }
 
 .tree-toggle-btn {
@@ -1200,25 +1221,38 @@ tr.line-uncovered .blob-hits {
 }
 
 .goto-item {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 6px 8px;
+  padding: 6px 10px;
   font-size: 12px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  gap: 6px;
+  gap: 8px;
   color: var(--color-fg-default);
   margin: 1px 0;
+  transition: background-color 0.1s ease;
 }
 
 .goto-item:hover, .goto-item.active {
-  background-color: var(--color-canvas-subtle);
+  background-color: var(--color-neutral-subtle);
 }
 
 .goto-item.selected {
   background-color: var(--color-accent-subtle);
-  color: var(--color-accent-fg);
+  color: var(--color-fg-default);
   font-weight: 600;
+}
+
+.goto-item.selected::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background-color: var(--color-accent-fg);
+  border-radius: 2px;
 }
 
 .goto-item-path {
