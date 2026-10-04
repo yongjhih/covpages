@@ -1,8 +1,16 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-04T16:39:16.797Z",
+  "generatedAt": "2026-10-04T16:39:56.649Z",
   "currentCommit": {
+    "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+    "shortSha": "7872b53",
+    "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+    "author": "yongjhih",
+    "date": "2026-10-04T16:39:37.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "89316de1f559e2d8bb8ef6f0badb8ec334716bf8",
     "shortSha": "89316de",
     "message": "feat: add syntax highlighting, reusable react component, and project website",
@@ -10,18 +18,10 @@
     "date": "2026-10-04T16:39:09.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "ecb966ce7dfacaab6dd91bf8d4f2e0f8e4de001f",
-    "shortSha": "ecb966c",
-    "message": "feat: add syntax highlighting and reusable react component",
-    "author": "covpages-bot",
-    "date": "2026-10-04T16:29:16.000Z",
-    "branch": "main"
-  },
   "delta": {
-    "linesPct": 0.25,
-    "functionsPct": -7.09,
-    "branchesPct": -0.11
+    "linesPct": 0,
+    "functionsPct": 0,
+    "branchesPct": -0.6
   },
   "summary": {
     "lines": {
@@ -37,10 +37,10 @@
       "pct": 83.61
     },
     "branches": {
-      "total": 388,
-      "covered": 275,
-      "skipped": 113,
-      "pct": 70.88
+      "total": 387,
+      "covered": 272,
+      "skipped": 115,
+      "pct": 70.28
     }
   },
   "folders": {
@@ -60,10 +60,10 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 388,
-        "covered": 275,
-        "skipped": 113,
-        "pct": 70.88
+        "total": 387,
+        "covered": 272,
+        "skipped": 115,
+        "pct": 70.28
       },
       "filesCount": 24,
       "foldersCount": 1
@@ -84,10 +84,10 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 388,
-        "covered": 275,
-        "skipped": 113,
-        "pct": 70.88
+        "total": 387,
+        "covered": 272,
+        "skipped": 115,
+        "pct": 70.28
       },
       "filesCount": 24,
       "foldersCount": 5
@@ -108,10 +108,10 @@
         "pct": 91.3
       },
       "branches": {
-        "total": 158,
-        "covered": 122,
-        "skipped": 36,
-        "pct": 77.22
+        "total": 157,
+        "covered": 119,
+        "skipped": 38,
+        "pct": 75.8
       },
       "filesCount": 7,
       "foldersCount": 0
@@ -3012,45 +3012,45 @@
       },
       "branches": {
         "total": 28,
-        "covered": 16,
-        "skipped": 12,
-        "pct": 57.14
+        "covered": 14,
+        "skipped": 14,
+        "pct": 50
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 23
+          "hits": 11
         },
         "6": {
-          "hits": 23
+          "hits": 11
         },
         "7": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 23
+          "hits": 11
         },
         "9": {
-          "hits": 23
+          "hits": 11
         },
         "10": {
-          "hits": 23
+          "hits": 11
         },
         "11": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3063,7 +3063,7 @@
           "hits": 5
         },
         "14": {
-          "hits": 23
+          "hits": 11
         },
         "16": {
           "hits": 1,
@@ -3086,7 +3086,7 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "29": {
@@ -3096,14 +3096,14 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "31": {
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "32": {
@@ -3117,7 +3117,7 @@
           "hits": 6,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "34": {
@@ -3202,7 +3202,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 23
+          "hits": 11
         },
         {
           "name": "resolveCommitInfo",
@@ -3227,10 +3227,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 30,
+        "total": 43,
+        "covered": 29,
         "skipped": 14,
-        "pct": 68.18
+        "pct": 67.44
       },
       "lineDetails": {
         "1": {
@@ -3833,8 +3833,8 @@
         "192": {
           "hits": 7,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "193": {
@@ -10509,11 +10509,665 @@
           }
         }
       }
+    },
+    {
+      "commit": {
+        "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+        "shortSha": "7872b53",
+        "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+        "author": "yongjhih",
+        "date": "2026-10-04T16:39:37.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 1795,
+          "covered": 1274,
+          "skipped": 521,
+          "pct": 70.97
+        },
+        "functions": {
+          "total": 61,
+          "covered": 51,
+          "skipped": 10,
+          "pct": 83.61
+        },
+        "branches": {
+          "total": 387,
+          "covered": 272,
+          "skipped": 115,
+          "pct": 70.28
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 1795,
+            "covered": 1274,
+            "skipped": 521,
+            "pct": 70.97
+          },
+          "functions": {
+            "total": 61,
+            "covered": 51,
+            "skipped": 10,
+            "pct": 83.61
+          },
+          "branches": {
+            "total": 387,
+            "covered": 272,
+            "skipped": 115,
+            "pct": 70.28
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 1795,
+            "covered": 1274,
+            "skipped": 521,
+            "pct": 70.97
+          },
+          "functions": {
+            "total": 61,
+            "covered": 51,
+            "skipped": 10,
+            "pct": 83.61
+          },
+          "branches": {
+            "total": 387,
+            "covered": 272,
+            "skipped": 115,
+            "pct": 70.28
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 685,
+            "covered": 495,
+            "skipped": 190,
+            "pct": 72.26
+          },
+          "functions": {
+            "total": 23,
+            "covered": 21,
+            "skipped": 2,
+            "pct": 91.3
+          },
+          "branches": {
+            "total": 157,
+            "covered": 119,
+            "skipped": 38,
+            "pct": 75.8
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 470,
+            "covered": 362,
+            "skipped": 108,
+            "pct": 77.02
+          },
+          "functions": {
+            "total": 11,
+            "covered": 10,
+            "skipped": 1,
+            "pct": 90.91
+          },
+          "branches": {
+            "total": 135,
+            "covered": 96,
+            "skipped": 39,
+            "pct": 71.11
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 59,
+            "covered": 59,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 28,
+            "covered": 18,
+            "skipped": 10,
+            "pct": 64.29
+          },
+          "functions": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          },
+          "branches": {
+            "total": 5,
+            "covered": 1,
+            "skipped": 4,
+            "pct": 20
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 217,
+            "covered": 117,
+            "skipped": 100,
+            "pct": 53.92
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 33,
+            "covered": 13,
+            "skipped": 20,
+            "pct": 39.39
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 170,
+            "covered": 133,
+            "skipped": 37,
+            "pct": 78.24
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 18,
+            "skipped": 9,
+            "pct": 66.67
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 169,
+            "covered": 2,
+            "skipped": 167,
+            "pct": 1.18
+          },
+          "functions": {
+            "total": 2,
+            "covered": 0,
+            "skipped": 2,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 33,
+            "covered": 33,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 13,
+            "covered": 13,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 38,
+            "skipped": 2,
+            "pct": 95
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 28,
+            "covered": 14,
+            "skipped": 14,
+            "pct": 50
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 182,
+            "covered": 172,
+            "skipped": 10,
+            "pct": 94.51
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 29,
+            "skipped": 14,
+            "pct": 67.44
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 85,
+            "skipped": 1,
+            "pct": 98.84
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 44,
+            "skipped": 6,
+            "pct": 88
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 103,
+            "skipped": 18,
+            "pct": 85.12
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 20,
+            "covered": 10,
+            "skipped": 10,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 35,
+            "skipped": 5,
+            "pct": 87.5
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 25,
+            "skipped": 5,
+            "pct": 83.33
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 10,
+            "covered": 0,
+            "skipped": 10,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 1,
+            "skipped": 3,
+            "pct": 25
+          }
+        }
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "89316de1f559e2d8bb8ef6f0badb8ec334716bf8"
+      "main": "7872b5382107aad63bc88df87de4f7af32fe5ca6"
     },
     "tags": {}
   },
@@ -10581,6 +11235,19 @@
         "linesPct": 70.97,
         "functionsPct": 83.61,
         "branchesPct": 70.88,
+        "linesCovered": 1274,
+        "linesTotal": 1795
+      },
+      {
+        "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+        "shortSha": "7872b53",
+        "date": "2026-10-04T16:39:37.000Z",
+        "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 70.97,
+        "functionsPct": 83.61,
+        "branchesPct": 70.28,
         "linesCovered": 1274,
         "linesTotal": 1795
       }
@@ -10651,6 +11318,19 @@
           "branchesPct": 70.88,
           "linesCovered": 1274,
           "linesTotal": 1795
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.97,
+          "functionsPct": 83.61,
+          "branchesPct": 70.28,
+          "linesCovered": 1274,
+          "linesTotal": 1795
         }
       ],
       "src": [
@@ -10716,6 +11396,19 @@
           "linesPct": 70.97,
           "functionsPct": 83.61,
           "branchesPct": 70.88,
+          "linesCovered": 1274,
+          "linesTotal": 1795
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.97,
+          "functionsPct": 83.61,
+          "branchesPct": 70.28,
           "linesCovered": 1274,
           "linesTotal": 1795
         }
@@ -10785,6 +11478,19 @@
           "branchesPct": 77.22,
           "linesCovered": 495,
           "linesTotal": 685
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 72.26,
+          "functionsPct": 91.3,
+          "branchesPct": 75.8,
+          "linesCovered": 495,
+          "linesTotal": 685
         }
       ],
       "src/parsers": [
@@ -10846,6 +11552,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 77.02,
+          "functionsPct": 90.91,
+          "branchesPct": 71.11,
+          "linesCovered": 362,
+          "linesTotal": 470
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 77.02,
           "functionsPct": 90.91,
@@ -10919,6 +11638,19 @@
           "branchesPct": 100,
           "linesCovered": 59,
           "linesTotal": 59
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 59,
+          "linesTotal": 59
         }
       ],
       "src/react": [
@@ -10934,6 +11666,19 @@
           "branchesPct": 73.68,
           "linesCovered": 78,
           "linesTotal": 102
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
         }
       ],
       "src/website": [
@@ -10943,6 +11688,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 64.29,
+          "functionsPct": 50,
+          "branchesPct": 20,
+          "linesCovered": 18,
+          "linesTotal": 28
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 64.29,
           "functionsPct": 50,
@@ -11018,6 +11776,19 @@
           "branchesPct": 39.39,
           "linesCovered": 117,
           "linesTotal": 217
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.92,
+          "functionsPct": 100,
+          "branchesPct": 39.39,
+          "linesCovered": 117,
+          "linesTotal": 217
         }
       ],
       "src/index.ts": [
@@ -11079,6 +11850,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 78.24,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 133,
+          "linesTotal": 170
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 78.24,
           "functionsPct": 100,
@@ -11152,6 +11936,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -11213,6 +12010,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -11286,6 +12096,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -11347,6 +12170,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 1.18,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 169
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.18,
           "functionsPct": 0,
@@ -11420,6 +12256,19 @@
           "branchesPct": 100,
           "linesCovered": 33,
           "linesTotal": 33
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 33,
+          "linesTotal": 33
         }
       ],
       "src/core/git.ts": [
@@ -11485,6 +12334,19 @@
           "linesPct": 95,
           "functionsPct": 100,
           "branchesPct": 57.14,
+          "linesCovered": 38,
+          "linesTotal": 40
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95,
+          "functionsPct": 100,
+          "branchesPct": 50,
           "linesCovered": 38,
           "linesTotal": 40
         }
@@ -11554,6 +12416,19 @@
           "branchesPct": 68.18,
           "linesCovered": 172,
           "linesTotal": 182
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.51,
+          "functionsPct": 100,
+          "branchesPct": 67.44,
+          "linesCovered": 172,
+          "linesTotal": 182
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -11615,6 +12490,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 98.84,
+          "functionsPct": 100,
+          "branchesPct": 88,
+          "linesCovered": 85,
+          "linesTotal": 86
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 98.84,
           "functionsPct": 100,
@@ -11688,6 +12576,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -11749,6 +12650,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 85.12,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 103,
+          "linesTotal": 121
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.12,
           "functionsPct": 100,
@@ -11822,6 +12736,19 @@
           "branchesPct": 83.33,
           "linesCovered": 35,
           "linesTotal": 40
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 87.5,
+          "functionsPct": 100,
+          "branchesPct": 83.33,
+          "linesCovered": 35,
+          "linesTotal": 40
         }
       ],
       "src/parsers/json.ts": [
@@ -11883,6 +12810,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -11956,6 +12896,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -12017,6 +12970,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -12090,6 +13056,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -12151,6 +13130,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -12224,6 +13216,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -12233,6 +13238,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -12254,6 +13272,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -12263,6 +13294,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -12284,6 +13328,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 10
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 10
         }
       ],
       "src/website/render.ts": [
@@ -12293,6 +13350,19 @@
           "date": "2026-10-04T16:39:09.000Z",
           "message": "feat: add syntax highlighting, reusable react component, and project website",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 25,
+          "linesCovered": 18,
+          "linesTotal": 18
+        },
+        {
+          "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
+          "shortSha": "7872b53",
+          "date": "2026-10-04T16:39:37.000Z",
+          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
