@@ -1,6 +1,7 @@
 import type { CovpagesData } from '../types.js';
 import { ICONS } from './icons.js';
 import { STYLES_CSS } from './styles.css.js';
+import { PRISM_JS } from './prism.bundle.js';
 import { APP_JS } from './app.js.js';
 
 function serializeForScript(obj: unknown): string {
@@ -49,6 +50,9 @@ ${STYLES_CSS}
 ${dataJs}
   </script>
   <script>
+${PRISM_JS}
+  </script>
+  <script>
 ${APP_JS}
   </script>
 </body>
@@ -90,6 +94,14 @@ export function render404Html(): string {
       } else {
         route = segments.join('/');
       }
+
+      if (route.startsWith('covpages/')) {
+        basePath += 'covpages/';
+        route = route.slice('covpages/'.length);
+      } else if (route.startsWith('tree/') || route.startsWith('blob/') || route.startsWith('commits/') || route.startsWith('trends')) {
+        basePath += 'covpages/';
+      }
+
       var target = basePath + '?/' + encodeURI(route) + (l.search ? '&' + l.search.slice(1) : '') + l.hash;
       l.replace(target);
     })();

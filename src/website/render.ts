@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+import { ICONS } from '../templates/icons.js';
+
+export function renderWebsiteHtml(options: {
+  repo?: string;
+  badgeUrl?: string;
+  liveDemoUrl?: string;
+} = {}): string {
+  const repo = options.repo || 'yongjhih/covpages';
+  const badgeUrl = options.badgeUrl || 'badges/overall.svg';
+  const liveDemoUrl = options.liveDemoUrl || 'covpages/';
+
+  return `<!DOCTYPE html>
 <html lang="en" data-color-mode="auto">
 <head>
   <meta charset="utf-8">
@@ -501,7 +512,7 @@
 
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">Overview</a>
-      <a href="covpages/" class="nav-link" style="color: var(--color-success-fg); font-weight: 600;">Live Demo ↗</a>
+      <a href="${liveDemoUrl}" class="nav-link" style="color: var(--color-success-fg); font-weight: 600;">Live Demo ↗</a>
       <a href="#features" class="nav-link">Features</a>
       <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#badges" class="nav-link">Badges</a>
@@ -511,8 +522,8 @@
 
     <div class="header-actions">
       <button class="btn btn-sm" id="theme-toggle" title="Toggle theme">🌓 Theme</button>
-      <a href="https://github.com/yongjhih/covpages" class="btn btn-sm" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="covpages/" class="btn btn-sm btn-primary">Live Coverage</a>
+      <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">Live Coverage</a>
     </div>
   </header>
 
@@ -533,7 +544,7 @@
       </p>
 
       <div class="hero-ctas">
-        <a href="covpages/" class="btn btn-primary" style="font-size: 15px; padding: 8px 20px;">
+        <a href="${liveDemoUrl}" class="btn btn-primary" style="font-size: 15px; padding: 8px 20px;">
           Explore Live Demo ↗
         </a>
         <a href="#quickstart" class="btn" style="font-size: 15px; padding: 8px 20px;">
@@ -551,10 +562,10 @@
             <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
               <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path>
             </svg>
-            <span>Live Showcase: yongjhih/covpages (Branch: main)</span>
+            <span>Live Showcase: ${repo} (Branch: main)</span>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <img src="badges/overall.svg" alt="Coverage Badge" height="20" style="vertical-align: middle;">
+            <img src="${badgeUrl}" alt="Coverage Badge" height="20" style="vertical-align: middle;">
           </div>
         </div>
 
@@ -585,7 +596,7 @@
           <div style="font-size: 13px; color: var(--color-fg-muted);">
             Explore directory file trees, syntax-highlighted source lines, and commit trends on GitHub Pages.
           </div>
-          <a href="covpages/" class="btn btn-sm btn-primary">
+          <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">
             Open Interactive Coverage Viewer ↗
           </a>
         </div>
@@ -658,7 +669,7 @@
       <div class="badge-builder">
         <div class="form-group">
           <label class="form-label">GitHub Repository</label>
-          <input type="text" id="badge-repo" class="form-input" value="yongjhih/covpages">
+          <input type="text" id="badge-repo" class="form-input" value="${repo}">
         </div>
 
         <div class="form-group">
@@ -678,7 +689,7 @@
 
         <div class="badge-preview-box">
           <div class="badge-img-wrap">
-            <img id="badge-preview-img" src="badges/overall.svg" alt="Badge Preview" height="24">
+            <img id="badge-preview-img" src="${badgeUrl}" alt="Badge Preview" height="24">
           </div>
 
           <div class="code-preview" id="badge-markdown-code"></div>
@@ -888,7 +899,7 @@ export function CoveragePortal() {
   <footer class="site-footer">
     <div class="container">
       <p>
-        Covpages is open source software released under the <a href="https://github.com/yongjhih/covpages/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+        Covpages is open source software released under the <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
       </p>
       <p style="margin-top: 8px;">
         Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.
@@ -946,7 +957,7 @@ export function CoveragePortal() {
       }
 
       function updateBadgePreview() {
-        const r = repoInput.value.trim() || 'yongjhih/covpages';
+        const r = repoInput.value.trim() || '${repo}';
         const scope = scopeSelect.value;
         const target = targetInput.value.trim();
 
@@ -976,7 +987,7 @@ export function CoveragePortal() {
         }
 
         const origin = window.location.origin;
-        const basePath = window.location.pathname.replace(/\/[^\/]*$/, '/');
+        const basePath = window.location.pathname.replace(/\\/[^\\/]*$/, '/');
         const fullBadgeUrl = origin + basePath + badgeFile;
         const fullLinkUrl = origin + basePath + (linkPath ? linkPath : '');
 
@@ -1004,4 +1015,5 @@ export function CoveragePortal() {
     })();
   </script>
 </body>
-</html>
+</html>`;
+}

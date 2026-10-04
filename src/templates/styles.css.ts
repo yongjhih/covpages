@@ -945,6 +945,76 @@ tr.line-uncovered .blob-hits {
   font-weight: 600;
 }
 
+/* GitHub Primer Syntax Highlighting Tokens (Light) */
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6e7781; font-style: italic; }
+.token.punctuation { color: #24292f; }
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol { color: #0550ae; }
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin { color: #0a3069; }
+.token.operator, .token.entity, .token.url { color: #0550ae; }
+.token.atrule, .token.attr-value, .token.keyword { color: #cf222e; font-weight: 600; }
+.token.function, .token.class-name { color: #8250df; }
+.token.regex, .token.important, .token.variable { color: #953800; }
+
+/* GitHub Primer Syntax Highlighting Tokens (Dark Mode) */
+[data-color-mode="dark"] .token.comment,
+[data-color-mode="dark"] .token.prolog,
+[data-color-mode="dark"] .token.doctype,
+[data-color-mode="dark"] .token.cdata { color: #8b949e; font-style: italic; }
+[data-color-mode="dark"] .token.punctuation { color: #e6edf3; }
+[data-color-mode="dark"] .token.property,
+[data-color-mode="dark"] .token.tag,
+[data-color-mode="dark"] .token.boolean,
+[data-color-mode="dark"] .token.number,
+[data-color-mode="dark"] .token.constant,
+[data-color-mode="dark"] .token.symbol { color: #79c0ff; }
+[data-color-mode="dark"] .token.selector,
+[data-color-mode="dark"] .token.attr-name,
+[data-color-mode="dark"] .token.string,
+[data-color-mode="dark"] .token.char,
+[data-color-mode="dark"] .token.builtin { color: #a5d6ff; }
+[data-color-mode="dark"] .token.operator,
+[data-color-mode="dark"] .token.entity,
+[data-color-mode="dark"] .token.url { color: #79c0ff; }
+[data-color-mode="dark"] .token.atrule,
+[data-color-mode="dark"] .token.attr-value,
+[data-color-mode="dark"] .token.keyword { color: #ff7b72; font-weight: 600; }
+[data-color-mode="dark"] .token.function,
+[data-color-mode="dark"] .token.class-name { color: #d2a8ff; }
+[data-color-mode="dark"] .token.regex,
+[data-color-mode="dark"] .token.important,
+[data-color-mode="dark"] .token.variable { color: #ffa657; }
+
+@media (prefers-color-scheme: dark) {
+  [data-color-mode="auto"] .token.comment,
+  [data-color-mode="auto"] .token.prolog,
+  [data-color-mode="auto"] .token.doctype,
+  [data-color-mode="auto"] .token.cdata { color: #8b949e; font-style: italic; }
+  [data-color-mode="auto"] .token.punctuation { color: #e6edf3; }
+  [data-color-mode="auto"] .token.property,
+  [data-color-mode="auto"] .token.tag,
+  [data-color-mode="auto"] .token.boolean,
+  [data-color-mode="auto"] .token.number,
+  [data-color-mode="auto"] .token.constant,
+  [data-color-mode="auto"] .token.symbol { color: #79c0ff; }
+  [data-color-mode="auto"] .token.selector,
+  [data-color-mode="auto"] .token.attr-name,
+  [data-color-mode="auto"] .token.string,
+  [data-color-mode="auto"] .token.char,
+  [data-color-mode="auto"] .token.builtin { color: #a5d6ff; }
+  [data-color-mode="auto"] .token.operator,
+  [data-color-mode="auto"] .token.entity,
+  [data-color-mode="auto"] .token.url { color: #79c0ff; }
+  [data-color-mode="auto"] .token.atrule,
+  [data-color-mode="auto"] .token.attr-value,
+  [data-color-mode="auto"] .token.keyword { color: #ff7b72; font-weight: 600; }
+  [data-color-mode="auto"] .token.function,
+  [data-color-mode="auto"] .token.class-name { color: #d2a8ff; }
+  [data-color-mode="auto"] .token.regex,
+  [data-color-mode="auto"] .token.important,
+  [data-color-mode="auto"] .token.variable { color: #ffa657; }
+}
+
+
 /* File Tree Sidebar & Layout */
 .files-layout {
   display: flex;
