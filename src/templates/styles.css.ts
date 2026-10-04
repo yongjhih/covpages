@@ -349,7 +349,6 @@ body {
 .progress-bar-fill {
   height: 100%;
   border-radius: 3px;
-  transition: width 0.3s ease;
 }
 
 /* Delta badges */

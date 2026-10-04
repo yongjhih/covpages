@@ -1,0 +1,12 @@
+{
+  "detector": {
+    "ignoreFiles": [
+      "coverage/**",
+      "covpages-dist/**",
+      "demo-trend-dist/**",
+      "dist/**",
+      "node_modules/**",
+      "test/fixtures/**"
+    ]
+  }
+}
