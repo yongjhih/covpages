@@ -1,13 +1,13 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-04T16:20:23.660Z",
+  "generatedAt": "2026-10-04T16:20:52.813Z",
   "currentCommit": {
-    "sha": "976927a19b2512c4e3933df0d734b216f6cd39b8",
-    "shortSha": "976927a",
-    "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
-    "author": "covpages-bot",
-    "date": "2026-10-04T16:12:10.000Z",
+    "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+    "shortSha": "46a792a",
+    "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+    "author": "yongjhih",
+    "date": "2026-10-04T16:20:36.000Z",
     "branch": "main"
   },
   "previousCommit": {
@@ -19,9 +19,9 @@
     "branch": "main"
   },
   "delta": {
-    "linesPct": 0.09,
-    "functionsPct": 2.2,
-    "branchesPct": 0.2
+    "linesPct": 0,
+    "functionsPct": 0,
+    "branchesPct": -0.65
   },
   "summary": {
     "lines": {
@@ -37,10 +37,10 @@
       "pct": 90
     },
     "branches": {
-      "total": 352,
-      "covered": 248,
-      "skipped": 104,
-      "pct": 70.45
+      "total": 351,
+      "covered": 245,
+      "skipped": 106,
+      "pct": 69.8
     }
   },
   "folders": {
@@ -60,10 +60,10 @@
         "pct": 90
       },
       "branches": {
-        "total": 352,
-        "covered": 248,
-        "skipped": 104,
-        "pct": 70.45
+        "total": 351,
+        "covered": 245,
+        "skipped": 106,
+        "pct": 69.8
       },
       "filesCount": 19,
       "foldersCount": 1
@@ -84,10 +84,10 @@
         "pct": 90
       },
       "branches": {
-        "total": 352,
-        "covered": 248,
-        "skipped": 104,
-        "pct": 70.45
+        "total": 351,
+        "covered": 245,
+        "skipped": 106,
+        "pct": 69.8
       },
       "filesCount": 19,
       "foldersCount": 3
@@ -108,10 +108,10 @@
         "pct": 90.48
       },
       "branches": {
-        "total": 153,
-        "covered": 117,
-        "skipped": 36,
-        "pct": 76.47
+        "total": 152,
+        "covered": 114,
+        "skipped": 38,
+        "pct": 75
       },
       "filesCount": 7,
       "foldersCount": 0
@@ -2817,45 +2817,45 @@
       },
       "branches": {
         "total": 28,
-        "covered": 16,
-        "skipped": 12,
-        "pct": 57.14
+        "covered": 14,
+        "skipped": 14,
+        "pct": 50
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 23
+          "hits": 11
         },
         "6": {
-          "hits": 23
+          "hits": 11
         },
         "7": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 23
+          "hits": 11
         },
         "9": {
-          "hits": 23
+          "hits": 11
         },
         "10": {
-          "hits": 23
+          "hits": 11
         },
         "11": {
-          "hits": 23,
+          "hits": 11,
           "branches": {
             "total": 1,
             "taken": 1
@@ -2868,7 +2868,7 @@
           "hits": 5
         },
         "14": {
-          "hits": 23
+          "hits": 11
         },
         "16": {
           "hits": 1,
@@ -2891,7 +2891,7 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "29": {
@@ -2901,14 +2901,14 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "31": {
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "32": {
@@ -2922,7 +2922,7 @@
           "hits": 6,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "34": {
@@ -3007,7 +3007,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 23
+          "hits": 11
         },
         {
           "name": "resolveCommitInfo",
@@ -3032,10 +3032,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 30,
+        "total": 43,
+        "covered": 29,
         "skipped": 14,
-        "pct": 68.18
+        "pct": 67.44
       },
       "lineDetails": {
         "1": {
@@ -3638,8 +3638,8 @@
         "192": {
           "hits": 7,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "193": {
@@ -7376,11 +7376,525 @@
           }
         }
       }
+    },
+    {
+      "commit": {
+        "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+        "shortSha": "46a792a",
+        "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+        "author": "yongjhih",
+        "date": "2026-10-04T16:20:36.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 1625,
+          "covered": 1138,
+          "skipped": 487,
+          "pct": 70.03
+        },
+        "functions": {
+          "total": 40,
+          "covered": 36,
+          "skipped": 4,
+          "pct": 90
+        },
+        "branches": {
+          "total": 351,
+          "covered": 245,
+          "skipped": 106,
+          "pct": 69.8
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 1625,
+            "covered": 1138,
+            "skipped": 487,
+            "pct": 70.03
+          },
+          "functions": {
+            "total": 40,
+            "covered": 36,
+            "skipped": 4,
+            "pct": 90
+          },
+          "branches": {
+            "total": 351,
+            "covered": 245,
+            "skipped": 106,
+            "pct": 69.8
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 1625,
+            "covered": 1138,
+            "skipped": 487,
+            "pct": 70.03
+          },
+          "functions": {
+            "total": 40,
+            "covered": 36,
+            "skipped": 4,
+            "pct": 90
+          },
+          "branches": {
+            "total": 351,
+            "covered": 245,
+            "skipped": 106,
+            "pct": 69.8
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 677,
+            "covered": 487,
+            "skipped": 190,
+            "pct": 71.94
+          },
+          "functions": {
+            "total": 21,
+            "covered": 19,
+            "skipped": 2,
+            "pct": 90.48
+          },
+          "branches": {
+            "total": 152,
+            "covered": 114,
+            "skipped": 38,
+            "pct": 75
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 470,
+            "covered": 362,
+            "skipped": 108,
+            "pct": 77.02
+          },
+          "functions": {
+            "total": 11,
+            "covered": 10,
+            "skipped": 1,
+            "pct": 90.91
+          },
+          "branches": {
+            "total": 135,
+            "covered": 96,
+            "skipped": 39,
+            "pct": 71.11
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 54,
+            "covered": 54,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 10,
+            "covered": 10,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 217,
+            "covered": 117,
+            "skipped": 100,
+            "pct": 53.92
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 33,
+            "covered": 13,
+            "skipped": 20,
+            "pct": 39.39
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 143,
+            "covered": 106,
+            "skipped": 37,
+            "pct": 74.13
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 21,
+            "covered": 12,
+            "skipped": 9,
+            "pct": 57.14
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 169,
+            "covered": 2,
+            "skipped": 167,
+            "pct": 1.18
+          },
+          "functions": {
+            "total": 2,
+            "covered": 0,
+            "skipped": 2,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 25,
+            "covered": 25,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 38,
+            "skipped": 2,
+            "pct": 95
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 28,
+            "covered": 14,
+            "skipped": 14,
+            "pct": 50
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 182,
+            "covered": 172,
+            "skipped": 10,
+            "pct": 94.51
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 29,
+            "skipped": 14,
+            "pct": 67.44
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 85,
+            "skipped": 1,
+            "pct": 98.84
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 44,
+            "skipped": 6,
+            "pct": 88
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 103,
+            "skipped": 18,
+            "pct": 85.12
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 20,
+            "covered": 10,
+            "skipped": 10,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 40,
+            "covered": 35,
+            "skipped": 5,
+            "pct": 87.5
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 25,
+            "skipped": 5,
+            "pct": 83.33
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 31,
+            "covered": 31,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 10,
+            "covered": 10,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "976927a19b2512c4e3933df0d734b216f6cd39b8"
+      "main": "46a792a81f094337539ef0e2c47a2fd48ecf46a6"
     },
     "tags": {}
   },
@@ -7396,6 +7910,19 @@
         "linesPct": 70.03,
         "functionsPct": 90,
         "branchesPct": 70.45,
+        "linesCovered": 1138,
+        "linesTotal": 1625
+      },
+      {
+        "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+        "shortSha": "46a792a",
+        "date": "2026-10-04T16:20:36.000Z",
+        "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 70.03,
+        "functionsPct": 90,
+        "branchesPct": 69.8,
         "linesCovered": 1138,
         "linesTotal": 1625
       }
@@ -7414,6 +7941,19 @@
           "branchesPct": 70.45,
           "linesCovered": 1138,
           "linesTotal": 1625
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.03,
+          "functionsPct": 90,
+          "branchesPct": 69.8,
+          "linesCovered": 1138,
+          "linesTotal": 1625
         }
       ],
       "src": [
@@ -7427,6 +7967,19 @@
           "linesPct": 70.03,
           "functionsPct": 90,
           "branchesPct": 70.45,
+          "linesCovered": 1138,
+          "linesTotal": 1625
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 70.03,
+          "functionsPct": 90,
+          "branchesPct": 69.8,
           "linesCovered": 1138,
           "linesTotal": 1625
         }
@@ -7444,6 +7997,19 @@
           "branchesPct": 76.47,
           "linesCovered": 487,
           "linesTotal": 677
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 71.94,
+          "functionsPct": 90.48,
+          "branchesPct": 75,
+          "linesCovered": 487,
+          "linesTotal": 677
         }
       ],
       "src/parsers": [
@@ -7459,6 +8025,19 @@
           "branchesPct": 71.11,
           "linesCovered": 362,
           "linesTotal": 470
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.02,
+          "functionsPct": 90.91,
+          "branchesPct": 71.11,
+          "linesCovered": 362,
+          "linesTotal": 470
         }
       ],
       "src/templates": [
@@ -7468,6 +8047,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 54,
+          "linesTotal": 54
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -7491,6 +8083,19 @@
           "branchesPct": 39.39,
           "linesCovered": 117,
           "linesTotal": 217
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.92,
+          "functionsPct": 100,
+          "branchesPct": 39.39,
+          "linesCovered": 117,
+          "linesTotal": 217
         }
       ],
       "src/index.ts": [
@@ -7500,6 +8105,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 74.13,
+          "functionsPct": 100,
+          "branchesPct": 57.14,
+          "linesCovered": 106,
+          "linesTotal": 143
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 74.13,
           "functionsPct": 100,
@@ -7521,6 +8139,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -7530,6 +8161,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -7551,6 +8195,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -7560,6 +8217,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 1.18,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 169
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.18,
           "functionsPct": 0,
@@ -7581,6 +8251,19 @@
           "branchesPct": 100,
           "linesCovered": 25,
           "linesTotal": 25
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 25,
+          "linesTotal": 25
         }
       ],
       "src/core/git.ts": [
@@ -7594,6 +8277,19 @@
           "linesPct": 95,
           "functionsPct": 100,
           "branchesPct": 57.14,
+          "linesCovered": 38,
+          "linesTotal": 40
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95,
+          "functionsPct": 100,
+          "branchesPct": 50,
           "linesCovered": 38,
           "linesTotal": 40
         }
@@ -7611,6 +8307,19 @@
           "branchesPct": 68.18,
           "linesCovered": 172,
           "linesTotal": 182
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.51,
+          "functionsPct": 100,
+          "branchesPct": 67.44,
+          "linesCovered": 172,
+          "linesTotal": 182
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -7620,6 +8329,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 98.84,
+          "functionsPct": 100,
+          "branchesPct": 88,
+          "linesCovered": 85,
+          "linesTotal": 86
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 98.84,
           "functionsPct": 100,
@@ -7641,6 +8363,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -7650,6 +8385,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 85.12,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 103,
+          "linesTotal": 121
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.12,
           "functionsPct": 100,
@@ -7671,6 +8419,19 @@
           "branchesPct": 83.33,
           "linesCovered": 35,
           "linesTotal": 40
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 87.5,
+          "functionsPct": 100,
+          "branchesPct": 83.33,
+          "linesCovered": 35,
+          "linesTotal": 40
         }
       ],
       "src/parsers/json.ts": [
@@ -7680,6 +8441,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -7701,6 +8475,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -7710,6 +8497,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -7731,6 +8531,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -7746,6 +8559,19 @@
           "branchesPct": 100,
           "linesCovered": 31,
           "linesTotal": 31
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 31,
+          "linesTotal": 31
         }
       ],
       "src/templates/styles.css.ts": [
@@ -7755,6 +8581,19 @@
           "date": "2026-10-04T16:12:10.000Z",
           "message": "feat: add git delta compression for lcov, branch/tag switcher, and /docs/covpages support",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "46a792a81f094337539ef0e2c47a2fd48ecf46a6",
+          "shortSha": "46a792a",
+          "date": "2026-10-04T16:20:36.000Z",
+          "message": "feat: add docs showcase, badge SVG, benchmarks, and on-demand LCOV loading",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
