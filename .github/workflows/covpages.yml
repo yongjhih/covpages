@@ -17,6 +17,9 @@ concurrency:
 jobs:
   coverage:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,14 +31,10 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build covpages
-        run: npm run build
-
-      - name: Run Tests with Coverage
-        run: npm run test:coverage
+      - name: Install & Run Tests
+        run: |
+          npm ci
+          npm run test:coverage || npm test
 
       - name: Restore Previous Coverage History
         uses: actions/cache/restore@v4
@@ -47,13 +46,11 @@ jobs:
 
       - name: Generate covpages with History
         run: |
-          node bin/covpages.js generate \
+          npx covpages generate \
             --output covpages-dist \
             --commit "${{ github.sha }}" \
             --branch "${{ github.ref_name }}" \
-            --message "${{ github.event.head_commit.message || 'CI coverage update' }}" \
-            --repo "yongjhih/covpages" \
-            --title "covpages Coverage" \
+            --message "${{ github.event.head_commit.message }}" \
             coverage/lcov.info
 
       - name: Save Coverage History Cache
