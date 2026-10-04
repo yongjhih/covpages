@@ -45,6 +45,6 @@ describe('Covpages CLI', () => {
     expect(fs.existsSync(workflowPath)).toBe(true);
     const content = fs.readFileSync(workflowPath, 'utf-8');
     expect(content).toContain('Test Coverage Pages');
-    expect(content).toContain('covpages generate');
+    expect(content).toContain('generate');
   });
 });

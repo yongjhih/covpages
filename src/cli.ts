@@ -60,7 +60,6 @@ on:
 permissions:
   contents: write
   pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -69,9 +68,6 @@ concurrency:
 jobs:
   coverage:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: \${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -83,10 +79,14 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install & Run Tests
-        run: |
-          npm ci
-          npm run test:coverage || npm test
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build covpages
+        run: npm run build
+
+      - name: Run Tests with Coverage
+        run: npm run test:coverage
 
       - name: Restore Previous Coverage History
         uses: actions/cache/restore@v4
@@ -96,14 +96,16 @@ jobs:
           restore-keys: |
             covpages-history-
 
-      - name: Generate covpages with History
+      - name: Generate Self-Hosted covpages Report
         run: |
-          npx covpages generate \\
+          node bin/covpages.js generate \\
+            --input coverage/lcov.info \\
             --output covpages-dist \\
             --commit "\${{ github.sha }}" \\
             --branch "\${{ github.ref_name }}" \\
-            --message "\${{ github.event.head_commit.message }}" \\
-            coverage/lcov.info
+            --message "\${{ github.event.head_commit.message || 'Update coverage report' }}" \\
+            --repo "yongjhih/covpages" \\
+            --title "covpages Coverage"
 
       - name: Save Coverage History Cache
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
@@ -119,21 +121,6 @@ jobs:
           github_token: \${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./covpages-dist
           force_orphan: true
-
-      - name: Setup Pages
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        uses: actions/configure-pages@v4
-
-      - name: Upload Artifact
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'covpages-dist'
-
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        id: deployment
-        uses: actions/deploy-pages@v4
 `;
 
 export async function runCli(argv = process.argv.slice(2)): Promise<void> {
