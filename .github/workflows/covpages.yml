@@ -51,6 +51,7 @@ jobs:
           mkdir -p docs/covpages
           cp docs/index.html docs/covpages/index.html
           cp docs/badge.svg docs/covpages/badge.svg
+          cp docs/history.json docs/refs.json docs/lcov.info docs/covpages/ 2>/dev/null || true
           cp -r docs/history docs/covpages/ 2>/dev/null || true
           cp -r docs/badges docs/covpages/ 2>/dev/null || true
           node bin/build-website.js docs

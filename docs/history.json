@@ -4021,8 +4021,8 @@
     "commit": {
       "sha": "a62337aeec8208655b39e4aa865c6ebd4eb13d10",
       "shortSha": "a62337a",
-      "message": "Merge remote-tracking branch 'origin/main'",
-      "author": "yongjhih",
+      "message": "fix: report page JS syntax error and nested base path",
+      "author": "covpages-bot",
       "date": "2026-10-04T17:00:48.000Z",
       "branch": "main"
     },
@@ -4040,10 +4040,10 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 388,
-        "covered": 272,
-        "skipped": 116,
-        "pct": 70.1
+        "total": 389,
+        "covered": 278,
+        "skipped": 111,
+        "pct": 71.47
       }
     },
     "folderSummaries": {
@@ -4061,10 +4061,10 @@
           "pct": 83.61
         },
         "branches": {
-          "total": 388,
-          "covered": 272,
-          "skipped": 116,
-          "pct": 70.1
+          "total": 389,
+          "covered": 278,
+          "skipped": 111,
+          "pct": 71.47
         }
       },
       "src": {
@@ -4081,10 +4081,10 @@
           "pct": 83.61
         },
         "branches": {
-          "total": 388,
-          "covered": 272,
-          "skipped": 116,
-          "pct": 70.1
+          "total": 389,
+          "covered": 278,
+          "skipped": 111,
+          "pct": 71.47
         }
       },
       "src/core": {
@@ -4101,10 +4101,10 @@
           "pct": 91.3
         },
         "branches": {
-          "total": 157,
-          "covered": 119,
-          "skipped": 38,
-          "pct": 75.8
+          "total": 158,
+          "covered": 122,
+          "skipped": 36,
+          "pct": 77.22
         }
       },
       "src/parsers": {
@@ -4182,9 +4182,9 @@
         },
         "branches": {
           "total": 5,
-          "covered": 1,
-          "skipped": 4,
-          "pct": 20
+          "covered": 4,
+          "skipped": 1,
+          "pct": 80
         }
       }
     },
@@ -4344,9 +4344,9 @@
         },
         "branches": {
           "total": 28,
-          "covered": 14,
-          "skipped": 14,
-          "pct": 50
+          "covered": 16,
+          "skipped": 12,
+          "pct": 57.14
         }
       },
       "src/core/history.ts": {
@@ -4363,10 +4363,10 @@
           "pct": 100
         },
         "branches": {
-          "total": 43,
-          "covered": 29,
+          "total": 44,
+          "covered": 30,
           "skipped": 14,
-          "pct": 67.44
+          "pct": 68.18
         }
       },
       "src/core/lcov-normalizer.ts": {
@@ -4664,9 +4664,9 @@
         },
         "branches": {
           "total": 4,
-          "covered": 1,
-          "skipped": 3,
-          "pct": 25
+          "covered": 4,
+          "skipped": 0,
+          "pct": 100
         }
       }
     }

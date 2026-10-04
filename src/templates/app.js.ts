@@ -84,17 +84,14 @@ export const APP_JS = `
   }
 
   function getBasePath() {
-    if (data?.baseUrl) return data.baseUrl.replace(/\/$/, '') + '/';
+    if (data?.baseUrl) return data.baseUrl.replace(/\\/$/, '') + '/';
     if (window.location.protocol === 'file:') return '';
-    const p = window.location.pathname;
-    const clean = p.replace(/\/index\.html$/, '');
-    const segments = clean.split('/').filter(Boolean);
-    if (segments.length > 0) {
-      if (segments[0] === 'covpages' || window.location.hostname.endsWith('github.io')) {
-        return '/' + segments[0] + '/';
-      }
-    }
-    return '/';
+    // Strip a known route suffix so the report works at any mount depth
+    // (e.g. /repo/, /repo/covpages/, /docs/covpages/).
+    const p = window.location.pathname.replace(/index\\.html$/, '');
+    const m = p.match(/^(.*?\\/)(?:tree|blob|commits|trends)(?:\\/|$)/);
+    if (m) return m[1];
+    return p.endsWith('/') ? p : p + '/';
   }
 
   function sanitizeBadgeName(name) {
@@ -241,7 +238,7 @@ export const APP_JS = `
     // 1. SPA redirect query: ?/tree/main/src
     if (window.location.search.startsWith('?/')) {
       const redirect = decodeURIComponent(window.location.search.slice(2));
-      const cleanUrl = getBasePath() + redirect.replace(/^\//, '');
+      const cleanUrl = getBasePath() + redirect.replace(/^\\//, '');
       window.history.replaceState(null, '', cleanUrl);
     }
 
@@ -261,18 +258,18 @@ export const APP_JS = `
     // 3. Subpath relative to getBasePath()
     let subpath = '';
     if (window.location.protocol === 'file:' || hash.startsWith('#/')) {
-      subpath = (hash || '').replace(/^#\/?/, '');
+      subpath = (hash || '').replace(/^#\\/?/, '');
     } else {
       const p = window.location.pathname;
       const base = getBasePath();
       if (p.startsWith(base)) {
         subpath = p.slice(base.length);
       } else {
-        subpath = p.replace(/^\//, '');
+        subpath = p.replace(/^\\//, '');
       }
     }
 
-    subpath = subpath.replace(/\/$/, '');
+    subpath = subpath.replace(/\\/$/, '');
     if (!subpath || subpath === 'index.html') {
       state.activeTab = 'files';
       state.currentFolder = '';
@@ -287,7 +284,7 @@ export const APP_JS = `
     function matchRefAndPath(remainder) {
       for (const rName of allRefNames) {
         if (remainder === rName || remainder.startsWith(rName + '/')) {
-          const rest = remainder.slice(rName.length).replace(/^\//, '');
+          const rest = remainder.slice(rName.length).replace(/^\\//, '');
           const rType = refs.tags[rName] ? 'tag' : 'branch';
           const sha = rType === 'tag' ? refs.tags[rName] : refs.branches[rName];
           return { refName: rName, refType: rType, sha: sha, path: rest };
@@ -322,7 +319,7 @@ export const APP_JS = `
       state.activeTab = 'files';
       ensureExpanded(state.selectedFile);
     } else if (subpath.startsWith('commits')) {
-      const remainder = subpath.slice(7).replace(/^\//, '');
+      const remainder = subpath.slice(7).replace(/^\\//, '');
       if (remainder) {
         const matched = matchRefAndPath(remainder);
         state.activeRefType = matched.refType;
