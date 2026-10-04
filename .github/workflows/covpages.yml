@@ -53,7 +53,8 @@ jobs:
             --branch "${{ github.ref_name }}" \
             --message "${{ github.event.head_commit.message || 'Update coverage report' }}" \
             --repo "yongjhih/covpages" \
-            --title "covpages Coverage"
+            --title "covpages Coverage" \
+            --save-raw
 
       - name: Save Coverage History Cache
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
@@ -68,4 +69,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./covpages-dist
-          force_orphan: true
+          force_orphan: false

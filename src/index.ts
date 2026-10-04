@@ -16,7 +16,10 @@ import {
   saveHistory,
   appendOrUpdateCommit,
   calculateDelta,
+  extractRefs,
+  saveRefs,
 } from './core/history.js';
+import { normalizeLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
 import { renderIndexHtml } from './templates/index.html.js';
 
 export * from './types.js';
@@ -26,6 +29,7 @@ export * from './core/history.js';
 export * from './core/git.js';
 export * from './core/backfill.js';
 export * from './core/presets.js';
+export * from './core/lcov-normalizer.js';
 export * from './server.js';
 export { renderDropinHtml } from './templates/index.html.js';
 
@@ -37,6 +41,7 @@ export function createDropinSite(outputDir = 'gh-pages', title = 'Coverage Repor
   const rendered = renderIndexHtml(null);
   fs.writeFileSync(path.join(dir, 'index.html'), rendered.html, 'utf-8');
   fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');
+  fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
 }
 
 
@@ -57,6 +62,7 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
     author: options.commitAuthor,
     date: options.commitDate,
     branch: options.branch,
+    tag: options.tag,
   });
 
   // 2. Load existing history
@@ -155,8 +161,10 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   // 6. Build Trends across all historical commits (overall, folder, file)
   const trends = buildTrends(commitsHistory);
 
-  // 7. Save updated history
+  // 7. Save updated history and refs
   saveHistory(historyPath, commitsHistory);
+  const refs = extractRefs(commitsHistory);
+  saveRefs(path.join(outputDir, 'refs.json'), refs);
 
   // 8. Assemble CovpagesData
   const repoName = options.repoName || path.basename(rootDir) || 'coverage';
@@ -165,6 +173,7 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   const covpagesData: CovpagesData = {
     title,
     repoName,
+    baseUrl: options.baseUrl,
     generatedAt: new Date().toISOString(),
     currentCommit,
     previousCommit,
@@ -174,15 +183,38 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
     files: aggregated.files,
     folderChildren: aggregated.folderChildren,
     commits: commitsHistory,
+    refs,
     trends,
   };
 
-  // 9. Render and write HTML, JS, CSS, and JSON
+  // 9. Render and write HTML, JS, CSS, JSON, .nojekyll, and .gitattributes
   const rendered = renderIndexHtml(covpagesData);
 
   fs.writeFileSync(path.join(outputDir, 'index.html'), rendered.html, 'utf-8');
   fs.writeFileSync(path.join(outputDir, 'covpages-data.json'), JSON.stringify(covpagesData, null, 2), 'utf-8');
   fs.writeFileSync(path.join(outputDir, 'covpages-data.js'), rendered.dataJs, 'utf-8');
+  fs.writeFileSync(path.join(outputDir, '.nojekyll'), '', 'utf-8');
+  fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
+
+  // 10. Normalize and write lcov.info if an LCOV input file exists
+  for (const inp of inputPaths) {
+    if (inp.endsWith('.info') || inp.endsWith('.lcov')) {
+      try {
+        const rawLcov = fs.readFileSync(path.resolve(inp), 'utf-8');
+        const normalized = normalizeLcov(rawLcov);
+        fs.writeFileSync(path.join(outputDir, 'lcov.info'), normalized, 'utf-8');
+
+        if (options.saveRaw) {
+          const rawDir = path.join(outputDir, 'history', 'lcov');
+          if (!fs.existsSync(rawDir)) {
+            fs.mkdirSync(rawDir, { recursive: true });
+          }
+          fs.writeFileSync(path.join(rawDir, `lcov-${currentCommit.shortSha}.info`), normalized, 'utf-8');
+        }
+      } catch {}
+      break;
+    }
+  }
 
   return covpagesData;
 }

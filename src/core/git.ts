@@ -20,6 +20,7 @@ export function resolveCommitInfo(options?: {
   author?: string;
   date?: string;
   branch?: string;
+  tag?: string;
 }): CommitInfo {
   const cwd = options?.cwd || process.cwd();
 
@@ -29,7 +30,12 @@ export function resolveCommitInfo(options?: {
   let message = options?.message || (process.env.GITHUB_SHA ? '' : runGit('log -1 --pretty=%B', cwd).split('\n')[0]) || 'Initial commit';
   let author = options?.author || process.env.GITHUB_ACTOR || runGit('log -1 --pretty=%an', cwd) || 'developer';
   let date = options?.date || (runGit('log -1 --pretty=%cI', cwd)) || new Date().toISOString();
-  let branch = options?.branch || process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || runGit('rev-parse --abbrev-ref HEAD', cwd) || 'main';
+  let branch = options?.branch || process.env.GITHUB_HEAD_REF || (process.env.GITHUB_REF_TYPE === 'branch' ? process.env.GITHUB_REF_NAME : '') || runGit('rev-parse --abbrev-ref HEAD', cwd) || 'main';
+  let tag = options?.tag || (process.env.GITHUB_REF_TYPE === 'tag' ? process.env.GITHUB_REF_NAME : '') || runGit('describe --tags --exact-match', cwd) || '';
+
+  if (tag) {
+    tag = tag.trim().replace(/^refs\/tags\//, '');
+  }
 
   // Normalize date to ISO string if possible
   try {
@@ -45,5 +51,6 @@ export function resolveCommitInfo(options?: {
     author: author.trim(),
     date,
     branch: branch.trim().replace(/^refs\/heads\//, ''),
+    tag: tag || undefined,
   };
 }

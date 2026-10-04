@@ -56,11 +56,17 @@ export interface TrendPoint {
   message: string;
   author: string;
   branch: string;
+  tag?: string;
   linesPct: number;
   functionsPct: number;
   branchesPct: number;
   linesCovered: number;
   linesTotal: number;
+}
+
+export interface RefMap {
+  branches: Record<string, string>; // branch name -> commit SHA
+  tags: Record<string, string>;     // tag name -> commit SHA
 }
 
 export interface CommitHistoryEntry {
@@ -95,6 +101,7 @@ export interface CoverageReport {
 export interface CovpagesData {
   title: string;
   repoName: string;
+  baseUrl?: string;
   generatedAt: string;
   currentCommit: CommitInfo;
   previousCommit?: CommitInfo;
@@ -115,6 +122,7 @@ export interface CovpagesData {
     files: string[];
   }>;
   commits: CommitHistoryEntry[];
+  refs?: RefMap;
   trends: {
     overall: TrendPoint[];
     folders: Record<string, TrendPoint[]>;
@@ -138,12 +146,15 @@ export interface GenerateOptions {
   format?: SupportedFormat;
   title?: string;
   repoName?: string;
+  baseUrl?: string;
   commitSha?: string;
   commitMessage?: string;
   commitAuthor?: string;
   commitDate?: string;
   branch?: string;
+  tag?: string;
   rootDir?: string;
   includeSource?: boolean;
   maxHistoryCommits?: number;
+  saveRaw?: boolean;
 }

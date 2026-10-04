@@ -12,11 +12,17 @@
   - Native **Light & Dark mode** switching (system auto, manual switch, local preference persistence).
   - Genuine code viewer with gutter line numbers, execution hit counts (`42x`, `0`), and green/red coverage diff highlights.
   - Keyboard shortcuts (`/` for file search, `n` to jump to next uncovered line).
-- **⚡ Zero-Build Drop-in Mode**:
-  - Simply place `index.html` into your `gh-pages` branch.
-  - Drop your `lcov.info` file into the directory (or have CI copy it there: `cp coverage/lcov.info gh-pages/`).
-  - The client-side browser engine fetches and parses `lcov.info` in real time with zero Node runtime required on the hosting side!
-  - Includes interactive drag-and-drop file upload when viewing directly in browser.
+- **🔀 Branch & Tag Coverage Switcher**:
+  - GitHub Primer-style branch and tag selector dropdown with instantaneous search and filtering.
+  - Supports switching between any recorded branch or tag to view its specific coverage metrics and file snapshot.
+  - Deep URL hash routing (`#branch=...`, `#tag=...`, `#file=...`, `#tab=...`) works across all subdirectory deployments.
+- **📦 Git Delta Compression & LCOV Normalization**:
+  - Automatically sorts `SF:` file records alphabetically, orders record details numerically, and enforces strict LF line endings.
+  - Automatically writes `.gitattributes` (`*.info text eol=lf delta`, `*.lcov text eol=lf delta`) to ensure Git packfiles delta-compress historical snapshots with up to 98% space reduction.
+- **📖 Subdirectory & `/docs/covpages` Deployment**:
+  - Deploy directly from the `main` branch under `/docs/covpages` without needing a separate `gh-pages` branch.
+  - Automatically creates `.nojekyll` and uses strictly relative asset paths so your report renders seamlessly at any subpath (e.g. `https://<user>.github.io/<repo>/covpages/`).
+  - Generate docs workflows with `npx covpages init --docs`.
 - **📈 Multi-Commit Coverage Trends**:
   - Track test coverage over time across git commits.
   - **Overall trend chart**: Global line, function, and branch coverage history.
@@ -230,6 +236,10 @@ OPTIONS:
   -m, --message <msg>     Commit message (defaults to git HEAD message)
   -a, --author <author>   Commit author (defaults to git author)
   -b, --branch <branch>   Branch name (defaults to git branch)
+  -t, --tag <tag>         Tag name (defaults to git tag if on tag)
+  --base-url <url>        Base URL for subdirectory hosting (e.g. "/docs/covpages/")
+  --save-raw              Save normalized raw lcov-<sha>.info in history/lcov/
+  --docs                  Target docs/covpages for GitHub Pages deployment
   --date <iso-date>       Commit date (defaults to git date or now)
   --title <title>         Custom title for report
   --repo <name>           Repository name

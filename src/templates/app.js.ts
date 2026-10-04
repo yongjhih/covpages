@@ -9,6 +9,8 @@ export const APP_JS = `
   const icons = Object.assign({
     github: '<svg height="20" aria-hidden="true" viewBox="0 0 16 16" width="20" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>',
     branch: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>',
+    tag: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>',
+    check: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>',
     commit: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>',
     folder: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="#54aeff"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>',
     file: '<svg height="16" aria-hidden="true" viewBox="0 0 16 16" width="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path></svg>',
@@ -25,6 +27,11 @@ export const APP_JS = `
     currentFolder: '',
     selectedFile: null,
     selectedCommitSha: '',
+    activeRefType: 'branch', // 'branch' | 'tag'
+    activeRefName: '',
+    refPopoverOpen: false,
+    refSearchText: '',
+    refActiveTab: 'branches', // 'branches' | 'tags'
     trendScope: 'overall', // 'overall' | 'folder' | 'file'
     trendTarget: '',
     trendMetric: 'linesPct', // 'linesPct' | 'functionsPct' | 'branchesPct'
@@ -38,6 +45,8 @@ export const APP_JS = `
     expandedFolders: new Set(['']),
   };
 
+  let activeView = null;
+
   function ensureExpanded(filePath) {
     if (!filePath) return;
     const parts = filePath.split('/');
@@ -49,16 +58,290 @@ export const APP_JS = `
     }
   }
 
+  function getAvailableRefs() {
+    const branches = {};
+    const tags = {};
+
+    if (data?.refs) {
+      if (data.refs.branches) Object.assign(branches, data.refs.branches);
+      if (data.refs.tags) Object.assign(tags, data.refs.tags);
+    }
+
+    if (Array.isArray(data?.commits)) {
+      for (const c of data.commits) {
+        const info = c.commit;
+        if (info?.branch && !branches[info.branch]) branches[info.branch] = info.sha;
+        if (info?.tag && !tags[info.tag]) tags[info.tag] = info.sha;
+      }
+    }
+
+    if (Object.keys(branches).length === 0) {
+      const b = data?.currentCommit?.branch || 'main';
+      branches[b] = data?.currentCommit?.sha || 'HEAD';
+    }
+
+    return { branches, tags };
+  }
+
+  function parseHash() {
+    const raw = (window.location.hash || '').replace(/^#/, '');
+    if (!raw) return;
+
+    if (raw.includes('=') || raw.includes('&')) {
+      const params = new URLSearchParams(raw);
+      if (params.has('branch')) {
+        state.activeRefType = 'branch';
+        state.activeRefName = params.get('branch') || '';
+        const refs = getAvailableRefs();
+        if (refs.branches[state.activeRefName]) {
+          state.selectedCommitSha = refs.branches[state.activeRefName];
+        }
+      } else if (params.has('tag')) {
+        state.activeRefType = 'tag';
+        state.activeRefName = params.get('tag') || '';
+        const refs = getAvailableRefs();
+        if (refs.tags[state.activeRefName]) {
+          state.selectedCommitSha = refs.tags[state.activeRefName];
+        }
+      }
+      if (params.has('tab')) {
+        const t = params.get('tab');
+        if (t === 'files' || t === 'trends' || t === 'commits') state.activeTab = t;
+      }
+      if (params.has('file')) {
+        state.selectedFile = params.get('file');
+        state.activeTab = 'files';
+        ensureExpanded(state.selectedFile);
+      } else if (params.has('folder')) {
+        state.currentFolder = params.get('folder') || '';
+        state.selectedFile = null;
+        state.activeTab = 'files';
+        ensureExpanded(state.currentFolder);
+      }
+    } else {
+      if (raw === 'trends') {
+        state.activeTab = 'trends';
+      } else if (raw === 'commits') {
+        state.activeTab = 'commits';
+      } else if (raw === 'files') {
+        state.activeTab = 'files';
+        state.selectedFile = null;
+      } else if (raw.startsWith('files/')) {
+        const pathPart = raw.slice(6);
+        state.activeTab = 'files';
+        if (data?.files && data.files[pathPart]) {
+          state.selectedFile = pathPart;
+          ensureExpanded(pathPart);
+        } else {
+          state.currentFolder = pathPart;
+          state.selectedFile = null;
+          ensureExpanded(pathPart);
+        }
+      }
+    }
+  }
+
+  function updateHash() {
+    const params = new URLSearchParams();
+    if (state.activeRefType === 'tag') {
+      params.set('tag', state.activeRefName);
+    } else if (state.activeRefName && state.activeRefName !== 'main') {
+      params.set('branch', state.activeRefName);
+    }
+
+    if (state.activeTab !== 'files') {
+      params.set('tab', state.activeTab);
+    } else if (state.selectedFile) {
+      params.set('file', state.selectedFile);
+    } else if (state.currentFolder) {
+      params.set('folder', state.currentFolder);
+    }
+
+    const str = params.toString();
+    const newHash = str ? '#' + str : '#';
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, '', newHash);
+    }
+  }
+
   function initState() {
     if (data) {
       state.selectedCommitSha = data.currentCommit?.sha || '';
+      if (!state.activeRefName) {
+        if (data.currentCommit?.tag) {
+          state.activeRefType = 'tag';
+          state.activeRefName = data.currentCommit.tag;
+        } else {
+          state.activeRefType = 'branch';
+          state.activeRefName = data.currentCommit?.branch || 'main';
+        }
+      }
       state.expandedFolders.add('');
       if (data.folderChildren?.['']?.subfolders) {
         for (const sf of data.folderChildren[''].subfolders) {
           state.expandedFolders.add(sf);
         }
       }
+      parseHash();
     }
+  }
+
+  function getActiveViewData() {
+    if (!data) return null;
+    const cEntry = data.commits?.find(c => c.commit.sha === state.selectedCommitSha || c.commit.shortSha === state.selectedCommitSha);
+    if (!cEntry || cEntry.commit.sha === data.currentCommit?.sha) {
+      return {
+        commit: data.currentCommit,
+        summary: data.summary,
+        folders: data.folders,
+        files: data.files,
+        folderChildren: data.folderChildren,
+        delta: data.delta,
+      };
+    }
+
+    const folders = {};
+    const files = {};
+    const folderChildren = {};
+
+    const ensureF = (fp) => {
+      if (!folders[fp]) {
+        const parts = fp ? fp.split('/') : [];
+        folders[fp] = {
+          path: fp,
+          name: parts.length > 0 ? parts[parts.length - 1] : 'root',
+          lines: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          branches: { total: 0, covered: 0, skipped: 0, pct: 100 },
+          filesCount: 0,
+          foldersCount: 0,
+        };
+        folderChildren[fp] = { subfolders: new Set(), files: [] };
+      }
+    };
+    ensureF('');
+
+    if (cEntry.folderSummaries) {
+      for (const [fp, sm] of Object.entries(cEntry.folderSummaries)) {
+        ensureF(fp);
+        Object.assign(folders[fp], sm);
+      }
+    }
+    if (cEntry.fileSummaries) {
+      for (const [fp, sm] of Object.entries(cEntry.fileSummaries)) {
+        files[fp] = {
+          path: fp,
+          lines: sm.lines,
+          functions: sm.functions,
+          branches: sm.branches,
+          sourceCode: data.files?.[fp]?.sourceCode,
+          lineDetails: data.files?.[fp]?.lineDetails,
+        };
+        const parts = fp.split('/');
+        const dirParts = parts.slice(0, -1);
+        const imm = dirParts.join('/');
+        let cur = '';
+        ensureF('');
+        for (let i = 0; i < dirParts.length; i++) {
+          const nxt = dirParts.slice(0, i + 1).join('/');
+          ensureF(nxt);
+          folderChildren[cur].subfolders.add(nxt);
+          cur = nxt;
+        }
+        ensureF(imm);
+        folderChildren[imm].files.push(fp);
+      }
+    } else {
+      Object.assign(folders, data.folders);
+      Object.assign(files, data.files);
+      Object.assign(folderChildren, data.folderChildren);
+    }
+
+    const cleanChildren = {};
+    for (const [k, v] of Object.entries(folderChildren)) {
+      cleanChildren[k] = {
+        subfolders: Array.from(v.subfolders || []).sort(),
+        files: (v.files || []).sort(),
+      };
+    }
+
+    return {
+      commit: cEntry.commit,
+      summary: cEntry.summary,
+      folders,
+      files,
+      folderChildren: cleanChildren,
+      delta: null,
+    };
+  }
+
+  function selectRef(refType, refName, refSha) {
+    state.activeRefType = refType;
+    state.activeRefName = refName;
+    state.refPopoverOpen = false;
+    state.refSearchText = '';
+    state.selectedCommitSha = refSha || '';
+    updateHash();
+    render();
+  }
+
+  function renderRefPopover() {
+    const { branches, tags } = getAvailableRefs();
+    const branchNames = Object.keys(branches).sort();
+    const tagNames = Object.keys(tags).sort();
+    const activeTab = state.refActiveTab;
+    const search = state.refSearchText.toLowerCase().trim();
+
+    let list = activeTab === 'branches' ? branchNames : tagNames;
+    if (search) {
+      list = list.filter(item => item.toLowerCase().includes(search));
+    }
+
+    let itemsHtml = '';
+    if (list.length === 0) {
+      itemsHtml = \`<div class="ref-empty">No \${activeTab === 'branches' ? 'branches' : 'tags'} found</div>\`;
+    } else {
+      itemsHtml = list.map(name => {
+        const isCurrent = state.activeRefType === (activeTab === 'branches' ? 'branch' : 'tag') && state.activeRefName === name;
+        const checkIcon = isCurrent ? (icons.check || '✓') : '';
+        const sha = activeTab === 'branches' ? branches[name] : tags[name];
+        const cEntry = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === sha);
+        const covBadge = cEntry ? \`<span class="ref-item-badge \${getRateClass(cEntry.summary.lines.pct)}">\${cEntry.summary.lines.pct}%</span>\` : '';
+
+        return \`
+          <div class="ref-item \${isCurrent ? 'selected active' : ''}" data-ref-type="\${activeTab === 'branches' ? 'branch' : 'tag'}" data-ref-name="\${escapeHtml(name)}" data-ref-sha="\${escapeHtml(sha || '')}" role="option" aria-selected="\${isCurrent}">
+            <span class="ref-item-check">\${checkIcon}</span>
+            <span class="ref-item-name">\${escapeHtml(name)}</span>
+            \${covBadge}
+          </div>
+        \`;
+      }).join('');
+    }
+
+    return \`
+      <div class="ref-popover" id="ref-popover" role="dialog" aria-label="Switch branches or tags">
+        <div class="ref-popover-header">
+          <div class="ref-popover-top">
+            <span class="ref-popover-title">Switch branches/tags</span>
+            <button class="ref-popover-close" id="ref-popover-close" aria-label="Close">✕</button>
+          </div>
+          <div class="ref-search-wrap">
+            <input type="text" class="ref-search-input" id="ref-search-input" placeholder="Filter branches/tags..." value="\${escapeHtml(state.refSearchText)}" aria-label="Filter branches and tags">
+          </div>
+          <div class="ref-tabs" role="tablist">
+            <button class="ref-tab \${activeTab === 'branches' ? 'active' : ''}" data-ref-tab="branches" role="tab" aria-selected="\${activeTab === 'branches'}">
+              Branches (\${branchNames.length})
+            </button>
+            <button class="ref-tab \${activeTab === 'tags' ? 'active' : ''}" data-ref-tab="tags" role="tab" aria-selected="\${activeTab === 'tags'}">
+              Tags (\${tagNames.length})
+            </button>
+          </div>
+        </div>
+        <div class="ref-list" role="listbox">
+          \${itemsHtml}
+        </div>
+      </div>
+    \`;
   }
 
   // Pure client-side LCOV Parser for drop-in static mode
@@ -350,7 +633,7 @@ export const APP_JS = `
   function renderHeader() {
     const isDark = state.theme === 'dark' || (state.theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     const themeIcon = isDark ? icons.sun : icons.moon;
-    const currentC = data.currentCommit;
+    const viewCommit = activeView?.commit || data.currentCommit;
 
     return \`
       <header class="gh-header">
@@ -361,13 +644,17 @@ export const APP_JS = `
             <span class="gh-repo-title">/ \${escapeHtml(data.title || 'Coverage')}</span>
           </a>
           <div class="gh-header-actions">
-            <span class="gh-btn" title="Branch">
-              \${icons.branch || ''}
-              <span>\${escapeHtml(currentC?.branch || 'main')}</span>
-            </span>
+            <div class="ref-selector-wrap">
+              <button class="gh-btn ref-selector-btn" id="ref-selector-btn" title="Switch branches or tags" aria-haspopup="true" aria-expanded="\${state.refPopoverOpen}">
+                \${state.activeRefType === 'tag' ? (icons.tag || '') : (icons.branch || '')}
+                <span class="ref-btn-label">\${escapeHtml(state.activeRefName || viewCommit?.branch || 'main')}</span>
+                <span class="dropdown-caret">▼</span>
+              </button>
+              \${state.refPopoverOpen ? renderRefPopover() : ''}
+            </div>
             <span class="gh-btn" title="Commit">
               \${icons.commit || ''}
-              <span class="commit-sha-badge">\${escapeHtml(currentC?.shortSha || '')}</span>
+              <span class="commit-sha-badge">\${escapeHtml(viewCommit?.shortSha || '')}</span>
             </span>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
               \${themeIcon}
@@ -380,7 +667,7 @@ export const APP_JS = `
           <a class="gh-tab \${state.activeTab === 'files' ? 'active' : ''}" data-tab="files" role="tab" aria-selected="\${state.activeTab === 'files'}">
             \${icons.file || ''}
             <span>Files</span>
-            <span class="counter">\${Object.keys(data.files || {}).length}</span>
+            <span class="counter">\${Object.keys(activeView?.files || data.files || {}).length}</span>
           </a>
           <a class="gh-tab \${state.activeTab === 'trends' ? 'active' : ''}" data-tab="trends" role="tab" aria-selected="\${state.activeTab === 'trends'}">
             \${icons.graph || ''}
@@ -458,7 +745,7 @@ export const APP_JS = `
 
   // Render commit banner
   function renderCommitBanner() {
-    const c = data.currentCommit;
+    const c = activeView?.commit || data.currentCommit;
     if (!c) return '';
     const initial = (c.author || 'D').slice(0, 1).toUpperCase();
 
@@ -669,7 +956,8 @@ export const APP_JS = `
 
   function renderGotoResults() {
     const query = state.gotoFilterText.trim().toLowerCase();
-    const allFiles = Object.keys(data.files || {});
+    const vFiles = activeView?.files || data.files || {};
+    const allFiles = Object.keys(vFiles);
     const matches = allFiles.filter(f => f.toLowerCase().includes(query));
 
     matches.sort((a, b) => {
@@ -692,7 +980,7 @@ export const APP_JS = `
 
     const maxItems = 50;
     const items = matches.slice(0, maxItems).map((filePath, idx) => {
-      const fileCov = data.files[filePath];
+      const fileCov = vFiles[filePath];
       const isSelected = state.selectedFile === filePath;
       const isActive = state.gotoActiveIndex === idx;
       const level = getCovLevel(fileCov.lines.pct);
@@ -713,12 +1001,15 @@ export const APP_JS = `
   }
 
   function renderTreeBranch(folderPath, depth = 0) {
-    const node = data.folderChildren?.[folderPath] || { subfolders: [], files: [] };
+    const vChildren = activeView?.folderChildren || data.folderChildren || {};
+    const vFolders = activeView?.folders || data.folders || {};
+    const vFiles = activeView?.files || data.files || {};
+    const node = vChildren[folderPath] || { subfolders: [], files: [] };
     let html = '';
 
     for (const subfolder of node.subfolders) {
       const isExpanded = state.expandedFolders.has(subfolder);
-      const folderCov = data.folders?.[subfolder];
+      const folderCov = vFolders[subfolder];
       const folderName = subfolder.split('/').pop() || subfolder;
       const isCurrent = state.currentFolder === subfolder && !state.selectedFile;
       const level = folderCov ? getCovLevel(folderCov.lines.pct) : 'high';
@@ -742,7 +1033,7 @@ export const APP_JS = `
     }
 
     for (const filePath of node.files) {
-      const fileCov = data.files?.[filePath];
+      const fileCov = vFiles[filePath];
       if (!fileCov) continue;
       const fileName = filePath.split('/').pop() || filePath;
       const isSelected = state.selectedFile === filePath;
@@ -770,7 +1061,8 @@ export const APP_JS = `
   }
 
   function renderSidebar() {
-    const totalFiles = Object.keys(data.files || {}).length;
+    const vFiles = activeView?.files || data.files || {};
+    const totalFiles = Object.keys(vFiles).length;
     return \`
       <div class="sidebar-header">
         <span class="sidebar-title">
@@ -798,7 +1090,10 @@ export const APP_JS = `
 
   // Render Files and Folders Table
   function renderTable() {
-    const children = data.folderChildren?.[state.currentFolder] || { subfolders: [], files: [] };
+    const vChildren = activeView?.folderChildren || data.folderChildren || {};
+    const vFolders = activeView?.folders || data.folders || {};
+    const vFiles = activeView?.files || data.files || {};
+    const children = vChildren[state.currentFolder] || { subfolders: [], files: [] };
     const query = state.filterText.toLowerCase().trim();
 
     let rows = [];
@@ -806,7 +1101,7 @@ export const APP_JS = `
     children.subfolders.forEach(subPath => {
       const name = subPath.split('/').pop() || subPath;
       if (query && !name.toLowerCase().includes(query) && !subPath.toLowerCase().includes(query)) return;
-      const fCov = data.folders?.[subPath];
+      const fCov = vFolders[subPath];
       if (!fCov) return;
 
       const trendPoints = data.trends?.folders?.[subPath];
@@ -825,7 +1120,7 @@ export const APP_JS = `
     children.files.forEach(filePath => {
       const name = filePath.split('/').pop() || filePath;
       if (query && !name.toLowerCase().includes(query) && !filePath.toLowerCase().includes(query)) return;
-      const fileCov = data.files?.[filePath];
+      const fileCov = vFiles[filePath];
       if (!fileCov) return;
 
       const trendPoints = data.trends?.files?.[filePath];
@@ -932,7 +1227,8 @@ export const APP_JS = `
   // Render Source Code Detail Viewer for a single file
   function renderFileViewer() {
     const filePath = state.selectedFile;
-    const fileCov = data.files?.[filePath];
+    const vFiles = activeView?.files || data.files || {};
+    const fileCov = vFiles[filePath];
     if (!fileCov) return '<div>File not found in coverage report.</div>';
 
     const trendPoints = data.trends?.files?.[filePath] || [];
@@ -1124,9 +1420,9 @@ export const APP_JS = `
             </thead>
             <tbody>
               \${commits.map(c => {
-                const isCurrent = c.commit.sha === data.currentCommit?.sha;
+                const isCurrent = c.commit.sha === (activeView?.commit?.sha || data.currentCommit?.sha);
                 return \`
-                  <tr \${isCurrent ? 'style="background-color: var(--color-accent-subtle);"' : ''}>
+                  <tr data-commit-sha="\${escapeHtml(c.commit.sha)}" style="cursor:pointer;\${isCurrent ? ' background-color: var(--color-accent-subtle);' : ''}" title="Click to view this commit coverage snapshot">
                     <td>
                       <span class="commit-sha-badge">
                         \${icons.commit} \${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}
@@ -1211,6 +1507,8 @@ export const APP_JS = `
       return;
     }
 
+    activeView = getActiveViewData();
+
     let mainContent = '';
 
     if (state.activeTab === 'files') {
@@ -1218,14 +1516,16 @@ export const APP_JS = `
       if (state.selectedFile) {
         mainPane = renderFileViewer();
       } else {
-        const currentFolderCov = data.folders?.[state.currentFolder] || data.summary;
+        const vFolders = activeView?.folders || data.folders || {};
+        const vSummary = activeView?.summary || data.summary;
+        const currentFolderCov = vFolders[state.currentFolder] || vSummary;
         const trendPoints = state.currentFolder 
           ? data.trends?.folders?.[state.currentFolder] 
           : data.trends?.overall;
 
         mainPane = \`
           \${renderCommitBanner()}
-          \${renderMetrics(currentFolderCov, data.delta)}
+          \${renderMetrics(currentFolderCov, activeView?.delta ?? data.delta)}
           \${trendPoints && trendPoints.length > 1 ? renderTrendChart(state.currentFolder ? \`Folder Trend: \${state.currentFolder}\` : 'Overall Coverage Trend', trendPoints, state.trendMetric) : ''}
           \${renderTable()}
         \`;
@@ -1333,6 +1633,103 @@ export const APP_JS = `
         render();
       });
     }
+
+    // Ref selector dropdown
+    const refBtn = document.getElementById('ref-selector-btn');
+    if (refBtn) {
+      refBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.refPopoverOpen = !state.refPopoverOpen;
+        state.refSearchText = '';
+        render();
+        if (state.refPopoverOpen) {
+          const input = document.getElementById('ref-search-input');
+          if (input) input.focus();
+        }
+      });
+    }
+
+    const refCloseBtn = document.getElementById('ref-popover-close');
+    if (refCloseBtn) {
+      refCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.refPopoverOpen = false;
+        render();
+      });
+    }
+
+    document.querySelectorAll('.ref-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.refActiveTab = tab.getAttribute('data-ref-tab');
+        render();
+        const input = document.getElementById('ref-search-input');
+        if (input) input.focus();
+      });
+    });
+
+    const refSearchInput = document.getElementById('ref-search-input');
+    if (refSearchInput) {
+      refSearchInput.addEventListener('click', (e) => e.stopPropagation());
+      refSearchInput.addEventListener('input', (e) => {
+        state.refSearchText = e.target.value;
+        const popoverEl = document.getElementById('ref-popover');
+        if (popoverEl) {
+          popoverEl.outerHTML = renderRefPopover();
+          bindEvents();
+          const inp = document.getElementById('ref-search-input');
+          if (inp) {
+            inp.focus();
+            inp.selectionStart = inp.selectionEnd = inp.value.length;
+          }
+        }
+      });
+    }
+
+    document.querySelectorAll('.ref-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const refType = item.getAttribute('data-ref-type');
+        const refName = item.getAttribute('data-ref-name');
+        const refSha = item.getAttribute('data-ref-sha');
+        selectRef(refType, refName, refSha);
+      });
+    });
+
+    if (state.refPopoverOpen) {
+      const handleOutsideClick = (e) => {
+        if (!e.target.closest('.ref-selector-wrap')) {
+          state.refPopoverOpen = false;
+          document.removeEventListener('click', handleOutsideClick);
+          render();
+        }
+      };
+      setTimeout(() => {
+        document.addEventListener('click', handleOutsideClick);
+      }, 0);
+    }
+
+    // Commits tab click to view commit coverage snapshot
+    document.querySelectorAll('[data-commit-sha]').forEach(row => {
+      row.addEventListener('click', () => {
+        const sha = row.getAttribute('data-commit-sha');
+        state.selectedCommitSha = sha;
+        const found = data?.commits?.find(c => c.commit.sha === sha);
+        if (found) {
+          if (found.commit.tag) {
+            state.activeRefType = 'tag';
+            state.activeRefName = found.commit.tag;
+          } else if (found.commit.branch) {
+            state.activeRefType = 'branch';
+            state.activeRefName = found.commit.branch;
+          }
+        }
+        state.activeTab = 'files';
+        state.selectedFile = null;
+        updateHash();
+        render();
+      });
+    });
 
     // Sidebar toggle and collapse
     const collapseBtn = document.getElementById('sidebar-collapse-btn');
@@ -1442,6 +1839,7 @@ export const APP_JS = `
         state.selectedFile = file;
         state.gotoFilterText = '';
         ensureExpanded(file);
+        updateHash();
         render();
       });
     });
@@ -1468,6 +1866,7 @@ export const APP_JS = `
         state.currentFolder = folder;
         state.selectedFile = null;
         state.expandedFolders.add(folder);
+        updateHash();
         render();
       });
     });
@@ -1478,6 +1877,7 @@ export const APP_JS = `
         const file = el.getAttribute('data-tree-file');
         state.selectedFile = file;
         ensureExpanded(file);
+        updateHash();
         render();
       });
     });
@@ -1489,6 +1889,7 @@ export const APP_JS = `
         state.activeTab = 'files';
         state.currentFolder = '';
         state.selectedFile = null;
+        updateHash();
         render();
       });
     }
@@ -1496,6 +1897,7 @@ export const APP_JS = `
     document.querySelectorAll('.gh-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         state.activeTab = tab.getAttribute('data-tab');
+        updateHash();
         render();
       });
     });
@@ -1505,6 +1907,7 @@ export const APP_JS = `
         const folder = item.getAttribute('data-folder');
         state.currentFolder = folder || '';
         state.selectedFile = null;
+        updateHash();
         render();
       });
     });
@@ -1513,6 +1916,7 @@ export const APP_JS = `
       el.addEventListener('click', () => {
         state.currentFolder = el.getAttribute('data-nav-folder');
         state.selectedFile = null;
+        updateHash();
         render();
       });
     });
@@ -1520,6 +1924,7 @@ export const APP_JS = `
     document.querySelectorAll('[data-nav-file]').forEach(el => {
       el.addEventListener('click', () => {
         state.selectedFile = el.getAttribute('data-nav-file');
+        updateHash();
         render();
       });
     });
@@ -1680,12 +2085,27 @@ export const APP_JS = `
     } else if (e.key === 'n' && state.selectedFile) {
       const jumpBtn = document.getElementById('jump-next-uncovered');
       if (jumpBtn) jumpBtn.click();
+    } else if (e.key === 'Escape' && state.refPopoverOpen) {
+      e.preventDefault();
+      state.refPopoverOpen = false;
+      render();
     }
+  });
+
+  window.addEventListener('hashchange', () => {
+    parseHash();
+    render();
   });
 
   // Dynamic bootstrapping for Drop-in mode
   async function bootstrap() {
     if (data) {
+      if (!data.refs) {
+        try {
+          const rr = await fetch('./refs.json');
+          if (rr.ok) data.refs = await rr.json();
+        } catch {}
+      }
       initState();
       render();
       return;
@@ -1696,6 +2116,12 @@ export const APP_JS = `
       const r = await fetch('./covpages-data.json');
       if (r.ok) {
         data = await r.json();
+        if (!data.refs) {
+          try {
+            const rr = await fetch('./refs.json');
+            if (rr.ok) data.refs = await rr.json();
+          } catch {}
+        }
         initState();
         render();
         return;
@@ -1719,6 +2145,10 @@ export const APP_JS = `
         if (lr.ok) {
           const lcovText = await lr.text();
           data = parseClientLcov(lcovText, historyCommits);
+          try {
+            const rr = await fetch('./refs.json');
+            if (rr.ok) data.refs = await rr.json();
+          } catch {}
           initState();
           render();
           return;
