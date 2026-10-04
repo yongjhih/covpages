@@ -1,12 +1,12 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-04T16:39:56.649Z",
+  "generatedAt": "2026-10-04T16:44:08.334Z",
   "currentCommit": {
     "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
     "shortSha": "7872b53",
-    "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-    "author": "yongjhih",
+    "message": "feat: add devcontainer support and docker-wrapper cli",
+    "author": "covpages-bot",
     "date": "2026-10-04T16:39:37.000Z",
     "branch": "main"
   },
@@ -19,16 +19,16 @@
     "branch": "main"
   },
   "delta": {
-    "linesPct": 0,
+    "linesPct": -0.41,
     "functionsPct": 0,
-    "branchesPct": -0.6
+    "branchesPct": -0.19
   },
   "summary": {
     "lines": {
-      "total": 1795,
-      "covered": 1274,
-      "skipped": 521,
-      "pct": 70.97
+      "total": 1807,
+      "covered": 1275,
+      "skipped": 532,
+      "pct": 70.56
     },
     "functions": {
       "total": 61,
@@ -37,10 +37,10 @@
       "pct": 83.61
     },
     "branches": {
-      "total": 387,
-      "covered": 272,
-      "skipped": 115,
-      "pct": 70.28
+      "total": 389,
+      "covered": 275,
+      "skipped": 114,
+      "pct": 70.69
     }
   },
   "folders": {
@@ -48,10 +48,10 @@
       "path": "",
       "name": "root",
       "lines": {
-        "total": 1795,
-        "covered": 1274,
-        "skipped": 521,
-        "pct": 70.97
+        "total": 1807,
+        "covered": 1275,
+        "skipped": 532,
+        "pct": 70.56
       },
       "functions": {
         "total": 61,
@@ -60,10 +60,10 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 387,
-        "covered": 272,
-        "skipped": 115,
-        "pct": 70.28
+        "total": 389,
+        "covered": 275,
+        "skipped": 114,
+        "pct": 70.69
       },
       "filesCount": 24,
       "foldersCount": 1
@@ -72,10 +72,10 @@
       "path": "src",
       "name": "src",
       "lines": {
-        "total": 1795,
-        "covered": 1274,
-        "skipped": 521,
-        "pct": 70.97
+        "total": 1807,
+        "covered": 1275,
+        "skipped": 532,
+        "pct": 70.56
       },
       "functions": {
         "total": 61,
@@ -84,10 +84,10 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 387,
-        "covered": 272,
-        "skipped": 115,
-        "pct": 70.28
+        "total": 389,
+        "covered": 275,
+        "skipped": 114,
+        "pct": 70.69
       },
       "filesCount": 24,
       "foldersCount": 5
@@ -108,10 +108,10 @@
         "pct": 91.3
       },
       "branches": {
-        "total": 157,
-        "covered": 119,
-        "skipped": 38,
-        "pct": 75.8
+        "total": 158,
+        "covered": 122,
+        "skipped": 36,
+        "pct": 77.22
       },
       "filesCount": 7,
       "foldersCount": 0
@@ -217,10 +217,10 @@
     "src/cli.ts": {
       "path": "src/cli.ts",
       "lines": {
-        "total": 217,
-        "covered": 117,
-        "skipped": 100,
-        "pct": 53.92
+        "total": 229,
+        "covered": 118,
+        "skipped": 111,
+        "pct": 51.53
       },
       "functions": {
         "total": 2,
@@ -229,33 +229,24 @@
         "pct": 100
       },
       "branches": {
-        "total": 33,
+        "total": 34,
         "covered": 13,
-        "skipped": 20,
-        "pct": 39.39
+        "skipped": 21,
+        "pct": 38.24
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
-        "15": {
+        "17": {
           "hits": 1
         },
-        "74": {
+        "77": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 1
           }
-        },
-        "75": {
-          "hits": 2
-        },
-        "76": {
-          "hits": 2
-        },
-        "77": {
-          "hits": 2
         },
         "78": {
           "hits": 2
@@ -332,13 +323,13 @@
         "102": {
           "hits": 2
         },
+        "103": {
+          "hits": 2
+        },
         "104": {
           "hits": 2
         },
         "105": {
-          "hits": 2
-        },
-        "106": {
           "hits": 2
         },
         "107": {
@@ -357,97 +348,97 @@
           "hits": 2
         },
         "112": {
+          "hits": 2
+        },
+        "113": {
+          "hits": 2
+        },
+        "114": {
+          "hits": 2
+        },
+        "115": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
-        },
-        "113": {
-          "hits": 0
-        },
-        "114": {
-          "hits": 0
-        },
-        "115": {
-          "hits": 0
         },
         "116": {
           "hits": 0
         },
+        "117": {
+          "hits": 0
+        },
         "118": {
+          "hits": 0
+        },
+        "119": {
+          "hits": 0
+        },
+        "121": {
           "hits": 2
         },
-        "120": {
+        "123": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "121": {
-          "hits": 0
-        },
-        "122": {
-          "hits": 0
-        },
-        "123": {
+        "124": {
           "hits": 0
         },
         "125": {
-          "hits": 2,
-          "branches": {
-            "total": 1,
-            "taken": 0
-          }
+          "hits": 0
         },
         "126": {
           "hits": 0
         },
-        "127": {
-          "hits": 0
-        },
         "128": {
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 0
+          }
+        },
+        "129": {
           "hits": 0
         },
         "130": {
+          "hits": 0
+        },
+        "131": {
+          "hits": 0
+        },
+        "133": {
           "hits": 2
         },
-        "132": {
+        "135": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "133": {
+        "136": {
           "hits": 15,
           "branches": {
             "total": 2,
             "taken": 2
           }
         },
-        "134": {
+        "137": {
           "hits": 9
         },
-        "135": {
+        "138": {
           "hits": 15
         },
-        "138": {
+        "141": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
-        },
-        "139": {
-          "hits": 0
-        },
-        "140": {
-          "hits": 0
-        },
-        "141": {
-          "hits": 0
         },
         "142": {
           "hits": 0
@@ -467,21 +458,21 @@
         "147": {
           "hits": 0
         },
+        "148": {
+          "hits": 0
+        },
+        "149": {
+          "hits": 0
+        },
         "150": {
+          "hits": 0
+        },
+        "153": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
-        },
-        "151": {
-          "hits": 0
-        },
-        "152": {
-          "hits": 0
-        },
-        "153": {
-          "hits": 0
         },
         "154": {
           "hits": 0
@@ -525,13 +516,13 @@
         "167": {
           "hits": 0
         },
+        "168": {
+          "hits": 0
+        },
         "169": {
           "hits": 0
         },
         "170": {
-          "hits": 0
-        },
-        "171": {
           "hits": 0
         },
         "172": {
@@ -546,21 +537,21 @@
         "175": {
           "hits": 0
         },
+        "176": {
+          "hits": 0
+        },
+        "177": {
+          "hits": 0
+        },
         "178": {
+          "hits": 0
+        },
+        "181": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
-        },
-        "179": {
-          "hits": 0
-        },
-        "180": {
-          "hits": 0
-        },
-        "181": {
-          "hits": 0
         },
         "182": {
           "hits": 0
@@ -595,14 +586,12 @@
         "192": {
           "hits": 0
         },
-        "193": {
-          "hits": 0
-        },
-        "194": {
-          "hits": 0
-        },
         "195": {
-          "hits": 0
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 0
+          }
         },
         "196": {
           "hits": 0
@@ -613,28 +602,26 @@
         "198": {
           "hits": 0
         },
+        "199": {
+          "hits": 0
+        },
+        "200": {
+          "hits": 0
+        },
         "201": {
-          "hits": 2,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
+          "hits": 0
         },
         "202": {
-          "hits": 1
+          "hits": 0
         },
         "203": {
-          "hits": 1
+          "hits": 0
         },
         "204": {
-          "hits": 1
+          "hits": 0
         },
         "205": {
-          "hits": 1,
-          "branches": {
-            "total": 1,
-            "taken": 0
-          }
+          "hits": 0
         },
         "206": {
           "hits": 0
@@ -642,40 +629,36 @@
         "207": {
           "hits": 0
         },
+        "208": {
+          "hits": 0
+        },
         "209": {
-          "hits": 1,
-          "branches": {
-            "total": 2,
-            "taken": 0
-          }
+          "hits": 0
         },
         "210": {
-          "hits": 1
+          "hits": 0
+        },
+        "211": {
+          "hits": 0
         },
         "212": {
-          "hits": 1
+          "hits": 0
         },
         "213": {
-          "hits": 1
+          "hits": 0
         },
         "214": {
-          "hits": 1,
-          "branches": {
-            "total": 1,
-            "taken": 0
-          }
+          "hits": 0
         },
         "215": {
           "hits": 0
         },
-        "216": {
-          "hits": 1
-        },
-        "217": {
-          "hits": 1
-        },
         "218": {
-          "hits": 1
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
         },
         "219": {
           "hits": 1
@@ -683,126 +666,130 @@
         "220": {
           "hits": 1
         },
-        "223": {
-          "hits": 2,
-          "branches": {
-            "total": 1,
-            "taken": 0
-          }
-        },
-        "224": {
-          "hits": 0
-        },
-        "225": {
-          "hits": 0
-        },
-        "226": {
-          "hits": 0
-        },
-        "227": {
-          "hits": 0
-        },
-        "228": {
-          "hits": 0,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
-        },
-        "231": {
+        "221": {
           "hits": 1
         },
-        "232": {
+        "222": {
           "hits": 1,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "233": {
+        "223": {
           "hits": 0
         },
-        "236": {
-          "hits": 2
+        "224": {
+          "hits": 0
         },
-        "237": {
-          "hits": 2,
+        "226": {
+          "hits": 1,
           "branches": {
             "total": 2,
-            "taken": 2
+            "taken": 0
           }
         },
-        "238": {
+        "227": {
           "hits": 1
         },
-        "239": {
+        "229": {
+          "hits": 1
+        },
+        "230": {
+          "hits": 1
+        },
+        "231": {
+          "hits": 1,
+          "branches": {
+            "total": 1,
+            "taken": 0
+          }
+        },
+        "232": {
+          "hits": 0
+        },
+        "233": {
+          "hits": 1
+        },
+        "234": {
+          "hits": 1
+        },
+        "235": {
+          "hits": 1
+        },
+        "236": {
+          "hits": 1
+        },
+        "237": {
           "hits": 1
         },
         "240": {
-          "hits": 1
-        },
-        "241": {
-          "hits": 1
-        },
-        "242": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
+        "241": {
+          "hits": 0
+        },
+        "242": {
+          "hits": 0
+        },
         "243": {
           "hits": 0
         },
         "244": {
+          "hits": 0
+        },
+        "245": {
           "hits": 0,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "247": {
-          "hits": 2,
+        "248": {
+          "hits": 1
+        },
+        "249": {
+          "hits": 1,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "248": {
-          "hits": 0
-        },
-        "249": {
-          "hits": 0
-        },
         "250": {
           "hits": 0
         },
-        "251": {
-          "hits": 0
-        },
-        "252": {
-          "hits": 0
-        },
         "253": {
-          "hits": 0
+          "hits": 2
         },
         "254": {
-          "hits": 0
+          "hits": 2,
+          "branches": {
+            "total": 2,
+            "taken": 2
+          }
         },
         "255": {
-          "hits": 0
+          "hits": 1
         },
         "256": {
-          "hits": 0
+          "hits": 1
         },
         "257": {
-          "hits": 0
+          "hits": 1
         },
         "258": {
-          "hits": 0
+          "hits": 1
         },
         "259": {
-          "hits": 0
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 0
+          }
         },
         "260": {
           "hits": 0
@@ -814,15 +801,12 @@
             "taken": 1
           }
         },
-        "263": {
+        "264": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
-        },
-        "264": {
-          "hits": 0
         },
         "265": {
           "hits": 0
@@ -831,82 +815,87 @@
           "hits": 0
         },
         "267": {
+          "hits": 0
+        },
+        "268": {
+          "hits": 0
+        },
+        "269": {
+          "hits": 0
+        },
+        "270": {
+          "hits": 0
+        },
+        "271": {
+          "hits": 0
+        },
+        "272": {
+          "hits": 0
+        },
+        "273": {
+          "hits": 0
+        },
+        "274": {
+          "hits": 0
+        },
+        "275": {
+          "hits": 0
+        },
+        "276": {
+          "hits": 0
+        },
+        "277": {
+          "hits": 0
+        },
+        "278": {
           "hits": 0,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "269": {
+        "280": {
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 0
+          }
+        },
+        "281": {
+          "hits": 0
+        },
+        "282": {
+          "hits": 0
+        },
+        "283": {
+          "hits": 0
+        },
+        "284": {
+          "hits": 0,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
+        },
+        "286": {
           "hits": 1
         },
-        "271": {
+        "288": {
           "hits": 2,
           "branches": {
             "total": 2,
             "taken": 0
           }
         },
-        "272": {
+        "289": {
           "hits": 0,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "273": {
-          "hits": 1
-        },
-        "275": {
-          "hits": 2
-        },
-        "276": {
-          "hits": 2
-        },
-        "277": {
-          "hits": 2
-        },
-        "278": {
-          "hits": 2
-        },
-        "279": {
-          "hits": 2
-        },
-        "280": {
-          "hits": 2
-        },
-        "281": {
-          "hits": 2
-        },
-        "282": {
-          "hits": 2
-        },
-        "283": {
-          "hits": 2
-        },
-        "284": {
-          "hits": 2
-        },
-        "285": {
-          "hits": 2
-        },
-        "286": {
-          "hits": 2
-        },
-        "287": {
-          "hits": 2
-        },
-        "288": {
-          "hits": 2
-        },
-        "289": {
-          "hits": 2
-        },
         "290": {
-          "hits": 2
-        },
-        "291": {
-          "hits": 2
+          "hits": 1
         },
         "292": {
           "hits": 2
@@ -917,6 +906,9 @@
         "294": {
           "hits": 2
         },
+        "295": {
+          "hits": 2
+        },
         "296": {
           "hits": 2
         },
@@ -924,6 +916,9 @@
           "hits": 2
         },
         "298": {
+          "hits": 2
+        },
+        "299": {
           "hits": 2
         },
         "300": {
@@ -944,78 +939,123 @@
         "305": {
           "hits": 2
         },
+        "306": {
+          "hits": 2
+        },
         "307": {
+          "hits": 2
+        },
+        "308": {
+          "hits": 2
+        },
+        "309": {
+          "hits": 2
+        },
+        "310": {
+          "hits": 2
+        },
+        "311": {
+          "hits": 2
+        },
+        "313": {
+          "hits": 2
+        },
+        "314": {
+          "hits": 2
+        },
+        "315": {
+          "hits": 2
+        },
+        "317": {
+          "hits": 2
+        },
+        "318": {
+          "hits": 2
+        },
+        "319": {
+          "hits": 2
+        },
+        "320": {
+          "hits": 2
+        },
+        "321": {
+          "hits": 2
+        },
+        "322": {
+          "hits": 2
+        },
+        "324": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "308": {
+        "325": {
           "hits": 0
         },
-        "309": {
+        "326": {
           "hits": 0
         },
-        "310": {
+        "327": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "311": {
+        "328": {
           "hits": 1
         },
-        "312": {
+        "329": {
           "hits": 1
         },
-        "313": {
+        "330": {
           "hits": 2,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "314": {
+        "331": {
           "hits": 0
         },
-        "315": {
+        "332": {
           "hits": 0
         },
-        "316": {
+        "333": {
           "hits": 0
         },
-        "317": {
+        "334": {
           "hits": 2
         },
-        "320": {
+        "337": {
           "hits": 1,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "321": {
+        "338": {
           "hits": 0
         },
-        "322": {
+        "339": {
           "hits": 0
         }
       },
       "functionDetails": [
         {
           "name": "runCli",
-          "line": 74,
+          "line": 77,
           "hits": 2
         },
         {
           "name": "strVal",
-          "line": 132,
+          "line": 135,
           "hits": 15
         }
       ],
-      "sourceCode": "import { parseArgs } from 'node:util';\nimport path from 'node:path';\nimport fs from 'node:fs';\nimport {\n  generateCoveragePages,\n  startServer,\n  backfillCommits,\n  createDropinSite,\n  FRAMEWORK_PRESETS,\n  getPreset,\n  generatePresetWorkflow,\n} from './index.js';\nimport type { SupportedFormat } from './types.js';\n\nconst HELP_TEXT = `\ncovpages - Impeccable GitHub-styled Coverage Report for GitHub Pages\n\nUSAGE:\n  covpages [command] [options] [input-files...]\n\nCOMMANDS:\n  generate (default)  Generate coverage static site for GitHub Pages\n  dropin              Generate zero-build drop-in static site (index.html + .nojekyll)\n  backfill            Backfill test coverage across a range of historical git commits\n  presets             View integration guides and workflows for mainstream frameworks\n  serve               Start a local preview web server\n  init                Create a GitHub Actions workflow for GitHub Pages\n  help                Show this help screen\n\nOPTIONS:\n  -i, --input <path>      Input coverage file (lcov.info, cobertura.xml, coverage-summary.json)\n  -o, --output <dir>      Output directory for generated site (default: \"covpages-dist\")\n  -f, --format <type>     Coverage format: lcov | cobertura | json | auto (default: auto)\n  --history <file>        Path to history JSON file (default: \"<output>/history.json\")\n  --history-dir <dir>     Directory containing multiple commit reports (for trends)\n  --commit <sha>          Commit SHA (defaults to git HEAD)\n  -m, --message <msg>     Commit message (defaults to git HEAD message)\n  -a, --author <author>   Commit author (defaults to git author)\n  -b, --branch <branch>   Branch name (defaults to git branch)\n  -t, --tag <tag>         Tag name (defaults to git tag if on tag)\n  --base-url <url>        Base URL for subdirectory hosting (e.g. \"/docs/covpages/\")\n  --save-raw              Save normalized raw lcov-<sha>.info in history/lcov/\n  --docs                  Target docs/covpages for GitHub Pages deployment\n  --date <iso-date>       Commit date (defaults to git date or now)\n  --title <title>         Custom title for report\n  --repo <name>           Repository name\n  --no-source             Exclude embedding source code in report\n  --max-history <number>  Maximum number of history points (default: 100)\n  --range <git-range>     Git revision range for backfill (e.g. HEAD~5..HEAD)\n  -n, --count <number>    Number of commits to backfill (default: 5)\n  --test-cmd <cmd>        Custom test command to run for backfill (e.g. \"npm test\")\n  --coverage-file <path>  Coverage file produced by test command (default: \"coverage/lcov.info\")\n  --framework <name>      Target framework for init/presets (flutter, vitest, jest, rust, python, go, cpp)\n  -p, --port <port>       Port for local preview server (default: 8080)\n  -v, --version           Print version\n  -h, --help              Print help\n\nEXAMPLES:\n  # 1. Zero-build Drop-in: put index.html in gh-pages, then just cp lcov.info!\n  npx covpages dropin gh-pages\n  cp coverage/lcov.info gh-pages/\n\n  # 2. Backfill historical commits to create trend charts immediately\n  npx covpages backfill --range HEAD~10..HEAD --test-cmd \"npm test\"\n\n  # 3. Generate from lcov.info\n  npx covpages coverage/lcov.info\n\n  # 4. View framework integration workflows\n  npx covpages presets flutter\n  npx covpages presets vitest\n`;\n\nexport async function runCli(argv = process.argv.slice(2)): Promise<void> {\n  const options = {\n    input: { type: 'string' as const, short: 'i', multiple: true },\n    output: { type: 'string' as const, short: 'o', default: 'covpages-dist' },\n    format: { type: 'string' as const, short: 'f', default: 'auto' },\n    history: { type: 'string' as const },\n    'history-dir': { type: 'string' as const },\n    commit: { type: 'string' as const },\n    message: { type: 'string' as const, short: 'm' },\n    author: { type: 'string' as const, short: 'a' },\n    branch: { type: 'string' as const, short: 'b' },\n    tag: { type: 'string' as const, short: 't' },\n    'base-url': { type: 'string' as const },\n    'save-raw': { type: 'boolean' as const, default: false },\n    docs: { type: 'boolean' as const, default: false },\n    date: { type: 'string' as const },\n    title: { type: 'string' as const },\n    repo: { type: 'string' as const },\n    'no-source': { type: 'boolean' as const, default: false },\n    'max-history': { type: 'string' as const, default: '100' },\n    range: { type: 'string' as const },\n    count: { type: 'string' as const, short: 'n' },\n    'test-cmd': { type: 'string' as const },\n    'coverage-file': { type: 'string' as const },\n    framework: { type: 'string' as const },\n    port: { type: 'string' as const, short: 'p', default: '8080' },\n    version: { type: 'boolean' as const, short: 'v' },\n    help: { type: 'boolean' as const, short: 'h' },\n  };\n\n  let parsed;\n  try {\n    parsed = parseArgs({\n      args: argv,\n      options,\n      allowPositionals: true,\n      strict: false,\n    });\n  } catch (err: any) {\n    console.error(`Error: ${err.message}`);\n    console.log(HELP_TEXT);\n    process.exit(1);\n  }\n\n  const { values, positionals } = parsed;\n\n  if (values.version) {\n    console.log('covpages v0.1.0');\n    return;\n  }\n\n  if (values.help) {\n    console.log(HELP_TEXT);\n    return;\n  }\n\n  const firstArg = positionals[0];\n\n  const strVal = (v: any, fallback?: string): string | undefined => {\n    if (typeof v === 'string') return v;\n    return fallback;\n  };\n\n  // 1. Drop-in command\n  if (firstArg === 'dropin') {\n    const targetDir = positionals[1] || strVal(values.output, 'gh-pages')!;\n    createDropinSite(targetDir, strVal(values.title, 'Coverage Report'));\n    console.log(`\\n🎉 Zero-build Drop-in site created at: ${path.resolve(targetDir)}/index.html`);\n    console.log('   How to use:');\n    console.log('   1. Put your coverage file (lcov.info) into this directory.');\n    console.log('   2. Push to your \"gh-pages\" branch.');\n    console.log('   3. The page will fetch and parse lcov.info in real time on the client side!\\n');\n    return;\n  }\n\n  // 2. Presets command\n  if (firstArg === 'presets') {\n    const framework = positionals[1] || strVal(values.framework);\n    if (framework) {\n      const preset = getPreset(framework);\n      if (!preset) {\n        console.error(`\\nUnknown framework \"${framework}\". Available presets:`);\n        Object.keys(FRAMEWORK_PRESETS).forEach(k => console.log(` - ${k} (${FRAMEWORK_PRESETS[k].name})`));\n        console.log('');\n        process.exit(1);\n      }\n      console.log(`\\n📘 Framework Preset: ${preset.name}`);\n      console.log(`   Description:   ${preset.description}`);\n      console.log(`   Test Command:  ${preset.testCmd}`);\n      console.log(`   Coverage File: ${preset.coverageFile}\\n`);\n      console.log('--- Ready-to-use GitHub Actions Workflow (.github/workflows/covpages.yml) ---');\n      console.log(generatePresetWorkflow(framework));\n      return;\n    }\n\n    console.log('\\n🌟 Available Framework Presets:\\n');\n    for (const [key, preset] of Object.entries(FRAMEWORK_PRESETS)) {\n      console.log(`  • ${key.padEnd(10)} : ${preset.name.padEnd(32)} (${preset.testCmd})`);\n    }\n    console.log('\\nRun \"npx covpages presets <framework>\" to view full CI workflow and configuration.\\n');\n    return;\n  }\n\n  // 3. Backfill command\n  if (firstArg === 'backfill') {\n    const count = values.count ? parseInt(strVal(values.count)!, 10) : undefined;\n    console.log('\\n⏳ Starting commit backfill process...');\n    try {\n      const result = backfillCommits({\n        range: strVal(values.range),\n        count,\n        testCmd: strVal(values['test-cmd']),\n        coverageFile: strVal(values['coverage-file']),\n        outputDir: strVal(values.output, 'covpages-dist')!,\n        historyFile: strVal(values.history),\n        repoName: strVal(values.repo),\n        title: strVal(values.title),\n      });\n      console.log(`✅ Backfill completed with ${result.commits.length} commits in trend timeline!`);\n    } catch (err: any) {\n      console.error(`\\n❌ Error during backfill: ${err.message}\\n`);\n      process.exit(1);\n    }\n    return;\n  }\n\n  // 4. Init command\n  if (firstArg === 'init') {\n    const framework = strVal(values.framework);\n    const workflowDir = path.resolve('.github/workflows');\n    const workflowPath = path.join(workflowDir, 'covpages.yml');\n    if (!fs.existsSync(workflowDir)) {\n      fs.mkdirSync(workflowDir, { recursive: true });\n    }\n\n    const presetKey = framework && getPreset(framework) ? framework : 'vitest';\n    const workflowContent = generatePresetWorkflow(presetKey, { docs: Boolean(values.docs) });\n\n    fs.writeFileSync(workflowPath, workflowContent, 'utf-8');\n    console.log(`\\n✨ Created GitHub Actions workflow at: ${workflowPath}`);\n    if (values.docs) {\n      console.log('   Configured for GitHub Pages deployment from docs/covpages on main branch!\\n');\n    } else {\n      console.log('   Push to main branch to automatically generate and publish coverage to GitHub Pages!\\n');\n    }\n    return;\n  }\n\n  // 5. Serve command\n  if (firstArg === 'serve') {\n    const targetDir = positionals[1] || strVal(values.output, 'covpages-dist')!;\n    const port = parseInt(strVal(values.port, '8080')!, 10);\n    startServer(targetDir, port);\n    return;\n  }\n\n  // Determine command: if first arg is 'generate', shift it\n  const remainingPositionals = firstArg === 'generate' \n    ? positionals.slice(1) \n    : positionals;\n\n  // Gather inputs\n  const inputs: string[] = [];\n  if (values.input && Array.isArray(values.input)) {\n    for (const item of values.input) {\n      if (typeof item === 'string') inputs.push(item);\n    }\n  }\n  if (remainingPositionals.length > 0) {\n    inputs.push(...remainingPositionals);\n  }\n\n  // Default input if none provided\n  if (inputs.length === 0) {\n    const candidates = [\n      'coverage/lcov.info',\n      'coverage/coverage-final.json',\n      'coverage/coverage-summary.json',\n      'coverage/cobertura-coverage.xml',\n      'lcov.info',\n    ];\n    for (const cand of candidates) {\n      if (fs.existsSync(cand)) {\n        inputs.push(cand);\n        break;\n      }\n    }\n  }\n\n  if (inputs.length === 0) {\n    console.error('Error: No coverage report file specified and default candidates not found.');\n    console.log('Please provide a coverage file (e.g. npx covpages coverage/lcov.info)\\n');\n    process.exit(1);\n  }\n\n  console.log(`\\n🔍 Parsing coverage report from: ${inputs.join(', ')}`);\n\n  const outputDir = values.docs && values.output === 'covpages-dist'\n    ? 'docs/covpages'\n    : strVal(values.output, 'covpages-dist')!;\n\n  try {\n    const result = generateCoveragePages({\n      inputs,\n      outputDir,\n      format: (strVal(values.format, 'auto') as SupportedFormat),\n      historyFile: strVal(values.history),\n      historyDir: strVal(values['history-dir']),\n      commitSha: strVal(values.commit),\n      commitMessage: strVal(values.message),\n      commitAuthor: strVal(values.author),\n      commitDate: strVal(values.date),\n      branch: strVal(values.branch),\n      tag: strVal(values.tag),\n      baseUrl: strVal(values['base-url']),\n      saveRaw: Boolean(values['save-raw']),\n      title: strVal(values.title),\n      repoName: strVal(values.repo),\n      includeSource: !values['no-source'],\n      maxHistoryCommits: parseInt(strVal(values['max-history'], '100')!, 10),\n    });\n\n    const linesPct = result.summary.lines.pct;\n    const fnPct = result.summary.functions.pct;\n    const brPct = result.summary.branches.pct;\n\n    console.log(`\\n✅ covpages generated successfully!`);\n    console.log(`   Output: ${path.resolve(outputDir)}/index.html`);\n    console.log(`   Lines:     ${linesPct}% (${result.summary.lines.covered}/${result.summary.lines.total})`);\n    console.log(`   Functions: ${fnPct}% (${result.summary.functions.covered}/${result.summary.functions.total})`);\n    console.log(`   Branches:  ${brPct}% (${result.summary.branches.covered}/${result.summary.branches.total})`);\n    console.log(`   Commits in trend: ${result.commits.length}`);\n\n    if (result.delta) {\n      const sign = result.delta.linesPct >= 0 ? '+' : '';\n      console.log(`   Delta:     ${sign}${result.delta.linesPct}%\\n`);\n    } else {\n      console.log('');\n    }\n  } catch (err: any) {\n    console.error(`\\n❌ Error generating covpages: ${err.message}\\n`);\n    process.exit(1);\n  }\n}\n\n// Auto-run if executed directly\nif (process.argv[1] && (process.argv[1].endsWith('covpages.js') || process.argv[1].endsWith('cli.ts') || process.argv[1].endsWith('cli.js'))) {\n  runCli();\n}\n"
+      "sourceCode": "import { parseArgs } from 'node:util';\nimport path from 'node:path';\nimport fs from 'node:fs';\nimport { fileURLToPath } from 'node:url';\nimport { spawnSync } from 'node:child_process';\nimport {\n  generateCoveragePages,\n  startServer,\n  backfillCommits,\n  createDropinSite,\n  FRAMEWORK_PRESETS,\n  getPreset,\n  generatePresetWorkflow,\n} from './index.js';\nimport type { SupportedFormat } from './types.js';\n\nconst HELP_TEXT = `\ncovpages - Impeccable GitHub-styled Coverage Report for GitHub Pages\n\nUSAGE:\n  covpages [command] [options] [input-files...]\n\nCOMMANDS:\n  generate (default)  Generate coverage static site for GitHub Pages\n  dropin              Generate zero-build drop-in static site (index.html + .nojekyll)\n  backfill            Backfill test coverage across a range of historical git commits\n  presets             View integration guides and workflows for mainstream frameworks\n  docker              Run, build, or pull covpages inside a container (docker/podman)\n  serve               Start a local preview web server\n  init                Create a GitHub Actions workflow for GitHub Pages\n  help                Show this help screen\n\nOPTIONS:\n  -i, --input <path>      Input coverage file (lcov.info, cobertura.xml, coverage-summary.json)\n  -o, --output <dir>      Output directory for generated site (default: \"covpages-dist\")\n  -f, --format <type>     Coverage format: lcov | cobertura | json | auto (default: auto)\n  --history <file>        Path to history JSON file (default: \"<output>/history.json\")\n  --history-dir <dir>     Directory containing multiple commit reports (for trends)\n  --commit <sha>          Commit SHA (defaults to git HEAD)\n  -m, --message <msg>     Commit message (defaults to git HEAD message)\n  -a, --author <author>   Commit author (defaults to git author)\n  -b, --branch <branch>   Branch name (defaults to git branch)\n  -t, --tag <tag>         Tag name (defaults to git tag if on tag)\n  --base-url <url>        Base URL for subdirectory hosting (e.g. \"/docs/covpages/\")\n  --save-raw              Save normalized raw lcov-<sha>.info in history/lcov/\n  --docs                  Target docs/covpages for GitHub Pages deployment\n  --date <iso-date>       Commit date (defaults to git date or now)\n  --title <title>         Custom title for report\n  --repo <name>           Repository name\n  --no-source             Exclude embedding source code in report\n  --max-history <number>  Maximum number of history points (default: 100)\n  --range <git-range>     Git revision range for backfill (e.g. HEAD~5..HEAD)\n  -n, --count <number>    Number of commits to backfill (default: 5)\n  --test-cmd <cmd>        Custom test command to run for backfill (e.g. \"npm test\")\n  --coverage-file <path>  Coverage file produced by test command (default: \"coverage/lcov.info\")\n  --framework <name>      Target framework for init/presets (flutter, vitest, jest, rust, python, go, cpp)\n  -p, --port <port>       Port for local preview server (default: 8080)\n  -v, --version           Print version\n  -h, --help              Print help\n\nEXAMPLES:\n  # 1. Zero-build Drop-in: put index.html in gh-pages, then just cp lcov.info!\n  npx covpages dropin gh-pages\n  cp coverage/lcov.info gh-pages/\n\n  # 2. Backfill historical commits to create trend charts immediately\n  npx covpages backfill --range HEAD~10..HEAD --test-cmd \"npm test\"\n\n  # 3. Generate from lcov.info\n  npx covpages coverage/lcov.info\n\n  # 4. View framework integration workflows\n  npx covpages presets flutter\n  npx covpages presets vitest\n`;\n\nexport async function runCli(argv = process.argv.slice(2)): Promise<void> {\n  const options = {\n    input: { type: 'string' as const, short: 'i', multiple: true },\n    output: { type: 'string' as const, short: 'o', default: 'covpages-dist' },\n    format: { type: 'string' as const, short: 'f', default: 'auto' },\n    history: { type: 'string' as const },\n    'history-dir': { type: 'string' as const },\n    commit: { type: 'string' as const },\n    message: { type: 'string' as const, short: 'm' },\n    author: { type: 'string' as const, short: 'a' },\n    branch: { type: 'string' as const, short: 'b' },\n    tag: { type: 'string' as const, short: 't' },\n    'base-url': { type: 'string' as const },\n    'save-raw': { type: 'boolean' as const, default: false },\n    docs: { type: 'boolean' as const, default: false },\n    date: { type: 'string' as const },\n    title: { type: 'string' as const },\n    repo: { type: 'string' as const },\n    'no-source': { type: 'boolean' as const, default: false },\n    'max-history': { type: 'string' as const, default: '100' },\n    range: { type: 'string' as const },\n    count: { type: 'string' as const, short: 'n' },\n    'test-cmd': { type: 'string' as const },\n    'coverage-file': { type: 'string' as const },\n    framework: { type: 'string' as const },\n    port: { type: 'string' as const, short: 'p', default: '8080' },\n    version: { type: 'boolean' as const, short: 'v' },\n    help: { type: 'boolean' as const, short: 'h' },\n  };\n\n  let parsed;\n  try {\n    parsed = parseArgs({\n      args: argv,\n      options,\n      allowPositionals: true,\n      strict: false,\n    });\n  } catch (err: any) {\n    console.error(`Error: ${err.message}`);\n    console.log(HELP_TEXT);\n    process.exit(1);\n  }\n\n  const { values, positionals } = parsed;\n\n  if (values.version) {\n    console.log('covpages v0.1.0');\n    return;\n  }\n\n  if (values.help) {\n    console.log(HELP_TEXT);\n    return;\n  }\n\n  const firstArg = positionals[0];\n\n  const strVal = (v: any, fallback?: string): string | undefined => {\n    if (typeof v === 'string') return v;\n    return fallback;\n  };\n\n  // 1. Drop-in command\n  if (firstArg === 'dropin') {\n    const targetDir = positionals[1] || strVal(values.output, 'gh-pages')!;\n    createDropinSite(targetDir, strVal(values.title, 'Coverage Report'));\n    console.log(`\\n🎉 Zero-build Drop-in site created at: ${path.resolve(targetDir)}/index.html`);\n    console.log('   How to use:');\n    console.log('   1. Put your coverage file (lcov.info) into this directory.');\n    console.log('   2. Push to your \"gh-pages\" branch.');\n    console.log('   3. The page will fetch and parse lcov.info in real time on the client side!\\n');\n    return;\n  }\n\n  // 2. Presets command\n  if (firstArg === 'presets') {\n    const framework = positionals[1] || strVal(values.framework);\n    if (framework) {\n      const preset = getPreset(framework);\n      if (!preset) {\n        console.error(`\\nUnknown framework \"${framework}\". Available presets:`);\n        Object.keys(FRAMEWORK_PRESETS).forEach(k => console.log(` - ${k} (${FRAMEWORK_PRESETS[k].name})`));\n        console.log('');\n        process.exit(1);\n      }\n      console.log(`\\n📘 Framework Preset: ${preset.name}`);\n      console.log(`   Description:   ${preset.description}`);\n      console.log(`   Test Command:  ${preset.testCmd}`);\n      console.log(`   Coverage File: ${preset.coverageFile}\\n`);\n      console.log('--- Ready-to-use GitHub Actions Workflow (.github/workflows/covpages.yml) ---');\n      console.log(generatePresetWorkflow(framework));\n      return;\n    }\n\n    console.log('\\n🌟 Available Framework Presets:\\n');\n    for (const [key, preset] of Object.entries(FRAMEWORK_PRESETS)) {\n      console.log(`  • ${key.padEnd(10)} : ${preset.name.padEnd(32)} (${preset.testCmd})`);\n    }\n    console.log('\\nRun \"npx covpages presets <framework>\" to view full CI workflow and configuration.\\n');\n    return;\n  }\n\n  // 3. Docker command\n  if (firstArg === 'docker') {\n    const subCmd = positionals[1] || '--help';\n    const restArgs = positionals.slice(2);\n    const __filename = fileURLToPath(import.meta.url);\n    const __dirname = path.dirname(__filename);\n    const dockerScript = path.resolve(__dirname, '../bin/covpages-docker.sh');\n    const result = spawnSync(dockerScript, [subCmd, ...restArgs], {\n      stdio: 'inherit',\n      env: process.env,\n    });\n    process.exit(result.status ?? 0);\n  }\n\n  // 4. Backfill command\n  if (firstArg === 'backfill') {\n    const count = values.count ? parseInt(strVal(values.count)!, 10) : undefined;\n    console.log('\\n⏳ Starting commit backfill process...');\n    try {\n      const result = backfillCommits({\n        range: strVal(values.range),\n        count,\n        testCmd: strVal(values['test-cmd']),\n        coverageFile: strVal(values['coverage-file']),\n        outputDir: strVal(values.output, 'covpages-dist')!,\n        historyFile: strVal(values.history),\n        repoName: strVal(values.repo),\n        title: strVal(values.title),\n      });\n      console.log(`✅ Backfill completed with ${result.commits.length} commits in trend timeline!`);\n    } catch (err: any) {\n      console.error(`\\n❌ Error during backfill: ${err.message}\\n`);\n      process.exit(1);\n    }\n    return;\n  }\n\n  // 4. Init command\n  if (firstArg === 'init') {\n    const framework = strVal(values.framework);\n    const workflowDir = path.resolve('.github/workflows');\n    const workflowPath = path.join(workflowDir, 'covpages.yml');\n    if (!fs.existsSync(workflowDir)) {\n      fs.mkdirSync(workflowDir, { recursive: true });\n    }\n\n    const presetKey = framework && getPreset(framework) ? framework : 'vitest';\n    const workflowContent = generatePresetWorkflow(presetKey, { docs: Boolean(values.docs) });\n\n    fs.writeFileSync(workflowPath, workflowContent, 'utf-8');\n    console.log(`\\n✨ Created GitHub Actions workflow at: ${workflowPath}`);\n    if (values.docs) {\n      console.log('   Configured for GitHub Pages deployment from docs/covpages on main branch!\\n');\n    } else {\n      console.log('   Push to main branch to automatically generate and publish coverage to GitHub Pages!\\n');\n    }\n    return;\n  }\n\n  // 5. Serve command\n  if (firstArg === 'serve') {\n    const targetDir = positionals[1] || strVal(values.output, 'covpages-dist')!;\n    const port = parseInt(strVal(values.port, '8080')!, 10);\n    startServer(targetDir, port);\n    return;\n  }\n\n  // Determine command: if first arg is 'generate', shift it\n  const remainingPositionals = firstArg === 'generate' \n    ? positionals.slice(1) \n    : positionals;\n\n  // Gather inputs\n  const inputs: string[] = [];\n  if (values.input && Array.isArray(values.input)) {\n    for (const item of values.input) {\n      if (typeof item === 'string') inputs.push(item);\n    }\n  }\n  if (remainingPositionals.length > 0) {\n    inputs.push(...remainingPositionals);\n  }\n\n  // Default input if none provided\n  if (inputs.length === 0) {\n    const candidates = [\n      'coverage/lcov.info',\n      'coverage/coverage-final.json',\n      'coverage/coverage-summary.json',\n      'coverage/cobertura-coverage.xml',\n      'lcov.info',\n    ];\n    for (const cand of candidates) {\n      if (fs.existsSync(cand)) {\n        inputs.push(cand);\n        break;\n      }\n    }\n  }\n\n  if (inputs.length === 0) {\n    console.error('Error: No coverage report file specified and default candidates not found.');\n    console.log('Please provide a coverage file (e.g. npx covpages coverage/lcov.info)\\n');\n    process.exit(1);\n  }\n\n  console.log(`\\n🔍 Parsing coverage report from: ${inputs.join(', ')}`);\n\n  const outputDir = values.docs && values.output === 'covpages-dist'\n    ? 'docs/covpages'\n    : strVal(values.output, 'covpages-dist')!;\n\n  try {\n    const result = generateCoveragePages({\n      inputs,\n      outputDir,\n      format: (strVal(values.format, 'auto') as SupportedFormat),\n      historyFile: strVal(values.history),\n      historyDir: strVal(values['history-dir']),\n      commitSha: strVal(values.commit),\n      commitMessage: strVal(values.message),\n      commitAuthor: strVal(values.author),\n      commitDate: strVal(values.date),\n      branch: strVal(values.branch),\n      tag: strVal(values.tag),\n      baseUrl: strVal(values['base-url']),\n      saveRaw: Boolean(values['save-raw']),\n      title: strVal(values.title),\n      repoName: strVal(values.repo),\n      includeSource: !values['no-source'],\n      maxHistoryCommits: parseInt(strVal(values['max-history'], '100')!, 10),\n    });\n\n    const linesPct = result.summary.lines.pct;\n    const fnPct = result.summary.functions.pct;\n    const brPct = result.summary.branches.pct;\n\n    console.log(`\\n✅ covpages generated successfully!`);\n    console.log(`   Output: ${path.resolve(outputDir)}/index.html`);\n    console.log(`   Lines:     ${linesPct}% (${result.summary.lines.covered}/${result.summary.lines.total})`);\n    console.log(`   Functions: ${fnPct}% (${result.summary.functions.covered}/${result.summary.functions.total})`);\n    console.log(`   Branches:  ${brPct}% (${result.summary.branches.covered}/${result.summary.branches.total})`);\n    console.log(`   Commits in trend: ${result.commits.length}`);\n\n    if (result.delta) {\n      const sign = result.delta.linesPct >= 0 ? '+' : '';\n      console.log(`   Delta:     ${sign}${result.delta.linesPct}%\\n`);\n    } else {\n      console.log('');\n    }\n  } catch (err: any) {\n    console.error(`\\n❌ Error generating covpages: ${err.message}\\n`);\n    process.exit(1);\n  }\n}\n\n// Auto-run if executed directly\nif (process.argv[1] && (process.argv[1].endsWith('covpages.js') || process.argv[1].endsWith('cli.ts') || process.argv[1].endsWith('cli.js'))) {\n  runCli();\n}\n"
     },
     "src/index.ts": {
       "path": "src/index.ts",
@@ -3012,45 +3052,45 @@
       },
       "branches": {
         "total": 28,
-        "covered": 14,
-        "skipped": 14,
-        "pct": 50
+        "covered": 16,
+        "skipped": 12,
+        "pct": 57.14
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 11,
+          "hits": 23,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 11
+          "hits": 23
         },
         "6": {
-          "hits": 11
+          "hits": 23
         },
         "7": {
-          "hits": 11,
+          "hits": 23,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 11
+          "hits": 23
         },
         "9": {
-          "hits": 11
+          "hits": 23
         },
         "10": {
-          "hits": 11
+          "hits": 23
         },
         "11": {
-          "hits": 11,
+          "hits": 23,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3063,7 +3103,7 @@
           "hits": 5
         },
         "14": {
-          "hits": 11
+          "hits": 23
         },
         "16": {
           "hits": 1,
@@ -3086,7 +3126,7 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "29": {
@@ -3096,14 +3136,14 @@
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "31": {
           "hits": 6,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "32": {
@@ -3117,7 +3157,7 @@
           "hits": 6,
           "branches": {
             "total": 5,
-            "taken": 2
+            "taken": 3
           }
         },
         "34": {
@@ -3202,7 +3242,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 11
+          "hits": 23
         },
         {
           "name": "resolveCommitInfo",
@@ -3227,10 +3267,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 43,
-        "covered": 29,
+        "total": 44,
+        "covered": 30,
         "skipped": 14,
-        "pct": 67.44
+        "pct": 68.18
       },
       "lineDetails": {
         "1": {
@@ -3833,8 +3873,8 @@
         "192": {
           "hits": 7,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 3,
+            "taken": 3
           }
         },
         "193": {
@@ -7711,13 +7751,13 @@
         "692": {
           "hits": 1
         },
-        "902": {
+        "912": {
           "hits": 1
         },
-        "960": {
+        "970": {
           "hits": 1
         },
-        "1019": {
+        "1029": {
           "hits": 1
         }
       },
@@ -7728,7 +7768,7 @@
           "hits": 1
         }
       ],
-      "sourceCode": "import { ICONS } from '../templates/icons.js';\n\nexport function renderWebsiteHtml(options: {\n  repo?: string;\n  badgeUrl?: string;\n  liveDemoUrl?: string;\n} = {}): string {\n  const repo = options.repo || 'yongjhih/covpages';\n  const badgeUrl = options.badgeUrl || 'badges/overall.svg';\n  const liveDemoUrl = options.liveDemoUrl || 'covpages/';\n\n  return `<!DOCTYPE html>\n<html lang=\"en\" data-color-mode=\"auto\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"description\" content=\"Covpages - Git-Native, Zero-Server Code Coverage for GitHub Pages with multi-commit trends and scoped SVG badges.\">\n  <meta name=\"color-scheme\" content=\"light dark\">\n  <title>Covpages - Git-Native Coverage for GitHub Pages</title>\n  <style>\n    :root {\n      --color-canvas-default: #ffffff;\n      --color-canvas-subtle: #f6f8fa;\n      --color-border-default: #d0d7de;\n      --color-border-muted: #d8dee4;\n      --color-fg-default: #1f2328;\n      --color-fg-muted: #656d76;\n      --color-accent-fg: #0969da;\n      --color-accent-emphasis: #0969da;\n      --color-success-fg: #1a7f37;\n      --color-success-emphasis: #1f883d;\n      --color-success-subtle: #dafbe1;\n      --color-btn-bg: #f6f8fa;\n      --color-btn-border: #d0d7de;\n      --color-btn-primary-bg: #1f883d;\n      --color-btn-primary-border: rgba(31,35,40,0.15);\n      --font-stack: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif;\n      --font-mono: ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace;\n    }\n\n    [data-color-mode=\"dark\"] {\n      --color-canvas-default: #0d1117;\n      --color-canvas-subtle: #161b22;\n      --color-border-default: #30363d;\n      --color-border-muted: #21262d;\n      --color-fg-default: #e6edf3;\n      --color-fg-muted: #848d97;\n      --color-accent-fg: #2f81f7;\n      --color-accent-emphasis: #1f6feb;\n      --color-success-fg: #3fb950;\n      --color-success-emphasis: #238636;\n      --color-success-subtle: rgba(46,160,67,0.15);\n      --color-btn-bg: #21262d;\n      --color-btn-border: #30363d;\n      --color-btn-primary-bg: #238636;\n      --color-btn-primary-border: rgba(240,246,252,0.1);\n    }\n\n    @media (prefers-color-scheme: dark) {\n      [data-color-mode=\"auto\"] {\n        --color-canvas-default: #0d1117;\n        --color-canvas-subtle: #161b22;\n        --color-border-default: #30363d;\n        --color-border-muted: #21262d;\n        --color-fg-default: #e6edf3;\n        --color-fg-muted: #848d97;\n        --color-accent-fg: #2f81f7;\n        --color-accent-emphasis: #1f6feb;\n        --color-success-fg: #3fb950;\n        --color-success-emphasis: #238636;\n        --color-success-subtle: rgba(46,160,67,0.15);\n        --color-btn-bg: #21262d;\n        --color-btn-border: #30363d;\n        --color-btn-primary-bg: #238636;\n        --color-btn-primary-border: rgba(240,246,252,0.1);\n      }\n    }\n\n    * { box-sizing: border-box; margin: 0; padding: 0; }\n    body {\n      font-family: var(--font-stack);\n      font-size: 14px;\n      line-height: 1.5;\n      color: var(--color-fg-default);\n      background-color: var(--color-canvas-default);\n      -webkit-font-smoothing: antialiased;\n    }\n\n    a { color: var(--color-accent-fg); text-decoration: none; }\n    a:hover { text-decoration: underline; }\n\n    .site-header {\n      position: sticky;\n      top: 0;\n      z-index: 100;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      height: 64px;\n      padding: 0 24px;\n      background-color: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-default);\n    }\n\n    .brand {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n      font-weight: 600;\n      font-size: 16px;\n      color: var(--color-fg-default);\n    }\n    .brand:hover { text-decoration: none; }\n\n    .nav-links {\n      display: flex;\n      align-items: center;\n      gap: 20px;\n    }\n    .nav-link {\n      font-size: 14px;\n      font-weight: 500;\n      color: var(--color-fg-muted);\n    }\n    .nav-link:hover {\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n    .nav-link.active {\n      color: var(--color-fg-default);\n      font-weight: 600;\n    }\n\n    .header-actions {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n    }\n\n    .btn {\n      display: inline-flex;\n      align-items: center;\n      gap: 6px;\n      padding: 6px 14px;\n      font-size: 14px;\n      font-weight: 500;\n      line-height: 20px;\n      border-radius: 6px;\n      cursor: pointer;\n      border: 1px solid var(--color-btn-border);\n      background-color: var(--color-btn-bg);\n      color: var(--color-fg-default);\n      text-decoration: none;\n      transition: 0.15s ease-in-out;\n    }\n    .btn:hover {\n      background-color: var(--color-border-muted);\n      text-decoration: none;\n    }\n    .btn-primary {\n      background-color: var(--color-btn-primary-bg);\n      color: #ffffff !important;\n      border-color: var(--color-btn-primary-border);\n      font-weight: 600;\n    }\n    .btn-primary:hover {\n      opacity: 0.9;\n    }\n    .btn-sm {\n      padding: 3px 10px;\n      font-size: 12px;\n      line-height: 18px;\n    }\n\n    .container {\n      max-width: 1140px;\n      margin: 0 auto;\n      padding: 0 24px;\n    }\n\n    /* Hero Section */\n    .hero {\n      padding: 72px 0 48px;\n      text-align: center;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .hero-pill {\n      display: inline-flex;\n      align-items: center;\n      gap: 8px;\n      padding: 4px 12px;\n      margin-bottom: 24px;\n      font-size: 12px;\n      font-weight: 600;\n      color: var(--color-accent-fg);\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 20px;\n    }\n    .hero h1 {\n      font-size: 44px;\n      font-weight: 800;\n      line-height: 1.15;\n      letter-spacing: -0.5px;\n      margin-bottom: 16px;\n    }\n    .hero p {\n      font-size: 18px;\n      color: var(--color-fg-muted);\n      max-width: 720px;\n      margin: 0 auto 32px;\n      line-height: 1.6;\n    }\n    .hero-ctas {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      gap: 16px;\n      flex-wrap: wrap;\n      margin-bottom: 48px;\n    }\n\n    /* Live Preview Card */\n    .preview-card {\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      overflow: hidden;\n      box-shadow: 0 10px 30px rgba(0,0,0,0.06);\n      text-align: left;\n      margin-top: 16px;\n    }\n    .preview-card-header {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-default);\n    }\n    .preview-title {\n      display: flex;\n      align-items: center;\n      gap: 8px;\n      font-weight: 600;\n      font-size: 13px;\n    }\n    .preview-stats-bar {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n      gap: 16px;\n      padding: 20px 24px;\n      background-color: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .stat-box {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n    .stat-label {\n      font-size: 12px;\n      color: var(--color-fg-muted);\n      text-transform: uppercase;\n      font-weight: 600;\n      letter-spacing: 0.5px;\n    }\n    .stat-value {\n      font-size: 24px;\n      font-weight: 700;\n      color: var(--color-fg-default);\n    }\n    .stat-progress {\n      height: 6px;\n      background: var(--color-border-muted);\n      border-radius: 3px;\n      overflow: hidden;\n      margin-top: 4px;\n    }\n    .stat-fill {\n      height: 100%;\n      background: var(--color-success-emphasis);\n      border-radius: 3px;\n    }\n\n    .preview-actions {\n      padding: 16px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      background-color: var(--color-canvas-subtle);\n      border-top: 1px solid var(--color-border-muted);\n    }\n\n    /* Section Headers */\n    .section {\n      padding: 64px 0;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .section-title {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 8px;\n      text-align: center;\n    }\n    .section-subtitle {\n      font-size: 16px;\n      color: var(--color-fg-muted);\n      text-align: center;\n      margin-bottom: 40px;\n      max-width: 680px;\n      margin-left: auto;\n      margin-right: auto;\n    }\n\n    /* Features Grid */\n    .features-grid {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n      gap: 24px;\n    }\n    .feature-card {\n      padding: 24px;\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    .feature-title {\n      font-size: 16px;\n      font-weight: 600;\n      display: flex;\n      align-items: center;\n      gap: 8px;\n    }\n    .feature-desc {\n      font-size: 14px;\n      color: var(--color-fg-muted);\n      line-height: 1.5;\n    }\n\n    /* Playground / Badges */\n    .badge-builder {\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      padding: 32px;\n      max-width: 800px;\n      margin: 0 auto;\n    }\n    .form-group {\n      margin-bottom: 20px;\n    }\n    .form-label {\n      display: block;\n      font-size: 13px;\n      font-weight: 600;\n      margin-bottom: 6px;\n    }\n    .form-input, .form-select {\n      width: 100%;\n      padding: 8px 12px;\n      font-size: 14px;\n      font-family: var(--font-stack);\n      border: 1px solid var(--color-border-default);\n      border-radius: 6px;\n      background: var(--color-canvas-default);\n      color: var(--color-fg-default);\n    }\n    .badge-preview-box {\n      margin-top: 24px;\n      padding: 20px;\n      background: var(--color-canvas-default);\n      border: 1px solid var(--color-border-default);\n      border-radius: 6px;\n      display: flex;\n      flex-direction: column;\n      gap: 16px;\n      align-items: center;\n    }\n    .badge-img-wrap {\n      padding: 12px;\n    }\n    .code-preview {\n      width: 100%;\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-muted);\n      border-radius: 6px;\n      padding: 12px;\n      font-family: var(--font-mono);\n      font-size: 12px;\n      overflow-x: auto;\n      white-space: pre-wrap;\n      word-break: break-all;\n    }\n\n    /* Benchmarks Table */\n    .benchmarks-table-wrap {\n      overflow-x: auto;\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      padding: 16px;\n      background-color: var(--color-canvas-subtle);\n    }\n    .benchmarks-table {\n      width: 100%;\n      border-collapse: separate;\n      border-spacing: 0;\n      background-color: var(--color-canvas-default);\n      border: 1px solid var(--color-border-muted);\n      border-radius: 6px;\n      overflow: hidden;\n      text-align: left;\n      font-size: 13px;\n    }\n    .benchmarks-table th, .benchmarks-table td {\n      padding: 12px 18px;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .benchmarks-table th {\n      background: var(--color-canvas-subtle);\n      font-weight: 600;\n    }\n    .benchmarks-table tr:last-child td {\n      border-bottom: none;\n    }\n    .highlight-cell {\n      color: var(--color-success-fg);\n      font-weight: 600;\n    }\n\n    /* Code Tabs */\n    .code-tabs {\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      overflow: hidden;\n      max-width: 800px;\n      margin: 0 auto;\n    }\n    .tabs-header {\n      display: flex;\n      background: var(--color-canvas-subtle);\n      border-bottom: 1px solid var(--color-border-default);\n      overflow-x: auto;\n    }\n    .tab-btn {\n      padding: 10px 16px;\n      font-size: 13px;\n      font-weight: 600;\n      color: var(--color-fg-muted);\n      background: none;\n      border: none;\n      cursor: pointer;\n      border-bottom: 2px solid transparent;\n    }\n    .tab-btn.active {\n      color: var(--color-fg-default);\n      border-bottom-color: var(--color-accent-emphasis);\n      background: var(--color-canvas-default);\n    }\n    .tab-content {\n      padding: 20px;\n      background: var(--color-canvas-default);\n      font-family: var(--font-mono);\n      font-size: 13px;\n      line-height: 1.6;\n      overflow-x: auto;\n      white-space: pre;\n    }\n\n    /* Toast */\n    .toast {\n      position: fixed;\n      bottom: 24px;\n      right: 24px;\n      background: #1f2328;\n      color: #ffffff;\n      padding: 10px 18px;\n      border-radius: 6px;\n      font-size: 13px;\n      font-weight: 500;\n      display: none;\n      z-index: 1000;\n      box-shadow: 0 8px 24px rgba(0,0,0,0.2);\n    }\n    [data-color-mode=\"dark\"] .toast {\n      background: #30363d;\n      color: #f0f6fc;\n    }\n\n    /* Footer */\n    .site-footer {\n      padding: 48px 0;\n      text-align: center;\n      color: var(--color-fg-muted);\n      font-size: 13px;\n    }\n  </style>\n</head>\n<body>\n  <!-- Header -->\n  <header class=\"site-header\">\n    <a href=\"#\" class=\"brand\">\n      <svg height=\"24\" viewBox=\"0 0 16 16\" width=\"24\" fill=\"currentColor\">\n        <path d=\"M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z\"></path>\n      </svg>\n      <span>covpages</span>\n      <span style=\"font-size: 11px; padding: 2px 6px; background: var(--color-canvas-subtle); border: 1px solid var(--color-border-default); border-radius: 10px; font-weight: normal;\">v0.1.0</span>\n    </a>\n\n    <nav class=\"nav-links\">\n      <a href=\"#overview\" class=\"nav-link active\">Overview</a>\n      <a href=\"${liveDemoUrl}\" class=\"nav-link\" style=\"color: var(--color-success-fg); font-weight: 600;\">Live Demo ↗</a>\n      <a href=\"#features\" class=\"nav-link\">Features</a>\n      <a href=\"#benchmarks\" class=\"nav-link\">Benchmarks</a>\n      <a href=\"#badges\" class=\"nav-link\">Badges</a>\n      <a href=\"#quickstart\" class=\"nav-link\">Quickstart</a>\n      <a href=\"#react\" class=\"nav-link\">+React</a>\n    </nav>\n\n    <div class=\"header-actions\">\n      <button class=\"btn btn-sm\" id=\"theme-toggle\" title=\"Toggle theme\">🌓 Theme</button>\n      <a href=\"https://github.com/${repo}\" class=\"btn btn-sm\" target=\"_blank\" rel=\"noopener\">GitHub ↗</a>\n      <a href=\"${liveDemoUrl}\" class=\"btn btn-sm btn-primary\">Live Coverage</a>\n    </div>\n  </header>\n\n  <!-- Hero -->\n  <section class=\"hero\" id=\"overview\">\n    <div class=\"container\">\n      <div class=\"hero-pill\">\n        <span>✨ Git-Native</span>\n        <span>•</span>\n        <span>Zero Servers</span>\n        <span>•</span>\n        <span>100% Free for GitHub Pages</span>\n      </div>\n\n      <h1>Git-Native Code Coverage<br>for GitHub Pages</h1>\n      <p>\n        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Impeccable GitHub design with multi-commit trends, scoped SVG badges, and syntax highlighting.\n      </p>\n\n      <div class=\"hero-ctas\">\n        <a href=\"${liveDemoUrl}\" class=\"btn btn-primary\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Explore Live Demo ↗\n        </a>\n        <a href=\"#quickstart\" class=\"btn\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Get Started in 5 Min\n        </a>\n        <a href=\"#badges\" class=\"btn\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Badge Generator\n        </a>\n      </div>\n\n      <!-- Live Preview Card -->\n      <div class=\"preview-card\">\n        <div class=\"preview-card-header\">\n          <div class=\"preview-title\">\n            <svg height=\"16\" viewBox=\"0 0 16 16\" width=\"16\" fill=\"currentColor\">\n              <path d=\"M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z\"></path>\n            </svg>\n            <span>Live Showcase: ${repo} (Branch: main)</span>\n          </div>\n          <div style=\"display:flex; align-items:center; gap:8px;\">\n            <img src=\"${badgeUrl}\" alt=\"Coverage Badge\" height=\"20\" style=\"vertical-align: middle;\">\n          </div>\n        </div>\n\n        <div class=\"preview-stats-bar\">\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Line Coverage</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Functions</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Branches</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Historical Commits</div>\n            <div class=\"stat-value\">Active</div>\n            <div style=\"font-size: 12px; color: var(--color-fg-muted); margin-top: 4px;\">Normalized Git delta</div>\n          </div>\n        </div>\n\n        <div class=\"preview-actions\">\n          <div style=\"font-size: 13px; color: var(--color-fg-muted);\">\n            Explore directory file trees, syntax-highlighted source lines, and commit trends on GitHub Pages.\n          </div>\n          <a href=\"${liveDemoUrl}\" class=\"btn btn-sm btn-primary\">\n            Open Interactive Coverage Viewer ↗\n          </a>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Features -->\n  <section class=\"section\" id=\"features\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Why Choose Covpages?</h2>\n      <p class=\"section-subtitle\">\n        Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.\n      </p>\n\n      <div class=\"features-grid\">\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>📦</span> <span>97.6% Git Delta Compression</span></h3>\n          <p class=\"feature-desc\">\n            Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🏷️</span> <span>Scoped SVG Badges with 1-Click Copy</span></h3>\n          <p class=\"feature-desc\">\n            Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🎨</span> <span>GitHub-Identical UI & Syntax Highlighting</span></h3>\n          <p class=\"feature-desc\">\n            Identical tree/blob routing, keyboard shortcuts (t, n, ESC), line numbers, hit gutters, and Prism.js syntax highlighting for all major languages.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>📈</span> <span>Multi-Commit Trends by Folder & File</span></h3>\n          <p class=\"feature-desc\">\n            Track coverage fluctuations across commits. Inspect trendlines by repository, individual directory, or specific source file.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🧩</span> <span>+React & Component Reusability</span></h3>\n          <p class=\"feature-desc\">\n            Import &lt;Covpages /&gt; directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard &lt;cov-pages&gt; Web Component.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>⚡</span> <span>Zero-Server 1-Click GitHub Actions</span></h3>\n          <p class=\"feature-desc\">\n            Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.\n          </p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Scoped Badges Playground -->\n  <section class=\"section\" id=\"badges\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Interactive Badge Generator</h2>\n      <p class=\"section-subtitle\">\n        Embed live SVG coverage badges into your README.md for your entire project or specific folders.\n      </p>\n\n      <div class=\"badge-builder\">\n        <div class=\"form-group\">\n          <label class=\"form-label\">GitHub Repository</label>\n          <input type=\"text\" id=\"badge-repo\" class=\"form-input\" value=\"${repo}\">\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"form-label\">Scope</label>\n          <select id=\"badge-scope\" class=\"form-select\">\n            <option value=\"overall\">Overall Repository</option>\n            <option value=\"branch\">Branch (e.g. main)</option>\n            <option value=\"folder\">Directory (e.g. src)</option>\n            <option value=\"file\">File (e.g. src/index.ts)</option>\n          </select>\n        </div>\n\n        <div class=\"form-group\" id=\"badge-target-group\" style=\"display: none;\">\n          <label class=\"form-label\" id=\"badge-target-label\">Target Name</label>\n          <input type=\"text\" id=\"badge-target\" class=\"form-input\" value=\"src\">\n        </div>\n\n        <div class=\"badge-preview-box\">\n          <div class=\"badge-img-wrap\">\n            <img id=\"badge-preview-img\" src=\"${badgeUrl}\" alt=\"Badge Preview\" height=\"24\">\n          </div>\n\n          <div class=\"code-preview\" id=\"badge-markdown-code\"></div>\n\n          <div style=\"display:flex; gap:12px;\">\n            <button class=\"btn btn-primary\" id=\"copy-badge-md\">📋 Copy Markdown</button>\n            <button class=\"btn\" id=\"copy-badge-url\">🔗 Copy Badge URL</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Storage & Performance Benchmarks -->\n  <section class=\"section\" id=\"benchmarks\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Storage & Bandwidth Benchmarks</h2>\n      <p class=\"section-subtitle\">\n        Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.\n      </p>\n\n      <div class=\"benchmarks-table-wrap\">\n        <table class=\"benchmarks-table\">\n          <thead>\n            <tr>\n              <th>Storage Strategy (100 Commits)</th>\n              <th>Raw Disk Size</th>\n              <th>Git Packfile Size</th>\n              <th>Compression Ratio</th>\n              <th>Growth / Commit</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>Naive Unnormalized LCOV</td>\n              <td>52.4 MB</td>\n              <td>18.7 MB</td>\n              <td>64.3%</td>\n              <td>~187 KB / commit</td>\n            </tr>\n            <tr style=\"background: var(--color-canvas-subtle);\">\n              <td><strong>Covpages Normalized LCOV</strong></td>\n              <td>52.4 MB</td>\n              <td class=\"highlight-cell\">1.24 MB</td>\n              <td class=\"highlight-cell\">97.6%</td>\n              <td class=\"highlight-cell\">~12.4 KB / commit</td>\n            </tr>\n            <tr>\n              <td><strong>Covpages Compiled history.json</strong></td>\n              <td>2.4 MB</td>\n              <td class=\"highlight-cell\">180 KB</td>\n              <td class=\"highlight-cell\">92.5%</td>\n              <td class=\"highlight-cell\">~1.8 KB / commit</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n      <div style=\"margin-top: 32px;\" class=\"benchmarks-table-wrap\">\n        <table class=\"benchmarks-table\">\n          <thead>\n            <tr>\n              <th>Total Cost of Ownership (TCO)</th>\n              <th>Commercial SaaS (Codecov/Coveralls)</th>\n              <th>Self-Hosted (SonarQube)</th>\n              <th>Covpages (GitHub Pages)</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td><strong>Monthly Cost</strong></td>\n              <td>$10 to $50 / user / month</td>\n              <td>$40 to $200 / mo (Cloud VM + DB)</td>\n              <td class=\"highlight-cell\">$0 / month (100% Free)</td>\n            </tr>\n            <tr>\n              <td><strong>Maintenance Overhead</strong></td>\n              <td>Token rotation, billing setup</td>\n              <td>OS updates, DB migrations</td>\n              <td class=\"highlight-cell\">Zero (Native Git commit)</td>\n            </tr>\n            <tr>\n              <td><strong>Security & Privacy</strong></td>\n              <td>Proprietary third-party SaaS</td>\n              <td>Private, extra attack surface</td>\n              <td class=\"highlight-cell\">100% inside your GitHub Org</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </section>\n\n  <!-- Quickstart -->\n  <section class=\"section\" id=\"quickstart\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Quickstart & Setup</h2>\n      <p class=\"section-subtitle\">\n        Get up and running in under 5 minutes with zero configuration.\n      </p>\n\n      <div class=\"code-tabs\">\n        <div class=\"tabs-header\">\n          <button class=\"tab-btn active\" data-tab=\"tab-cli\">1. Automated CI Setup</button>\n          <button class=\"tab-btn\" data-tab=\"tab-vitest\">Vitest / Jest</button>\n          <button class=\"tab-btn\" data-tab=\"tab-flutter\">Flutter / Dart</button>\n          <button class=\"tab-btn\" data-tab=\"tab-go\">Go</button>\n          <button class=\"tab-btn\" data-tab=\"tab-python\">Python</button>\n          <button class=\"tab-btn\" data-tab=\"tab-rust\">Rust</button>\n        </div>\n\n        <div class=\"tab-content\" id=\"tab-cli\"># 1. Initialize GitHub Actions Workflow in your repository\nnpx covpages init\n\n# 2. Push to GitHub!\ngit add .github/workflows/covpages.yml\ngit commit -m \"ci: add covpages coverage report workflow\"\ngit push origin main\n\n# Your coverage will be automatically published to https://&lt;owner&gt;.github.io/&lt;repo&gt;/</div>\n\n        <div class=\"tab-content\" id=\"tab-vitest\" style=\"display: none;\"># vitest.config.ts\nexport default {\n  test: {\n    coverage: {\n      provider: 'v8',\n      reporter: ['text', 'lcov'],\n    },\n  },\n};\n\n# Run tests and generate covpages\nnpx vitest run --coverage\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-flutter\" style=\"display: none;\"># Run Flutter test coverage\nflutter test --coverage\n\n# Generate Covpages report from coverage/lcov.info\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-go\" style=\"display: none;\"># Run Go tests with coverage profile\ngo test -coverprofile=coverage.out ./...\n\n# Convert or use covpages parser\nnpx covpages generate --input coverage.out --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-python\" style=\"display: none;\"># Run pytest with lcov output\npytest --cov=src --cov-report=lcov:coverage/lcov.info\n\n# Generate Covpages report\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-rust\" style=\"display: none;\"># Install cargo-llvm-cov\ncargo install cargo-llvm-cov\n\n# Run tests and generate lcov\ncargo llvm-cov --lcov --output-path coverage/lcov.info\n\n# Generate Covpages report\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n      </div>\n    </div>\n  </section>\n\n  <!-- React Integration -->\n  <section class=\"section\" id=\"react\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Reusable Component Architecture & React Integration</h2>\n      <p class=\"section-subtitle\">\n        Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.\n      </p>\n\n      <div class=\"code-tabs\">\n        <div class=\"tabs-header\">\n          <button class=\"tab-btn active\">React (Vite / Next.js / Docusaurus)</button>\n        </div>\n        <div class=\"tab-content\">import React, { useState, useEffect } from 'react';\nimport { Covpages } from 'covpages/react';\nimport 'covpages/style.css';\n\nexport function CoveragePortal() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch('/covpages-data.json')\n      .then(res => res.json())\n      .then(setData);\n  }, []);\n\n  if (!data) return &lt;div&gt;Loading coverage report...&lt;/div&gt;;\n\n  return (\n    &lt;div style={{ height: '100vh', width: '100%' }}&gt;\n      &lt;Covpages data={data} theme=\"auto\" initialTab=\"files\" /&gt;\n    &lt;/div&gt;\n  );\n}</div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Toast -->\n  <div id=\"toast\" class=\"toast\">Copied to clipboard!</div>\n\n  <!-- Footer -->\n  <footer class=\"site-footer\">\n    <div class=\"container\">\n      <p>\n        Covpages is open source software released under the <a href=\"https://github.com/${repo}/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener\">MIT License</a>.\n      </p>\n      <p style=\"margin-top: 8px;\">\n        Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.\n      </p>\n    </div>\n  </footer>\n\n  <script>\n    (function() {\n      // Theme Toggle\n      const themeToggle = document.getElementById('theme-toggle');\n      let currentMode = localStorage.getItem('covpages-theme') || 'auto';\n      document.documentElement.setAttribute('data-color-mode', currentMode);\n\n      themeToggle.addEventListener('click', () => {\n        currentMode = currentMode === 'dark' ? 'light' : 'dark';\n        document.documentElement.setAttribute('data-color-mode', currentMode);\n        localStorage.setItem('covpages-theme', currentMode);\n      });\n\n      // Tab switcher\n      const tabBtns = document.querySelectorAll('.tab-btn');\n      tabBtns.forEach(btn => {\n        btn.addEventListener('click', () => {\n          const tabId = btn.getAttribute('data-tab');\n          if (!tabId) return;\n          const container = btn.closest('.code-tabs');\n          container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));\n          container.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');\n          btn.classList.add('active');\n          const target = document.getElementById(tabId);\n          if (target) target.style.display = 'block';\n        });\n      });\n\n      // Toast helper\n      const toast = document.getElementById('toast');\n      function showToast(msg) {\n        toast.textContent = msg;\n        toast.style.display = 'block';\n        setTimeout(() => { toast.style.display = 'none'; }, 2000);\n      }\n\n      // Badge Playground\n      const repoInput = document.getElementById('badge-repo');\n      const scopeSelect = document.getElementById('badge-scope');\n      const targetGroup = document.getElementById('badge-target-group');\n      const targetLabel = document.getElementById('badge-target-label');\n      const targetInput = document.getElementById('badge-target');\n      const previewImg = document.getElementById('badge-preview-img');\n      const mdCode = document.getElementById('badge-markdown-code');\n\n      function sanitizeBadgeName(p) {\n        return p.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/--+/g, '-').toLowerCase();\n      }\n\n      function updateBadgePreview() {\n        const r = repoInput.value.trim() || '${repo}';\n        const scope = scopeSelect.value;\n        const target = targetInput.value.trim();\n\n        if (scope === 'overall') {\n          targetGroup.style.display = 'none';\n        } else {\n          targetGroup.style.display = 'block';\n          targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');\n        }\n\n        let badgeFile = 'badges/overall.svg';\n        let linkPath = '';\n        let altText = 'Coverage';\n\n        if (scope === 'branch') {\n          badgeFile = 'badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';\n          linkPath = 'tree/' + (target || 'main');\n          altText = 'Coverage: ' + (target || 'main');\n        } else if (scope === 'folder') {\n          badgeFile = 'badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';\n          linkPath = 'tree/main/' + (target || 'src');\n          altText = 'Coverage: ' + (target || 'src');\n        } else if (scope === 'file') {\n          badgeFile = 'badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';\n          linkPath = 'blob/main/' + (target || 'src/index.ts');\n          altText = 'Coverage: ' + (target || 'src/index.ts');\n        }\n\n        const origin = window.location.origin;\n        const basePath = window.location.pathname.replace(/\\\\/[^\\\\/]*$/, '/');\n        const fullBadgeUrl = origin + basePath + badgeFile;\n        const fullLinkUrl = origin + basePath + (linkPath ? linkPath : '');\n\n        previewImg.src = badgeFile;\n        const mdSnippet = '[![' + altText + '](' + fullBadgeUrl + ')](' + fullLinkUrl + ')';\n        mdCode.textContent = mdSnippet;\n      }\n\n      scopeSelect.addEventListener('change', updateBadgePreview);\n      repoInput.addEventListener('input', updateBadgePreview);\n      targetInput.addEventListener('input', updateBadgePreview);\n      updateBadgePreview();\n\n      document.getElementById('copy-badge-md').addEventListener('click', () => {\n        navigator.clipboard.writeText(mdCode.textContent).then(() => {\n          showToast('Copied Badge Markdown to clipboard!');\n        });\n      });\n\n      document.getElementById('copy-badge-url').addEventListener('click', () => {\n        navigator.clipboard.writeText(previewImg.src).then(() => {\n          showToast('Copied Badge URL to clipboard!');\n        });\n      });\n    })();\n  </script>\n</body>\n</html>`;\n}\n"
+      "sourceCode": "import { ICONS } from '../templates/icons.js';\n\nexport function renderWebsiteHtml(options: {\n  repo?: string;\n  badgeUrl?: string;\n  liveDemoUrl?: string;\n} = {}): string {\n  const repo = options.repo || 'yongjhih/covpages';\n  const badgeUrl = options.badgeUrl || 'badges/overall.svg';\n  const liveDemoUrl = options.liveDemoUrl || 'covpages/';\n\n  return `<!DOCTYPE html>\n<html lang=\"en\" data-color-mode=\"auto\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"description\" content=\"Covpages - Git-Native, Zero-Server Code Coverage for GitHub Pages with multi-commit trends and scoped SVG badges.\">\n  <meta name=\"color-scheme\" content=\"light dark\">\n  <title>Covpages - Git-Native Coverage for GitHub Pages</title>\n  <style>\n    :root {\n      --color-canvas-default: #ffffff;\n      --color-canvas-subtle: #f6f8fa;\n      --color-border-default: #d0d7de;\n      --color-border-muted: #d8dee4;\n      --color-fg-default: #1f2328;\n      --color-fg-muted: #656d76;\n      --color-accent-fg: #0969da;\n      --color-accent-emphasis: #0969da;\n      --color-success-fg: #1a7f37;\n      --color-success-emphasis: #1f883d;\n      --color-success-subtle: #dafbe1;\n      --color-btn-bg: #f6f8fa;\n      --color-btn-border: #d0d7de;\n      --color-btn-primary-bg: #1f883d;\n      --color-btn-primary-border: rgba(31,35,40,0.15);\n      --font-stack: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans\", Helvetica, Arial, sans-serif;\n      --font-mono: ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace;\n    }\n\n    [data-color-mode=\"dark\"] {\n      --color-canvas-default: #0d1117;\n      --color-canvas-subtle: #161b22;\n      --color-border-default: #30363d;\n      --color-border-muted: #21262d;\n      --color-fg-default: #e6edf3;\n      --color-fg-muted: #848d97;\n      --color-accent-fg: #2f81f7;\n      --color-accent-emphasis: #1f6feb;\n      --color-success-fg: #3fb950;\n      --color-success-emphasis: #238636;\n      --color-success-subtle: rgba(46,160,67,0.15);\n      --color-btn-bg: #21262d;\n      --color-btn-border: #30363d;\n      --color-btn-primary-bg: #238636;\n      --color-btn-primary-border: rgba(240,246,252,0.1);\n    }\n\n    @media (prefers-color-scheme: dark) {\n      [data-color-mode=\"auto\"] {\n        --color-canvas-default: #0d1117;\n        --color-canvas-subtle: #161b22;\n        --color-border-default: #30363d;\n        --color-border-muted: #21262d;\n        --color-fg-default: #e6edf3;\n        --color-fg-muted: #848d97;\n        --color-accent-fg: #2f81f7;\n        --color-accent-emphasis: #1f6feb;\n        --color-success-fg: #3fb950;\n        --color-success-emphasis: #238636;\n        --color-success-subtle: rgba(46,160,67,0.15);\n        --color-btn-bg: #21262d;\n        --color-btn-border: #30363d;\n        --color-btn-primary-bg: #238636;\n        --color-btn-primary-border: rgba(240,246,252,0.1);\n      }\n    }\n\n    * { box-sizing: border-box; margin: 0; padding: 0; }\n    body {\n      font-family: var(--font-stack);\n      font-size: 14px;\n      line-height: 1.5;\n      color: var(--color-fg-default);\n      background-color: var(--color-canvas-default);\n      -webkit-font-smoothing: antialiased;\n    }\n\n    a { color: var(--color-accent-fg); text-decoration: none; }\n    a:hover { text-decoration: underline; }\n\n    .site-header {\n      position: sticky;\n      top: 0;\n      z-index: 100;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      height: 64px;\n      padding: 0 24px;\n      background-color: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-default);\n    }\n\n    .brand {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n      font-weight: 600;\n      font-size: 16px;\n      color: var(--color-fg-default);\n    }\n    .brand:hover { text-decoration: none; }\n\n    .nav-links {\n      display: flex;\n      align-items: center;\n      gap: 20px;\n    }\n    .nav-link {\n      font-size: 14px;\n      font-weight: 500;\n      color: var(--color-fg-muted);\n    }\n    .nav-link:hover {\n      color: var(--color-fg-default);\n      text-decoration: none;\n    }\n    .nav-link.active {\n      color: var(--color-fg-default);\n      font-weight: 600;\n    }\n\n    .header-actions {\n      display: flex;\n      align-items: center;\n      gap: 12px;\n    }\n\n    .btn {\n      display: inline-flex;\n      align-items: center;\n      gap: 6px;\n      padding: 6px 14px;\n      font-size: 14px;\n      font-weight: 500;\n      line-height: 20px;\n      border-radius: 6px;\n      cursor: pointer;\n      border: 1px solid var(--color-btn-border);\n      background-color: var(--color-btn-bg);\n      color: var(--color-fg-default);\n      text-decoration: none;\n      transition: 0.15s ease-in-out;\n    }\n    .btn:hover {\n      background-color: var(--color-border-muted);\n      text-decoration: none;\n    }\n    .btn-primary {\n      background-color: var(--color-btn-primary-bg);\n      color: #ffffff !important;\n      border-color: var(--color-btn-primary-border);\n      font-weight: 600;\n    }\n    .btn-primary:hover {\n      opacity: 0.9;\n    }\n    .btn-sm {\n      padding: 3px 10px;\n      font-size: 12px;\n      line-height: 18px;\n    }\n\n    .container {\n      max-width: 1140px;\n      margin: 0 auto;\n      padding: 0 24px;\n    }\n\n    /* Hero Section */\n    .hero {\n      padding: 72px 0 48px;\n      text-align: center;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .hero-pill {\n      display: inline-flex;\n      align-items: center;\n      gap: 8px;\n      padding: 4px 12px;\n      margin-bottom: 24px;\n      font-size: 12px;\n      font-weight: 600;\n      color: var(--color-accent-fg);\n      background-color: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 20px;\n    }\n    .hero h1 {\n      font-size: 44px;\n      font-weight: 800;\n      line-height: 1.15;\n      letter-spacing: -0.5px;\n      margin-bottom: 16px;\n    }\n    .hero p {\n      font-size: 18px;\n      color: var(--color-fg-muted);\n      max-width: 720px;\n      margin: 0 auto 32px;\n      line-height: 1.6;\n    }\n    .hero-ctas {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      gap: 16px;\n      flex-wrap: wrap;\n      margin-bottom: 48px;\n    }\n\n    /* Live Preview Card */\n    .preview-card {\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      overflow: hidden;\n      box-shadow: 0 10px 30px rgba(0,0,0,0.06);\n      text-align: left;\n      margin-top: 16px;\n    }\n    .preview-card-header {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-default);\n    }\n    .preview-title {\n      display: flex;\n      align-items: center;\n      gap: 8px;\n      font-weight: 600;\n      font-size: 13px;\n    }\n    .preview-stats-bar {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n      gap: 16px;\n      padding: 20px 24px;\n      background-color: var(--color-canvas-default);\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .stat-box {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n    .stat-label {\n      font-size: 12px;\n      color: var(--color-fg-muted);\n      text-transform: uppercase;\n      font-weight: 600;\n      letter-spacing: 0.5px;\n    }\n    .stat-value {\n      font-size: 24px;\n      font-weight: 700;\n      color: var(--color-fg-default);\n    }\n    .stat-progress {\n      height: 6px;\n      background: var(--color-border-muted);\n      border-radius: 3px;\n      overflow: hidden;\n      margin-top: 4px;\n    }\n    .stat-fill {\n      height: 100%;\n      background: var(--color-success-emphasis);\n      border-radius: 3px;\n    }\n\n    .preview-actions {\n      padding: 16px 24px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      background-color: var(--color-canvas-subtle);\n      border-top: 1px solid var(--color-border-muted);\n    }\n\n    /* Section Headers */\n    .section {\n      padding: 64px 0;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .section-title {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 8px;\n      text-align: center;\n    }\n    .section-subtitle {\n      font-size: 16px;\n      color: var(--color-fg-muted);\n      text-align: center;\n      margin-bottom: 40px;\n      max-width: 680px;\n      margin-left: auto;\n      margin-right: auto;\n    }\n\n    /* Features Grid */\n    .features-grid {\n      display: grid;\n      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n      gap: 24px;\n    }\n    .feature-card {\n      padding: 24px;\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    .feature-title {\n      font-size: 16px;\n      font-weight: 600;\n      display: flex;\n      align-items: center;\n      gap: 8px;\n    }\n    .feature-desc {\n      font-size: 14px;\n      color: var(--color-fg-muted);\n      line-height: 1.5;\n    }\n\n    /* Playground / Badges */\n    .badge-builder {\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      padding: 32px;\n      max-width: 800px;\n      margin: 0 auto;\n    }\n    .form-group {\n      margin-bottom: 20px;\n    }\n    .form-label {\n      display: block;\n      font-size: 13px;\n      font-weight: 600;\n      margin-bottom: 6px;\n    }\n    .form-input, .form-select {\n      width: 100%;\n      padding: 8px 12px;\n      font-size: 14px;\n      font-family: var(--font-stack);\n      border: 1px solid var(--color-border-default);\n      border-radius: 6px;\n      background: var(--color-canvas-default);\n      color: var(--color-fg-default);\n    }\n    .badge-preview-box {\n      margin-top: 24px;\n      padding: 20px;\n      background: var(--color-canvas-default);\n      border: 1px solid var(--color-border-default);\n      border-radius: 6px;\n      display: flex;\n      flex-direction: column;\n      gap: 16px;\n      align-items: center;\n    }\n    .badge-img-wrap {\n      padding: 12px;\n    }\n    .code-preview {\n      width: 100%;\n      background: var(--color-canvas-subtle);\n      border: 1px solid var(--color-border-muted);\n      border-radius: 6px;\n      padding: 12px;\n      font-family: var(--font-mono);\n      font-size: 12px;\n      overflow-x: auto;\n      white-space: pre-wrap;\n      word-break: break-all;\n    }\n\n    /* Benchmarks Table */\n    .benchmarks-table-wrap {\n      overflow-x: auto;\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      padding: 16px;\n      background-color: var(--color-canvas-subtle);\n    }\n    .benchmarks-table {\n      width: 100%;\n      border-collapse: separate;\n      border-spacing: 0;\n      background-color: var(--color-canvas-default);\n      border: 1px solid var(--color-border-muted);\n      border-radius: 6px;\n      overflow: hidden;\n      text-align: left;\n      font-size: 13px;\n    }\n    .benchmarks-table th, .benchmarks-table td {\n      padding: 12px 18px;\n      border-bottom: 1px solid var(--color-border-muted);\n    }\n    .benchmarks-table th {\n      background: var(--color-canvas-subtle);\n      font-weight: 600;\n    }\n    .benchmarks-table tr:last-child td {\n      border-bottom: none;\n    }\n    .highlight-cell {\n      color: var(--color-success-fg);\n      font-weight: 600;\n    }\n\n    /* Code Tabs */\n    .code-tabs {\n      border: 1px solid var(--color-border-default);\n      border-radius: 8px;\n      overflow: hidden;\n      max-width: 800px;\n      margin: 0 auto;\n    }\n    .tabs-header {\n      display: flex;\n      background: var(--color-canvas-subtle);\n      border-bottom: 1px solid var(--color-border-default);\n      overflow-x: auto;\n    }\n    .tab-btn {\n      padding: 10px 16px;\n      font-size: 13px;\n      font-weight: 600;\n      color: var(--color-fg-muted);\n      background: none;\n      border: none;\n      cursor: pointer;\n      border-bottom: 2px solid transparent;\n    }\n    .tab-btn.active {\n      color: var(--color-fg-default);\n      border-bottom-color: var(--color-accent-emphasis);\n      background: var(--color-canvas-default);\n    }\n    .tab-content {\n      padding: 20px;\n      background: var(--color-canvas-default);\n      font-family: var(--font-mono);\n      font-size: 13px;\n      line-height: 1.6;\n      overflow-x: auto;\n      white-space: pre;\n    }\n\n    /* Toast */\n    .toast {\n      position: fixed;\n      bottom: 24px;\n      right: 24px;\n      background: #1f2328;\n      color: #ffffff;\n      padding: 10px 18px;\n      border-radius: 6px;\n      font-size: 13px;\n      font-weight: 500;\n      display: none;\n      z-index: 1000;\n      box-shadow: 0 8px 24px rgba(0,0,0,0.2);\n    }\n    [data-color-mode=\"dark\"] .toast {\n      background: #30363d;\n      color: #f0f6fc;\n    }\n\n    /* Footer */\n    .site-footer {\n      padding: 48px 0;\n      text-align: center;\n      color: var(--color-fg-muted);\n      font-size: 13px;\n    }\n  </style>\n</head>\n<body>\n  <!-- Header -->\n  <header class=\"site-header\">\n    <a href=\"#\" class=\"brand\">\n      <svg height=\"24\" viewBox=\"0 0 16 16\" width=\"24\" fill=\"currentColor\">\n        <path d=\"M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z\"></path>\n      </svg>\n      <span>covpages</span>\n      <span style=\"font-size: 11px; padding: 2px 6px; background: var(--color-canvas-subtle); border: 1px solid var(--color-border-default); border-radius: 10px; font-weight: normal;\">v0.1.0</span>\n    </a>\n\n    <nav class=\"nav-links\">\n      <a href=\"#overview\" class=\"nav-link active\">Overview</a>\n      <a href=\"${liveDemoUrl}\" class=\"nav-link\" style=\"color: var(--color-success-fg); font-weight: 600;\">Live Demo ↗</a>\n      <a href=\"#features\" class=\"nav-link\">Features</a>\n      <a href=\"#benchmarks\" class=\"nav-link\">Benchmarks</a>\n      <a href=\"#badges\" class=\"nav-link\">Badges</a>\n      <a href=\"#quickstart\" class=\"nav-link\">Quickstart</a>\n      <a href=\"#react\" class=\"nav-link\">+React</a>\n    </nav>\n\n    <div class=\"header-actions\">\n      <button class=\"btn btn-sm\" id=\"theme-toggle\" title=\"Toggle theme\">🌓 Theme</button>\n      <a href=\"https://github.com/${repo}\" class=\"btn btn-sm\" target=\"_blank\" rel=\"noopener\">GitHub ↗</a>\n      <a href=\"${liveDemoUrl}\" class=\"btn btn-sm btn-primary\">Live Coverage</a>\n    </div>\n  </header>\n\n  <!-- Hero -->\n  <section class=\"hero\" id=\"overview\">\n    <div class=\"container\">\n      <div class=\"hero-pill\">\n        <span>✨ Git-Native</span>\n        <span>•</span>\n        <span>Zero Servers</span>\n        <span>•</span>\n        <span>100% Free for GitHub Pages</span>\n      </div>\n\n      <h1>Git-Native Code Coverage<br>for GitHub Pages</h1>\n      <p>\n        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Impeccable GitHub design with multi-commit trends, scoped SVG badges, and syntax highlighting.\n      </p>\n\n      <div class=\"hero-ctas\">\n        <a href=\"${liveDemoUrl}\" class=\"btn btn-primary\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Explore Live Demo ↗\n        </a>\n        <a href=\"#quickstart\" class=\"btn\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Get Started in 5 Min\n        </a>\n        <a href=\"#badges\" class=\"btn\" style=\"font-size: 15px; padding: 8px 20px;\">\n          Badge Generator\n        </a>\n      </div>\n\n      <!-- Live Preview Card -->\n      <div class=\"preview-card\">\n        <div class=\"preview-card-header\">\n          <div class=\"preview-title\">\n            <svg height=\"16\" viewBox=\"0 0 16 16\" width=\"16\" fill=\"currentColor\">\n              <path d=\"M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z\"></path>\n            </svg>\n            <span>Live Showcase: ${repo} (Branch: main)</span>\n          </div>\n          <div style=\"display:flex; align-items:center; gap:8px;\">\n            <img src=\"${badgeUrl}\" alt=\"Coverage Badge\" height=\"20\" style=\"vertical-align: middle;\">\n          </div>\n        </div>\n\n        <div class=\"preview-stats-bar\">\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Line Coverage</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Functions</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Branches</div>\n            <div class=\"stat-value\">50.0%</div>\n            <div class=\"stat-progress\"><div class=\"stat-fill\" style=\"width: 50%;\"></div></div>\n          </div>\n          <div class=\"stat-box\">\n            <div class=\"stat-label\">Historical Commits</div>\n            <div class=\"stat-value\">Active</div>\n            <div style=\"font-size: 12px; color: var(--color-fg-muted); margin-top: 4px;\">Normalized Git delta</div>\n          </div>\n        </div>\n\n        <div class=\"preview-actions\">\n          <div style=\"font-size: 13px; color: var(--color-fg-muted);\">\n            Explore directory file trees, syntax-highlighted source lines, and commit trends on GitHub Pages.\n          </div>\n          <a href=\"${liveDemoUrl}\" class=\"btn btn-sm btn-primary\">\n            Open Interactive Coverage Viewer ↗\n          </a>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Features -->\n  <section class=\"section\" id=\"features\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Why Choose Covpages?</h2>\n      <p class=\"section-subtitle\">\n        Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.\n      </p>\n\n      <div class=\"features-grid\">\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>📦</span> <span>97.6% Git Delta Compression</span></h3>\n          <p class=\"feature-desc\">\n            Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🏷️</span> <span>Scoped SVG Badges with 1-Click Copy</span></h3>\n          <p class=\"feature-desc\">\n            Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🎨</span> <span>GitHub-Identical UI & Syntax Highlighting</span></h3>\n          <p class=\"feature-desc\">\n            Identical tree/blob routing, keyboard shortcuts (t, n, ESC), line numbers, hit gutters, and Prism.js syntax highlighting for all major languages.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>📈</span> <span>Multi-Commit Trends by Folder & File</span></h3>\n          <p class=\"feature-desc\">\n            Track coverage fluctuations across commits. Inspect trendlines by repository, individual directory, or specific source file.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>🧩</span> <span>+React & Component Reusability</span></h3>\n          <p class=\"feature-desc\">\n            Import &lt;Covpages /&gt; directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard &lt;cov-pages&gt; Web Component.\n          </p>\n        </div>\n\n        <div class=\"feature-card\">\n          <h3 class=\"feature-title\"><span>⚡</span> <span>Zero-Server 1-Click GitHub Actions</span></h3>\n          <p class=\"feature-desc\">\n            Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.\n          </p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Scoped Badges Playground -->\n  <section class=\"section\" id=\"badges\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Interactive Badge Generator</h2>\n      <p class=\"section-subtitle\">\n        Embed live SVG coverage badges into your README.md for your entire project or specific folders.\n      </p>\n\n      <div class=\"badge-builder\">\n        <div class=\"form-group\">\n          <label class=\"form-label\">GitHub Repository</label>\n          <input type=\"text\" id=\"badge-repo\" class=\"form-input\" value=\"${repo}\">\n        </div>\n\n        <div class=\"form-group\">\n          <label class=\"form-label\">Scope</label>\n          <select id=\"badge-scope\" class=\"form-select\">\n            <option value=\"overall\">Overall Repository</option>\n            <option value=\"branch\">Branch (e.g. main)</option>\n            <option value=\"folder\">Directory (e.g. src)</option>\n            <option value=\"file\">File (e.g. src/index.ts)</option>\n          </select>\n        </div>\n\n        <div class=\"form-group\" id=\"badge-target-group\" style=\"display: none;\">\n          <label class=\"form-label\" id=\"badge-target-label\">Target Name</label>\n          <input type=\"text\" id=\"badge-target\" class=\"form-input\" value=\"src\">\n        </div>\n\n        <div class=\"badge-preview-box\">\n          <div class=\"badge-img-wrap\">\n            <img id=\"badge-preview-img\" src=\"${badgeUrl}\" alt=\"Badge Preview\" height=\"24\">\n          </div>\n\n          <div class=\"code-preview\" id=\"badge-markdown-code\"></div>\n\n          <div style=\"display:flex; gap:12px;\">\n            <button class=\"btn btn-primary\" id=\"copy-badge-md\">📋 Copy Markdown</button>\n            <button class=\"btn\" id=\"copy-badge-url\">🔗 Copy Badge URL</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Storage & Performance Benchmarks -->\n  <section class=\"section\" id=\"benchmarks\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Storage & Bandwidth Benchmarks</h2>\n      <p class=\"section-subtitle\">\n        Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.\n      </p>\n\n      <div class=\"benchmarks-table-wrap\">\n        <table class=\"benchmarks-table\">\n          <thead>\n            <tr>\n              <th>Storage Strategy (100 Commits)</th>\n              <th>Raw Disk Size</th>\n              <th>Git Packfile Size</th>\n              <th>Compression Ratio</th>\n              <th>Growth / Commit</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>Naive Unnormalized LCOV</td>\n              <td>52.4 MB</td>\n              <td>18.7 MB</td>\n              <td>64.3%</td>\n              <td>~187 KB / commit</td>\n            </tr>\n            <tr style=\"background: var(--color-canvas-subtle);\">\n              <td><strong>Covpages Normalized LCOV</strong></td>\n              <td>52.4 MB</td>\n              <td class=\"highlight-cell\">1.24 MB</td>\n              <td class=\"highlight-cell\">97.6%</td>\n              <td class=\"highlight-cell\">~12.4 KB / commit</td>\n            </tr>\n            <tr>\n              <td><strong>Covpages Compiled history.json</strong></td>\n              <td>2.4 MB</td>\n              <td class=\"highlight-cell\">180 KB</td>\n              <td class=\"highlight-cell\">92.5%</td>\n              <td class=\"highlight-cell\">~1.8 KB / commit</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n      <div style=\"margin-top: 32px;\" class=\"benchmarks-table-wrap\">\n        <table class=\"benchmarks-table\">\n          <thead>\n            <tr>\n              <th>Total Cost of Ownership (TCO)</th>\n              <th>Commercial SaaS (Codecov/Coveralls)</th>\n              <th>Self-Hosted (SonarQube)</th>\n              <th>Covpages (GitHub Pages)</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td><strong>Monthly Cost</strong></td>\n              <td>$10 to $50 / user / month</td>\n              <td>$40 to $200 / mo (Cloud VM + DB)</td>\n              <td class=\"highlight-cell\">$0 / month (100% Free)</td>\n            </tr>\n            <tr>\n              <td><strong>Maintenance Overhead</strong></td>\n              <td>Token rotation, billing setup</td>\n              <td>OS updates, DB migrations</td>\n              <td class=\"highlight-cell\">Zero (Native Git commit)</td>\n            </tr>\n            <tr>\n              <td><strong>Security & Privacy</strong></td>\n              <td>Proprietary third-party SaaS</td>\n              <td>Private, extra attack surface</td>\n              <td class=\"highlight-cell\">100% inside your GitHub Org</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </section>\n\n  <!-- Quickstart -->\n  <section class=\"section\" id=\"quickstart\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Quickstart & Setup</h2>\n      <p class=\"section-subtitle\">\n        Get up and running in under 5 minutes with zero configuration.\n      </p>\n\n      <div class=\"code-tabs\">\n        <div class=\"tabs-header\">\n          <button class=\"tab-btn active\" data-tab=\"tab-cli\">1. Automated CI Setup</button>\n          <button class=\"tab-btn\" data-tab=\"tab-vitest\">Vitest / Jest</button>\n          <button class=\"tab-btn\" data-tab=\"tab-flutter\">Flutter / Dart</button>\n          <button class=\"tab-btn\" data-tab=\"tab-go\">Go</button>\n          <button class=\"tab-btn\" data-tab=\"tab-python\">Python</button>\n          <button class=\"tab-btn\" data-tab=\"tab-rust\">Rust</button>\n          <button class=\"tab-btn\" data-tab=\"tab-docker\">Docker / Container</button>\n        </div>\n\n        <div class=\"tab-content\" id=\"tab-cli\"># 1. Initialize GitHub Actions Workflow in your repository\nnpx covpages init\n\n# 2. Push to GitHub!\ngit add .github/workflows/covpages.yml\ngit commit -m \"ci: add covpages coverage report workflow\"\ngit push origin main\n\n# Your coverage will be automatically published to https://&lt;owner&gt;.github.io/&lt;repo&gt;/</div>\n\n        <div class=\"tab-content\" id=\"tab-vitest\" style=\"display: none;\"># vitest.config.ts\nexport default {\n  test: {\n    coverage: {\n      provider: 'v8',\n      reporter: ['text', 'lcov'],\n    },\n  },\n};\n\n# Run tests and generate covpages\nnpx vitest run --coverage\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-flutter\" style=\"display: none;\"># Run Flutter test coverage\nflutter test --coverage\n\n# Generate Covpages report from coverage/lcov.info\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-go\" style=\"display: none;\"># Run Go tests with coverage profile\ngo test -coverprofile=coverage.out ./...\n\n# Convert or use covpages parser\nnpx covpages generate --input coverage.out --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-python\" style=\"display: none;\"># Run pytest with lcov output\npytest --cov=src --cov-report=lcov:coverage/lcov.info\n\n# Generate Covpages report\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-rust\" style=\"display: none;\"># Install cargo-llvm-cov\ncargo install cargo-llvm-cov\n\n# Run tests and generate lcov\ncargo llvm-cov --lcov --output-path coverage/lcov.info\n\n# Generate Covpages report\nnpx covpages generate --input coverage/lcov.info --output docs/covpages</div>\n\n        <div class=\"tab-content\" id=\"tab-docker\" style=\"display: none;\"># Run via Docker-wrapper CLI (Zero Node.js required on host)\n./bin/covpages-docker.sh generate --input coverage/lcov.info --output docs/covpages\n\n# Or run official container image directly\ndocker run --rm -v \"$PWD:/workspace\" -w /workspace \\\n  ghcr.io/yongjhih/covpages:latest generate --input coverage/lcov.info --output docs/covpages\n\n# Devcontainer: open directly in VS Code or GitHub Codespaces via .devcontainer/</div>\n      </div>\n    </div>\n  </section>\n\n  <!-- React Integration -->\n  <section class=\"section\" id=\"react\">\n    <div class=\"container\">\n      <h2 class=\"section-title\">Reusable Component Architecture & React Integration</h2>\n      <p class=\"section-subtitle\">\n        Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.\n      </p>\n\n      <div class=\"code-tabs\">\n        <div class=\"tabs-header\">\n          <button class=\"tab-btn active\">React (Vite / Next.js / Docusaurus)</button>\n        </div>\n        <div class=\"tab-content\">import React, { useState, useEffect } from 'react';\nimport { Covpages } from 'covpages/react';\nimport 'covpages/style.css';\n\nexport function CoveragePortal() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch('/covpages-data.json')\n      .then(res => res.json())\n      .then(setData);\n  }, []);\n\n  if (!data) return &lt;div&gt;Loading coverage report...&lt;/div&gt;;\n\n  return (\n    &lt;div style={{ height: '100vh', width: '100%' }}&gt;\n      &lt;Covpages data={data} theme=\"auto\" initialTab=\"files\" /&gt;\n    &lt;/div&gt;\n  );\n}</div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Toast -->\n  <div id=\"toast\" class=\"toast\">Copied to clipboard!</div>\n\n  <!-- Footer -->\n  <footer class=\"site-footer\">\n    <div class=\"container\">\n      <p>\n        Covpages is open source software released under the <a href=\"https://github.com/${repo}/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener\">MIT License</a>.\n      </p>\n      <p style=\"margin-top: 8px;\">\n        Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.\n      </p>\n    </div>\n  </footer>\n\n  <script>\n    (function() {\n      // Theme Toggle\n      const themeToggle = document.getElementById('theme-toggle');\n      let currentMode = localStorage.getItem('covpages-theme') || 'auto';\n      document.documentElement.setAttribute('data-color-mode', currentMode);\n\n      themeToggle.addEventListener('click', () => {\n        currentMode = currentMode === 'dark' ? 'light' : 'dark';\n        document.documentElement.setAttribute('data-color-mode', currentMode);\n        localStorage.setItem('covpages-theme', currentMode);\n      });\n\n      // Tab switcher\n      const tabBtns = document.querySelectorAll('.tab-btn');\n      tabBtns.forEach(btn => {\n        btn.addEventListener('click', () => {\n          const tabId = btn.getAttribute('data-tab');\n          if (!tabId) return;\n          const container = btn.closest('.code-tabs');\n          container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));\n          container.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');\n          btn.classList.add('active');\n          const target = document.getElementById(tabId);\n          if (target) target.style.display = 'block';\n        });\n      });\n\n      // Toast helper\n      const toast = document.getElementById('toast');\n      function showToast(msg) {\n        toast.textContent = msg;\n        toast.style.display = 'block';\n        setTimeout(() => { toast.style.display = 'none'; }, 2000);\n      }\n\n      // Badge Playground\n      const repoInput = document.getElementById('badge-repo');\n      const scopeSelect = document.getElementById('badge-scope');\n      const targetGroup = document.getElementById('badge-target-group');\n      const targetLabel = document.getElementById('badge-target-label');\n      const targetInput = document.getElementById('badge-target');\n      const previewImg = document.getElementById('badge-preview-img');\n      const mdCode = document.getElementById('badge-markdown-code');\n\n      function sanitizeBadgeName(p) {\n        return p.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/--+/g, '-').toLowerCase();\n      }\n\n      function updateBadgePreview() {\n        const r = repoInput.value.trim() || '${repo}';\n        const scope = scopeSelect.value;\n        const target = targetInput.value.trim();\n\n        if (scope === 'overall') {\n          targetGroup.style.display = 'none';\n        } else {\n          targetGroup.style.display = 'block';\n          targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');\n        }\n\n        let badgeFile = 'badges/overall.svg';\n        let linkPath = '';\n        let altText = 'Coverage';\n\n        if (scope === 'branch') {\n          badgeFile = 'badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';\n          linkPath = 'tree/' + (target || 'main');\n          altText = 'Coverage: ' + (target || 'main');\n        } else if (scope === 'folder') {\n          badgeFile = 'badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';\n          linkPath = 'tree/main/' + (target || 'src');\n          altText = 'Coverage: ' + (target || 'src');\n        } else if (scope === 'file') {\n          badgeFile = 'badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';\n          linkPath = 'blob/main/' + (target || 'src/index.ts');\n          altText = 'Coverage: ' + (target || 'src/index.ts');\n        }\n\n        const origin = window.location.origin;\n        const basePath = window.location.pathname.replace(/\\\\/[^\\\\/]*$/, '/');\n        const fullBadgeUrl = origin + basePath + badgeFile;\n        const fullLinkUrl = origin + basePath + (linkPath ? linkPath : '');\n\n        previewImg.src = badgeFile;\n        const mdSnippet = '[![' + altText + '](' + fullBadgeUrl + ')](' + fullLinkUrl + ')';\n        mdCode.textContent = mdSnippet;\n      }\n\n      scopeSelect.addEventListener('change', updateBadgePreview);\n      repoInput.addEventListener('input', updateBadgePreview);\n      targetInput.addEventListener('input', updateBadgePreview);\n      updateBadgePreview();\n\n      document.getElementById('copy-badge-md').addEventListener('click', () => {\n        navigator.clipboard.writeText(mdCode.textContent).then(() => {\n          showToast('Copied Badge Markdown to clipboard!');\n        });\n      });\n\n      document.getElementById('copy-badge-url').addEventListener('click', () => {\n        navigator.clipboard.writeText(previewImg.src).then(() => {\n          showToast('Copied Badge URL to clipboard!');\n        });\n      });\n    })();\n  </script>\n</body>\n</html>`;\n}\n"
     }
   },
   "folderChildren": {
@@ -10514,17 +10554,17 @@
       "commit": {
         "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
         "shortSha": "7872b53",
-        "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-        "author": "yongjhih",
+        "message": "feat: add devcontainer support and docker-wrapper cli",
+        "author": "covpages-bot",
         "date": "2026-10-04T16:39:37.000Z",
         "branch": "main"
       },
       "summary": {
         "lines": {
-          "total": 1795,
-          "covered": 1274,
-          "skipped": 521,
-          "pct": 70.97
+          "total": 1807,
+          "covered": 1275,
+          "skipped": 532,
+          "pct": 70.56
         },
         "functions": {
           "total": 61,
@@ -10533,19 +10573,19 @@
           "pct": 83.61
         },
         "branches": {
-          "total": 387,
-          "covered": 272,
-          "skipped": 115,
-          "pct": 70.28
+          "total": 389,
+          "covered": 275,
+          "skipped": 114,
+          "pct": 70.69
         }
       },
       "folderSummaries": {
         "": {
           "lines": {
-            "total": 1795,
-            "covered": 1274,
-            "skipped": 521,
-            "pct": 70.97
+            "total": 1807,
+            "covered": 1275,
+            "skipped": 532,
+            "pct": 70.56
           },
           "functions": {
             "total": 61,
@@ -10554,18 +10594,18 @@
             "pct": 83.61
           },
           "branches": {
-            "total": 387,
-            "covered": 272,
-            "skipped": 115,
-            "pct": 70.28
+            "total": 389,
+            "covered": 275,
+            "skipped": 114,
+            "pct": 70.69
           }
         },
         "src": {
           "lines": {
-            "total": 1795,
-            "covered": 1274,
-            "skipped": 521,
-            "pct": 70.97
+            "total": 1807,
+            "covered": 1275,
+            "skipped": 532,
+            "pct": 70.56
           },
           "functions": {
             "total": 61,
@@ -10574,10 +10614,10 @@
             "pct": 83.61
           },
           "branches": {
-            "total": 387,
-            "covered": 272,
-            "skipped": 115,
-            "pct": 70.28
+            "total": 389,
+            "covered": 275,
+            "skipped": 114,
+            "pct": 70.69
           }
         },
         "src/core": {
@@ -10594,10 +10634,10 @@
             "pct": 91.3
           },
           "branches": {
-            "total": 157,
-            "covered": 119,
-            "skipped": 38,
-            "pct": 75.8
+            "total": 158,
+            "covered": 122,
+            "skipped": 36,
+            "pct": 77.22
           }
         },
         "src/parsers": {
@@ -10684,10 +10724,10 @@
       "fileSummaries": {
         "src/cli.ts": {
           "lines": {
-            "total": 217,
-            "covered": 117,
-            "skipped": 100,
-            "pct": 53.92
+            "total": 229,
+            "covered": 118,
+            "skipped": 111,
+            "pct": 51.53
           },
           "functions": {
             "total": 2,
@@ -10696,10 +10736,10 @@
             "pct": 100
           },
           "branches": {
-            "total": 33,
+            "total": 34,
             "covered": 13,
-            "skipped": 20,
-            "pct": 39.39
+            "skipped": 21,
+            "pct": 38.24
           }
         },
         "src/index.ts": {
@@ -10837,9 +10877,9 @@
           },
           "branches": {
             "total": 28,
-            "covered": 14,
-            "skipped": 14,
-            "pct": 50
+            "covered": 16,
+            "skipped": 12,
+            "pct": 57.14
           }
         },
         "src/core/history.ts": {
@@ -10856,10 +10896,10 @@
             "pct": 100
           },
           "branches": {
-            "total": 43,
-            "covered": 29,
+            "total": 44,
+            "covered": 30,
             "skipped": 14,
-            "pct": 67.44
+            "pct": 68.18
           }
         },
         "src/core/lcov-normalizer.ts": {
@@ -11242,14 +11282,14 @@
         "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
         "shortSha": "7872b53",
         "date": "2026-10-04T16:39:37.000Z",
-        "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-        "author": "yongjhih",
+        "message": "feat: add devcontainer support and docker-wrapper cli",
+        "author": "covpages-bot",
         "branch": "main",
-        "linesPct": 70.97,
+        "linesPct": 70.56,
         "functionsPct": 83.61,
-        "branchesPct": 70.28,
-        "linesCovered": 1274,
-        "linesTotal": 1795
+        "branchesPct": 70.69,
+        "linesCovered": 1275,
+        "linesTotal": 1807
       }
     ],
     "folders": {
@@ -11323,14 +11363,14 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
-          "linesPct": 70.97,
+          "linesPct": 70.56,
           "functionsPct": 83.61,
-          "branchesPct": 70.28,
-          "linesCovered": 1274,
-          "linesTotal": 1795
+          "branchesPct": 70.69,
+          "linesCovered": 1275,
+          "linesTotal": 1807
         }
       ],
       "src": [
@@ -11403,14 +11443,14 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
-          "linesPct": 70.97,
+          "linesPct": 70.56,
           "functionsPct": 83.61,
-          "branchesPct": 70.28,
-          "linesCovered": 1274,
-          "linesTotal": 1795
+          "branchesPct": 70.69,
+          "linesCovered": 1275,
+          "linesTotal": 1807
         }
       ],
       "src/core": [
@@ -11483,12 +11523,12 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 72.26,
           "functionsPct": 91.3,
-          "branchesPct": 75.8,
+          "branchesPct": 77.22,
           "linesCovered": 495,
           "linesTotal": 685
         }
@@ -11563,8 +11603,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 77.02,
           "functionsPct": 90.91,
@@ -11643,8 +11683,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -11671,8 +11711,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -11699,8 +11739,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 64.29,
           "functionsPct": 50,
@@ -11781,14 +11821,14 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
-          "linesPct": 53.92,
+          "linesPct": 51.53,
           "functionsPct": 100,
-          "branchesPct": 39.39,
-          "linesCovered": 117,
-          "linesTotal": 217
+          "branchesPct": 38.24,
+          "linesCovered": 118,
+          "linesTotal": 229
         }
       ],
       "src/index.ts": [
@@ -11861,8 +11901,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 78.24,
           "functionsPct": 100,
@@ -11941,8 +11981,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 18.75,
           "functionsPct": 0,
@@ -12021,8 +12061,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -12101,8 +12141,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.6,
           "functionsPct": 100,
@@ -12181,8 +12221,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 1.18,
           "functionsPct": 0,
@@ -12261,8 +12301,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -12341,12 +12381,12 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95,
           "functionsPct": 100,
-          "branchesPct": 50,
+          "branchesPct": 57.14,
           "linesCovered": 38,
           "linesTotal": 40
         }
@@ -12421,12 +12461,12 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 94.51,
           "functionsPct": 100,
-          "branchesPct": 67.44,
+          "branchesPct": 68.18,
           "linesCovered": 172,
           "linesTotal": 182
         }
@@ -12501,8 +12541,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 98.84,
           "functionsPct": 100,
@@ -12581,8 +12621,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 92.86,
           "functionsPct": 100,
@@ -12661,8 +12701,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 85.12,
           "functionsPct": 100,
@@ -12741,8 +12781,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 87.5,
           "functionsPct": 100,
@@ -12821,8 +12861,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -12901,8 +12941,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.3,
           "functionsPct": 100,
@@ -12981,8 +13021,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13061,8 +13101,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13141,8 +13181,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13221,8 +13261,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13249,8 +13289,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -13277,8 +13317,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13305,8 +13345,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -13333,8 +13373,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -13361,8 +13401,8 @@
           "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
           "shortSha": "7872b53",
           "date": "2026-10-04T16:39:37.000Z",
-          "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-          "author": "yongjhih",
+          "message": "feat: add devcontainer support and docker-wrapper cli",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,

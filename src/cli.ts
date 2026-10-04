@@ -1,6 +1,8 @@
 import { parseArgs } from 'node:util';
 import path from 'node:path';
 import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 import {
   generateCoveragePages,
   startServer,
@@ -23,6 +25,7 @@ COMMANDS:
   dropin              Generate zero-build drop-in static site (index.html + .nojekyll)
   backfill            Backfill test coverage across a range of historical git commits
   presets             View integration guides and workflows for mainstream frameworks
+  docker              Run, build, or pull covpages inside a container (docker/podman)
   serve               Start a local preview web server
   init                Create a GitHub Actions workflow for GitHub Pages
   help                Show this help screen
@@ -174,7 +177,21 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     return;
   }
 
-  // 3. Backfill command
+  // 3. Docker command
+  if (firstArg === 'docker') {
+    const subCmd = positionals[1] || '--help';
+    const restArgs = positionals.slice(2);
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const dockerScript = path.resolve(__dirname, '../bin/covpages-docker.sh');
+    const result = spawnSync(dockerScript, [subCmd, ...restArgs], {
+      stdio: 'inherit',
+      env: process.env,
+    });
+    process.exit(result.status ?? 0);
+  }
+
+  // 4. Backfill command
   if (firstArg === 'backfill') {
     const count = values.count ? parseInt(strVal(values.count)!, 10) : undefined;
     console.log('\n⏳ Starting commit backfill process...');

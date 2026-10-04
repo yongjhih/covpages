@@ -2713,17 +2713,17 @@
     "commit": {
       "sha": "7872b5382107aad63bc88df87de4f7af32fe5ca6",
       "shortSha": "7872b53",
-      "message": "feat: add syntax highlighting, reusable react component, and covpages project website",
-      "author": "yongjhih",
+      "message": "feat: add devcontainer support and docker-wrapper cli",
+      "author": "covpages-bot",
       "date": "2026-10-04T16:39:37.000Z",
       "branch": "main"
     },
     "summary": {
       "lines": {
-        "total": 1795,
-        "covered": 1274,
-        "skipped": 521,
-        "pct": 70.97
+        "total": 1807,
+        "covered": 1275,
+        "skipped": 532,
+        "pct": 70.56
       },
       "functions": {
         "total": 61,
@@ -2732,19 +2732,19 @@
         "pct": 83.61
       },
       "branches": {
-        "total": 387,
-        "covered": 272,
-        "skipped": 115,
-        "pct": 70.28
+        "total": 389,
+        "covered": 275,
+        "skipped": 114,
+        "pct": 70.69
       }
     },
     "folderSummaries": {
       "": {
         "lines": {
-          "total": 1795,
-          "covered": 1274,
-          "skipped": 521,
-          "pct": 70.97
+          "total": 1807,
+          "covered": 1275,
+          "skipped": 532,
+          "pct": 70.56
         },
         "functions": {
           "total": 61,
@@ -2753,18 +2753,18 @@
           "pct": 83.61
         },
         "branches": {
-          "total": 387,
-          "covered": 272,
-          "skipped": 115,
-          "pct": 70.28
+          "total": 389,
+          "covered": 275,
+          "skipped": 114,
+          "pct": 70.69
         }
       },
       "src": {
         "lines": {
-          "total": 1795,
-          "covered": 1274,
-          "skipped": 521,
-          "pct": 70.97
+          "total": 1807,
+          "covered": 1275,
+          "skipped": 532,
+          "pct": 70.56
         },
         "functions": {
           "total": 61,
@@ -2773,10 +2773,10 @@
           "pct": 83.61
         },
         "branches": {
-          "total": 387,
-          "covered": 272,
-          "skipped": 115,
-          "pct": 70.28
+          "total": 389,
+          "covered": 275,
+          "skipped": 114,
+          "pct": 70.69
         }
       },
       "src/core": {
@@ -2793,10 +2793,10 @@
           "pct": 91.3
         },
         "branches": {
-          "total": 157,
-          "covered": 119,
-          "skipped": 38,
-          "pct": 75.8
+          "total": 158,
+          "covered": 122,
+          "skipped": 36,
+          "pct": 77.22
         }
       },
       "src/parsers": {
@@ -2883,10 +2883,10 @@
     "fileSummaries": {
       "src/cli.ts": {
         "lines": {
-          "total": 217,
-          "covered": 117,
-          "skipped": 100,
-          "pct": 53.92
+          "total": 229,
+          "covered": 118,
+          "skipped": 111,
+          "pct": 51.53
         },
         "functions": {
           "total": 2,
@@ -2895,10 +2895,10 @@
           "pct": 100
         },
         "branches": {
-          "total": 33,
+          "total": 34,
           "covered": 13,
-          "skipped": 20,
-          "pct": 39.39
+          "skipped": 21,
+          "pct": 38.24
         }
       },
       "src/index.ts": {
@@ -3036,9 +3036,9 @@
         },
         "branches": {
           "total": 28,
-          "covered": 14,
-          "skipped": 14,
-          "pct": 50
+          "covered": 16,
+          "skipped": 12,
+          "pct": 57.14
         }
       },
       "src/core/history.ts": {
@@ -3055,10 +3055,10 @@
           "pct": 100
         },
         "branches": {
-          "total": 43,
-          "covered": 29,
+          "total": 44,
+          "covered": 30,
           "skipped": 14,
-          "pct": 67.44
+          "pct": 68.18
         }
       },
       "src/core/lcov-normalizer.ts": {
