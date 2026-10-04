@@ -33,6 +33,14 @@ jobs:
           npm ci
           npm run test:coverage || npm test
 
+      - name: Restore Previous Coverage History
+        uses: actions/cache/restore@v4
+        with:
+          path: covpages-dist/history.json
+          key: covpages-history-${{ github.ref_name }}
+          restore-keys: |
+            covpages-history-
+
       - name: Generate covpages with History
         run: |
           npx covpages generate \
@@ -41,6 +49,21 @@ jobs:
             --branch "${{ github.ref_name }}" \
             --message "${{ github.event.head_commit.message }}" \
             coverage/lcov.info
+
+      - name: Save Coverage History Cache
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: actions/cache/save@v4
+        with:
+          path: covpages-dist/history.json
+          key: covpages-history-${{ github.ref_name }}-${{ github.run_id }}
+
+      - name: Deploy to gh-pages Branch
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./covpages-dist
+          force_orphan: true
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
