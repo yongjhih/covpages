@@ -715,7 +715,7 @@ export const APP_JS = `
       <div class="file-toolbar">
         \${renderBreadcrumbs()}
         <div class="search-box">
-          <span class="search-icon">\${icons.search}</span>
+          <span class="search-icon" aria-hidden="true">\${icons.search || ''}</span>
           <input type="text" id="filter-input" placeholder="Filter files... (press /)" value="\${escapeHtml(state.filterText)}" aria-label="Filter files">
         </div>
       </div>

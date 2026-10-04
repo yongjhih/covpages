@@ -3,14 +3,22 @@ import { ICONS } from './icons.js';
 import { STYLES_CSS } from './styles.css.js';
 import { APP_JS } from './app.js.js';
 
+function serializeForScript(obj: unknown): string {
+  return JSON.stringify(obj)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
 export function renderIndexHtml(data?: CovpagesData | null, options: { inline?: boolean } = {}): {
   html: string;
   css: string;
   js: string;
   dataJs: string;
 } {
-  const jsonStr = data ? JSON.stringify(data) : 'null';
-  const iconsStr = JSON.stringify(ICONS);
+  const jsonStr = data ? serializeForScript(data) : 'null';
+  const iconsStr = serializeForScript(ICONS);
   const dataJs = `window.__COVPAGES_DATA__ = ${jsonStr};\nwindow.__COVPAGES_ICONS__ = ${iconsStr};`;
 
   const safeTitle = data?.title ? `${data.title} - covpages` : 'Coverage Report - covpages';
