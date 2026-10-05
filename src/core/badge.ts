@@ -22,7 +22,7 @@ export function generateBadgeSvg(pct: number, label = 'coverage'): string {
   const labelTextX = Math.round((labelWidth / 2) * 10);
   const valueTextX = Math.round((labelWidth + valueWidth / 2) * 10);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="20" role="img" aria-label="${label}: ${pctStr}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} 20" width="${totalWidth}" height="20" role="img" aria-label="${label}: ${pctStr}">
   <title>${label}: ${pctStr}</title>
   <linearGradient id="covpages-grad" x2="0" y2="100%">
     <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>

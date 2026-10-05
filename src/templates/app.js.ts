@@ -117,7 +117,7 @@ export const APP_JS = `
     // url(#…) resolves to the first badge's clipPath and wider badges get clipped.
     const uid = 'cov' + (++badgeSeq);
 
-    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + totalWidth + '" height="20" role="img" aria-label="' + escapeHtml(label) + ': ' + pctStr + '">' +
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + totalWidth + ' 20" width="' + totalWidth + '" height="20" role="img" aria-label="' + escapeHtml(label) + ': ' + pctStr + '">' +
       '<title>' + escapeHtml(label) + ': ' + pctStr + '</title>' +
       '<linearGradient id="' + uid + '-g" x2="0" y2="100%">' +
         '<stop offset="0" stop-color="#bbb" stop-opacity=".1"/>' +
