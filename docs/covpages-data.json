@@ -1,8 +1,16 @@
 {
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
-  "generatedAt": "2026-10-05T05:31:39.211Z",
+  "generatedAt": "2026-10-05T05:31:58.969Z",
   "currentCommit": {
+    "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+    "shortSha": "043a134",
+    "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+    "author": "yongjhih",
+    "date": "2026-10-05T05:31:39.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "956405f58953817225e486007234b6072a20231a",
     "shortSha": "956405f",
     "message": "fix: badge SVG viewBox and exact height rendering",
@@ -10,18 +18,10 @@
     "date": "2026-10-05T05:19:56.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "ad3f70319fdf16358071d022c7e481f65dc2eaac",
-    "shortSha": "ad3f703",
-    "message": "feat: extensible coverage format registry, canonical LCOV generator, and multi-format client loading",
-    "author": "yongjhih",
-    "date": "2026-10-05T05:19:38.000Z",
-    "branch": "main"
-  },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": 0.52
+    "branchesPct": -0.52
   },
   "summary": {
     "lines": {
@@ -37,10 +37,10 @@
       "pct": 84.71
     },
     "branches": {
-      "total": 492,
-      "covered": 354,
-      "skipped": 138,
-      "pct": 71.95
+      "total": 490,
+      "covered": 350,
+      "skipped": 140,
+      "pct": 71.43
     }
   },
   "folders": {
@@ -60,10 +60,10 @@
         "pct": 84.71
       },
       "branches": {
-        "total": 492,
-        "covered": 354,
-        "skipped": 138,
-        "pct": 71.95
+        "total": 490,
+        "covered": 350,
+        "skipped": 140,
+        "pct": 71.43
       },
       "filesCount": 26,
       "foldersCount": 1
@@ -84,10 +84,10 @@
         "pct": 84.71
       },
       "branches": {
-        "total": 492,
-        "covered": 354,
-        "skipped": 138,
-        "pct": 71.95
+        "total": 490,
+        "covered": 350,
+        "skipped": 140,
+        "pct": 71.43
       },
       "filesCount": 26,
       "foldersCount": 5
@@ -108,10 +108,10 @@
         "pct": 92.31
       },
       "branches": {
-        "total": 242,
-        "covered": 187,
-        "skipped": 55,
-        "pct": 77.27
+        "total": 240,
+        "covered": 183,
+        "skipped": 57,
+        "pct": 76.25
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -3149,45 +3149,45 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 31,
+          "hits": 16,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 31
+          "hits": 16
         },
         "6": {
-          "hits": 31
+          "hits": 16
         },
         "7": {
-          "hits": 31,
+          "hits": 16,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 31
+          "hits": 16
         },
         "9": {
-          "hits": 31
+          "hits": 16
         },
         "10": {
-          "hits": 31
+          "hits": 16
         },
         "11": {
-          "hits": 31,
+          "hits": 16,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3200,7 +3200,7 @@
           "hits": 7
         },
         "14": {
-          "hits": 31
+          "hits": 16
         },
         "20": {
           "hits": 1,
@@ -3297,7 +3297,7 @@
           "hits": 7,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "48": {
@@ -3307,14 +3307,14 @@
           "hits": 7,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "50": {
           "hits": 7,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "51": {
@@ -3328,7 +3328,7 @@
           "hits": 7,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "53": {
@@ -3429,7 +3429,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 31
+          "hits": 16
         },
         {
           "name": "resolveContainingBranch",
@@ -3464,10 +3464,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       },
       "lineDetails": {
         "1": {
@@ -4130,8 +4130,8 @@
         "205": {
           "hits": 8,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "206": {
@@ -5262,10 +5262,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       },
       "lineDetails": {
         "1": {
@@ -5398,8 +5398,8 @@
         "57": {
           "hits": 8,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "58": {
@@ -19212,11 +19212,714 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+        "shortSha": "043a134",
+        "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+        "author": "yongjhih",
+        "date": "2026-10-05T05:31:39.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 2049,
+          "covered": 1505,
+          "skipped": 544,
+          "pct": 73.45
+        },
+        "functions": {
+          "total": 85,
+          "covered": 72,
+          "skipped": 13,
+          "pct": 84.71
+        },
+        "branches": {
+          "total": 490,
+          "covered": 350,
+          "skipped": 140,
+          "pct": 71.43
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 2049,
+            "covered": 1505,
+            "skipped": 544,
+            "pct": 73.45
+          },
+          "functions": {
+            "total": 85,
+            "covered": 72,
+            "skipped": 13,
+            "pct": 84.71
+          },
+          "branches": {
+            "total": 490,
+            "covered": 350,
+            "skipped": 140,
+            "pct": 71.43
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 2049,
+            "covered": 1505,
+            "skipped": 544,
+            "pct": 73.45
+          },
+          "functions": {
+            "total": 85,
+            "covered": 72,
+            "skipped": 13,
+            "pct": 84.71
+          },
+          "branches": {
+            "total": 490,
+            "covered": 350,
+            "skipped": 140,
+            "pct": 71.43
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 877,
+            "covered": 673,
+            "skipped": 204,
+            "pct": 76.74
+          },
+          "functions": {
+            "total": 39,
+            "covered": 36,
+            "skipped": 3,
+            "pct": 92.31
+          },
+          "branches": {
+            "total": 240,
+            "covered": 183,
+            "skipped": 57,
+            "pct": 76.25
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 59,
+            "covered": 59,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 28,
+            "covered": 18,
+            "skipped": 10,
+            "pct": 64.29
+          },
+          "functions": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          },
+          "branches": {
+            "total": 5,
+            "covered": 4,
+            "skipped": 1,
+            "pct": 80
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 229,
+            "covered": 118,
+            "skipped": 111,
+            "pct": 51.53
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 34,
+            "covered": 13,
+            "skipped": 21,
+            "pct": 38.24
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 181,
+            "covered": 144,
+            "skipped": 37,
+            "pct": 79.56
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 36,
+            "covered": 24,
+            "skipped": 12,
+            "pct": 66.67
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 33,
+            "covered": 33,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 13,
+            "covered": 13,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 10,
+            "covered": 0,
+            "skipped": 10,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/04/3a13400c446dc40bb4a17983a0687314a3aeb5.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/04/3a13400c446dc40bb4a17983a0687314a3aeb5.lcov.info"
+          }
+        ]
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "956405f58953817225e486007234b6072a20231a"
+      "main": "043a13400c446dc40bb4a17983a0687314a3aeb5"
     },
     "tags": {}
   },
@@ -19427,6 +20130,19 @@
         "linesPct": 73.45,
         "functionsPct": 84.71,
         "branchesPct": 71.95,
+        "linesCovered": 1505,
+        "linesTotal": 2049
+      },
+      {
+        "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+        "shortSha": "043a134",
+        "date": "2026-10-05T05:31:39.000Z",
+        "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 73.45,
+        "functionsPct": 84.71,
+        "branchesPct": 71.43,
         "linesCovered": 1505,
         "linesTotal": 2049
       }
@@ -19640,6 +20356,19 @@
           "branchesPct": 71.95,
           "linesCovered": 1505,
           "linesTotal": 2049
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 73.45,
+          "functionsPct": 84.71,
+          "branchesPct": 71.43,
+          "linesCovered": 1505,
+          "linesTotal": 2049
         }
       ],
       "src": [
@@ -19848,6 +20577,19 @@
           "linesPct": 73.45,
           "functionsPct": 84.71,
           "branchesPct": 71.95,
+          "linesCovered": 1505,
+          "linesTotal": 2049
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 73.45,
+          "functionsPct": 84.71,
+          "branchesPct": 71.43,
           "linesCovered": 1505,
           "linesTotal": 2049
         }
@@ -20060,6 +20802,19 @@
           "branchesPct": 77.27,
           "linesCovered": 673,
           "linesTotal": 877
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.74,
+          "functionsPct": 92.31,
+          "branchesPct": 76.25,
+          "linesCovered": 673,
+          "linesTotal": 877
         }
       ],
       "src/parsers": [
@@ -20264,6 +21019,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -20480,6 +21248,19 @@
           "branchesPct": 100,
           "linesCovered": 59,
           "linesTotal": 59
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 59,
+          "linesTotal": 59
         }
       ],
       "src/react": [
@@ -20638,6 +21419,19 @@
           "branchesPct": 73.68,
           "linesCovered": 78,
           "linesTotal": 102
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
         }
       ],
       "src/website": [
@@ -20790,6 +21584,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 64.29,
+          "functionsPct": 50,
+          "branchesPct": 80,
+          "linesCovered": 18,
+          "linesTotal": 28
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 64.29,
           "functionsPct": 50,
@@ -21008,6 +21815,19 @@
           "branchesPct": 38.24,
           "linesCovered": 118,
           "linesTotal": 229
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 51.53,
+          "functionsPct": 100,
+          "branchesPct": 38.24,
+          "linesCovered": 118,
+          "linesTotal": 229
         }
       ],
       "src/index.ts": [
@@ -21212,6 +22032,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 79.56,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 144,
+          "linesTotal": 181
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.56,
           "functionsPct": 100,
@@ -21428,6 +22261,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -21632,6 +22478,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -21848,6 +22707,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -22052,6 +22924,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -22268,6 +23153,19 @@
           "branchesPct": 100,
           "linesCovered": 33,
           "linesTotal": 33
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 33,
+          "linesTotal": 33
         }
       ],
       "src/core/git.ts": [
@@ -22476,6 +23374,19 @@
           "linesPct": 89.66,
           "functionsPct": 100,
           "branchesPct": 64.29,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
           "linesCovered": 52,
           "linesTotal": 58
         }
@@ -22688,6 +23599,19 @@
           "branchesPct": 72,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -22892,6 +23816,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -23108,6 +24045,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -23312,6 +24262,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -23528,6 +24491,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -23732,6 +24708,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -23948,6 +24937,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -24152,6 +25154,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -24368,6 +25383,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -24572,6 +25600,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -24788,6 +25829,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -24940,6 +25994,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -25104,6 +26171,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -25256,6 +26336,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -25420,6 +26513,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 10
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 10
         }
       ],
       "src/website/render.ts": [
@@ -25578,6 +26684,19 @@
           "branchesPct": 100,
           "linesCovered": 18,
           "linesTotal": 18
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 18,
+          "linesTotal": 18
         }
       ],
       "src/core/store.ts": [
@@ -25671,6 +26790,19 @@
           "branchesPct": 72.73,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -25706,6 +26838,19 @@
           "date": "2026-10-05T05:19:56.000Z",
           "message": "fix: badge SVG viewBox and exact height rendering",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
+        },
+        {
+          "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
+          "shortSha": "043a134",
+          "date": "2026-10-05T05:31:39.000Z",
+          "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.19,
           "functionsPct": 50,
