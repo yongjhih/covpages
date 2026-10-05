@@ -401,7 +401,11 @@ export const APP_JS = `
     if (!key || lcovCache[key] || loadingLcovSha === key) return;
     loadingLcovSha = key;
 
+    const cEntry = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === shortSha);
+    const artifactPath = cEntry?.artifacts?.lcov;
+
     const candidates = [
+      ...(artifactPath ? ['./' + artifactPath.replace(/^\\/+/, '')] : []),
       ...(sha && sha.length >= 7 ? ['./objects/' + sha.slice(0, 2).toLowerCase() + '/' + sha.slice(2).toLowerCase() + '.lcov'] : []),
       './history/lcov/lcov-' + shortSha + '.info',
       './history/lcov/' + sha + '.lcov',
@@ -415,7 +419,7 @@ export const APP_JS = `
         const resp = await fetch(url);
         if (resp.ok) {
           const text = await resp.text();
-          const parsed = parseClientLcov(text, data?.commits || []);
+          const parsed = parseClientCoverage(text, data?.commits || []);
           lcovCache[key] = parsed.files;
           if (sha) lcovCache[sha] = parsed.files;
           if (shortSha) lcovCache[shortSha] = parsed.files;
@@ -594,7 +598,167 @@ export const APP_JS = `
     \`;
   }
 
-  // Pure client-side LCOV Parser for drop-in static mode
+  // Multi-format Client-side Parsers (LCOV, Cobertura XML, Istanbul / Jest JSON)
+  function parseClientJsonCoverage(content) {
+    try {
+      const parsed = JSON.parse(content);
+      const files = {};
+      const calcPct = (c, t) => t === 0 ? 100 : Math.round((c / t) * 10000) / 100;
+
+      // Check if Istanbul-style file map (e.g. { "path/to/file": { path, statementMap, s, fnMap, f, branchMap, b } })
+      for (const [key, val] of Object.entries(parsed)) {
+        if (!val || typeof val !== 'object') continue;
+        if (val.statementMap && val.s) {
+          const normPath = (val.path || key).replace(/\\\\/g, '/').replace(/^\\/+/, '');
+          const lineDetails = {};
+          for (const [stId, count] of Object.entries(val.s)) {
+            const range = val.statementMap[stId];
+            if (range && range.start) {
+              const ln = range.start.line;
+              const hits = typeof count === 'number' ? count : 0;
+              if (!lineDetails[ln]) lineDetails[ln] = { hits };
+              else lineDetails[ln].hits += hits;
+            }
+          }
+
+          let brTotal = 0, brCovered = 0;
+          if (val.branchMap && val.b) {
+            for (const [brId, counts] of Object.entries(val.b)) {
+              const bDef = val.branchMap[brId];
+              const ln = bDef?.loc?.start?.line;
+              const cArr = Array.isArray(counts) ? counts : [];
+              brTotal += cArr.length;
+              const taken = cArr.filter(c => c > 0).length;
+              brCovered += taken;
+              if (ln && lineDetails[ln]) {
+                if (!lineDetails[ln].branches) lineDetails[ln].branches = { total: 0, taken: 0 };
+                lineDetails[ln].branches.total += cArr.length;
+                lineDetails[ln].branches.taken += taken;
+              }
+            }
+          }
+
+          const fnDetails = [];
+          let fnTotal = 0, fnCovered = 0;
+          if (val.fnMap && val.f) {
+            for (const [fnId, count] of Object.entries(val.f)) {
+              const fDef = val.fnMap[fnId];
+              const hits = typeof count === 'number' ? count : 0;
+              fnTotal++;
+              if (hits > 0) fnCovered++;
+              fnDetails.push({ name: fDef?.name || fnId, line: fDef?.loc?.start?.line || 0, hits });
+            }
+          }
+
+          const lNums = Object.keys(lineDetails).map(Number);
+          const lTotal = lNums.length;
+          const lCovered = lNums.filter(ln => lineDetails[ln].hits > 0).length;
+
+          files[normPath] = {
+            path: normPath,
+            lines: { total: lTotal, covered: lCovered, skipped: Math.max(0, lTotal - lCovered), pct: calcPct(lCovered, lTotal) },
+            functions: { total: fnTotal, covered: fnCovered, skipped: Math.max(0, fnTotal - fnCovered), pct: calcPct(fnCovered, fnTotal) },
+            branches: { total: brTotal, covered: brCovered, skipped: Math.max(0, brTotal - brCovered), pct: calcPct(brCovered, brTotal) },
+            lineDetails,
+            functionDetails: fnDetails,
+          };
+        }
+      }
+      return Object.keys(files).length > 0 ? files : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function parseClientCobertura(content) {
+    if (typeof DOMParser === 'undefined') return null;
+    try {
+      const xmlDoc = new DOMParser().parseFromString(content, 'text/xml');
+      if (xmlDoc.getElementsByTagName('parsererror').length > 0) return null;
+      const classEls = xmlDoc.getElementsByTagName('class');
+      if (classEls.length === 0) return null;
+
+      const files = {};
+      const calcPct = (c, t) => t === 0 ? 100 : Math.round((c / t) * 10000) / 100;
+
+      for (let i = 0; i < classEls.length; i++) {
+        const cls = classEls[i];
+        const filename = cls.getAttribute('filename');
+        if (!filename) continue;
+        const normPath = filename.replace(/\\\\/g, '/').replace(/^\\/+/, '');
+
+        const lineDetails = {};
+        const lineEls = cls.getElementsByTagName('line');
+        let lTotal = 0, lCovered = 0, brTotal = 0, brCovered = 0;
+
+        for (let j = 0; j < lineEls.length; j++) {
+          const lEl = lineEls[j];
+          const ln = parseInt(lEl.getAttribute('number'), 10);
+          const hits = parseInt(lEl.getAttribute('hits'), 10) || 0;
+          if (isNaN(ln)) continue;
+          lTotal++;
+          if (hits > 0) lCovered++;
+          lineDetails[ln] = { hits };
+
+          if (lEl.getAttribute('branch') === 'true') {
+            const cc = lEl.getAttribute('condition-coverage');
+            if (cc) {
+              const m = cc.match(/(\\\\d+)\\/(\\\\d+)/);
+              if (m) {
+                const cov = parseInt(m[1], 10);
+                const tot = parseInt(m[2], 10);
+                brTotal += tot;
+                brCovered += cov;
+                lineDetails[ln].branches = { total: tot, taken: cov };
+              }
+            }
+          }
+        }
+
+        const methodEls = cls.getElementsByTagName('method');
+        const fnDetails = [];
+        let fnTotal = 0, fnCovered = 0;
+        for (let j = 0; j < methodEls.length; j++) {
+          const mEl = methodEls[j];
+          const name = mEl.getAttribute('name') || 'anonymous';
+          const hits = parseInt(mEl.getAttribute('hits'), 10) || 0;
+          let line = 0;
+          const mL = mEl.getElementsByTagName('line');
+          if (mL.length > 0) line = parseInt(mL[0].getAttribute('number'), 10) || 0;
+          fnTotal++;
+          if (hits > 0) fnCovered++;
+          fnDetails.push({ name, line, hits });
+        }
+
+        files[normPath] = {
+          path: normPath,
+          lines: { total: lTotal, covered: lCovered, skipped: Math.max(0, lTotal - lCovered), pct: calcPct(lCovered, lTotal) },
+          functions: { total: fnTotal, covered: fnCovered, skipped: Math.max(0, fnTotal - fnCovered), pct: calcPct(fnCovered, fnTotal) },
+          branches: { total: brTotal, covered: brCovered, skipped: Math.max(0, brTotal - brCovered), pct: calcPct(brCovered, brTotal) },
+          lineDetails,
+          functionDetails: fnDetails,
+        };
+      }
+      return Object.keys(files).length > 0 ? files : null;
+    } catch {
+      return null;
+    }
+  }
+
+  // Pure client-side Coverage Parser supporting multiple formats (LCOV, Cobertura XML, Istanbul JSON)
+  function parseClientCoverage(content, historyCommits) {
+    const trimmed = (content || '').trimStart();
+    if (trimmed.startsWith('{')) {
+      const jsonFiles = parseClientJsonCoverage(content);
+      if (jsonFiles) return aggregateParsedClientFiles(jsonFiles, historyCommits);
+    }
+    if (trimmed.startsWith('<?xml') || trimmed.startsWith('<coverage') || trimmed.includes('<coverage')) {
+      const cobFiles = parseClientCobertura(content);
+      if (cobFiles) return aggregateParsedClientFiles(cobFiles, historyCommits);
+    }
+    return parseClientLcov(content, historyCommits);
+  }
+
   function parseClientLcov(content, historyCommits) {
     const lines = content.split(/\\r?\\n/);
     const files = {};
@@ -686,8 +850,11 @@ export const APP_JS = `
         seenLF = false; seenFNF = false; seenBRF = false;
       }
     }
+    return aggregateParsedClientFiles(files, historyCommits);
+  }
 
-    // Client-side tree aggregator
+  // Client-side tree aggregator for any parsed file map (LCOV, Cobertura, JSON)
+  function aggregateParsedClientFiles(files, historyCommits) {
     const folders = {};
     const folderChildren = {};
     const ensureF = (fp) => {
@@ -2000,7 +2167,7 @@ export const APP_JS = `
       reader.onload = (e) => {
         const text = e.target?.result;
         if (typeof text === 'string') {
-          data = parseClientLcov(text);
+          data = parseClientCoverage(text);
           initState();
           render();
         }
@@ -2562,14 +2729,22 @@ export const APP_JS = `
       }
     } catch {}
 
-    // Try fetching lcov.info
-    const candidates = ['./lcov.info', './coverage/lcov.info'];
+    // Try fetching coverage files (LCOV, Cobertura XML, Istanbul/Jest JSON)
+    const candidates = [
+      './lcov.info',
+      './coverage/lcov.info',
+      './cobertura.xml',
+      './coverage/cobertura-coverage.xml',
+      './coverage/coverage-final.json',
+      './coverage-final.json',
+      './coverage.json',
+    ];
     for (const cand of candidates) {
       try {
         const lr = await fetch(cand);
         if (lr.ok) {
-          const lcovText = await lr.text();
-          data = parseClientLcov(lcovText, historyCommits);
+          const covText = await lr.text();
+          data = parseClientCoverage(covText, historyCommits);
           try {
             const rr = await fetch('./refs.json');
             if (rr.ok) data.refs = await rr.json();

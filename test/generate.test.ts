@@ -124,4 +124,33 @@ describe('Coverage Site Generator', () => {
     expect(data2.trends.folders['src/utils'].length).toBe(2);
     expect(data2.trends.files['src/index.ts'].length).toBe(2);
   });
+
+  it('supports Cobertura XML and JSON inputs with canonical LCOV generation and raw archiving', () => {
+    const data = generateCoveragePages({
+      inputs: [path.join(fixturesDir, 'cobertura.xml')],
+      outputDir: outDir,
+      commitSha: 'c0be4701234567890abcdef1234567890abcdef1',
+      saveRaw: true,
+    });
+
+    expect(data.summary.lines.pct).toBe(80);
+    // Canonical lcov.info generated in output dir
+    const canonicalLcovPath = path.join(outDir, 'lcov.info');
+    expect(fs.existsSync(canonicalLcovPath)).toBe(true);
+    expect(fs.readFileSync(canonicalLcovPath, 'utf-8')).toContain('SF:src/index.ts');
+
+    // Canonical object stored under objects/c0/...lcov
+    const objLcov = path.join(outDir, 'objects', 'c0', 'be4701234567890abcdef1234567890abcdef1.lcov');
+    expect(fs.existsSync(objLcov)).toBe(true);
+
+    // Original Cobertura source archived under objects/c0/...cobertura.xml
+    const objXml = path.join(outDir, 'objects', 'c0', 'be4701234567890abcdef1234567890abcdef1.cobertura.xml');
+    expect(fs.existsSync(objXml)).toBe(true);
+    expect(fs.readFileSync(objXml, 'utf-8')).toContain('<coverage');
+
+    // Artifacts manifest recorded in commit history
+    const entry = data.commits.find(c => c.commit.sha === 'c0be4701234567890abcdef1234567890abcdef1');
+    expect(entry?.artifacts?.lcov).toBe('objects/c0/be4701234567890abcdef1234567890abcdef1.lcov');
+    expect(entry?.artifacts?.sources?.[0].format).toBe('cobertura');
+  });
 });
