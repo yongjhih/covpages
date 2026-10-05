@@ -31,6 +31,31 @@ describe('Coverage Badge Generator', () => {
     expect(sanitizeBadgeName('src/core/index.ts')).toBe('src-core-index.ts');
     expect(getBadgeFileName('folder', 'src/core')).toBe('folder-src-core.svg');
     expect(getBadgeFileName('branch', 'main')).toBe('branch-main.svg');
+    expect(getBadgeFileName('tag', 'v1.0.0')).toBe('tag-v1.0.0.svg');
+    expect(getBadgeFileName('commit', '043a134')).toBe('commit-043a134.svg');
     expect(getBadgeFileName('overall')).toBe('badge.svg');
   });
+
+  it('formats badge labels correctly for default branch, non-default branch, tag, and commit', async () => {
+    const { formatBadgeLabel } = await import('../src/core/badge.js');
+    // Default branch -> coverage
+    expect(formatBadgeLabel('branch', 'main', 'main')).toBe('coverage');
+    expect(formatBadgeLabel('branch', 'master', 'master')).toBe('coverage');
+    expect(formatBadgeLabel('overall')).toBe('coverage');
+
+    // Non-default branch -> coverage@<ref>
+    expect(formatBadgeLabel('branch', 'feat-auth', 'main')).toBe('coverage@feat-auth');
+    expect(formatBadgeLabel('branch', 'dev', 'main')).toBe('coverage@dev');
+
+    // Tag -> coverage@<tag>
+    expect(formatBadgeLabel('tag', 'v1.0.0', 'main')).toBe('coverage@v1.0.0');
+
+    // Commit -> coverage@<commit-id>
+    expect(formatBadgeLabel('commit', '027bf6e', 'main')).toBe('coverage@027bf6e');
+
+    // Folder and file retain names
+    expect(formatBadgeLabel('folder', 'src/core')).toBe('src/core');
+    expect(formatBadgeLabel('file', 'badge.ts')).toBe('badge.ts');
+  });
 });
+
