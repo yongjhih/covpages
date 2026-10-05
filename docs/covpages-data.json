@@ -2,8 +2,16 @@
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-05T08:38:01.203Z",
+  "generatedAt": "2026-10-05T08:38:46.139Z",
   "currentCommit": {
+    "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+    "shortSha": "67322d0",
+    "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+    "author": "yongjhih",
+    "date": "2026-10-05T08:38:20.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "9b2a17cb9a659125092c48c0fbbe16d09a05431b",
     "shortSha": "9b2a17c",
     "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
@@ -11,18 +19,10 @@
     "date": "2026-10-05T05:31:59.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "043a13400c446dc40bb4a17983a0687314a3aeb5",
-    "shortSha": "043a134",
-    "message": "fix(badge): add viewBox to inline/static SVG badges and enforce height without horizontal distortion",
-    "author": "yongjhih",
-    "date": "2026-10-05T05:31:39.000Z",
-    "branch": "main"
-  },
   "delta": {
-    "linesPct": 0.56,
-    "functionsPct": 0.17,
-    "branchesPct": 1.3
+    "linesPct": 0,
+    "functionsPct": 0,
+    "branchesPct": -0.5
   },
   "summary": {
     "lines": {
@@ -38,10 +38,10 @@
       "pct": 84.88
     },
     "branches": {
-      "total": 517,
-      "covered": 376,
-      "skipped": 141,
-      "pct": 72.73
+      "total": 515,
+      "covered": 372,
+      "skipped": 143,
+      "pct": 72.23
     }
   },
   "folders": {
@@ -61,10 +61,10 @@
         "pct": 84.88
       },
       "branches": {
-        "total": 517,
-        "covered": 376,
-        "skipped": 141,
-        "pct": 72.73
+        "total": 515,
+        "covered": 372,
+        "skipped": 143,
+        "pct": 72.23
       },
       "filesCount": 26,
       "foldersCount": 1
@@ -85,10 +85,10 @@
         "pct": 84.88
       },
       "branches": {
-        "total": 517,
-        "covered": 376,
-        "skipped": 141,
-        "pct": 72.73
+        "total": 515,
+        "covered": 372,
+        "skipped": 143,
+        "pct": 72.23
       },
       "filesCount": 26,
       "foldersCount": 5
@@ -109,10 +109,10 @@
         "pct": 92.5
       },
       "branches": {
-        "total": 255,
-        "covered": 200,
-        "skipped": 55,
-        "pct": 78.43
+        "total": 253,
+        "covered": 196,
+        "skipped": 57,
+        "pct": 77.47
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -3355,45 +3355,45 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 38,
+          "hits": 19,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 38
+          "hits": 19
         },
         "6": {
-          "hits": 38
+          "hits": 19
         },
         "7": {
-          "hits": 38,
+          "hits": 19,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 38
+          "hits": 19
         },
         "9": {
-          "hits": 38
+          "hits": 19
         },
         "10": {
-          "hits": 38
+          "hits": 19
         },
         "11": {
-          "hits": 38,
+          "hits": 19,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3406,7 +3406,7 @@
           "hits": 8
         },
         "14": {
-          "hits": 38
+          "hits": 19
         },
         "20": {
           "hits": 1,
@@ -3503,7 +3503,7 @@
           "hits": 9,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "48": {
@@ -3513,14 +3513,14 @@
           "hits": 9,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "50": {
           "hits": 9,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "51": {
@@ -3534,7 +3534,7 @@
           "hits": 9,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "53": {
@@ -3635,7 +3635,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 38
+          "hits": 19
         },
         {
           "name": "resolveContainingBranch",
@@ -3670,10 +3670,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       },
       "lineDetails": {
         "1": {
@@ -4336,8 +4336,8 @@
         "205": {
           "hits": 10,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "206": {
@@ -5468,10 +5468,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       },
       "lineDetails": {
         "1": {
@@ -5604,8 +5604,8 @@
         "57": {
           "hits": 10,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "58": {
@@ -20824,11 +20824,714 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+        "shortSha": "67322d0",
+        "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+        "author": "yongjhih",
+        "date": "2026-10-05T08:38:20.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 2093,
+          "covered": 1549,
+          "skipped": 544,
+          "pct": 74.01
+        },
+        "functions": {
+          "total": 86,
+          "covered": 73,
+          "skipped": 13,
+          "pct": 84.88
+        },
+        "branches": {
+          "total": 515,
+          "covered": 372,
+          "skipped": 143,
+          "pct": 72.23
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 2093,
+            "covered": 1549,
+            "skipped": 544,
+            "pct": 74.01
+          },
+          "functions": {
+            "total": 86,
+            "covered": 73,
+            "skipped": 13,
+            "pct": 84.88
+          },
+          "branches": {
+            "total": 515,
+            "covered": 372,
+            "skipped": 143,
+            "pct": 72.23
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 2093,
+            "covered": 1549,
+            "skipped": 544,
+            "pct": 74.01
+          },
+          "functions": {
+            "total": 86,
+            "covered": 73,
+            "skipped": 13,
+            "pct": 84.88
+          },
+          "branches": {
+            "total": 515,
+            "covered": 372,
+            "skipped": 143,
+            "pct": 72.23
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 893,
+            "covered": 689,
+            "skipped": 204,
+            "pct": 77.16
+          },
+          "functions": {
+            "total": 40,
+            "covered": 37,
+            "skipped": 3,
+            "pct": 92.5
+          },
+          "branches": {
+            "total": 253,
+            "covered": 196,
+            "skipped": 57,
+            "pct": 77.47
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 59,
+            "covered": 59,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 28,
+            "covered": 18,
+            "skipped": 10,
+            "pct": 64.29
+          },
+          "functions": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          },
+          "branches": {
+            "total": 5,
+            "covered": 4,
+            "skipped": 1,
+            "pct": 80
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 229,
+            "covered": 118,
+            "skipped": 111,
+            "pct": 51.53
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 34,
+            "covered": 13,
+            "skipped": 21,
+            "pct": 38.24
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 209,
+            "covered": 172,
+            "skipped": 37,
+            "pct": 82.3
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 48,
+            "covered": 33,
+            "skipped": 15,
+            "pct": 68.75
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 49,
+            "covered": 49,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 26,
+            "covered": 26,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 21,
+            "covered": 21,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 10,
+            "covered": 0,
+            "skipped": 10,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/67/322d0a1bc5a27683e870fbedded9428f2bcd7b.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/67/322d0a1bc5a27683e870fbedded9428f2bcd7b.lcov.info"
+          }
+        ]
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "9b2a17cb9a659125092c48c0fbbe16d09a05431b"
+      "main": "67322d0a1bc5a27683e870fbedded9428f2bcd7b"
     },
     "tags": {}
   },
@@ -21065,6 +21768,19 @@
         "linesPct": 74.01,
         "functionsPct": 84.88,
         "branchesPct": 72.73,
+        "linesCovered": 1549,
+        "linesTotal": 2093
+      },
+      {
+        "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+        "shortSha": "67322d0",
+        "date": "2026-10-05T08:38:20.000Z",
+        "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 74.01,
+        "functionsPct": 84.88,
+        "branchesPct": 72.23,
         "linesCovered": 1549,
         "linesTotal": 2093
       }
@@ -21304,6 +22020,19 @@
           "branchesPct": 72.73,
           "linesCovered": 1549,
           "linesTotal": 2093
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 74.01,
+          "functionsPct": 84.88,
+          "branchesPct": 72.23,
+          "linesCovered": 1549,
+          "linesTotal": 2093
         }
       ],
       "src": [
@@ -21538,6 +22267,19 @@
           "linesPct": 74.01,
           "functionsPct": 84.88,
           "branchesPct": 72.73,
+          "linesCovered": 1549,
+          "linesTotal": 2093
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 74.01,
+          "functionsPct": 84.88,
+          "branchesPct": 72.23,
           "linesCovered": 1549,
           "linesTotal": 2093
         }
@@ -21776,6 +22518,19 @@
           "branchesPct": 78.43,
           "linesCovered": 689,
           "linesTotal": 893
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.16,
+          "functionsPct": 92.5,
+          "branchesPct": 77.47,
+          "linesCovered": 689,
+          "linesTotal": 893
         }
       ],
       "src/parsers": [
@@ -22006,6 +22761,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -22248,6 +23016,19 @@
           "branchesPct": 100,
           "linesCovered": 59,
           "linesTotal": 59
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 59,
+          "linesTotal": 59
         }
       ],
       "src/react": [
@@ -22432,6 +23213,19 @@
           "branchesPct": 73.68,
           "linesCovered": 78,
           "linesTotal": 102
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
         }
       ],
       "src/website": [
@@ -22610,6 +23404,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 64.29,
+          "functionsPct": 50,
+          "branchesPct": 80,
+          "linesCovered": 18,
+          "linesTotal": 28
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 64.29,
           "functionsPct": 50,
@@ -22854,6 +23661,19 @@
           "branchesPct": 38.24,
           "linesCovered": 118,
           "linesTotal": 229
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 51.53,
+          "functionsPct": 100,
+          "branchesPct": 38.24,
+          "linesCovered": 118,
+          "linesTotal": 229
         }
       ],
       "src/index.ts": [
@@ -23084,6 +23904,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 82.3,
+          "functionsPct": 100,
+          "branchesPct": 68.75,
+          "linesCovered": 172,
+          "linesTotal": 209
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 82.3,
           "functionsPct": 100,
@@ -23326,6 +24159,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -23556,6 +24402,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -23798,6 +24657,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -24028,6 +24900,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -24270,6 +25155,19 @@
           "branchesPct": 100,
           "linesCovered": 49,
           "linesTotal": 49
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 49,
+          "linesTotal": 49
         }
       ],
       "src/core/git.ts": [
@@ -24504,6 +25402,19 @@
           "linesPct": 89.66,
           "functionsPct": 100,
           "branchesPct": 64.29,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
           "linesCovered": 52,
           "linesTotal": 58
         }
@@ -24742,6 +25653,19 @@
           "branchesPct": 72,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -24972,6 +25896,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -25214,6 +26151,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -25444,6 +26394,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -25686,6 +26649,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -25916,6 +26892,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -26158,6 +27147,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -26388,6 +27390,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -26630,6 +27645,19 @@
           "branchesPct": 100,
           "linesCovered": 21,
           "linesTotal": 21
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 21,
+          "linesTotal": 21
         }
       ],
       "src/templates/index.html.ts": [
@@ -26860,6 +27888,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -27102,6 +28143,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -27280,6 +28334,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -27470,6 +28537,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -27648,6 +28728,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -27838,6 +28931,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 10
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 10
         }
       ],
       "src/website/render.ts": [
@@ -28022,6 +29128,19 @@
           "branchesPct": 100,
           "linesCovered": 18,
           "linesTotal": 18
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 18,
+          "linesTotal": 18
         }
       ],
       "src/core/store.ts": [
@@ -28141,6 +29260,19 @@
           "branchesPct": 72.73,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -28202,6 +29334,19 @@
           "date": "2026-10-05T05:31:59.000Z",
           "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
           "author": "github-actions[bot]",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
+        },
+        {
+          "sha": "67322d0a1bc5a27683e870fbedded9428f2bcd7b",
+          "shortSha": "67322d0",
+          "date": "2026-10-05T08:38:20.000Z",
+          "message": "feat: format badge labels as [coverage | %] for default branch, [coverage@ref | %], and [coverage@commit-id | %]",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 85.19,
           "functionsPct": 50,
