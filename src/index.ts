@@ -22,12 +22,23 @@ import {
 import { normalizeLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';
 import { generateBadgeSvg, getBadgeFileName } from './core/badge.js';
 import { renderIndexHtml, render404Html } from './templates/index.html.js';
+import {
+  loadCommitObjects,
+  writeCommitObject,
+  writeLcovObject,
+  writeLooseRefs,
+  writeHead,
+  readHeadBranch,
+  pruneObjects,
+  migrateLegacyLcov,
+} from './core/store.js';
 
 export * from './types.js';
 export * from './parsers/index.js';
 export * from './core/aggregator.js';
 export * from './core/history.js';
 export * from './core/git.js';
+export * from './core/store.js';
 export * from './core/backfill.js';
 export * from './core/presets.js';
 export * from './core/lcov-normalizer.js';
@@ -75,6 +86,11 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
     : path.join(outputDir, 'history.json');
   
   let commitsHistory = loadHistory(historyPath);
+  // Loose commit objects (objects/<aa>/<rest>.json) are the source of truth;
+  // history.json is just the packed index of them.
+  for (const obj of loadCommitObjects(outputDir)) {
+    commitsHistory = appendOrUpdateCommit(commitsHistory, obj, Number.MAX_SAFE_INTEGER);
+  }
 
   // If a historyDir is provided, load and parse any historical coverage files
   if (options.historyDir && fs.existsSync(options.historyDir)) {
@@ -170,6 +186,13 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   const refs = extractRefs(commitsHistory);
   saveRefs(path.join(outputDir, 'refs.json'), refs);
 
+  // Git-like loose store: objects/, refs/heads, refs/tags, HEAD
+  for (const entry of commitsHistory) writeCommitObject(outputDir, entry);
+  migrateLegacyLcov(outputDir, commitsHistory);
+  pruneObjects(outputDir, commitsHistory);
+  writeLooseRefs(outputDir, refs);
+  writeHead(outputDir, readHeadBranch(outputDir) || currentCommit.branch);
+
   // 8. Assemble CovpagesData
   const repoName = options.repoName || path.basename(rootDir) || 'coverage';
   const title = options.title || 'Coverage Report';
@@ -241,11 +264,7 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
         fs.writeFileSync(path.join(outputDir, 'lcov.info'), normalized, 'utf-8');
 
         if (options.saveRaw) {
-          const rawDir = path.join(outputDir, 'history', 'lcov');
-          if (!fs.existsSync(rawDir)) {
-            fs.mkdirSync(rawDir, { recursive: true });
-          }
-          fs.writeFileSync(path.join(rawDir, `lcov-${currentCommit.shortSha}.info`), normalized, 'utf-8');
+          writeLcovObject(outputDir, currentCommit.sha, normalized);
         }
       } catch {}
       break;

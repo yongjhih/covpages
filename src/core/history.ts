@@ -167,7 +167,18 @@ export function appendOrUpdateCommit(
   newEntry: CommitHistoryEntry,
   maxCommits = 100
 ): CommitHistoryEntry[] {
-  // If commit with same sha exists, replace it
+  // A commit is one object, regardless of whether it was reported via a branch
+  // push or a tag push – merge ref metadata instead of overwriting it.
+  const prev = existingCommits.find((c) => c.commit.sha === newEntry.commit.sha);
+  if (prev) {
+    const branch = newEntry.commit.branch && newEntry.commit.branch !== 'HEAD'
+      ? newEntry.commit.branch
+      : prev.commit.branch;
+    newEntry = {
+      ...newEntry,
+      commit: { ...newEntry.commit, branch, tag: newEntry.commit.tag || prev.commit.tag },
+    };
+  }
   const filtered = existingCommits.filter((c) => c.commit.sha !== newEntry.commit.sha);
   filtered.push(newEntry);
 
@@ -202,7 +213,7 @@ export function extractRefs(commits: CommitHistoryEntry[]): RefMap {
   const tags: Record<string, string> = {};
 
   for (const c of commits) {
-    if (c.commit.branch) {
+    if (c.commit.branch && c.commit.branch !== 'HEAD') {
       branches[c.commit.branch] = c.commit.sha;
     }
     if (c.commit.tag) {
