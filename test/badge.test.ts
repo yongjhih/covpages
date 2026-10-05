@@ -53,9 +53,15 @@ describe('Coverage Badge Generator', () => {
     // Commit -> coverage@<commit-id>
     expect(formatBadgeLabel('commit', '027bf6e', 'main')).toBe('coverage@027bf6e');
 
-    // Folder and file retain names
-    expect(formatBadgeLabel('folder', 'src/core')).toBe('src/core');
-    expect(formatBadgeLabel('file', 'badge.ts')).toBe('badge.ts');
+    // Folder and file format: coverage&<name>
+    expect(formatBadgeLabel('folder', 'src/core')).toBe('coverage&src/core');
+    expect(formatBadgeLabel('file', 'src/core/badge.ts')).toBe('coverage&src/core/badge.ts');
+  });
+
+  it('escapes XML special characters in SVG output', () => {
+    const svg = generateBadgeSvg(92.5, 'coverage&src/index.ts');
+    expect(svg).toContain('coverage&amp;src/index.ts');
+    expect(svg).not.toContain('coverage&src/index.ts');
   });
 });
 

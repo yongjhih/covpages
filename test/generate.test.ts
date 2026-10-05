@@ -194,6 +194,16 @@ describe('Coverage Site Generator', () => {
 
     const commit2Badge = fs.readFileSync(path.join(outDir, 'badges', 'commit-7777777.svg'), 'utf-8');
     expect(commit2Badge).toContain('coverage@7777777: 90%');
+
+    // Folder badge label should be 'coverage&<folder>'
+    const folderBadge = fs.readFileSync(path.join(outDir, 'badges', 'folder-src.svg'), 'utf-8');
+    expect(folderBadge).toContain('coverage&amp;src: 90%');
+
+    // File badge label should be 'coverage&<file>'
+    const fileBadge = fs.readFileSync(path.join(outDir, 'badges', 'file-src-index.ts.svg'), 'utf-8');
+    expect(fileBadge).toContain('coverage&amp;src/index.ts: 83.3%');
+    expect(fileBadge).toContain('coverage&amp;src/index.ts');
   });
 });
+
 
