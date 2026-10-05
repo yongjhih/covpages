@@ -98,6 +98,7 @@ export const APP_JS = `
     return (name || '').replace(/[/\\?%*:|"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
   }
 
+  let badgeSeq = 0;
   function generateClientBadgeSvg(pct, label) {
     label = label || 'coverage';
     const roundedPct = Math.round(pct * 10) / 10;
@@ -112,19 +113,23 @@ export const APP_JS = `
     const labelTextX = Math.round((labelWidth / 2) * 10);
     const valueTextX = Math.round((labelWidth + valueWidth / 2) * 10);
 
+    // Inline SVG ids are document-global: each badge needs its own, otherwise
+    // url(#…) resolves to the first badge's clipPath and wider badges get clipped.
+    const uid = 'cov' + (++badgeSeq);
+
     return '<svg xmlns="http://www.w3.org/2000/svg" width="' + totalWidth + '" height="20" role="img" aria-label="' + escapeHtml(label) + ': ' + pctStr + '">' +
       '<title>' + escapeHtml(label) + ': ' + pctStr + '</title>' +
-      '<linearGradient id="cov-g" x2="0" y2="100%">' +
+      '<linearGradient id="' + uid + '-g" x2="0" y2="100%">' +
         '<stop offset="0" stop-color="#bbb" stop-opacity=".1"/>' +
         '<stop offset="1" stop-opacity=".1"/>' +
       '</linearGradient>' +
-      '<clipPath id="cov-r">' +
+      '<clipPath id="' + uid + '-r">' +
         '<rect width="' + totalWidth + '" height="20" rx="3" fill="#fff"/>' +
       '</clipPath>' +
-      '<g clip-path="url(#cov-r)">' +
+      '<g clip-path="url(#' + uid + '-r)">' +
         '<rect width="' + labelWidth + '" height="20" fill="#555"/>' +
         '<rect x="' + labelWidth + '" width="' + valueWidth + '" height="20" fill="' + color + '"/>' +
-        '<rect width="' + totalWidth + '" height="20" fill="url(#cov-g)"/>' +
+        '<rect width="' + totalWidth + '" height="20" fill="url(#' + uid + '-g)"/>' +
       '</g>' +
       '<g fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" text-rendering="geometricPrecision" font-size="110">' +
         '<text aria-hidden="true" x="' + labelTextX + '" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)">' + escapeHtml(label) + '</text>' +
