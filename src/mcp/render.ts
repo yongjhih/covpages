@@ -505,7 +505,7 @@ export function renderMcpHtml(options: {
       </p>
 
       <div class="command-box">
-        <span class="command-code" data-replace-base-url="true">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp.html --name covpages</span>
+        <span class="command-code" data-replace-base-url="true">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp --name covpages</span>
         <button class="btn btn-sm" id="copy-cmd" type="button">Copy</button>
       </div>
     </section>
@@ -521,20 +521,21 @@ export function renderMcpHtml(options: {
 
   <script>
     (function () {
-      // Base URL replacement for copy/registration snippet
-      var currentUrl = new URL(window.location.href);
-      currentUrl.hash = '';
-      currentUrl.search = '';
-      var cleanPageUrl = currentUrl.href;
+      // Auto-detect current page URL and update registration command snippet
+      var cleanUrl = window.location.href.split('#')[0].split('?')[0];
+      if (cleanUrl.endsWith('/')) {
+        cleanUrl += 'mcp';
+      }
       var nodes = document.querySelectorAll('[data-replace-base-url="true"]');
       for (var i = 0; i < nodes.length; i++) {
-        nodes[i].textContent = nodes[i].textContent.replace(/https:\/\/<host>\/<org>\/<repo>\/mcp\.html/g, cleanPageUrl);
+        nodes[i].textContent = 'npx ai-proxy add ' + cleanUrl + ' --name covpages';
       }
 
       var copyBtn = document.getElementById('copy-cmd');
       if (copyBtn) {
         copyBtn.addEventListener('click', function () {
-          var text = document.querySelector('[data-replace-base-url="true"]').textContent;
+          var targetEl = document.querySelector('[data-replace-base-url="true"]');
+          var text = targetEl ? targetEl.textContent : ('npx ai-proxy add ' + cleanUrl + ' --name covpages');
           navigator.clipboard.writeText(text).then(function () {
             copyBtn.textContent = 'Copied!';
             setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Covpages WebMCP Endpoint for AI tool integration via ai-proxy" />
   <meta name="color-scheme" content="light dark" />
-  <title>Coverage Report · covpages</title>
+  <title>Covpages WebMCP Tools · covpages</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -482,7 +482,7 @@
 
       <div style="display:flex;align-items:center;gap:10px;">
         <button class="btn btn-sm" id="theme-toggle" type="button" title="Toggle theme"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M9.598 1.591a.749.749 0 0 1 .785-.175 7.001 7.001 0 1 1-8.953 8.953.75.75 0 0 1 .62-1.036 5.501 5.501 0 0 0 8.04-8.04.75.75 0 0 1-.492-.702Z"></path></svg> Theme</button>
-        <a href="https://github.com/covpages" class="btn btn-sm" target="_blank" rel="noopener">GitHub <svg height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>
+        <a href="https://github.com/yongjhih/covpages" class="btn btn-sm" target="_blank" rel="noopener">GitHub <svg height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>
       </div>
     </div>
   </header>
@@ -496,7 +496,7 @@
       </p>
 
       <div class="command-box">
-        <span class="command-code" data-replace-base-url="true">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp.html --name covpages</span>
+        <span class="command-code" data-replace-base-url="true">npx ai-proxy add https://&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;/mcp --name covpages</span>
         <button class="btn btn-sm" id="copy-cmd" type="button">Copy</button>
       </div>
     </section>
@@ -512,20 +512,21 @@
 
   <script>
     (function () {
-      // Base URL replacement for copy/registration snippet
-      var currentUrl = new URL(window.location.href);
-      currentUrl.hash = '';
-      currentUrl.search = '';
-      var cleanPageUrl = currentUrl.href;
+      // Auto-detect current page URL and update registration command snippet
+      var cleanUrl = window.location.href.split('#')[0].split('?')[0];
+      if (cleanUrl.endsWith('/')) {
+        cleanUrl += 'mcp';
+      }
       var nodes = document.querySelectorAll('[data-replace-base-url="true"]');
       for (var i = 0; i < nodes.length; i++) {
-        nodes[i].textContent = nodes[i].textContent.replace(/https://<host>/<org>/<repo>/mcp.html/g, cleanPageUrl);
+        nodes[i].textContent = 'npx ai-proxy add ' + cleanUrl + ' --name covpages';
       }
 
       var copyBtn = document.getElementById('copy-cmd');
       if (copyBtn) {
         copyBtn.addEventListener('click', function () {
-          var text = document.querySelector('[data-replace-base-url="true"]').textContent;
+          var targetEl = document.querySelector('[data-replace-base-url="true"]');
+          var text = targetEl ? targetEl.textContent : ('npx ai-proxy add ' + cleanUrl + ' --name covpages');
           navigator.clipboard.writeText(text).then(function () {
             copyBtn.textContent = 'Copied!';
             setTimeout(function () { copyBtn.textContent = 'Copy'; }, 2000);
