@@ -156,7 +156,7 @@ function renderStaticCatalogHtml(tools: McpToolMeta[]): string {
         <span class="badge ${t.readOnly ? 'badge-readonly' : 'badge-mutating'}">${t.readOnly ? 'Read-Only' : 'Mutating (Requires Confirmation)'}</span>
       </div>
       <p class="mcp-tool-desc">${escapeHtml(t.description)}</p>
-      <form class="mcp-tool-form" data-tool="${escapeHtml(t.name)}">
+      <form class="mcp-tool-form" data-tool="${escapeHtml(t.name)}" action="javascript:void(0);">
         ${inputsHtml ? `<div class="mcp-field-group">${inputsHtml}</div>` : ''}
         <div class="mcp-tool-actions">
           <button type="submit" class="btn btn-sm">Run Tool</button>
@@ -932,7 +932,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          github_token: \${{ secrets.GITHUB_TOKEN }}
+          github_token: \${'\\x24{{ secrets.GITHUB_TOKEN }}'}
           publish_dir: \${docs ? './docs/covpages' : './gh-pages'}
 \`;
 
@@ -983,7 +983,7 @@ jobs:
           if (input.zeroBuild) {
             return {
               recommendedMode: 'zero-build-dropin',
-              summary: 'Zero-build drop-in mode is ideal for environments where you don\'t want to run Node.js in CI.',
+              summary: "Zero-build drop-in mode is ideal for environments where you don't want to run Node.js in CI.",
               steps: [
                 '1. Run "npx covpages dropin gh-pages" to create the static viewer.',
                 '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',
