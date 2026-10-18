@@ -1786,6 +1786,15 @@
           handleJump(action.slice('jump:'.length));
         } else if (action === 'action:connect' || action.startsWith('action:connect')) {
           window.location.href = 'http://127.0.0.1:8788/admin/v1/open-dashboard?redirect=' + encodeURIComponent(window.location.href);
+        } else if (action.startsWith('action:add-mcp')) {
+          var addUrl = '';
+          var query = action.split('?')[1];
+          if (query) {
+            var qParams = new URLSearchParams(query);
+            addUrl = qParams.get('url') || '';
+          }
+          var dest = 'https://yongjhih.github.io/ai-proxy/dashboard.html' + (addUrl ? ('#add-url=' + encodeURIComponent(addUrl)) : '');
+          window.open(dest, '_blank');
         } else if (action.startsWith('action:')) {
           window.open('http://127.0.0.1:8788/dashboard.html', '_blank');
         }
@@ -1832,6 +1841,302 @@
       } catch (err) {}
     }
     return null;
+  }
+
+  var PRESETS = {"flutter":{"name":"Flutter / Dart","language":"dart","testCmd":"flutter test --coverage","coverageFile":"coverage/lcov.info","description":"Flutter and Dart applications using built-in lcov test runner","workflowStep":"      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          channel: 'stable'\n\n      - name: Run Tests with Coverage\n        run: flutter test --coverage"},"dart":{"name":"Dart (Standalone)","language":"dart","testCmd":"dart test --coverage=coverage && dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info","coverageFile":"coverage/lcov.info","description":"Pure Dart packages and CLI applications","workflowStep":"      - name: Setup Dart\n        uses: dart-lang/setup-dart@v1\n\n      - name: Run Tests with Coverage\n        run: |\n          dart pub get\n          dart test --coverage=coverage\n          dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info"},"vitest":{"name":"Vitest (JavaScript / TypeScript)","language":"javascript","testCmd":"npx vitest run --coverage","coverageFile":"coverage/lcov.info","description":"Vite / Vitest projects with @vitest/coverage-v8 or istanbul","workflowStep":"      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx vitest run --coverage"},"jest":{"name":"Jest (JavaScript / TypeScript)","language":"javascript","testCmd":"npx jest --coverage --coverageReporters=\"lcov\"","coverageFile":"coverage/lcov.info","description":"Jest test suites configured with lcov reporter","workflowStep":"      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx jest --coverage --coverageReporters=\"lcov\""},"rust":{"name":"Rust (cargo-llvm-cov)","language":"rust","testCmd":"cargo llvm-cov --lcov --output-path coverage/lcov.info","coverageFile":"coverage/lcov.info","description":"Rust crates using cargo-llvm-cov source-based coverage","workflowStep":"      - name: Install Rust toolchain\n        uses: dtolnay/rust-toolchain@stable\n\n      - name: Install cargo-llvm-cov\n        uses: taiki-e/install-action@cargo-llvm-cov\n\n      - name: Run Tests with Coverage\n        run: |\n          mkdir -p coverage\n          cargo llvm-cov --lcov --output-path coverage/lcov.info"},"python":{"name":"Python (pytest-cov)","language":"python","testCmd":"pytest --cov --cov-report=lcov:coverage/lcov.info","coverageFile":"coverage/lcov.info","description":"Python projects using pytest and pytest-cov lcov output","workflowStep":"      - name: Setup Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: '3.12'\n\n      - name: Run Tests with Coverage\n        run: |\n          pip install pytest pytest-cov\n          pytest --cov --cov-report=lcov:coverage/lcov.info"},"go":{"name":"Go","language":"go","testCmd":"go test -coverprofile=coverage.out ./... && npx covpages coverage.out","coverageFile":"coverage.out","description":"Go projects using standard coverprofile","workflowStep":"      - name: Setup Go\n        uses: actions/setup-go@v5\n        with:\n          go-version: 'stable'\n\n      - name: Run Tests with Coverage\n        run: go test -v -coverprofile=coverage.out ./..."},"cpp":{"name":"C / C++ (gcov / lcov)","language":"cpp","testCmd":"lcov --capture --directory . --output-file coverage/lcov.info","coverageFile":"coverage/lcov.info","description":"C/C++ projects compiled with --coverage","workflowStep":"      - name: Install lcov\n        run: sudo apt-get update && sudo apt-get install -y lcov\n\n      - name: Run Tests and Generate LCOV\n        run: |\n          mkdir -p coverage\n          lcov --capture --directory . --output-file coverage/lcov.info"}};
+
+  // 11 Covpages WebMCP Tool Executors
+  var toolExecutors = {
+    get_cli_help: async function(args) {
+      var cmd = args && args.command;
+      var commands = {
+        generate: 'covpages generate [options] [input-files...] - Generate coverage static site for GitHub Pages with multi-commit trends and badges.',
+        dropin: 'covpages dropin [dir] - Generate zero-build drop-in static site (index.html + .nojekyll). Put in gh-pages, then simply copy lcov.info!',
+        mcp: 'covpages mcp [dir] - Generate compliant MCP Page (mcp.html + web/ modules) for ai-proxy.',
+        backfill: 'covpages backfill --range <range> --test-cmd <cmd> - Backfill test coverage across a range of historical git commits.',
+        presets: 'covpages presets [framework] - View integration guides and workflows for mainstream frameworks (flutter, vitest, jest, rust, python, go, cpp).',
+        docker: 'covpages docker <run|build|pull> [args...] - Run, build, or pull covpages inside a container (docker/podman).',
+        serve: 'covpages serve [dir] [-p port] - Start a local preview web server.',
+        init: 'covpages init [--framework <name>] [--docs] - Create a GitHub Actions workflow (.github/workflows/covpages.yml).'
+      };
+      if (cmd && cmd !== 'all' && commands[cmd]) {
+        return {
+          command: cmd,
+          documentation: commands[cmd]
+        };
+      }
+      return {
+        usage: 'covpages [command] [options] [input-files...]',
+        commands: commands,
+        quickExamples: [
+          'npx covpages dropin gh-pages && cp coverage/lcov.info gh-pages/',
+          'npx covpages coverage/lcov.info --docs --save-raw',
+          'npx covpages init --framework vitest --docs',
+          'npx covpages backfill --range HEAD~5..HEAD --test-cmd "npm test"'
+        ]
+      };
+    },
+    get_framework_preset: async function(args) {
+      var fw = (args && args.framework ? args.framework : '').toLowerCase().trim();
+      var p = PRESETS[fw];
+      if (!p) {
+        return {
+          error: 'Unknown framework preset: "' + fw + '". Available: ' + Object.keys(PRESETS).join(', '),
+          availablePresets: Object.keys(PRESETS)
+        };
+      }
+      var docs = args && args.docs !== false;
+      var workflow = 'name: Test Coverage Pages\n\n' +
+        'on:\n  push:\n    branches: [main, master]\n  pull_request:\n\n' +
+        'permissions:\n  contents: write\n  pages: write\n  id-token: write\n\n' +
+        'concurrency:\n  group: "covpages"\n  cancel-in-progress: false\n\n' +
+        'jobs:\n  coverage:\n    runs-on: ubuntu-latest\n    steps:\n' +
+        '      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n' +
+        p.workflowStep + '\n\n' +
+        '      - name: Generate covpages Report\n        run: npx covpages ' + p.coverageFile + ' ' + (docs ? '--docs' : '--output gh-pages') + ' --save-raw --mcp\n\n' +
+        '      - name: Deploy to GitHub Pages\n        uses: peaceiris/actions-gh-pages@v4\n        if: github.ref == \'refs/heads/main\' || github.ref == \'refs/heads/master\'\n        with:\n          github_token: ' + "\x24{{ secrets.GITHUB_TOKEN }}" + '\n          publish_dir: ' + (docs ? './docs/covpages' : './gh-pages') + '\n';
+      return {
+        framework: p.name,
+        language: p.language,
+        testCommand: p.testCmd,
+        coverageFile: p.coverageFile,
+        description: p.description,
+        recommendedWorkflowPath: '.github/workflows/covpages.yml',
+        workflow: workflow
+      };
+    },
+    consult_setup: async function(args) {
+      args = args || {};
+      if (args.zeroBuild) {
+        return {
+          recommendedMode: 'zero-build-dropin',
+          summary: "Zero-build drop-in mode is ideal for environments where you don\'t want to run Node.js in CI.",
+          steps: [
+            '1. Run "npx covpages dropin gh-pages" to create the static viewer.',
+            '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',
+            '3. Push gh-pages branch. The browser client parses and renders lcov.info dynamically at runtime!'
+          ],
+          command: 'npx covpages dropin gh-pages'
+        };
+      }
+      if (args.hasExistingCommits) {
+        return {
+          recommendedMode: 'backfill-history',
+          summary: 'Commit backfill mode executes historical commits in a git revision range to generate trendlines.',
+          command: 'npx covpages backfill --range HEAD~10..HEAD --test-cmd "npm test" --docs',
+          description: 'Runs your test suite across recent commits to populate multi-commit trends and store packed git objects.'
+        };
+      }
+      var matchedFramework = args.framework || args.language || 'vitest';
+      return {
+        recommendedMode: 'github-actions-workflow',
+        summary: 'GitHub Actions automated publishing with multi-commit trends and scoped badges.',
+        quickCommand: 'npx covpages init --framework ' + matchedFramework + ' --docs',
+        workflowFile: '.github/workflows/covpages.yml',
+        features: [
+          'Git packfile delta compression (100 commits compress into ~1.24 MB)',
+          'Scoped SVG badges for every branch, directory, and file',
+          'Built-in WebMCP endpoint (mcp.html + web/*.mjs) for ai-proxy'
+        ]
+      };
+    },
+    get_documentation: async function(args) {
+      var topic = (args && args.topic) || 'overview';
+      var bt = '\x60';
+      var docsMap = {
+        overview: '# Covpages\n\nGit-Native Code Coverage for GitHub Pages with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP endpoints.',
+        quickstart: '## Quickstart\n\n1. Run tests with coverage: ' + bt + 'npm test -- --coverage' + bt + '\n2. Generate site: ' + bt + 'npx covpages coverage/lcov.info --docs --save-raw' + bt + '\n3. Deploy ' + bt + 'docs/' + bt + ' to GitHub Pages.',
+        dropin: '## Zero-Build Drop-in Mode\n\nPut ' + bt + 'index.html' + bt + ' in ' + bt + 'gh-pages' + bt + ', then just copy ' + bt + 'lcov.info' + bt + '. The browser parses LCOV at runtime!',
+        backfill: '## Backfill Commits\n\nRun ' + bt + 'npx covpages backfill --range HEAD~10..HEAD' + bt + ' to backfill trend points across historical commits.',
+        badges: '## Scoped SVG Badges\n\nCovpages generates badges into ' + bt + 'badges/' + bt + ' for repository, branch, directories, and files.',
+        react: '## React & Component Integration\n\nUse ' + bt + 'import { Covpages } from "covpages/react";' + bt + ' to embed interactive coverage charts into Next.js or Docusaurus.',
+        mcp: '## WebMCP & ai-proxy\n\nTurns any static GitHub Pages site into an MCP server via ' + bt + 'mcp.html' + bt + ' and vendored ' + bt + 'web/*.mjs' + bt + ' client modules.'
+      };
+      return {
+        topic: topic,
+        content: docsMap[topic] || docsMap.overview
+      };
+    },
+    navigate_to: async function(args) {
+      var target = (args && args.target) || 'live_demo';
+      var targets = {
+        live_demo: './covpages/',
+        coverage_mcp: './covpages/mcp',
+        badges: './#badges',
+        quickstart: './#quickstart',
+        github_repo: 'https://github.com/yongjhih/covpages'
+      };
+      var dest = targets[target] || './';
+      if (typeof window !== 'undefined' && window.location) {
+        window.location.href = dest;
+      }
+      return { target: target, navigatedTo: dest };
+    },
+    find_high_value_targets: async function(args) {
+      var covData = await ensureCoverageData();
+      if (!covData || !covData.files || !covData.summary) {
+        throw new Error('Coverage data file could not be loaded.');
+      }
+      var limit = (args && args.limit) || 5;
+      var repoTotal = covData.summary.lines.total;
+      var repoCovered = covData.summary.lines.covered;
+      var curLinesPct = covData.summary.lines.pct;
+
+      var files = Object.values(covData.files);
+      if (args && args.folder) {
+        var prefix = args.folder.endsWith('/') ? args.folder : args.folder + '/';
+        files = files.filter(function(f) { return f.path.startsWith(prefix) || f.path === args.folder; });
+      }
+
+      var ranked = files.map(function(f) {
+        var uncovered = f.lines.total - f.lines.covered;
+        var gain = repoTotal > 0 ? (uncovered / repoTotal) * 100 : 0;
+        var proj = repoTotal > 0 ? ((repoCovered + uncovered) / repoTotal) * 100 : 0;
+        return {
+          path: f.path,
+          currentCoveragePct: f.lines.pct,
+          uncoveredLines: uncovered,
+          totalLines: f.lines.total,
+          potentialGainPct: Number(gain.toFixed(2)),
+          projectedRepoCoveragePct: Number(proj.toFixed(2)),
+          recommendation: 'Covering ' + f.path + ' (currently ' + f.lines.pct.toFixed(1) + '%, ' + uncovered + ' uncovered lines) will increase overall repo coverage by +' + gain.toFixed(2) + '% (from ' + curLinesPct.toFixed(2) + '% to ' + proj.toFixed(2) + '%).'
+        };
+      }).sort(function(a, b) { return b.uncoveredLines - a.uncoveredLines; });
+
+      return {
+        repoSummary: {
+          currentLinesPct: curLinesPct,
+          coveredLines: repoCovered,
+          totalLines: repoTotal,
+          deltaVsPrevious: covData.delta ? covData.delta.linesPct : null
+        },
+        totalEvaluated: files.length,
+        targets: ranked.slice(0, limit)
+      };
+    },
+    get_coverage_summary: async function() {
+      var covData = await ensureCoverageData();
+      if (!covData || !covData.summary) {
+        throw new Error('Coverage data file could not be loaded.');
+      }
+      return {
+        repoName: covData.repoName || 'yongjhih/covpages',
+        generatedAt: covData.generatedAt,
+        currentCommit: covData.currentCommit,
+        previousCommit: covData.previousCommit || null,
+        summary: covData.summary,
+        delta: covData.delta || null
+      };
+    },
+    list_coverage_files: async function(args) {
+      var covData = await ensureCoverageData();
+      if (!covData || !covData.files) {
+        throw new Error('Coverage data file could not be loaded.');
+      }
+      var files = Object.values(covData.files);
+      var limit = (args && args.limit) || 20;
+      files.sort(function(a, b) { return a.lines.pct - b.lines.pct; });
+      return {
+        totalFiles: files.length,
+        files: files.slice(0, limit).map(function(f) {
+          return { path: f.path, linesPct: f.lines.pct, uncovered: f.lines.total - f.lines.covered };
+        })
+      };
+    },
+    get_file_coverage: async function(args) {
+      var covData = await ensureCoverageData();
+      if (!covData || !covData.files) {
+        throw new Error('Coverage data file could not be loaded.');
+      }
+      var p = args && args.path;
+      var file = covData.files[p] || Object.values(covData.files).find(function(f) { return f.path === p || f.path.endsWith('/' + p); });
+      if (!file) throw new Error('File not found in coverage report: ' + p);
+      return {
+        path: file.path,
+        lines: file.lines,
+        functions: file.functions,
+        branches: file.branches,
+        uncoveredLinesCount: file.lines.total - file.lines.covered
+      };
+    },
+    get_coverage_trends: async function(args) {
+      var covData = await ensureCoverageData();
+      if (!covData || !covData.commits) {
+        throw new Error('Coverage trends data not available.');
+      }
+      var limit = (args && args.limit) || 10;
+      var commits = covData.commits.slice(-limit).map(function(c) {
+        return {
+          sha: c.commit ? c.commit.sha : '',
+          shortSha: c.commit ? (c.commit.shortSha || c.commit.sha.slice(0, 7)) : '',
+          message: c.commit ? c.commit.message : '',
+          date: c.commit ? c.commit.date : '',
+          linesPct: c.summary ? c.summary.lines.pct : 0
+        };
+      });
+      return { totalCommits: covData.commits.length, trends: commits };
+    },
+    get_badge_code: async function(args) {
+      var covData = await ensureCoverageData();
+      var pct = covData && covData.summary ? covData.summary.lines.pct : 100;
+      return {
+        scope: (args && args.scope) || 'overall',
+        coveragePct: pct,
+        badgeFile: 'badges/overall.svg',
+        badgeUrl: 'https://yongjhih.github.io/covpages/badges/overall.svg',
+        markdown: '[![Coverage](https://yongjhih.github.io/covpages/badges/overall.svg)](https://yongjhih.github.io/covpages/covpages/)',
+        html: '<a href="https://yongjhih.github.io/covpages/covpages/"><img src="https://yongjhih.github.io/covpages/badges/overall.svg" alt="Coverage" /></a>'
+      };
+    }
+  };
+
+  // Self-register modelContext if not present
+  if (typeof navigator !== 'undefined') {
+    if (!navigator.modelContext) {
+      var toolsMap = new Map();
+      for (var tk in toolExecutors) {
+        toolsMap.set(tk, {
+          name: tk,
+          execute: toolExecutors[tk]
+        });
+      }
+      navigator.modelContext = {
+        registerTool: function(t) { toolsMap.set(t.name, t); },
+        getTool: function(n) { return toolsMap.get(n) || null; },
+        listTools: function() { return Array.from(toolsMap.values()); },
+        callTool: async function(n, args) {
+          var t = toolsMap.get(n);
+          if (!t) throw new Error('Tool not found: ' + n);
+          return await t.execute(args);
+        }
+      };
+    } else {
+      for (var tk2 in toolExecutors) {
+        if (!navigator.modelContext.getTool(tk2)) {
+          navigator.modelContext.registerTool({
+            name: tk2,
+            description: 'Covpages WebMCP tool: ' + tk2,
+            execute: toolExecutors[tk2]
+          });
+        }
+      }
+    }
+  }
+
+  async function callWebMcp(toolName, args) {
+    if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.callTool === 'function') {
+      try {
+        var tool = navigator.modelContext.getTool(toolName);
+        if (tool) {
+          return await navigator.modelContext.callTool(toolName, args);
+        }
+      } catch (err) {}
+    }
+    var fn = toolExecutors[toolName];
+    if (fn) {
+      return await fn(args);
+    }
+    throw new Error('Unknown tool: ' + toolName);
   }
 
   // Client-side high-value target calculator
@@ -1932,106 +2237,177 @@
             relaySuccess = true;
           } else {
             if (statusPill) {
-              statusPill.textContent = 'ai-proxy Ready (Local Rules)';
+              statusPill.textContent = 'ai-proxy Ready (WebMCP Tools)';
               statusPill.setAttribute('data-connected', 'true');
             }
           }
         }
       }
     } catch (e) {
-      // Local relay not available; proceed to client-side rule engine
+      // Local relay not available; proceed to WebMCP tool engine
     }
 
     if (relaySuccess) return;
 
-    // 2. Intelligent Client-Side Response Engine
+    // 2. Intelligent Client-Side WebMCP Tool Dispatch Engine
     var lower = text.toLowerCase();
     var replyHtml = '';
 
-    if (lower.includes('high-value') || lower.includes('價值') || lower.includes('roi') || lower.includes('uncovered') || lower.includes('提升') || lower.includes('priorit') || lower.includes('target')) {
-      var covData = await ensureCoverageData();
-      if (covData && covData.files) {
-        var report = computeHighValueTargets(covData, 5);
-        var curLinesPct = covData.summary.lines.pct.toFixed(2);
-        replyHtml = '<p>🎯 <strong>Highest Value Targets to Improve Coverage:</strong></p>' +
-          '<p>Overall repo line coverage is currently <strong>' + curLinesPct + '%</strong> (' + covData.summary.lines.covered + '/' + covData.summary.lines.total + ' lines). Here are the top 5 files where adding tests produces the greatest codebase impact:</p>' +
+    try {
+      if (/(?:cli|help|commands?|options?|usage|參數|指令|用法|幫助|說明書)/i.test(lower) ||
+          /(?:generate|dropin|backfill|docker|init|serve|presets)/i.test(lower)) {
+        var subCmd = 'all';
+        if (lower.includes('generate')) subCmd = 'generate';
+        else if (lower.includes('dropin') || lower.includes('drop-in') || lower.includes('zero-build')) subCmd = 'dropin';
+        else if (lower.includes('mcp')) subCmd = 'mcp';
+        else if (lower.includes('backfill')) subCmd = 'backfill';
+        else if (lower.includes('presets') || lower.includes('preset')) subCmd = 'presets';
+        else if (lower.includes('docker')) subCmd = 'docker';
+        else if (lower.includes('serve')) subCmd = 'serve';
+        else if (lower.includes('init')) subCmd = 'init';
+
+        var cliRes = await callWebMcp('get_cli_help', { command: subCmd });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_cli_help(' + (cliRes.command ? '"' + escapeHtml(cliRes.command) + '"' : '') + ')</code></p>';
+        if (cliRes.documentation) {
+          replyHtml += '<p><strong>Command Reference:</strong></p>' +
+            '<pre><code>' + escapeHtml(cliRes.documentation) + '</code></pre>';
+        } else {
+          replyHtml += '<p><strong>Usage:</strong> <code>' + escapeHtml(cliRes.usage) + '</code></p>' +
+            '<p><strong>Available Commands:</strong></p>' +
+            '<ul>' +
+            '<li><code>generate</code>: ' + escapeHtml(cliRes.commands.generate) + '</li>' +
+            '<li><code>dropin</code>: ' + escapeHtml(cliRes.commands.dropin) + '</li>' +
+            '<li><code>mcp</code>: ' + escapeHtml(cliRes.commands.mcp) + '</li>' +
+            '<li><code>backfill</code>: ' + escapeHtml(cliRes.commands.backfill) + '</li>' +
+            '<li><code>presets</code>: ' + escapeHtml(cliRes.commands.presets) + '</li>' +
+            '<li><code>docker</code>: ' + escapeHtml(cliRes.commands.docker) + '</li>' +
+            '<li><code>init</code>: ' + escapeHtml(cliRes.commands.init) + '</li>' +
+            '<li><code>serve</code>: ' + escapeHtml(cliRes.commands.serve) + '</li>' +
+            '</ul>' +
+            '<p><strong>Quick Examples:</strong></p>' +
+            '<pre><code>' + escapeHtml(cliRes.quickExamples.join('\n')) + '</code></pre>';
+        }
+        replyHtml += '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:mcp?tool=get_cli_help">Open in WebMCP Catalog (?tool=get_cli_help)</button></p>';
+      } else if (/(?:high-value|target|roi|價值|提升|priorit|uncovered|最具價值|最有價值|最值得|目標)/i.test(lower)) {
+        var targetRes = await callWebMcp('find_high_value_targets', { limit: 5 });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>find_high_value_targets(limit: 5)</code></p>' +
+          '<p>🎯 <strong>Highest Value Targets to Improve Coverage:</strong></p>' +
+          '<p>Overall repo line coverage is currently <strong>' + targetRes.repoSummary.currentLinesPct.toFixed(2) + '%</strong> (' + targetRes.repoSummary.coveredLines + '/' + targetRes.repoSummary.totalLines + ' lines). Here are top files where adding tests yields the greatest gain:</p>' +
           '<ul class="ask-ai-actions-list">';
 
-        report.targets.forEach(function (t) {
+        targetRes.targets.forEach(function (t) {
           replyHtml += '<li>' +
             '<button type="button" class="btn btn-sm ask-ai-jump-btn" data-jump="#file=' + encodeURIComponent(t.path) + '" style="display:flex; flex-direction:column; align-items:flex-start; width:100%; padding:8px 12px; gap:4px; text-align:left;">' +
               '<div style="display:flex; align-items:center; justify-content:space-between; width:100%;">' +
                 '<code>' + escapeHtml(t.path) + '</code>' +
-                '<span class="badge" style="font-weight:600;">' + t.pct.toFixed(1) + '%</span>' +
+                '<span class="badge" style="font-weight:600;">' + t.currentCoveragePct.toFixed(1) + '%</span>' +
               '</div>' +
               '<div style="font-size:11px; color:var(--color-fg-muted, #656d76);">' +
-                t.uncovered + ' uncovered lines &middot; <strong>+' + t.gain.toFixed(2) + '%</strong> repo gain (up to ' + t.projectedPct.toFixed(2) + '%)' +
+                t.uncoveredLines + ' uncovered lines &middot; <strong>+' + t.potentialGainPct.toFixed(2) + '%</strong> repo gain (up to ' + t.projectedRepoCoveragePct.toFixed(2) + '%)' +
               '</div>' +
             '</button>' +
           '</li>';
         });
 
         replyHtml += '</ul>' +
-          '<p>Click any file above to view its uncovered lines directly, or query WebMCP tool <code>find_high_value_targets</code>!</p>';
-      } else {
-        replyHtml = '<p>To inspect high-value coverage targets, visit the <a href="covpages/">Live Coverage Viewer</a> or register the WebMCP endpoint at <code>covpages/mcp</code>!</p>';
-      }
-    } else if (lower.includes('summary') || lower.includes('delta') || lower.includes('總覽') || lower.includes('覆蓋率')) {
-      var covData = await ensureCoverageData();
-      if (covData && covData.summary) {
-        var s = covData.summary;
-        var d = covData.delta;
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:covpages/mcp?tool=find_high_value_targets">Open in WebMCP Catalog (?tool=find_high_value_targets)</button></p>';
+      } else if (/(?:flutter|dart|vitest|vite|jest|rust|cargo|python|pytest|golang|go|cpp|preset|框架)/i.test(lower) || lower.includes('c++')) {
+        var fw = 'vitest';
+        if (lower.includes('flutter')) fw = 'flutter';
+        else if (lower.includes('dart')) fw = 'dart';
+        else if (lower.includes('jest')) fw = 'jest';
+        else if (lower.includes('rust') || lower.includes('cargo')) fw = 'rust';
+        else if (lower.includes('python') || lower.includes('pytest')) fw = 'python';
+        else if (lower.includes('go') || lower.includes('golang')) fw = 'go';
+        else if (lower.includes('cpp') || lower.includes('c++') || lower.includes('gcov')) fw = 'cpp';
+        else if (lower.includes('vitest') || lower.includes('vite')) fw = 'vitest';
+
+        var presetRes = await callWebMcp('get_framework_preset', { framework: fw, docs: true });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_framework_preset(framework: "' + escapeHtml(fw) + '")</code></p>' +
+          '<p>⚡ <strong>' + escapeHtml(presetRes.framework) + ' Integration Preset:</strong></p>' +
+          '<p><strong>Test Command:</strong> <code>' + escapeHtml(presetRes.testCommand) + '</code></p>' +
+          '<p><strong>Coverage File:</strong> <code>' + escapeHtml(presetRes.coverageFile) + '</code></p>' +
+          '<p><strong>GitHub Actions Workflow (<code>' + escapeHtml(presetRes.recommendedWorkflowPath) + '</code>):</strong></p>' +
+          '<pre><code>' + escapeHtml(presetRes.workflow) + '</code></pre>' +
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:mcp?tool=get_framework_preset&framework=' + encodeURIComponent(fw) + '">Open in WebMCP Catalog</button></p>';
+      } else if (/(?:summary|delta|總覽|覆蓋率總結|current coverage|指標|metrics)/i.test(lower)) {
+        var summaryRes = await callWebMcp('get_coverage_summary', {});
+        var s = summaryRes.summary;
+        var d = summaryRes.delta;
         var deltaStr = d ? (' (' + (d.linesPct >= 0 ? '+' : '') + d.linesPct + '% vs previous)') : '';
-        replyHtml = '<p>📊 <strong>Current Coverage Metrics:</strong></p>' +
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_summary</code></p>' +
+          '<p>📊 <strong>Current Coverage Metrics:</strong></p>' +
           '<ul>' +
           '<li><strong>Lines:</strong> ' + s.lines.pct + '% (' + s.lines.covered + '/' + s.lines.total + ')' + deltaStr + '</li>' +
           '<li><strong>Functions:</strong> ' + s.functions.pct + '% (' + s.functions.covered + '/' + s.functions.total + ')</li>' +
           '<li><strong>Branches:</strong> ' + s.branches.pct + '% (' + s.branches.covered + '/' + s.branches.total + ')</li>' +
-          '</ul>';
+          '</ul>' +
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:covpages/">Open Live Coverage Viewer</button></p>';
+      } else if (/(?:trend|trends|history|歷史|趨勢|commits?|走勢|進展)/i.test(lower)) {
+        var trendsRes = await callWebMcp('get_coverage_trends', { limit: 5 });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_trends(limit: 5)</code></p>' +
+          '<p>📈 <strong>Recent Coverage Trends across Commits:</strong></p>' +
+          '<ul>';
+        trendsRes.trends.forEach(function (c) {
+          replyHtml += '<li><code>' + escapeHtml(c.shortSha) + '</code>: <strong>' + c.linesPct + '%</strong> - ' + escapeHtml(c.message) + ' (' + escapeHtml(c.date) + ')</li>';
+        });
+        replyHtml += '</ul>' +
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:covpages/#trend">View Interactive Trendline</button></p>';
+      } else if (/(?:setup|advisor|consult|如何配置|配置|安裝|架設|模式|哪個模式|模式選擇)/i.test(lower)) {
+        var setupRes = await callWebMcp('consult_setup', {
+          zeroBuild: lower.includes('zero') || lower.includes('drop'),
+          hasExistingCommits: lower.includes('backfill') || lower.includes('commit') || lower.includes('history')
+        });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>consult_setup</code></p>' +
+          '<p>🚀 <strong>Recommended Deployment Mode:</strong> <code>' + escapeHtml(setupRes.recommendedMode) + '</code></p>' +
+          '<p>' + escapeHtml(setupRes.summary) + '</p>' +
+          (setupRes.quickCommand ? '<pre><code>' + escapeHtml(setupRes.quickCommand) + '</code></pre>' : '') +
+          (setupRes.command ? '<pre><code>' + escapeHtml(setupRes.command) + '</code></pre>' : '') +
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:mcp?tool=consult_setup">Open in WebMCP Catalog</button></p>';
+      } else if (/(?:badge|badges|徽章|svg badge|shield)/i.test(lower)) {
+        var badgeRes = await callWebMcp('get_badge_code', { scope: 'overall' });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_badge_code</code></p>' +
+          '<p>🏷️ <strong>Scoped SVG Badge Code:</strong></p>' +
+          '<p>Markdown:</p>' +
+          '<pre><code>' + escapeHtml(badgeRes.markdown) + '</code></pre>' +
+          '<p>HTML:</p>' +
+          '<pre><code>' + escapeHtml(badgeRes.html) + '</code></pre>' +
+          '<p><button type="button" class="btn btn-sm ask-ai-cta-btn" data-action="jump:#badges">Open Badge Generator</button></p>';
+      } else if (/(?:doc|docs|documentation|文件|說明)/i.test(lower)) {
+        var docRes = await callWebMcp('get_documentation', { topic: 'overview' });
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_documentation</code></p>' +
+          formatMarkdown(docRes.content);
+      } else if (/(?:navigate|jump|go to|前往|打開|跳轉|demo|live)/i.test(lower)) {
+        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>navigate_to(target: "live_demo")</code></p>' +
+          '<p>Click below to jump directly to the live coverage report:</p>' +
+          '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:covpages/">Open Live Coverage Demo</button></p>';
+      } else if (/(?:mcp|ai-proxy|register|註冊|連接)/i.test(lower)) {
+        var isCov = window.location.pathname.includes('/covpages/');
+        var targetPath = isCov ? 'covpages/covpages/mcp' : 'covpages/mcp';
+        var siteSlug = isCov ? 'covpages-covpages' : 'covpages';
+        replyHtml = '<p>🔌 <strong>Register WebMCP Endpoint:</strong></p>' +
+          '<p>Add this site to your local <code>ai-proxy</code> relay server:</p>' +
+          '<pre><code>npx ai-proxy add https://yongjhih.github.io/' + targetPath + ' --name ' + siteSlug + '</code></pre>' +
+          '<p style="display:flex;gap:0.5rem;flex-wrap:wrap;">' +
+          '<button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="action:add-mcp?url=' + encodeURIComponent('https://yongjhih.github.io/' + targetPath) + '&name=' + encodeURIComponent(siteSlug) + '">➕ 一鍵新增到 local ai-proxy</button>' +
+          '<button type="button" class="btn btn-sm ask-ai-cta-btn" data-action="navigate:mcp">View MCP Tools Catalog</button>' +
+          '</p>';
       } else {
-        replyHtml = '<p>Explore overall metrics and multi-commit deltas in the <a href="covpages/">Live Coverage Viewer</a>.</p>';
+        replyHtml = '<p>🛠️ <strong>WebMCP Tools Ready (11 Tools Registered)</strong></p>' +
+          '<p>Ask me a question or click a tool to run it directly:</p>' +
+          '<div class="ask-ai-chips">' +
+            '<button type="button" class="ask-ai-chip" data-ask="covpages cli help">🛠️ get_cli_help</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Find high-value coverage targets">🎯 find_high_value_targets</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Vitest framework preset">⚡ get_framework_preset</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Coverage summary and metrics">📊 get_coverage_summary</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Multi-commit coverage trends">📈 get_coverage_trends</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Generate SVG badge">🏷️ get_badge_code</button>' +
+            '<button type="button" class="ask-ai-chip" data-ask="Setup advisor and modes">🚀 consult_setup</button>' +
+          '</div>';
       }
-    } else if (lower.includes('flutter')) {
-      replyHtml = '<p>💙 <strong>Flutter Integration Preset:</strong></p>' +
-        '<p>Run tests with coverage and generate reports:</p>' +
-        '<pre><code>flutter test --coverage\nnpx covpages coverage/lcov.info --docs</code></pre>' +
-        '<p>To scaffold the GitHub Actions CI workflow:</p>' +
-        '<pre><code>npx covpages init --framework flutter --docs</code></pre>';
-    } else if (lower.includes('vitest') || lower.includes('vite')) {
-      replyHtml = '<p>⚡ <strong>Vitest Integration Preset:</strong></p>' +
-        '<p>Configure <code>vitest.config.ts</code> with coverage provider (v8/istanbul) and run:</p>' +
-        '<pre><code>npx vitest run --coverage\nnpx covpages coverage/lcov.info --docs</code></pre>' +
-        '<p>To generate the workflow file:</p>' +
-        '<pre><code>npx covpages init --framework vitest --docs</code></pre>';
-    } else if (lower.includes('dropin') || lower.includes('zero-build') || lower.includes('drop-in')) {
-      replyHtml = '<p>📦 <strong>Zero-Build Drop-in Mode:</strong></p>' +
-        '<p>No build step required in CI! Put a zero-build client in your <code>gh-pages</code> branch, then simply copy <code>lcov.info</code>:</p>' +
-        '<pre><code>npx covpages dropin gh-pages\ncp coverage/lcov.info gh-pages/\n# The browser client parses LCOV dynamically at runtime!</code></pre>';
-    } else if (lower.includes('demo') || lower.includes('live')) {
-      replyHtml = '<p>Click below to jump directly to the live coverage report:</p>' +
-        '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:covpages/">Open Live Coverage Demo</button></p>';
-    } else if (lower.includes('badge')) {
-      replyHtml = '<p>🏷️ <strong>Scoped SVG Badges:</strong></p>' +
-        '<p>Covpages generates badges for your repository, branch, folders, and individual files into <code>badges/</code>.</p>' +
-        '<pre><code>[![Coverage](https://yongjhih.github.io/covpages/badges/overall.svg)](https://yongjhih.github.io/covpages/covpages/)</code></pre>' +
-        '<p><button type="button" class="btn btn-sm ask-ai-cta-btn" data-action="jump:#badges">Open Badge Generator</button></p>';
-    } else if (lower.includes('mcp') || lower.includes('ai-proxy') || lower.includes('register')) {
-      var isCov = window.location.pathname.includes('/covpages/');
-      var targetPath = isCov ? 'covpages/covpages/mcp' : 'covpages/mcp';
-      var siteSlug = isCov ? 'covpages-covpages' : 'covpages';
-      replyHtml = '<p>🔌 <strong>Register WebMCP Endpoint:</strong></p>' +
-        '<p>Add this site to your local <code>ai-proxy</code> relay server:</p>' +
-        '<pre><code>npx ai-proxy add https://yongjhih.github.io/' + targetPath + ' --name ' + siteSlug + '</code></pre>' +
-        '<p><button type="button" class="btn btn-sm btn-primary ask-ai-cta-btn" data-action="navigate:mcp">View MCP Tools Catalog</button></p>';
-    } else {
-      replyHtml = '<p>I can help you with:</p>' +
-        '<ul>' +
-        '<li>Finding high-value targets to increase test coverage</li>' +
-        '<li>Generating CI workflows for Flutter, Vitest, Jest, Rust, Python, Go</li>' +
-        '<li>Setting up zero-build drop-in sites</li>' +
-        '<li>Creating SVG badges for folders and files</li>' +
-        '<li>Registering WebMCP tools in <code>ai-proxy</code></li>' +
-        '</ul>';
+    } catch (toolErr) {
+      replyHtml = '<p>⚠️ Error executing WebMCP tool: ' + escapeHtml(toolErr && toolErr.message ? toolErr.message : String(toolErr)) + '</p>' +
+        '<p>You can also query tools directly on the <a href="mcp">MCP Tools Catalog</a> page.</p>';
     }
 
     typingEl.innerHTML = replyHtml;
