@@ -474,6 +474,12 @@ export const ASK_AI_CLIENT_SCRIPT = `
   // Restore history on script startup
   restoreHistory();
 
+  function getAppRoot() {
+    var p = window.location.pathname.replace(/index\\.html$/, '');
+    var m = p.match(/^(.*?\\/)(?:tree|blob|commits|trends|mcp)(?:\\/|$)/);
+    return m ? m[1] : (p.endsWith('/') ? p : (p + '/'));
+  }
+
   function handleJump(hash) {
     if (!hash || !hash.startsWith('#')) return;
 
@@ -485,8 +491,13 @@ export const ASK_AI_CLIENT_SCRIPT = `
         toggleDrawer(false);
         return;
       }
-      var isInsideCoverageSubfolder = window.location.pathname.includes('/covpages/covpages/');
-      var target = isInsideCoverageSubfolder ? ('./' + hash) : ('covpages/' + hash);
+      var isInsideCoverageSubfolder = window.location.pathname.includes('/covpages/covpages/') ||
+                                     window.location.pathname.includes('/tree/') ||
+                                     window.location.pathname.includes('/blob/') ||
+                                     window.location.pathname.includes('/commits/') ||
+                                     window.location.pathname.includes('/trends');
+      var root = getAppRoot();
+      var target = isInsideCoverageSubfolder ? (root + hash) : (root + 'covpages/' + hash);
       window.location.href = target;
       return;
     }
@@ -543,6 +554,20 @@ export const ASK_AI_CLIENT_SCRIPT = `
         if (!action) return;
         if (action.startsWith('navigate:')) {
           var targetUrl = action.slice('navigate:'.length);
+          if (targetUrl === 'mcp') {
+            var root = getAppRoot();
+            window.location.href = root + 'mcp';
+            return;
+          } else if (targetUrl === 'covpages/' || targetUrl === './covpages/') {
+            var isInsideCoverage = window.location.pathname.includes('/covpages/covpages/') ||
+                                   window.location.pathname.includes('/tree/') ||
+                                   window.location.pathname.includes('/blob/') ||
+                                   window.location.pathname.includes('/commits/') ||
+                                   window.location.pathname.includes('/trends');
+            var root = getAppRoot();
+            window.location.href = isInsideCoverage ? root : (root + 'covpages/');
+            return;
+          }
           window.location.href = targetUrl;
         } else if (action.startsWith('jump:')) {
           handleJump(action.slice('jump:'.length));
