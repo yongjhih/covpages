@@ -122,6 +122,44 @@ export async function mountMcpPageUi({
     win && win.location ? win.location.search : ''
   );
 
+  function bindContainerSubmit() {
+    if (!container || container.__mcp_bound) return;
+    container.__mcp_bound = true;
+    container.addEventListener('submit', async (ev) => {
+      const form = ev.target && ev.target.closest ? ev.target.closest('.mcp-tool-form') : null;
+      if (!form) return;
+      ev.preventDefault();
+      const tName = form.getAttribute('data-tool');
+      const outEl = form.querySelector('.mcp-tool-result');
+      const args = {};
+      for (const input of form.querySelectorAll('input[name]')) {
+        const val = input.value.trim();
+        if (!val) continue;
+        const pType = input.getAttribute('data-prop-type');
+        if (pType === 'number' || pType === 'integer') {
+          args[input.name] = Number(val);
+        } else if (pType === 'boolean') {
+          args[input.name] = val === 'true' || val === '1';
+        } else {
+          args[input.name] = val;
+        }
+      }
+      if (outEl) {
+        outEl.hidden = false;
+        outEl.textContent = 'Running...';
+        try {
+          const res = await modelContext.callTool(tName, args);
+          outEl.textContent =
+            typeof res === 'string' ? res : JSON.stringify(res, null, 2);
+        } catch (err) {
+          outEl.textContent = `Error: ${err && err.message ? err.message : String(err)}`;
+        }
+      }
+    });
+  }
+
+  bindContainerSubmit();
+
   function renderCatalog(clientState) {
     if (!container) return;
     const registered = modelContext.listTools();
@@ -148,6 +186,21 @@ export async function mountMcpPageUi({
           }
         </section>`
       : '';
+
+    const existingWidget = container.querySelector('.mcp-page-widget');
+    if (existingWidget) {
+      const statusBarDiv = existingWidget.querySelector('.mcp-status-bar div:first-child');
+      if (statusBarDiv) {
+        statusBarDiv.innerHTML = `<strong>MCP Relay Status:</strong> ${statusBadge}`;
+      }
+      if (directBlock && !existingWidget.querySelector('#mcp-direct-result')) {
+        const statusBar = existingWidget.querySelector('.mcp-status-bar');
+        if (statusBar) {
+          statusBar.insertAdjacentHTML('afterend', directBlock);
+        }
+      }
+      return;
+    }
 
     const toolCards = registered
       .map((t) => {
@@ -201,38 +254,6 @@ export async function mountMcpPageUi({
         </section>
       </div>
     `;
-
-    for (const form of container.querySelectorAll('.mcp-tool-form')) {
-      form.addEventListener('submit', async (ev) => {
-        ev.preventDefault();
-        const tName = form.getAttribute('data-tool');
-        const outEl = form.querySelector('.mcp-tool-result');
-        const args = {};
-        for (const input of form.querySelectorAll('input[name]')) {
-          const val = input.value.trim();
-          if (!val) continue;
-          const pType = input.getAttribute('data-prop-type');
-          if (pType === 'number' || pType === 'integer') {
-            args[input.name] = Number(val);
-          } else if (pType === 'boolean') {
-            args[input.name] = val === 'true' || val === '1';
-          } else {
-            args[input.name] = val;
-          }
-        }
-        if (outEl) {
-          outEl.hidden = false;
-          outEl.textContent = 'Running...';
-          try {
-            const res = await modelContext.callTool(tName, args);
-            outEl.textContent =
-              typeof res === 'string' ? res : JSON.stringify(res, null, 2);
-          } catch (err) {
-            outEl.textContent = `Error: ${err && err.message ? err.message : String(err)}`;
-          }
-        }
-      });
-    }
   }
 
   const pageUrl = win && win.location ? win.location.href : 'http://localhost/mcp.html';
