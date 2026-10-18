@@ -737,7 +737,7 @@ export function renderWebsiteHtml(options: {
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">Overview</a>
       <a href="${liveDemoUrl}" class="nav-link">Live Demo ${ICONS.linkExternal}</a>
-      <a href="mcp.html" class="nav-link">MCP Page</a>
+      <a href="mcp" class="nav-link">MCP Page</a>
       <a href="#features" class="nav-link">Architecture</a>
       <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#badges" class="nav-link">Badges</a>
@@ -771,7 +771,7 @@ export function renderWebsiteHtml(options: {
         <a href="#badges" class="btn">
           Badge Generator
         </a>
-        <a href="mcp.html" class="btn">
+        <a href="mcp" class="btn">
           MCP Page (AI Tools)
         </a>
       </div>
@@ -894,7 +894,7 @@ export function renderWebsiteHtml(options: {
         <div class="spec-item">
           <h3 class="spec-title">${ICONS.terminal} <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
           <p class="spec-desc">
-            Turns your coverage site into an <a href="mcp.html">MCP Page</a> with 5 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
+            Turns your coverage site into an <a href="mcp">MCP Page</a> with 5 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
           </p>
         </div>
       </div>

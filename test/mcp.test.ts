@@ -107,4 +107,53 @@ describe('MCP Page & ai-proxy integration', () => {
       expect(() => new Function(code)).not.toThrow();
     }
   });
+
+  it('correctly derives short URL and site name in simulated environment', () => {
+    const html = renderMcpHtml({ repo: 'yongjhih/covpages' });
+    const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)];
+    const autoDetectScript = scripts.find((s) => s[1].includes('Auto-detect'));
+    expect(autoDetectScript).toBeTruthy();
+    const scriptBody = autoDetectScript![1];
+
+    const runScriptWithUrl = (href: string) => {
+      let resultText = '';
+      const fakeDom = {
+        querySelectorAll: (selector: string) => {
+          if (selector === '[data-replace-base-url="true"]') {
+            return [{
+              set textContent(val: string) {
+                resultText = val;
+              },
+              get textContent() {
+                return resultText;
+              }
+            }];
+          }
+          return [];
+        },
+        getElementById: () => null,
+        documentElement: { getAttribute: () => 'auto', setAttribute: () => {} },
+      };
+      const fakeWindow = {
+        location: { href },
+        localStorage: { getItem: () => null, setItem: () => {} },
+      };
+
+      const fn = new Function('window', 'document', scriptBody);
+      fn(fakeWindow, fakeDom);
+      return resultText;
+    };
+
+    expect(runScriptWithUrl('https://yongjhih.github.io/covpages/mcp.html'))
+      .toBe('npx ai-proxy add https://yongjhih.github.io/covpages/mcp --name covpages');
+
+    expect(runScriptWithUrl('https://yongjhih.github.io/covpages/mcp'))
+      .toBe('npx ai-proxy add https://yongjhih.github.io/covpages/mcp --name covpages');
+
+    expect(runScriptWithUrl('https://yongjhih.github.io/covpages/covpages/mcp.html'))
+      .toBe('npx ai-proxy add https://yongjhih.github.io/covpages/covpages/mcp --name covpages-covpages');
+
+    expect(runScriptWithUrl('https://yongjhih.github.io/covpages/covpages/mcp'))
+      .toBe('npx ai-proxy add https://yongjhih.github.io/covpages/covpages/mcp --name covpages-covpages');
+  });
 });
