@@ -1689,6 +1689,21 @@
 
   function handleJump(hash) {
     if (!hash || !hash.startsWith('#')) return;
+
+    if (hash.startsWith('#file=')) {
+      var isCovPagesViewer = window.location.pathname.endsWith('/covpages/') ||
+                             window.location.pathname.endsWith('/covpages/index.html');
+      if (isCovPagesViewer) {
+        window.location.hash = hash;
+        toggleDrawer(false);
+        return;
+      }
+      var isInsideCoverageSubfolder = window.location.pathname.includes('/covpages/covpages/');
+      var target = isInsideCoverageSubfolder ? ('./' + hash) : ('covpages/' + hash);
+      window.location.href = target;
+      return;
+    }
+
     var el = document.querySelector(hash);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -1766,9 +1781,30 @@
   }
 
   // Load coverage data helper
-  function getCoverageData() {
+  async function ensureCoverageData() {
     if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {
       return window.__COVPAGES_DATA__;
+    }
+
+    var candidates = [
+      'covpages-data.json',
+      './covpages-data.json',
+      './covpages/covpages-data.json',
+      '../covpages-data.json',
+      '../covpages/covpages-data.json'
+    ];
+
+    for (var i = 0; i < candidates.length; i++) {
+      try {
+        var res = await fetch(candidates[i]);
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.files) {
+            if (typeof window !== 'undefined') window.__COVPAGES_DATA__ = data;
+            return data;
+          }
+        }
+      } catch (err) {}
     }
     return null;
   }
@@ -1851,20 +1887,30 @@
         var replyData = await relayRes.json();
         var replyText = replyData && replyData.choices && replyData.choices[0] && replyData.choices[0].message && replyData.choices[0].message.content;
         if (replyText) {
-          var formatted = formatMarkdown(replyText);
-          typingEl.innerHTML = formatted;
-          bindActions(typingEl);
-          conversationHistory.push({
-            role: 'assistant',
-            html: formatted,
-            text: replyText
-          });
-          saveHistory();
-          if (statusPill) {
-            statusPill.textContent = 'ai-proxy /v1 Connected';
-            statusPill.setAttribute('data-connected', 'true');
+          var isFallbackEcho = replyText.indexOf('ai-proxy local assistant received:') !== -1 ||
+                               replyText.indexOf('Permitted read-only tools: [none]') !== -1 ||
+                               replyText.indexOf('Permitted read-only tools:') !== -1;
+          if (!isFallbackEcho) {
+            var formatted = formatMarkdown(replyText);
+            typingEl.innerHTML = formatted;
+            bindActions(typingEl);
+            conversationHistory.push({
+              role: 'assistant',
+              html: formatted,
+              text: replyText
+            });
+            saveHistory();
+            if (statusPill) {
+              statusPill.textContent = 'ai-proxy /v1 Connected';
+              statusPill.setAttribute('data-connected', 'true');
+            }
+            relaySuccess = true;
+          } else {
+            if (statusPill) {
+              statusPill.textContent = 'ai-proxy Ready (Local Rules)';
+              statusPill.setAttribute('data-connected', 'true');
+            }
           }
-          relaySuccess = true;
         }
       }
     } catch (e) {
@@ -1875,36 +1921,38 @@
 
     // 2. Intelligent Client-Side Response Engine
     var lower = text.toLowerCase();
-    var covData = getCoverageData();
     var replyHtml = '';
 
-    if (lower.includes('high-value') || lower.includes('價值') || lower.includes('roi') || lower.includes('uncovered') || lower.includes('提升') || lower.includes('priorit')) {
-      if (!covData) {
-        // Fetch covpages-data.json if not in memory
-        try {
-          var res = await fetch('covpages-data.json');
-          if (res.ok) covData = await res.json();
-        } catch (err) {}
-      }
-
+    if (lower.includes('high-value') || lower.includes('價值') || lower.includes('roi') || lower.includes('uncovered') || lower.includes('提升') || lower.includes('priorit') || lower.includes('target')) {
+      var covData = await ensureCoverageData();
       if (covData && covData.files) {
         var report = computeHighValueTargets(covData, 5);
         var curLinesPct = covData.summary.lines.pct.toFixed(2);
         replyHtml = '<p>🎯 <strong>Highest Value Targets to Improve Coverage:</strong></p>' +
           '<p>Overall repo line coverage is currently <strong>' + curLinesPct + '%</strong> (' + covData.summary.lines.covered + '/' + covData.summary.lines.total + ' lines). Here are the top 5 files where adding tests produces the greatest codebase impact:</p>' +
-          '<ol>';
+          '<ul class="ask-ai-actions-list">';
 
         report.targets.forEach(function (t) {
-          replyHtml += '<li><code>' + escapeHtml(t.path) + '</code>: currently <strong>' + t.pct.toFixed(1) + '%</strong> (' + t.uncovered + ' uncovered lines).<br />' +
-            '&rarr; Covering this file will increase repo coverage by <strong>+' + t.gain.toFixed(2) + '%</strong> (up to <strong>' + t.projectedPct.toFixed(2) + '%</strong>).</li>';
+          replyHtml += '<li>' +
+            '<button type="button" class="btn btn-sm ask-ai-jump-btn" data-jump="#file=' + encodeURIComponent(t.path) + '" style="display:flex; flex-direction:column; align-items:flex-start; width:100%; padding:8px 12px; gap:4px; text-align:left;">' +
+              '<div style="display:flex; align-items:center; justify-content:space-between; width:100%;">' +
+                '<code>' + escapeHtml(t.path) + '</code>' +
+                '<span class="badge" style="font-weight:600;">' + t.pct.toFixed(1) + '%</span>' +
+              '</div>' +
+              '<div style="font-size:11px; color:var(--color-fg-muted, #656d76);">' +
+                t.uncovered + ' uncovered lines &middot; <strong>+' + t.gain.toFixed(2) + '%</strong> repo gain (up to ' + t.projectedPct.toFixed(2) + '%)' +
+              '</div>' +
+            '</button>' +
+          '</li>';
         });
 
-        replyHtml += '</ol>' +
-          '<p>You can also query this anytime via the WebMCP tool <code>find_high_value_targets</code>!</p>';
+        replyHtml += '</ul>' +
+          '<p>Click any file above to view its uncovered lines directly, or query WebMCP tool <code>find_high_value_targets</code>!</p>';
       } else {
         replyHtml = '<p>To inspect high-value coverage targets, visit the <a href="covpages/">Live Coverage Viewer</a> or register the WebMCP endpoint at <code>covpages/mcp</code>!</p>';
       }
     } else if (lower.includes('summary') || lower.includes('delta') || lower.includes('總覽') || lower.includes('覆蓋率')) {
+      var covData = await ensureCoverageData();
       if (covData && covData.summary) {
         var s = covData.summary;
         var d = covData.delta;
