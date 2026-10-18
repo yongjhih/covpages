@@ -19,74 +19,117 @@ export function renderWebsiteHtml(options: {
   <title>Covpages - Git-Native Coverage for GitHub Pages</title>
   <style>
     :root {
+      color-scheme: light dark;
       --color-canvas-default: #ffffff;
       --color-canvas-subtle: #f6f8fa;
+      --color-canvas-overlay: #ffffff;
       --color-border-default: #d0d7de;
       --color-border-muted: #d8dee4;
       --color-fg-default: #1f2328;
-      --color-fg-muted: #656d76;
+      --color-fg-muted: #59636e;
+      --color-fg-subtle: #656d76;
       --color-accent-fg: #0969da;
       --color-accent-emphasis: #0969da;
+      --color-accent-subtle: rgba(9, 105, 218, 0.08);
       --color-success-fg: #1a7f37;
       --color-success-emphasis: #1f883d;
-      --color-success-subtle: #dafbe1;
-      --color-btn-bg: #f6f8fa;
+      --color-success-subtle: rgba(26, 127, 55, 0.08);
+      --color-neutral-subtle: rgba(129, 139, 152, 0.1);
+      --color-btn-bg: #ffffff;
       --color-btn-border: #d0d7de;
-      --color-btn-primary-bg: #1f883d;
-      --color-btn-primary-border: rgba(31,35,40,0.15);
+      --color-btn-hover-bg: #f6f8fa;
+      --color-btn-primary-bg: #1f2328;
+      --color-btn-primary-fg: #ffffff;
+      --color-btn-primary-border: #1f2328;
       --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --shadow-sm: 0 1px 0 rgba(31, 35, 40, 0.04);
+      --shadow-rest: 0 4px 12px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);
     }
 
     [data-color-mode="dark"] {
+      color-scheme: dark;
       --color-canvas-default: #0d1117;
       --color-canvas-subtle: #161b22;
+      --color-canvas-overlay: #161b22;
       --color-border-default: #30363d;
       --color-border-muted: #21262d;
       --color-fg-default: #e6edf3;
-      --color-fg-muted: #848d97;
-      --color-accent-fg: #2f81f7;
+      --color-fg-muted: #8b949e;
+      --color-fg-subtle: #6e7681;
+      --color-accent-fg: #4493f8;
       --color-accent-emphasis: #1f6feb;
+      --color-accent-subtle: rgba(56, 139, 253, 0.1);
       --color-success-fg: #3fb950;
       --color-success-emphasis: #238636;
-      --color-success-subtle: rgba(46,160,67,0.15);
-      --color-btn-bg: #21262d;
+      --color-success-subtle: rgba(46, 160, 67, 0.1);
+      --color-neutral-subtle: rgba(110, 118, 129, 0.12);
+      --color-btn-bg: #161b22;
       --color-btn-border: #30363d;
-      --color-btn-primary-bg: #238636;
-      --color-btn-primary-border: rgba(240,246,252,0.1);
+      --color-btn-hover-bg: #21262d;
+      --color-btn-primary-bg: #e6edf3;
+      --color-btn-primary-fg: #0d1117;
+      --color-btn-primary-border: #e6edf3;
+      --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
     }
 
     @media (prefers-color-scheme: dark) {
       [data-color-mode="auto"] {
+        color-scheme: dark;
         --color-canvas-default: #0d1117;
         --color-canvas-subtle: #161b22;
+        --color-canvas-overlay: #161b22;
         --color-border-default: #30363d;
         --color-border-muted: #21262d;
         --color-fg-default: #e6edf3;
-        --color-fg-muted: #848d97;
-        --color-accent-fg: #2f81f7;
+        --color-fg-muted: #8b949e;
+        --color-fg-subtle: #6e7681;
+        --color-accent-fg: #4493f8;
         --color-accent-emphasis: #1f6feb;
+        --color-accent-subtle: rgba(56, 139, 253, 0.1);
         --color-success-fg: #3fb950;
         --color-success-emphasis: #238636;
-        --color-success-subtle: rgba(46,160,67,0.15);
-        --color-btn-bg: #21262d;
+        --color-success-subtle: rgba(46, 160, 67, 0.1);
+        --color-neutral-subtle: rgba(110, 118, 129, 0.12);
+        --color-btn-bg: #161b22;
         --color-btn-border: #30363d;
-        --color-btn-primary-bg: #238636;
-        --color-btn-primary-border: rgba(240,246,252,0.1);
+        --color-btn-hover-bg: #21262d;
+        --color-btn-primary-bg: #e6edf3;
+        --color-btn-primary-fg: #0d1117;
+        --color-btn-primary-border: #e6edf3;
+        --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
       }
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    ::selection {
+      background-color: var(--color-accent-subtle);
+      color: var(--color-fg-default);
+    }
+
+    html {
+      scrollbar-color: var(--color-border-default) transparent;
+    }
+
     body {
       font-family: var(--font-stack);
       font-size: 14px;
       line-height: 1.5;
       color: var(--color-fg-default);
       background-color: var(--color-canvas-default);
+      caret-color: var(--color-fg-default);
       -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--color-accent-fg); text-decoration: none; }
+    a {
+      color: var(--color-accent-fg);
+      text-decoration: none;
+      text-underline-offset: 0.2em;
+    }
     a:hover { text-decoration: underline; }
 
     .site-header {
@@ -96,21 +139,33 @@ export function renderWebsiteHtml(options: {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 56px;
       padding: 0 24px;
-      background-color: var(--color-canvas-default);
+      background-color: var(--color-canvas-subtle);
       border-bottom: 1px solid var(--color-border-default);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
       color: var(--color-fg-default);
     }
     .brand:hover { text-decoration: none; }
+
+    .version-tag {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      padding: 1px 6px;
+      background: var(--color-canvas-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-sm);
+      color: var(--color-fg-muted);
+      font-weight: 500;
+    }
 
     .nav-links {
       display: flex;
@@ -118,9 +173,12 @@ export function renderWebsiteHtml(options: {
       gap: 20px;
     }
     .nav-link {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--color-fg-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
     .nav-link:hover {
       color: var(--color-fg-default);
@@ -134,36 +192,42 @@ export function renderWebsiteHtml(options: {
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      font-size: 14px;
+      padding: 5px 12px;
+      font-size: 13px;
       font-weight: 500;
       line-height: 20px;
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       cursor: pointer;
       border: 1px solid var(--color-btn-border);
       background-color: var(--color-btn-bg);
       color: var(--color-fg-default);
       text-decoration: none;
-      transition: 0.15s ease-in-out;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 120ms cubic-bezier(0.25, 1, 0.5, 1), border-color 120ms cubic-bezier(0.25, 1, 0.5, 1);
     }
     .btn:hover {
-      background-color: var(--color-border-muted);
+      background-color: var(--color-btn-hover-bg);
       text-decoration: none;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--color-accent-fg);
+      outline-offset: 1px;
     }
     .btn-primary {
       background-color: var(--color-btn-primary-bg);
-      color: #ffffff !important;
+      color: var(--color-btn-primary-fg) !important;
       border-color: var(--color-btn-primary-border);
-      font-weight: 600;
+      font-weight: 500;
     }
     .btn-primary:hover {
+      background-color: var(--color-btn-primary-bg);
       opacity: 0.9;
     }
     .btn-sm {
@@ -173,69 +237,55 @@ export function renderWebsiteHtml(options: {
     }
 
     .container {
-      max-width: 1140px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     /* Hero Section */
     .hero {
-      padding: 72px 0 48px;
-      text-align: center;
+      padding: 64px 0 48px;
       border-bottom: 1px solid var(--color-border-muted);
     }
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      margin-bottom: 24px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--color-accent-fg);
-      background-color: var(--color-canvas-subtle);
-      border: 1px solid var(--color-border-default);
-      border-radius: 20px;
-    }
     .hero h1 {
-      font-size: 44px;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
-      margin-bottom: 16px;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+      color: var(--color-fg-default);
+      text-wrap: balance;
     }
     .hero p {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--color-fg-muted);
-      max-width: 720px;
-      margin: 0 auto 32px;
+      max-width: 65ch;
+      margin-bottom: 28px;
       line-height: 1.6;
     }
     .hero-ctas {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
-    /* Live Preview Card */
+    /* Live Preview Mock Frame */
     .preview-card {
-      background: var(--color-canvas-subtle);
+      background: var(--color-canvas-default);
       border: 1px solid var(--color-border-default);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow-rest);
       text-align: left;
-      margin-top: 16px;
     }
     .preview-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
-      background: var(--color-canvas-default);
+      padding: 10px 16px;
+      background: var(--color-canvas-subtle);
       border-bottom: 1px solid var(--color-border-default);
     }
     .preview-title {
@@ -243,154 +293,198 @@ export function renderWebsiteHtml(options: {
       align-items: center;
       gap: 8px;
       font-weight: 600;
-      font-size: 13px;
-    }
-    .preview-stats-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-      padding: 20px 24px;
-      background-color: var(--color-canvas-default);
-      border-bottom: 1px solid var(--color-border-muted);
-    }
-    .stat-box {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .stat-label {
       font-size: 12px;
-      color: var(--color-fg-muted);
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .stat-value {
-      font-size: 24px;
-      font-weight: 700;
+      font-family: var(--font-mono);
       color: var(--color-fg-default);
     }
-    .stat-progress {
-      height: 6px;
-      background: var(--color-border-muted);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 4px;
+    .preview-title svg {
+      color: var(--color-fg-muted);
     }
-    .stat-fill {
-      height: 100%;
-      background: var(--color-success-emphasis);
-      border-radius: 3px;
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
     }
-
+    .preview-table th {
+      background-color: var(--color-canvas-default);
+      color: var(--color-fg-muted);
+      font-weight: 500;
+      font-size: 12px;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--color-border-muted);
+      text-align: left;
+    }
+    .preview-table td {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--color-border-muted);
+      color: var(--color-fg-default);
+      font-variant-numeric: tabular-nums;
+    }
+    .preview-table tr:last-child td {
+      border-bottom: none;
+    }
+    .preview-path {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .preview-path svg {
+      color: var(--color-fg-muted);
+    }
+    .preview-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      background-color: var(--color-neutral-subtle);
+      color: var(--color-fg-default);
+      border: 1px solid var(--color-border-muted);
+    }
     .preview-actions {
-      padding: 16px 24px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background-color: var(--color-canvas-subtle);
-      border-top: 1px solid var(--color-border-muted);
+      border-top: 1px solid var(--color-border-default);
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     /* Section Headers */
     .section {
-      padding: 64px 0;
+      padding: 56px 0;
       border-bottom: 1px solid var(--color-border-muted);
     }
+    .section-header {
+      margin-bottom: 32px;
+    }
     .section-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+      color: var(--color-fg-default);
     }
     .section-subtitle {
-      font-size: 16px;
+      font-size: 14px;
       color: var(--color-fg-muted);
-      text-align: center;
-      margin-bottom: 40px;
-      max-width: 680px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 68ch;
+      line-height: 1.5;
     }
 
-    /* Features Grid */
-    .features-grid {
+    /* Architectural Specification List (Primer Bordered Grid instead of SaaS Icon Cards) */
+    .spec-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-    .feature-card {
-      padding: 24px;
-      background: var(--color-canvas-subtle);
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       border: 1px solid var(--color-border-default);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-border-muted);
+      gap: 1px;
+      overflow: hidden;
+    }
+    .spec-item {
+      padding: 20px 24px;
+      background: var(--color-canvas-default);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-    .feature-title {
-      font-size: 16px;
+    .spec-title {
+      font-size: 14px;
       font-weight: 600;
+      color: var(--color-fg-default);
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .feature-desc {
-      font-size: 14px;
+    .spec-title svg {
       color: var(--color-fg-muted);
-      line-height: 1.5;
+      flex-shrink: 0;
+    }
+    .spec-desc {
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      line-height: 1.55;
+    }
+    .spec-desc code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 1px 4px;
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-sm);
     }
 
     /* Playground / Badges */
     .badge-builder {
-      background: var(--color-canvas-subtle);
+      background: var(--color-canvas-default);
       border: 1px solid var(--color-border-default);
-      border-radius: 8px;
-      padding: 32px;
-      max-width: 800px;
-      margin: 0 auto;
+      border-radius: var(--radius-md);
+      padding: 24px;
     }
-    .form-group {
+    .badge-builder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
       margin-bottom: 20px;
     }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
     .form-label {
-      display: block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      margin-bottom: 6px;
+      color: var(--color-fg-default);
     }
     .form-input, .form-select {
       width: 100%;
-      padding: 8px 12px;
-      font-size: 14px;
+      padding: 6px 10px;
+      font-size: 13px;
       font-family: var(--font-stack);
       border: 1px solid var(--color-border-default);
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       background: var(--color-canvas-default);
       color: var(--color-fg-default);
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--color-accent-fg);
+      box-shadow: 0 0 0 2px var(--color-accent-subtle);
     }
     .badge-preview-box {
-      margin-top: 24px;
-      padding: 20px;
-      background: var(--color-canvas-default);
+      padding: 16px;
+      background: var(--color-canvas-subtle);
       border: 1px solid var(--color-border-default);
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+    }
+    .badge-preview-row {
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .badge-img-wrap {
-      padding: 12px;
+      display: inline-flex;
+      align-items: center;
     }
     .code-preview {
       width: 100%;
-      background: var(--color-canvas-subtle);
-      border: 1px solid var(--color-border-muted);
-      border-radius: 6px;
-      padding: 12px;
+      background: var(--color-canvas-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
       font-family: var(--font-mono);
       font-size: 12px;
+      color: var(--color-fg-default);
       overflow-x: auto;
       white-space: pre-wrap;
       word-break: break-all;
@@ -400,7 +494,7 @@ export function renderWebsiteHtml(options: {
     .benchmarks-table-wrap {
       overflow-x: auto;
       border: 1px solid var(--color-border-default);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       padding: 16px;
       background-color: var(--color-canvas-subtle);
     }
@@ -410,34 +504,35 @@ export function renderWebsiteHtml(options: {
       border-spacing: 0;
       background-color: var(--color-canvas-default);
       border: 1px solid var(--color-border-muted);
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       text-align: left;
       font-size: 13px;
     }
     .benchmarks-table th, .benchmarks-table td {
-      padding: 12px 18px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--color-border-muted);
+      font-variant-numeric: tabular-nums;
     }
     .benchmarks-table th {
       background: var(--color-canvas-subtle);
+      color: var(--color-fg-muted);
       font-weight: 600;
+      font-size: 12px;
     }
     .benchmarks-table tr:last-child td {
       border-bottom: none;
     }
     .highlight-cell {
-      color: var(--color-success-fg);
+      color: var(--color-fg-default);
       font-weight: 600;
     }
 
     /* Code Tabs */
     .code-tabs {
       border: 1px solid var(--color-border-default);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       overflow: hidden;
-      max-width: 800px;
-      margin: 0 auto;
     }
     .tabs-header {
       display: flex;
@@ -446,28 +541,34 @@ export function renderWebsiteHtml(options: {
       overflow-x: auto;
     }
     .tab-btn {
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 600;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 500;
       color: var(--color-fg-muted);
       background: none;
       border: none;
       cursor: pointer;
       border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: var(--color-fg-default);
     }
     .tab-btn.active {
       color: var(--color-fg-default);
-      border-bottom-color: var(--color-accent-emphasis);
+      font-weight: 600;
+      border-bottom-color: var(--color-fg-default);
       background: var(--color-canvas-default);
     }
     .tab-content {
-      padding: 20px;
+      padding: 16px 20px;
       background: var(--color-canvas-default);
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.6;
       overflow-x: auto;
       white-space: pre;
+      color: var(--color-fg-default);
     }
 
     /* Toast */
@@ -475,27 +576,33 @@ export function renderWebsiteHtml(options: {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #1f2328;
-      color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 6px;
+      background: var(--color-canvas-overlay);
+      color: var(--color-fg-default);
+      border: 1px solid var(--color-border-default);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
       font-size: 13px;
       font-weight: 500;
       display: none;
       z-index: 1000;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    }
-    [data-color-mode="dark"] .toast {
-      background: #30363d;
-      color: #f0f6fc;
+      box-shadow: var(--shadow-rest);
     }
 
     /* Footer */
     .site-footer {
-      padding: 48px 0;
-      text-align: center;
+      padding: 40px 0;
       color: var(--color-fg-muted);
-      font-size: 13px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .site-header { padding: 0 16px; }
     }
   </style>
 </head>
@@ -503,17 +610,15 @@ export function renderWebsiteHtml(options: {
   <!-- Header -->
   <header class="site-header">
     <a href="#" class="brand">
-      <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor">
-        <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-      </svg>
+      ${ICONS.github}
       <span>covpages</span>
-      <span style="font-size: 11px; padding: 2px 6px; background: var(--color-canvas-subtle); border: 1px solid var(--color-border-default); border-radius: 10px; font-weight: normal;">v0.1.0</span>
+      <span class="version-tag">v0.1.0</span>
     </a>
 
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">Overview</a>
-      <a href="${liveDemoUrl}" class="nav-link" style="color: var(--color-success-fg); font-weight: 600;">Live Demo ↗</a>
-      <a href="#features" class="nav-link">Features</a>
+      <a href="${liveDemoUrl}" class="nav-link">Live Demo ${ICONS.linkExternal}</a>
+      <a href="#features" class="nav-link">Architecture</a>
       <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#badges" class="nav-link">Badges</a>
       <a href="#quickstart" class="nav-link">Quickstart</a>
@@ -521,8 +626,8 @@ export function renderWebsiteHtml(options: {
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-sm" id="theme-toggle" title="Toggle theme">🌓 Theme</button>
-      <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ↗</a>
+      <button class="btn btn-sm" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">${ICONS.moon} <span>Theme</span></button>
+      <a href="https://github.com/${repo}" class="btn btn-sm" target="_blank" rel="noopener">GitHub ${ICONS.linkExternal}</a>
       <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">Live Coverage</a>
     </div>
   </header>
@@ -530,74 +635,80 @@ export function renderWebsiteHtml(options: {
   <!-- Hero -->
   <section class="hero" id="overview">
     <div class="container">
-      <div class="hero-pill">
-        <span>✨ Git-Native</span>
-        <span>•</span>
-        <span>Zero Servers</span>
-        <span>•</span>
-        <span>100% Free for GitHub Pages</span>
-      </div>
-
-      <h1>Git-Native Code Coverage<br>for GitHub Pages</h1>
+      <h1>Git-Native Code Coverage for GitHub Pages</h1>
       <p>
-        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Impeccable GitHub design with multi-commit trends, scoped SVG badges, and syntax highlighting.
+        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, and syntax highlighting.
       </p>
 
       <div class="hero-ctas">
-        <a href="${liveDemoUrl}" class="btn btn-primary" style="font-size: 15px; padding: 8px 20px;">
-          Explore Live Demo ↗
+        <a href="${liveDemoUrl}" class="btn btn-primary">
+          <span>Explore Live Demo</span>
+          ${ICONS.linkExternal}
         </a>
-        <a href="#quickstart" class="btn" style="font-size: 15px; padding: 8px 20px;">
+        <a href="#quickstart" class="btn">
           Get Started in 5 Min
         </a>
-        <a href="#badges" class="btn" style="font-size: 15px; padding: 8px 20px;">
+        <a href="#badges" class="btn">
           Badge Generator
         </a>
       </div>
 
-      <!-- Live Preview Card -->
+      <!-- Live Showcase Table Frame -->
       <div class="preview-card">
         <div class="preview-card-header">
           <div class="preview-title">
-            <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
-              <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l3.914 3.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 16h-10.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6H10.75A1.75 1.75 0 0 1 9 4.25V1.5Zm7.75.56v2.69c0 .138.112.25.25.25h2.69Z"></path>
-            </svg>
-            <span>Live Showcase: ${repo} (Branch: main)</span>
+            ${ICONS.branch}
+            <span>${repo} / main</span>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
             <img src="${badgeUrl}" alt="Coverage Badge" height="20" style="vertical-align: middle;">
           </div>
         </div>
 
-        <div class="preview-stats-bar">
-          <div class="stat-box">
-            <div class="stat-label">Line Coverage</div>
-            <div class="stat-value">50.0%</div>
-            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Functions</div>
-            <div class="stat-value">50.0%</div>
-            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Branches</div>
-            <div class="stat-value">50.0%</div>
-            <div class="stat-progress"><div class="stat-fill" style="width: 50%;"></div></div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Historical Commits</div>
-            <div class="stat-value">Active</div>
-            <div style="font-size: 12px; color: var(--color-fg-muted); margin-top: 4px;">Normalized Git delta</div>
-          </div>
+        <div style="overflow-x: auto;">
+          <table class="preview-table">
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>Coverage</th>
+                <th>Lines</th>
+                <th>Functions</th>
+                <th>Branches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="preview-path">${ICONS.folder} <span>src/core</span></span></td>
+                <td><span class="preview-pill">94.2%</span></td>
+                <td>312 / 331</td>
+                <td>96.0%</td>
+                <td>89.4%</td>
+              </tr>
+              <tr>
+                <td><span class="preview-path">${ICONS.folder} <span>src/parsers</span></span></td>
+                <td><span class="preview-pill">91.8%</span></td>
+                <td>245 / 267</td>
+                <td>94.1%</td>
+                <td>86.2%</td>
+              </tr>
+              <tr>
+                <td><span class="preview-path">${ICONS.file} <span>src/index.ts</span></span></td>
+                <td><span class="preview-pill">100.0%</span></td>
+                <td>68 / 68</td>
+                <td>100.0%</td>
+                <td>92.0%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="preview-actions">
-          <div style="font-size: 13px; color: var(--color-fg-muted);">
-            Explore directory file trees, syntax-highlighted source lines, and commit trends on GitHub Pages.
+          <div style="font-size: 12px; color: var(--color-fg-muted);">
+            Inspect directory trees, line-by-line execution counts, and historical commit deltas directly on GitHub Pages.
           </div>
-          <a href="${liveDemoUrl}" class="btn btn-sm btn-primary">
-            Open Interactive Coverage Viewer ↗
+          <a href="${liveDemoUrl}" class="btn btn-sm">
+            <span>Open Interactive Coverage Viewer</span>
+            ${ICONS.linkExternal}
           </a>
         </div>
       </div>
@@ -607,50 +718,52 @@ export function renderWebsiteHtml(options: {
   <!-- Features -->
   <section class="section" id="features">
     <div class="container">
-      <h2 class="section-title">Why Choose Covpages?</h2>
-      <p class="section-subtitle">
-        Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.
-      </p>
+      <div class="section-header">
+        <h2 class="section-title">Why Choose Covpages?</h2>
+        <p class="section-subtitle">
+          Eliminate external SaaS subscriptions, privacy leaks, and slow CI steps with a native GitHub Pages workflow.
+        </p>
+      </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3 class="feature-title"><span>📦</span> <span>97.6% Git Delta Compression</span></h3>
-          <p class="feature-desc">
+      <div class="spec-grid">
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.package} <span>97.6% Git Delta Compression</span></h3>
+          <p class="spec-desc">
             Covpages normalizes line endings and sorts LCOV records deterministically. 100 historical commits compress into just 1.24 MB in Git packfiles.
           </p>
         </div>
 
-        <div class="feature-card">
-          <h3 class="feature-title"><span>🏷️</span> <span>Scoped SVG Badges with 1-Click Copy</span></h3>
-          <p class="feature-desc">
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.tag} <span>Scoped SVG Badges with 1-Click Copy</span></h3>
+          <p class="spec-desc">
             Generate coverage badges not just for your repo, but for every branch, subfolder, and file. Click to copy markdown directly into your README.
           </p>
         </div>
 
-        <div class="feature-card">
-          <h3 class="feature-title"><span>🎨</span> <span>GitHub-Identical UI & Syntax Highlighting</span></h3>
-          <p class="feature-desc">
-            Identical tree/blob routing, keyboard shortcuts (t, n, ESC), line numbers, hit gutters, and Prism.js syntax highlighting for all major languages.
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.code} <span>GitHub Primer UI & Syntax Highlighting</span></h3>
+          <p class="spec-desc">
+            Authentic tree/blob routing, keyboard shortcuts (<code>t</code>, <code>n</code>, <code>ESC</code>), line numbers, hit gutters, and Prism.js syntax highlighting.
           </p>
         </div>
 
-        <div class="feature-card">
-          <h3 class="feature-title"><span>📈</span> <span>Multi-Commit Trends by Folder & File</span></h3>
-          <p class="feature-desc">
-            Track coverage fluctuations across commits. Inspect trendlines by repository, individual directory, or specific source file.
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.graph} <span>Multi-Commit Trends by Folder & File</span></h3>
+          <p class="spec-desc">
+            Track coverage progression across commits. Inspect historical trendlines by repository, individual directory, or specific source file.
           </p>
         </div>
 
-        <div class="feature-card">
-          <h3 class="feature-title"><span>🧩</span> <span>+React & Component Reusability</span></h3>
-          <p class="feature-desc">
-            Import &lt;Covpages /&gt; directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard &lt;cov-pages&gt; Web Component.
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.sidebar} <span>+React & Component Reusability</span></h3>
+          <p class="spec-desc">
+            Import <code>&lt;Covpages /&gt;</code> directly into React, Next.js, and Docusaurus documentation sites, or embed as a standard Web Component.
           </p>
         </div>
 
-        <div class="feature-card">
-          <h3 class="feature-title"><span>⚡</span> <span>Zero-Server 1-Click GitHub Actions</span></h3>
-          <p class="feature-desc">
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.zap} <span>Zero-Server 1-Click GitHub Actions</span></h3>
+          <p class="spec-desc">
             Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.
           </p>
         </div>
@@ -661,43 +774,48 @@ export function renderWebsiteHtml(options: {
   <!-- Scoped Badges Playground -->
   <section class="section" id="badges">
     <div class="container">
-      <h2 class="section-title">Interactive Badge Generator</h2>
-      <p class="section-subtitle">
-        Embed live SVG coverage badges into your README.md for your entire project or specific folders.
-      </p>
+      <div class="section-header">
+        <h2 class="section-title">Interactive Badge Generator</h2>
+        <p class="section-subtitle">
+          Embed live SVG coverage badges into your README.md for your entire project or specific folders.
+        </p>
+      </div>
 
       <div class="badge-builder">
-        <div class="form-group">
-          <label class="form-label">GitHub Repository</label>
-          <input type="text" id="badge-repo" class="form-input" value="${repo}">
-        </div>
+        <div class="badge-builder-grid">
+          <div class="form-group">
+            <label class="form-label" for="badge-repo">GitHub Repository</label>
+            <input type="text" id="badge-repo" class="form-input" value="${repo}">
+          </div>
 
-        <div class="form-group">
-          <label class="form-label">Scope</label>
-          <select id="badge-scope" class="form-select">
-            <option value="overall">Overall Repository</option>
-            <option value="branch">Branch (e.g. main)</option>
-            <option value="folder">Directory (e.g. src)</option>
-            <option value="file">File (e.g. src/index.ts)</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label class="form-label" for="badge-scope">Scope</label>
+            <select id="badge-scope" class="form-select">
+              <option value="overall">Overall Repository</option>
+              <option value="branch">Branch (e.g. main)</option>
+              <option value="folder">Directory (e.g. src)</option>
+              <option value="file">File (e.g. src/index.ts)</option>
+            </select>
+          </div>
 
-        <div class="form-group" id="badge-target-group" style="display: none;">
-          <label class="form-label" id="badge-target-label">Target Name</label>
-          <input type="text" id="badge-target" class="form-input" value="src">
+          <div class="form-group" id="badge-target-group" style="display: none;">
+            <label class="form-label" id="badge-target-label" for="badge-target">Target Name</label>
+            <input type="text" id="badge-target" class="form-input" value="src">
+          </div>
         </div>
 
         <div class="badge-preview-box">
-          <div class="badge-img-wrap">
-            <img id="badge-preview-img" src="${badgeUrl}" alt="Badge Preview" height="24">
+          <div class="badge-preview-row">
+            <div class="badge-img-wrap">
+              <img id="badge-preview-img" src="${badgeUrl}" alt="Badge Preview" height="20">
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-sm btn-primary" id="copy-badge-md">${ICONS.copy} <span>Copy Markdown</span></button>
+              <button class="btn btn-sm" id="copy-badge-url">Copy Badge URL</button>
+            </div>
           </div>
 
           <div class="code-preview" id="badge-markdown-code"></div>
-
-          <div style="display:flex; gap:12px;">
-            <button class="btn btn-primary" id="copy-badge-md">📋 Copy Markdown</button>
-            <button class="btn" id="copy-badge-url">🔗 Copy Badge URL</button>
-          </div>
         </div>
       </div>
     </div>
@@ -706,10 +824,12 @@ export function renderWebsiteHtml(options: {
   <!-- Storage & Performance Benchmarks -->
   <section class="section" id="benchmarks">
     <div class="container">
-      <h2 class="section-title">Storage & Bandwidth Benchmarks</h2>
-      <p class="section-subtitle">
-        Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.
-      </p>
+      <div class="section-header">
+        <h2 class="section-title">Storage & Bandwidth Benchmarks</h2>
+        <p class="section-subtitle">
+          Normalized LCOV files achieve a 97.6% disk reduction in Git packfiles over 100 commits.
+        </p>
+      </div>
 
       <div class="benchmarks-table-wrap">
         <table class="benchmarks-table">
@@ -748,7 +868,7 @@ export function renderWebsiteHtml(options: {
         </table>
       </div>
 
-      <div style="margin-top: 32px;" class="benchmarks-table-wrap">
+      <div style="margin-top: 24px;" class="benchmarks-table-wrap">
         <table class="benchmarks-table">
           <thead>
             <tr>
@@ -786,10 +906,12 @@ export function renderWebsiteHtml(options: {
   <!-- Quickstart -->
   <section class="section" id="quickstart">
     <div class="container">
-      <h2 class="section-title">Quickstart & Setup</h2>
-      <p class="section-subtitle">
-        Get up and running in under 5 minutes with zero configuration.
-      </p>
+      <div class="section-header">
+        <h2 class="section-title">Quickstart & Setup</h2>
+        <p class="section-subtitle">
+          Get up and running in under 5 minutes with zero configuration.
+        </p>
+      </div>
 
       <div class="code-tabs">
         <div class="tabs-header">
@@ -857,7 +979,7 @@ npx covpages generate --input coverage/lcov.info --output docs/covpages</div>
 ./bin/covpages-docker.sh generate --input coverage/lcov.info --output docs/covpages
 
 # Or run official container image directly
-docker run --rm -v "$PWD:/workspace" -w /workspace \
+docker run --rm -v "$PWD:/workspace" -w /workspace \\
   ghcr.io/yongjhih/covpages:latest generate --input coverage/lcov.info --output docs/covpages
 
 # Devcontainer: open directly in VS Code or GitHub Codespaces via .devcontainer/</div>
@@ -868,10 +990,12 @@ docker run --rm -v "$PWD:/workspace" -w /workspace \
   <!-- React Integration -->
   <section class="section" id="react">
     <div class="container">
-      <h2 class="section-title">Reusable Component Architecture & React Integration</h2>
-      <p class="section-subtitle">
-        Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.
-      </p>
+      <div class="section-header">
+        <h2 class="section-title">+React & Component Reusability</h2>
+        <p class="section-subtitle">
+          Easily integrate Covpages into React applications, Next.js, and Docusaurus portals.
+        </p>
+      </div>
 
       <div class="code-tabs">
         <div class="tabs-header">
@@ -906,14 +1030,14 @@ export function CoveragePortal() {
   <div id="toast" class="toast">Copied to clipboard!</div>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>
+  <footer class="container">
+    <div class="site-footer">
+      <div>
         Covpages is open source software released under the <a href="https://github.com/${repo}/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
-      </p>
-      <p style="margin-top: 8px;">
+      </div>
+      <div>
         Designed with GitHub Primer standards. Zero dependencies, Git-native, and private.
-      </p>
+      </div>
     </div>
   </footer>
 
@@ -925,7 +1049,8 @@ export function CoveragePortal() {
       document.documentElement.setAttribute('data-color-mode', currentMode);
 
       themeToggle.addEventListener('click', () => {
-        currentMode = currentMode === 'dark' ? 'light' : 'dark';
+        const isDark = currentMode === 'dark' || (currentMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        currentMode = isDark ? 'light' : 'dark';
         document.documentElement.setAttribute('data-color-mode', currentMode);
         localStorage.setItem('covpages-theme', currentMode);
       });
@@ -974,7 +1099,7 @@ export function CoveragePortal() {
         if (scope === 'overall') {
           targetGroup.style.display = 'none';
         } else {
-          targetGroup.style.display = 'block';
+          targetGroup.style.display = 'flex';
           targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');
         }
 
