@@ -2,8 +2,8 @@
   "commit": {
     "sha": "3b81651a1c57c6c14b0be3e87bcb5102fc3847ab",
     "shortSha": "3b81651",
-    "message": "fix: define title and repo in mcp module script and add delegated form submit listener",
-    "author": "Andrew Chen",
+    "message": "Merge pull request #13 from yongjhih/fix/mcp-module-syntax-error\n\nfix: resolve module script syntax errors in mcp.html and prevent form submission on tool execution",
+    "author": "yongjhih",
     "date": "2026-10-18T12:06:58.000Z",
     "branch": "main"
   },
@@ -21,10 +21,10 @@
       "pct": 80.39
     },
     "branches": {
-      "total": 602,
-      "covered": 434,
-      "skipped": 168,
-      "pct": 72.09
+      "total": 600,
+      "covered": 430,
+      "skipped": 170,
+      "pct": 71.67
     }
   },
   "folderSummaries": {
@@ -42,10 +42,10 @@
         "pct": 80.39
       },
       "branches": {
-        "total": 602,
-        "covered": 434,
-        "skipped": 168,
-        "pct": 72.09
+        "total": 600,
+        "covered": 430,
+        "skipped": 170,
+        "pct": 71.67
       }
     },
     "src": {
@@ -62,10 +62,10 @@
         "pct": 80.39
       },
       "branches": {
-        "total": 602,
-        "covered": 434,
-        "skipped": 168,
-        "pct": 72.09
+        "total": 600,
+        "covered": 430,
+        "skipped": 170,
+        "pct": 71.67
       }
     },
     "src/core": {
@@ -82,10 +82,10 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 259,
-        "covered": 203,
-        "skipped": 56,
-        "pct": 78.38
+        "total": 257,
+        "covered": 199,
+        "skipped": 58,
+        "pct": 77.43
       }
     },
     "src/mcp": {
@@ -365,9 +365,9 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       }
     },
     "src/core/history.ts": {
@@ -384,10 +384,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       }
     },
     "src/core/lcov-normalizer.ts": {
@@ -444,10 +444,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       }
     },
     "src/mcp/index.ts": {
