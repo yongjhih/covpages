@@ -173,4 +173,5 @@ export interface GenerateOptions {
   includeSource?: boolean;
   maxHistoryCommits?: number;
   saveRaw?: boolean;
+  mcp?: boolean;
 }

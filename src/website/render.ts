@@ -737,6 +737,7 @@ export function renderWebsiteHtml(options: {
     <nav class="nav-links">
       <a href="#overview" class="nav-link active">Overview</a>
       <a href="${liveDemoUrl}" class="nav-link">Live Demo ${ICONS.linkExternal}</a>
+      <a href="mcp.html" class="nav-link">MCP Page</a>
       <a href="#features" class="nav-link">Architecture</a>
       <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#badges" class="nav-link">Badges</a>
@@ -756,7 +757,7 @@ export function renderWebsiteHtml(options: {
     <div class="container">
       <h1>Git-Native Code Coverage for GitHub Pages</h1>
       <p>
-        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, and syntax highlighting.
+        Zero servers. Zero monthly SaaS fees. 100% inside your Git repository. Restrained GitHub Primer interface with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP support.
       </p>
 
       <div class="hero-ctas">
@@ -769,6 +770,9 @@ export function renderWebsiteHtml(options: {
         </a>
         <a href="#badges" class="btn">
           Badge Generator
+        </a>
+        <a href="mcp.html" class="btn">
+          MCP Page (AI Tools)
         </a>
       </div>
 
@@ -884,6 +888,13 @@ export function renderWebsiteHtml(options: {
           <h3 class="spec-title">${ICONS.zap} <span>Zero-Server 1-Click GitHub Actions</span></h3>
           <p class="spec-desc">
             Run <code>npx covpages init</code> to generate a zero-config GitHub Actions workflow that automatically publishes to GitHub Pages on every push.
+          </p>
+        </div>
+
+        <div class="spec-item">
+          <h3 class="spec-title">${ICONS.terminal} <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
+          <p class="spec-desc">
+            Turns your coverage site into an <a href="mcp.html">MCP Page</a> with 5 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
           </p>
         </div>
       </div>
