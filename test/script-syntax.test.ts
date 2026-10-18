@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { APP_JS } from '../src/templates/app.js.js';
+import { ASK_AI_CLIENT_SCRIPT } from '../src/templates/ask-ai.js';
 import { PRISM_JS } from '../src/templates/prism.bundle.js';
 import { renderIndexHtml, render404Html } from '../src/templates/index.html.js';
 import { renderWebsiteHtml } from '../src/website/render.js';
@@ -11,7 +12,7 @@ import { renderWebsiteHtml } from '../src/website/render.js';
  */
 function extractScripts(html: string): string[] {
   const out: string[] = [];
-  const re = /<script>([\s\S]*?)<\/script>/g;
+  const re = /<script(?![^>]*type="module")>([\s\S]*?)<\/script>/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(html))) out.push(m[1]);
   return out;
@@ -24,6 +25,7 @@ function assertParses(code: string, label: string) {
 describe('Emitted client scripts are valid JavaScript', () => {
   it('APP_JS parses', () => assertParses(APP_JS, 'APP_JS'));
   it('PRISM_JS parses', () => assertParses(PRISM_JS, 'PRISM_JS'));
+  it('ASK_AI_CLIENT_SCRIPT parses', () => assertParses(ASK_AI_CLIENT_SCRIPT, 'ASK_AI_CLIENT_SCRIPT'));
 
   it('all inline scripts in the report index.html parse', () => {
     const scripts = extractScripts(renderIndexHtml(null).html);
@@ -82,6 +84,47 @@ describe('Emitted client scripts are valid JavaScript', () => {
     for (let i = 1; i < xAxisLabels.length; i++) {
       expect(xAxisLabels[i].x - xAxisLabels[i - 1].x).toBeGreaterThan(46);
     }
+  });
+
+  it('formatMarkdown converts CTA action buttons, jump anchors, and external links', () => {
+    const fnMatch = ASK_AI_CLIENT_SCRIPT.match(/function formatMarkdown\([\s\S]*?\n  \}/);
+    expect(fnMatch).not.toBeNull();
+
+    const formatMarkdown = new Function('escapeHtml', `${fnMatch![0]}\nreturn formatMarkdown;`)(
+      (s: string) =>
+        s
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;'),
+    );
+
+    // Jump CTA button in a list item (as in ai-proxy replies)
+    const jumpResult = formatMarkdown('- [🚀 前往快速上手指南](#quickstart)');
+    expect(jumpResult).toContain('<ul class="ask-ai-actions-list">');
+    expect(jumpResult).toContain('class="btn btn-sm ask-ai-jump-btn"');
+    expect(jumpResult).toContain('data-jump="#quickstart"');
+    expect(jumpResult).toContain('🚀 前往快速上手指南');
+
+    // Action CTA button
+    const actionResult = formatMarkdown('- [連接本地服務](action:connect)');
+    expect(actionResult).toContain('<ul class="ask-ai-actions-list">');
+    expect(actionResult).toContain('class="btn btn-sm btn-primary ask-ai-cta-btn"');
+    expect(actionResult).toContain('data-action="action:connect"');
+
+    // External link CTA button
+    const extResult = formatMarkdown('[查看說明](https://example.com/docs)');
+    expect(extResult).toContain('class="btn btn-sm ask-ai-cta-btn"');
+    expect(extResult).toContain('href="https://example.com/docs"');
+    expect(extResult).toContain('target="_blank"');
+
+    // Bold, inline code, and code block
+    const richResult = formatMarkdown('**重點提示**: 使用 `covpages mcp` 指令');
+    expect(richResult).toContain('<strong>重點提示</strong>');
+    expect(richResult).toContain('<code>covpages mcp</code>');
+
+    const codeBlockResult = formatMarkdown('```sh\n$ npx covpages\n```');
+    expect(codeBlockResult).toContain('<pre><code>$ npx covpages</code></pre>');
   });
 });
 
