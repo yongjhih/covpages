@@ -2,8 +2,16 @@
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-18T12:40:33.121Z",
+  "generatedAt": "2026-10-18T14:36:59.975Z",
   "currentCommit": {
+    "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+    "shortSha": "ab33b15",
+    "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+    "author": "yongjhih",
+    "date": "2026-10-18T14:36:39.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "c0a2da632e20500b8b7a6dcf259f388a54840e77",
     "shortSha": "c0a2da6",
     "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
@@ -11,18 +19,10 @@
     "date": "2026-10-18T12:40:01.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "99dfd7cdc7c864540a7661c43336204e80170a45",
-    "shortSha": "99dfd7c",
-    "message": "fix: maintain stick-to-bottom scroll in Ask AI assistant",
-    "author": "github-actions[bot]",
-    "date": "2026-10-18T12:31:36.000Z",
-    "branch": "main"
-  },
   "delta": {
-    "linesPct": 11.61,
-    "functionsPct": -7.15,
-    "branchesPct": -7.54
+    "linesPct": 0,
+    "functionsPct": 0,
+    "branchesPct": 0
   },
   "summary": {
     "lines": {
@@ -14138,93 +14138,93 @@
         "4": {
           "hits": 1
         },
-        "254": {
+        "298": {
           "hits": 1,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
-        "257": {
+        "301": {
           "hits": 28
         },
-        "258": {
-          "hits": 28
-        },
-        "260": {
-          "hits": 28,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
-        },
-        "261": {
-          "hits": 18,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
-        },
-        "262": {
-          "hits": 10
-        },
-        "264": {
-          "hits": 28,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
-        },
-        "265": {
-          "hits": 18,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
-        },
-        "272": {
-          "hits": 10
-        },
-        "280": {
-          "hits": 28
-        },
-        "285": {
-          "hits": 28
-        },
-        "297": {
-          "hits": 28
-        },
-        "298": {
+        "302": {
           "hits": 28
         },
         "304": {
+          "hits": 28,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
+        },
+        "305": {
+          "hits": 18,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
+        },
+        "306": {
+          "hits": 10
+        },
+        "308": {
+          "hits": 28,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
+        },
+        "309": {
+          "hits": 18,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
+        },
+        "316": {
+          "hits": 10
+        },
+        "324": {
+          "hits": 28
+        },
+        "329": {
+          "hits": 28
+        },
+        "341": {
+          "hits": 28
+        },
+        "342": {
+          "hits": 28
+        },
+        "348": {
           "hits": 28,
           "branches": {
             "total": 2,
             "taken": 2
           }
         },
-        "310": {
+        "354": {
           "hits": 28
         },
-        "312": {
+        "356": {
           "hits": 1
         },
-        "670": {
+        "716": {
           "hits": 1
         },
-        "721": {
+        "767": {
           "hits": 1
         }
       },
       "functionDetails": [
         {
           "name": "renderAskAiDrawerHtml",
-          "line": 254,
+          "line": 298,
           "hits": 28
         }
       ],
-      "sourceCode": "import { ICONS } from './icons.js';\nimport { FRAMEWORK_PRESETS } from '../core/presets.js';\n\nexport const ASK_AI_CSS = `\n  /* Ask AI Drawer Styles (GitHub Primer) */\n  .ask-ai-backdrop {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.4);\n    z-index: 20000;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  .ask-ai-backdrop[data-open=\"true\"] {\n    opacity: 1;\n    pointer-events: auto;\n  }\n\n  .ask-ai-drawer {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    width: 440px;\n    max-width: 92vw;\n    background-color: var(--color-canvas-overlay, #ffffff);\n    border-left: 1px solid var(--color-border-default, #d0d7de);\n    box-shadow: var(--shadow-rest, 0 8px 24px rgba(1, 4, 9, 0.15));\n    display: flex;\n    flex-direction: column;\n    z-index: 20001;\n    transform: translateX(100%);\n    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  .ask-ai-drawer[data-open=\"true\"] {\n    transform: translateX(0);\n  }\n\n  .ask-ai-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 14px 18px;\n    border-bottom: 1px solid var(--color-border-default, #d0d7de);\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n  }\n  .ask-ai-title {\n    font-size: 14px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-title svg { fill: currentColor; }\n\n  .ask-ai-status-pill {\n    font-size: 11px;\n    font-weight: 500;\n    padding: 1px 6px;\n    border-radius: 10px;\n    background-color: var(--color-neutral-subtle, rgba(129, 139, 152, 0.12));\n    color: var(--color-fg-muted, #59636e);\n  }\n  .ask-ai-status-pill[data-connected=\"true\"] {\n    background-color: var(--color-success-subtle, rgba(26, 127, 55, 0.1));\n    color: var(--color-success-fg, #1a7f37);\n  }\n\n  .ask-ai-body {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n    font-size: 13px;\n    line-height: 1.5;\n  }\n\n  .ask-ai-msg {\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n    max-width: 92%;\n    border-radius: var(--radius-md, 6px);\n    padding: 10px 14px;\n    word-break: break-word;\n  }\n  .ask-ai-msg-assistant {\n    align-self: flex-start;\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n    border: 1px solid var(--color-border-default, #d0d7de);\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-msg-user {\n    align-self: flex-end;\n    background-color: var(--color-accent-subtle, rgba(9, 105, 218, 0.1));\n    border: 1px solid var(--color-accent-fg, #0969da);\n    color: var(--color-fg-default, #1f2328);\n  }\n\n  .ask-ai-msg p { margin: 0 0 6px 0; }\n  .ask-ai-msg p:last-child { margin-bottom: 0; }\n  .ask-ai-msg ul, .ask-ai-msg ol { padding-left: 18px; margin: 4px 0 6px 0; }\n  .ask-ai-msg li { margin-bottom: 2px; }\n  .ask-ai-msg code {\n    font-family: var(--font-mono, monospace);\n    font-size: 12px;\n    padding: 0.15em 0.35em;\n    background-color: var(--color-neutral-subtle, rgba(129, 139, 152, 0.12));\n    border-radius: var(--radius-sm, 4px);\n  }\n  .ask-ai-msg pre {\n    background-color: var(--color-canvas-default, #ffffff);\n    border: 1px solid var(--color-border-muted, #d8dee4);\n    border-radius: var(--radius-sm, 4px);\n    padding: 8px 10px;\n    font-family: var(--font-mono, monospace);\n    font-size: 11px;\n    overflow-x: auto;\n    margin: 6px 0;\n  }\n  .ask-ai-msg pre code {\n    background: none;\n    padding: 0;\n  }\n\n  .ask-ai-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 6px;\n    margin-top: 4px;\n  }\n  .ask-ai-chip {\n    background-color: var(--color-canvas-default, #ffffff);\n    border: 1px solid var(--color-border-default, #d0d7de);\n    border-radius: 14px;\n    padding: 3px 10px;\n    font-size: 11px;\n    color: var(--color-accent-fg, #0969da);\n    cursor: pointer;\n    line-height: 1.4;\n    transition: background-color 0.15s ease;\n  }\n  .ask-ai-chip:hover {\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n    text-decoration: none;\n  }\n\n  /* Primer Button styling for Drawer CTAs and Action Buttons */\n  .ask-ai-drawer .btn,\n  .ask-ai-cta-btn,\n  .ask-ai-jump-btn {\n    display: inline-flex;\n    align-items: center;\n    justify-content: flex-start;\n    gap: 6px;\n    padding: 5px 12px;\n    font-size: 12px;\n    font-weight: 500;\n    line-height: 20px;\n    color: var(--color-fg-default, #1f2328);\n    background-color: var(--color-btn-bg, #f6f8fa);\n    border: 1px solid var(--color-btn-border, #d0d7de);\n    border-radius: var(--radius-md, 6px);\n    box-shadow: 0 1px 0 rgba(31, 35, 40, 0.04);\n    cursor: pointer;\n    text-decoration: none;\n    user-select: none;\n    transition: background-color 0.15s ease, border-color 0.15s ease;\n    font-family: inherit;\n    box-sizing: border-box;\n  }\n  .ask-ai-drawer .btn:hover,\n  .ask-ai-cta-btn:hover,\n  .ask-ai-jump-btn:hover {\n    background-color: var(--color-btn-hover-bg, #eaeef2);\n    border-color: var(--color-border-default, #d0d7de);\n    text-decoration: none;\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-drawer .btn-primary,\n  .ask-ai-cta-btn.btn-primary {\n    color: #ffffff !important;\n    background-color: var(--color-btn-primary-bg, #1f883d);\n    border-color: var(--color-btn-primary-border, #1a7f37);\n  }\n  .ask-ai-drawer .btn-primary:hover,\n  .ask-ai-cta-btn.btn-primary:hover {\n    background-color: var(--color-btn-primary-hover-bg, #1a7f37);\n    border-color: var(--color-btn-primary-border, #1a7f37);\n    color: #ffffff !important;\n  }\n\n  .ask-ai-msg ul.ask-ai-actions-list {\n    list-style: none;\n    padding-left: 0;\n    margin: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n  .ask-ai-msg ul.ask-ai-actions-list li {\n    margin: 0;\n    display: flex;\n  }\n  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-cta-btn,\n  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-jump-btn {\n    width: 100%;\n    margin: 0;\n    text-align: left;\n  }\n\n  .ask-ai-link {\n    color: var(--color-accent-fg, #0969da);\n    text-decoration: underline;\n  }\n  .ask-ai-link:hover {\n    text-decoration: underline;\n  }\n\n  .ask-ai-footer {\n    padding: 12px 16px;\n    border-top: 1px solid var(--color-border-default, #d0d7de);\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n  }\n  .ask-ai-form {\n    display: flex;\n    gap: 8px;\n  }\n  .ask-ai-input {\n    flex: 1;\n    min-width: 0;\n    padding: 7px 12px;\n    font-size: 13px;\n    font-family: inherit;\n    border: 1px solid var(--color-border-default, #d0d7de);\n    border-radius: var(--radius-md, 6px);\n    background-color: var(--color-canvas-default, #ffffff);\n    color: var(--color-fg-default, #1f2328);\n    outline: none;\n  }\n  .ask-ai-input:focus {\n    border-color: var(--color-accent-fg, #0969da);\n    box-shadow: 0 0 0 2px var(--color-accent-subtle, rgba(9, 105, 218, 0.15));\n  }\n`;\n\nexport function renderAskAiDrawerHtml(options: {\n  mode: 'project' | 'coverage';\n  baseUrl?: string;\n}): string {\n  const isCoverage = options.mode === 'coverage';\n\n  const defaultGreeting = isCoverage\n    ? `<p>Hello! I am your <strong>Covpages Coverage Assistant</strong>. I can help analyze your code coverage data, identify high-value test targets, inspect file metrics, or guide you through coverage trends.</p>`\n    : `<p>Hello! I am your <strong>Covpages AI Assistant</strong>. Ask me how to configure covpages, generate framework presets (Flutter, Vitest, Jest, Rust, Python, Go), set up zero-build drop-in sites, or query MCP endpoints.</p>`;\n\n  const chipsHtml = isCoverage\n    ? `<div class=\"ask-ai-chips\">\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Find high-value coverage targets\">🎯 High-Value Targets</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Which files have the most uncovered lines?\">📊 Top Uncovered Files</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"What is the current coverage summary and delta?\">📈 Summary &amp; Delta</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show multi-commit trend\">🕒 Trend History</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How to register this MCP in ai-proxy?\">🔌 WebMCP Registration</button>\n      </div>`\n    : `<div class=\"ask-ai-chips\">\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How do I set up covpages in 5 minutes?\">🚀 Quickstart</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show Vitest GitHub Actions workflow\">⚡ Vitest Preset</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show Flutter coverage workflow\">💙 Flutter Preset</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How does zero-build drop-in mode work?\">📦 Drop-in Mode</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Open live demo\">👁️ Open Live Demo</button>\n      </div>`;\n\n  return `\n  <div class=\"ask-ai-backdrop\" id=\"ask-ai-backdrop\" data-open=\"false\"></div>\n  <aside class=\"ask-ai-drawer\" id=\"ask-ai-drawer\" data-open=\"false\" aria-hidden=\"true\" aria-label=\"Ask AI Assistant\">\n    <div class=\"ask-ai-header\">\n      <div class=\"ask-ai-title\">\n        ${ICONS.terminal || ''}\n        <span>Ask AI Assistant</span>\n        <span class=\"ask-ai-status-pill\" id=\"ask-ai-status-pill\" data-connected=\"false\">Local AI / Client</span>\n      </div>\n      <div class=\"ask-ai-header-actions\" style=\"display: flex; gap: 6px; align-items: center;\">\n        <button type=\"button\" class=\"btn btn-sm\" id=\"ask-ai-clear\" title=\"Clear chat history\" aria-label=\"Clear chat history\" style=\"display: none;\">Clear</button>\n        <button type=\"button\" class=\"btn btn-sm\" id=\"ask-ai-close\" aria-label=\"Close Ask AI\">&times; Close</button>\n      </div>\n    </div>\n\n    <div class=\"ask-ai-body\" id=\"ask-ai-messages\">\n      <div class=\"ask-ai-msg ask-ai-msg-assistant\">\n        ${defaultGreeting}\n        ${chipsHtml}\n      </div>\n    </div>\n\n    <div class=\"ask-ai-footer\">\n      <form class=\"ask-ai-form\" id=\"ask-ai-form\">\n        <input type=\"text\" class=\"ask-ai-input\" id=\"ask-ai-input\" placeholder=\"${isCoverage ? 'Ask about high-value targets, files, trends...' : 'Ask about setup, presets, badges, CLI...'}\" autocomplete=\"off\" required />\n        <button type=\"submit\" class=\"btn btn-primary btn-sm\">Send</button>\n      </form>\n    </div>\n  </aside>\n  `;\n}\n\nexport const ASK_AI_CLIENT_SCRIPT = `\n(function () {\n  var triggerBtn = document.getElementById('ask-ai-trigger');\n  var drawer = document.getElementById('ask-ai-drawer');\n  var backdrop = document.getElementById('ask-ai-backdrop');\n  var closeBtn = document.getElementById('ask-ai-close');\n  var clearBtn = document.getElementById('ask-ai-clear');\n  var form = document.getElementById('ask-ai-form');\n  var input = document.getElementById('ask-ai-input');\n  var messagesEl = document.getElementById('ask-ai-messages');\n  var statusPill = document.getElementById('ask-ai-status-pill');\n\n  if (!drawer || !form || !input || !messagesEl) return;\n\n  var STORAGE_KEY = 'covpages_ask_ai_history';\n  var conversationHistory = [];\n\n  function loadHistory() {\n    try {\n      var raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);\n      if (raw) {\n        var parsed = JSON.parse(raw);\n        if (Array.isArray(parsed)) return parsed;\n      }\n    } catch (e) {}\n    return [];\n  }\n\n  function updateClearBtn() {\n    if (clearBtn) {\n      clearBtn.style.display = conversationHistory.length > 0 ? 'inline-flex' : 'none';\n    }\n  }\n\n  function saveHistory() {\n    try {\n      if (conversationHistory.length > 50) {\n        conversationHistory = conversationHistory.slice(-50);\n      }\n      var data = JSON.stringify(conversationHistory);\n      sessionStorage.setItem(STORAGE_KEY, data);\n      try { localStorage.setItem(STORAGE_KEY, data); } catch (e) {}\n    } catch (e) {}\n    updateClearBtn();\n  }\n\n  function clearHistory() {\n    conversationHistory = [];\n    try {\n      sessionStorage.removeItem(STORAGE_KEY);\n      localStorage.removeItem(STORAGE_KEY);\n    } catch (e) {}\n    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');\n    for (var i = 1; i < allMsgs.length; i++) {\n      allMsgs[i].remove();\n    }\n    updateClearBtn();\n  }\n\n  if (clearBtn) {\n    clearBtn.addEventListener('click', function (e) {\n      e.preventDefault();\n      clearHistory();\n    });\n  }\n\n  function restoreHistory() {\n    conversationHistory = loadHistory();\n    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');\n    for (var m = 1; m < allMsgs.length; m++) {\n      allMsgs[m].remove();\n    }\n    if (conversationHistory && conversationHistory.length > 0) {\n      for (var i = 0; i < conversationHistory.length; i++) {\n        var item = conversationHistory[i];\n        if (item && item.role && item.html) {\n          var msgEl = document.createElement('div');\n          msgEl.className = 'ask-ai-msg ask-ai-msg-' + item.role;\n          msgEl.innerHTML = item.html;\n          messagesEl.appendChild(msgEl);\n          bindActions(msgEl);\n        }\n      }\n      messagesEl.scrollTop = messagesEl.scrollHeight;\n    }\n    updateClearBtn();\n  }\n\n  var lastToggleTime = 0;\n  function toggleDrawer(open) {\n    if (typeof open !== 'boolean') {\n      open = drawer.getAttribute('data-open') !== 'true';\n    }\n    var now = Date.now();\n    if (open && now - lastToggleTime < 150) {\n      return;\n    }\n    lastToggleTime = now;\n    drawer.setAttribute('data-open', open ? 'true' : 'false');\n    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');\n    if (backdrop) backdrop.setAttribute('data-open', open ? 'true' : 'false');\n    if (open) {\n      if (messagesEl.children.length <= 1) {\n        restoreHistory();\n      }\n      messagesEl.scrollTop = messagesEl.scrollHeight;\n      setTimeout(function () { input.focus(); }, 100);\n    }\n  }\n\n  window.toggleAskAiDrawer = function (open) {\n    toggleDrawer(open);\n  };\n\n  document.addEventListener('click', function (e) {\n    var btn = e.target && e.target.closest ? e.target.closest('#ask-ai-trigger, [data-ask-ai-trigger]') : null;\n    if (btn) {\n      e.preventDefault();\n      e.stopPropagation();\n      toggleDrawer();\n      return;\n    }\n    var close = e.target && e.target.closest ? e.target.closest('#ask-ai-close, [data-ask-ai-close]') : null;\n    if (close) {\n      e.preventDefault();\n      e.stopPropagation();\n      toggleDrawer(false);\n      return;\n    }\n  });\n\n  if (backdrop) {\n    backdrop.addEventListener('click', function (e) {\n      e.preventDefault();\n      toggleDrawer(false);\n    });\n  }\n\n  document.addEventListener('keydown', function (e) {\n    if (e.key === 'Escape' && drawer.getAttribute('data-open') === 'true') {\n      toggleDrawer(false);\n    }\n  });\n\n  function isScrollAtBottom(el, threshold) {\n    if (!el) return true;\n    threshold = typeof threshold === 'number' ? threshold : 60;\n    var ch = typeof el.clientHeight === 'number' ? el.clientHeight : 0;\n    var sh = typeof el.scrollHeight === 'number' ? el.scrollHeight : 0;\n    var st = typeof el.scrollTop === 'number' ? el.scrollTop : 0;\n    return (sh - st - ch) <= threshold;\n  }\n\n  function scrollToBottom(el) {\n    if (!el) return;\n    el.scrollTop = el.scrollHeight;\n  }\n\n  var scrollTimer = null;\n  function ensureScrollBottom(el, wasAtBottom) {\n    if (!el || wasAtBottom === false) return;\n    scrollToBottom(el);\n    if (typeof requestAnimationFrame !== 'undefined') {\n      requestAnimationFrame(function () {\n        if (isScrollAtBottom(el, 60)) {\n          scrollToBottom(el);\n        }\n      });\n    }\n    if (scrollTimer) clearTimeout(scrollTimer);\n    scrollTimer = setTimeout(function () {\n      if (isScrollAtBottom(el, 60)) {\n        scrollToBottom(el);\n      }\n    }, 50);\n  }\n\n  function appendMessage(sender, htmlContent, shouldSave, rawText) {\n    var wasAtBottom = isScrollAtBottom(messagesEl, 60);\n    var msgEl = document.createElement('div');\n    msgEl.className = 'ask-ai-msg ask-ai-msg-' + sender;\n    msgEl.innerHTML = htmlContent;\n    messagesEl.appendChild(msgEl);\n    if (sender === 'user' || wasAtBottom) {\n      ensureScrollBottom(messagesEl, true);\n    }\n    bindActions(msgEl);\n\n    if (shouldSave) {\n      conversationHistory.push({\n        role: sender,\n        html: htmlContent,\n        text: rawText || (htmlContent ? htmlContent.replace(/<[^>]+>/g, ' ').trim() : '')\n      });\n      saveHistory();\n    }\n    return msgEl;\n  }\n\n  // Restore history on script startup\n  restoreHistory();\n\n  function getAppRoot() {\n    var p = window.location.pathname.replace(/index\\\\.html$/, '');\n    var m = p.match(/^(.*?\\\\/)(?:tree|blob|commits|trends|mcp)(?:\\\\/|$)/);\n    return m ? m[1] : (p.endsWith('/') ? p : (p + '/'));\n  }\n\n  function handleJump(hash) {\n    if (!hash || !hash.startsWith('#')) return;\n\n    if (hash.startsWith('#file=')) {\n      var isCovPagesViewer = window.location.pathname.endsWith('/covpages/') ||\n                             window.location.pathname.endsWith('/covpages/index.html');\n      if (isCovPagesViewer) {\n        window.location.hash = hash;\n        toggleDrawer(false);\n        return;\n      }\n      var isInsideCoverageSubfolder = window.location.pathname.includes('/covpages/covpages/') ||\n                                     window.location.pathname.includes('/tree/') ||\n                                     window.location.pathname.includes('/blob/') ||\n                                     window.location.pathname.includes('/commits/') ||\n                                     window.location.pathname.includes('/trends');\n      var root = getAppRoot();\n      var target = isInsideCoverageSubfolder ? (root + hash) : (root + 'covpages/' + hash);\n      window.location.href = target;\n      return;\n    }\n\n    var el = document.querySelector(hash);\n    if (el) {\n      el.scrollIntoView({ behavior: 'smooth' });\n      toggleDrawer(false);\n      return;\n    }\n\n    // Check if it belongs to ai-proxy local dashboard\n    if (\n      hash === '#form-add-site' ||\n      hash === '#admin-dashboard-authenticated' ||\n      hash === '#details-allow-prefix' ||\n      hash === '#details-allowed-origins' ||\n      hash === '#details-key-mgmt' ||\n      hash.startsWith('#site-row-')\n    ) {\n      window.open('http://127.0.0.1:8788/dashboard.html' + hash, '_blank');\n      return;\n    }\n\n    // Otherwise cross-page jump to project landing page\n    var basePath = window.location.pathname.includes('/covpages/') ? '../' : './';\n    window.location.href = basePath + hash;\n  }\n\n  function bindActions(container) {\n    if (!container) return;\n    var chips = container.querySelectorAll('.ask-ai-chip[data-ask]');\n    for (var i = 0; i < chips.length; i++) {\n      chips[i].addEventListener('click', function (ev) {\n        var query = ev.currentTarget.getAttribute('data-ask');\n        if (query) {\n          handleUserQuery(query);\n        }\n      });\n    }\n\n    var jumpBtns = container.querySelectorAll('.ask-ai-jump-btn[data-jump]');\n    for (var k = 0; k < jumpBtns.length; k++) {\n      jumpBtns[k].addEventListener('click', function (ev) {\n        var hash = ev.currentTarget.getAttribute('data-jump');\n        handleJump(hash);\n      });\n    }\n\n    var actionBtns = container.querySelectorAll('.ask-ai-cta-btn[data-action]');\n    for (var j = 0; j < actionBtns.length; j++) {\n      actionBtns[j].addEventListener('click', function (ev) {\n        var action = ev.currentTarget.getAttribute('data-action');\n        if (!action) return;\n        if (action.startsWith('navigate:')) {\n          var targetUrl = action.slice('navigate:'.length);\n          if (targetUrl === 'mcp') {\n            var root = getAppRoot();\n            window.location.href = root + 'mcp';\n            return;\n          } else if (targetUrl === 'covpages/' || targetUrl === './covpages/') {\n            var isInsideCoverage = window.location.pathname.includes('/covpages/covpages/') ||\n                                   window.location.pathname.includes('/tree/') ||\n                                   window.location.pathname.includes('/blob/') ||\n                                   window.location.pathname.includes('/commits/') ||\n                                   window.location.pathname.includes('/trends');\n            var root = getAppRoot();\n            window.location.href = isInsideCoverage ? root : (root + 'covpages/');\n            return;\n          }\n          window.location.href = targetUrl;\n        } else if (action.startsWith('jump:')) {\n          handleJump(action.slice('jump:'.length));\n        } else if (action === 'action:connect' || action.startsWith('action:connect')) {\n          window.location.href = 'http://127.0.0.1:8788/admin/v1/open-dashboard?redirect=' + encodeURIComponent(window.location.href);\n        } else if (action.startsWith('action:add-mcp')) {\n          var addUrl = '';\n          var query = action.split('?')[1];\n          if (query) {\n            var qParams = new URLSearchParams(query);\n            addUrl = qParams.get('url') || '';\n          }\n          var dest = 'https://yongjhih.github.io/ai-proxy/dashboard.html' + (addUrl ? ('#add-url=' + encodeURIComponent(addUrl)) : '');\n          window.open(dest, '_blank');\n        } else if (action.startsWith('action:')) {\n          window.open('http://127.0.0.1:8788/dashboard.html', '_blank');\n        }\n      });\n    }\n\n    var links = container.querySelectorAll('a.ask-ai-cta-btn, a.ask-ai-link');\n    for (var l = 0; l < links.length; l++) {\n      links[l].addEventListener('click', function (ev) {\n        var href = ev.currentTarget.getAttribute('href');\n        if (!href) return;\n        if (href.startsWith('doc.html') || href.startsWith('dashboard.html')) {\n          ev.preventDefault();\n          window.open('http://127.0.0.1:8788/' + href, '_blank');\n        }\n      });\n    }\n  }\n\n  // Load coverage data helper\n  async function ensureCoverageData() {\n    if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {\n      return window.__COVPAGES_DATA__;\n    }\n\n    var candidates = [\n      'covpages-data.json',\n      './covpages-data.json',\n      './covpages/covpages-data.json',\n      '../covpages-data.json',\n      '../covpages/covpages-data.json'\n    ];\n\n    for (var i = 0; i < candidates.length; i++) {\n      try {\n        var res = await fetch(candidates[i]);\n        if (res.ok) {\n          var data = await res.json();\n          if (data && data.files) {\n            if (typeof window !== 'undefined') window.__COVPAGES_DATA__ = data;\n            return data;\n          }\n        }\n      } catch (err) {}\n    }\n    return null;\n  }\n\n  var PRESETS = ${JSON.stringify(FRAMEWORK_PRESETS)};\n\n  // 11 Covpages WebMCP Tool Executors\n  var toolExecutors = {\n    get_cli_help: async function(args) {\n      var cmd = args && args.command;\n      var commands = {\n        generate: 'covpages generate [options] [input-files...] - Generate coverage static site for GitHub Pages with multi-commit trends and badges.',\n        dropin: 'covpages dropin [dir] - Generate zero-build drop-in static site (index.html + .nojekyll). Put in gh-pages, then simply copy lcov.info!',\n        mcp: 'covpages mcp [dir] - Generate compliant MCP Page (mcp.html + web/ modules) for ai-proxy.',\n        backfill: 'covpages backfill --range <range> --test-cmd <cmd> - Backfill test coverage across a range of historical git commits.',\n        presets: 'covpages presets [framework] - View integration guides and workflows for mainstream frameworks (flutter, vitest, jest, rust, python, go, cpp).',\n        docker: 'covpages docker <run|build|pull> [args...] - Run, build, or pull covpages inside a container (docker/podman).',\n        serve: 'covpages serve [dir] [-p port] - Start a local preview web server.',\n        init: 'covpages init [--framework <name>] [--docs] - Create a GitHub Actions workflow (.github/workflows/covpages.yml).'\n      };\n      if (cmd && cmd !== 'all' && commands[cmd]) {\n        return {\n          command: cmd,\n          documentation: commands[cmd]\n        };\n      }\n      return {\n        usage: 'covpages [command] [options] [input-files...]',\n        commands: commands,\n        quickExamples: [\n          'npx covpages dropin gh-pages && cp coverage/lcov.info gh-pages/',\n          'npx covpages coverage/lcov.info --docs --save-raw',\n          'npx covpages init --framework vitest --docs',\n          'npx covpages backfill --range HEAD~5..HEAD --test-cmd \"npm test\"'\n        ]\n      };\n    },\n    get_framework_preset: async function(args) {\n      var fw = (args && args.framework ? args.framework : '').toLowerCase().trim();\n      var p = PRESETS[fw];\n      if (!p) {\n        return {\n          error: 'Unknown framework preset: \"' + fw + '\". Available: ' + Object.keys(PRESETS).join(', '),\n          availablePresets: Object.keys(PRESETS)\n        };\n      }\n      var docs = args && args.docs !== false;\n      var workflow = 'name: Test Coverage Pages\\\\n\\\\n' +\n        'on:\\\\n  push:\\\\n    branches: [main, master]\\\\n  pull_request:\\\\n\\\\n' +\n        'permissions:\\\\n  contents: write\\\\n  pages: write\\\\n  id-token: write\\\\n\\\\n' +\n        'concurrency:\\\\n  group: \"covpages\"\\\\n  cancel-in-progress: false\\\\n\\\\n' +\n        'jobs:\\\\n  coverage:\\\\n    runs-on: ubuntu-latest\\\\n    steps:\\\\n' +\n        '      - uses: actions/checkout@v4\\\\n        with:\\\\n          fetch-depth: 0\\\\n\\\\n' +\n        p.workflowStep + '\\\\n\\\\n' +\n        '      - name: Generate covpages Report\\\\n        run: npx covpages ' + p.coverageFile + ' ' + (docs ? '--docs' : '--output gh-pages') + ' --save-raw --mcp\\\\n\\\\n' +\n        '      - name: Deploy to GitHub Pages\\\\n        uses: peaceiris/actions-gh-pages@v4\\\\n        if: github.ref == \\\\'refs/heads/main\\\\' || github.ref == \\\\'refs/heads/master\\\\'\\\\n        with:\\\\n          github_token: ' + \"${'\\\\x24{{ secrets.GITHUB_TOKEN }}'}\" + '\\\\n          publish_dir: ' + (docs ? './docs/covpages' : './gh-pages') + '\\\\n';\n      return {\n        framework: p.name,\n        language: p.language,\n        testCommand: p.testCmd,\n        coverageFile: p.coverageFile,\n        description: p.description,\n        recommendedWorkflowPath: '.github/workflows/covpages.yml',\n        workflow: workflow\n      };\n    },\n    consult_setup: async function(args) {\n      args = args || {};\n      if (args.zeroBuild) {\n        return {\n          recommendedMode: 'zero-build-dropin',\n          summary: \"Zero-build drop-in mode is ideal for environments where you don\\\\'t want to run Node.js in CI.\",\n          steps: [\n            '1. Run \"npx covpages dropin gh-pages\" to create the static viewer.',\n            '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',\n            '3. Push gh-pages branch. The browser client parses and renders lcov.info dynamically at runtime!'\n          ],\n          command: 'npx covpages dropin gh-pages'\n        };\n      }\n      if (args.hasExistingCommits) {\n        return {\n          recommendedMode: 'backfill-history',\n          summary: 'Commit backfill mode executes historical commits in a git revision range to generate trendlines.',\n          command: 'npx covpages backfill --range HEAD~10..HEAD --test-cmd \"npm test\" --docs',\n          description: 'Runs your test suite across recent commits to populate multi-commit trends and store packed git objects.'\n        };\n      }\n      var matchedFramework = args.framework || args.language || 'vitest';\n      return {\n        recommendedMode: 'github-actions-workflow',\n        summary: 'GitHub Actions automated publishing with multi-commit trends and scoped badges.',\n        quickCommand: 'npx covpages init --framework ' + matchedFramework + ' --docs',\n        workflowFile: '.github/workflows/covpages.yml',\n        features: [\n          'Git packfile delta compression (100 commits compress into ~1.24 MB)',\n          'Scoped SVG badges for every branch, directory, and file',\n          'Built-in WebMCP endpoint (mcp.html + web/*.mjs) for ai-proxy'\n        ]\n      };\n    },\n    get_documentation: async function(args) {\n      var topic = (args && args.topic) || 'overview';\n      var bt = '\\\\x60';\n      var docsMap = {\n        overview: '# Covpages\\\\n\\\\nGit-Native Code Coverage for GitHub Pages with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP endpoints.',\n        quickstart: '## Quickstart\\\\n\\\\n1. Run tests with coverage: ' + bt + 'npm test -- --coverage' + bt + '\\\\n2. Generate site: ' + bt + 'npx covpages coverage/lcov.info --docs --save-raw' + bt + '\\\\n3. Deploy ' + bt + 'docs/' + bt + ' to GitHub Pages.',\n        dropin: '## Zero-Build Drop-in Mode\\\\n\\\\nPut ' + bt + 'index.html' + bt + ' in ' + bt + 'gh-pages' + bt + ', then just copy ' + bt + 'lcov.info' + bt + '. The browser parses LCOV at runtime!',\n        backfill: '## Backfill Commits\\\\n\\\\nRun ' + bt + 'npx covpages backfill --range HEAD~10..HEAD' + bt + ' to backfill trend points across historical commits.',\n        badges: '## Scoped SVG Badges\\\\n\\\\nCovpages generates badges into ' + bt + 'badges/' + bt + ' for repository, branch, directories, and files.',\n        react: '## React & Component Integration\\\\n\\\\nUse ' + bt + 'import { Covpages } from \"covpages/react\";' + bt + ' to embed interactive coverage charts into Next.js or Docusaurus.',\n        mcp: '## WebMCP & ai-proxy\\\\n\\\\nTurns any static GitHub Pages site into an MCP server via ' + bt + 'mcp.html' + bt + ' and vendored ' + bt + 'web/*.mjs' + bt + ' client modules.'\n      };\n      return {\n        topic: topic,\n        content: docsMap[topic] || docsMap.overview\n      };\n    },\n    navigate_to: async function(args) {\n      var target = (args && args.target) || 'live_demo';\n      var targets = {\n        live_demo: './covpages/',\n        coverage_mcp: './covpages/mcp',\n        badges: './#badges',\n        quickstart: './#quickstart',\n        github_repo: 'https://github.com/yongjhih/covpages'\n      };\n      var dest = targets[target] || './';\n      if (typeof window !== 'undefined' && window.location) {\n        window.location.href = dest;\n      }\n      return { target: target, navigatedTo: dest };\n    },\n    find_high_value_targets: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files || !covData.summary) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var limit = (args && args.limit) || 5;\n      var repoTotal = covData.summary.lines.total;\n      var repoCovered = covData.summary.lines.covered;\n      var curLinesPct = covData.summary.lines.pct;\n\n      var files = Object.values(covData.files);\n      if (args && args.folder) {\n        var prefix = args.folder.endsWith('/') ? args.folder : args.folder + '/';\n        files = files.filter(function(f) { return f.path.startsWith(prefix) || f.path === args.folder; });\n      }\n\n      var ranked = files.map(function(f) {\n        var uncovered = f.lines.total - f.lines.covered;\n        var gain = repoTotal > 0 ? (uncovered / repoTotal) * 100 : 0;\n        var proj = repoTotal > 0 ? ((repoCovered + uncovered) / repoTotal) * 100 : 0;\n        return {\n          path: f.path,\n          currentCoveragePct: f.lines.pct,\n          uncoveredLines: uncovered,\n          totalLines: f.lines.total,\n          potentialGainPct: Number(gain.toFixed(2)),\n          projectedRepoCoveragePct: Number(proj.toFixed(2)),\n          recommendation: 'Covering ' + f.path + ' (currently ' + f.lines.pct.toFixed(1) + '%, ' + uncovered + ' uncovered lines) will increase overall repo coverage by +' + gain.toFixed(2) + '% (from ' + curLinesPct.toFixed(2) + '% to ' + proj.toFixed(2) + '%).'\n        };\n      }).sort(function(a, b) { return b.uncoveredLines - a.uncoveredLines; });\n\n      return {\n        repoSummary: {\n          currentLinesPct: curLinesPct,\n          coveredLines: repoCovered,\n          totalLines: repoTotal,\n          deltaVsPrevious: covData.delta ? covData.delta.linesPct : null\n        },\n        totalEvaluated: files.length,\n        targets: ranked.slice(0, limit)\n      };\n    },\n    get_coverage_summary: async function() {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.summary) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      return {\n        repoName: covData.repoName || 'yongjhih/covpages',\n        generatedAt: covData.generatedAt,\n        currentCommit: covData.currentCommit,\n        previousCommit: covData.previousCommit || null,\n        summary: covData.summary,\n        delta: covData.delta || null\n      };\n    },\n    list_coverage_files: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var files = Object.values(covData.files);\n      var limit = (args && args.limit) || 20;\n      files.sort(function(a, b) { return a.lines.pct - b.lines.pct; });\n      return {\n        totalFiles: files.length,\n        files: files.slice(0, limit).map(function(f) {\n          return { path: f.path, linesPct: f.lines.pct, uncovered: f.lines.total - f.lines.covered };\n        })\n      };\n    },\n    get_file_coverage: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var p = args && args.path;\n      var file = covData.files[p] || Object.values(covData.files).find(function(f) { return f.path === p || f.path.endsWith('/' + p); });\n      if (!file) throw new Error('File not found in coverage report: ' + p);\n      return {\n        path: file.path,\n        lines: file.lines,\n        functions: file.functions,\n        branches: file.branches,\n        uncoveredLinesCount: file.lines.total - file.lines.covered\n      };\n    },\n    get_coverage_trends: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.commits) {\n        throw new Error('Coverage trends data not available.');\n      }\n      var limit = (args && args.limit) || 10;\n      var commits = covData.commits.slice(-limit).map(function(c) {\n        return {\n          sha: c.commit ? c.commit.sha : '',\n          shortSha: c.commit ? (c.commit.shortSha || c.commit.sha.slice(0, 7)) : '',\n          message: c.commit ? c.commit.message : '',\n          date: c.commit ? c.commit.date : '',\n          linesPct: c.summary ? c.summary.lines.pct : 0\n        };\n      });\n      return { totalCommits: covData.commits.length, trends: commits };\n    },\n    get_badge_code: async function(args) {\n      var covData = await ensureCoverageData();\n      var pct = covData && covData.summary ? covData.summary.lines.pct : 100;\n      return {\n        scope: (args && args.scope) || 'overall',\n        coveragePct: pct,\n        badgeFile: 'badges/overall.svg',\n        badgeUrl: 'https://yongjhih.github.io/covpages/badges/overall.svg',\n        markdown: '[![Coverage](https://yongjhih.github.io/covpages/badges/overall.svg)](https://yongjhih.github.io/covpages/covpages/)',\n        html: '<a href=\"https://yongjhih.github.io/covpages/covpages/\"><img src=\"https://yongjhih.github.io/covpages/badges/overall.svg\" alt=\"Coverage\" /></a>'\n      };\n    }\n  };\n\n  // Self-register modelContext if not present\n  if (typeof navigator !== 'undefined') {\n    if (!navigator.modelContext) {\n      var toolsMap = new Map();\n      for (var tk in toolExecutors) {\n        toolsMap.set(tk, {\n          name: tk,\n          execute: toolExecutors[tk]\n        });\n      }\n      navigator.modelContext = {\n        registerTool: function(t) { toolsMap.set(t.name, t); },\n        getTool: function(n) { return toolsMap.get(n) || null; },\n        listTools: function() { return Array.from(toolsMap.values()); },\n        callTool: async function(n, args) {\n          var t = toolsMap.get(n);\n          if (!t) throw new Error('Tool not found: ' + n);\n          return await t.execute(args);\n        }\n      };\n    } else {\n      for (var tk2 in toolExecutors) {\n        if (!navigator.modelContext.getTool(tk2)) {\n          navigator.modelContext.registerTool({\n            name: tk2,\n            description: 'Covpages WebMCP tool: ' + tk2,\n            execute: toolExecutors[tk2]\n          });\n        }\n      }\n    }\n  }\n\n  async function callWebMcp(toolName, args) {\n    if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.callTool === 'function') {\n      try {\n        var tool = navigator.modelContext.getTool(toolName);\n        if (tool) {\n          return await navigator.modelContext.callTool(toolName, args);\n        }\n      } catch (err) {}\n    }\n    var fn = toolExecutors[toolName];\n    if (fn) {\n      return await fn(args);\n    }\n    throw new Error('Unknown tool: ' + toolName);\n  }\n\n  // Client-side high-value target calculator\n  function computeHighValueTargets(data, limit) {\n    if (!data || !data.summary || !data.files) return null;\n    var repoTotal = data.summary.lines.total;\n    var repoCovered = data.summary.lines.covered;\n    var files = Object.values(data.files);\n\n    var ranked = files.map(function (f) {\n      var unc = f.lines.total - f.lines.covered;\n      var gain = (unc / repoTotal) * 100;\n      var proj = ((repoCovered + unc) / repoTotal) * 100;\n      return {\n        path: f.path,\n        pct: f.lines.pct,\n        uncovered: unc,\n        total: f.lines.total,\n        gain: gain,\n        projectedPct: proj\n      };\n    }).sort(function (a, b) {\n      return b.uncovered - a.uncovered;\n    });\n\n    return {\n      repoSummary: data.summary,\n      targets: ranked.slice(0, limit || 5)\n    };\n  }\n\n  async function handleUserQuery(text) {\n    text = (text || '').trim();\n    if (!text) return;\n\n    appendMessage('user', '<p>' + escapeHtml(text) + '</p>', true, text);\n    input.value = '';\n\n    // Show typing placeholder\n    var typingEl = document.createElement('div');\n    typingEl.className = 'ask-ai-msg ask-ai-msg-assistant';\n    typingEl.innerHTML = '<p><em>Thinking...</em></p>';\n    messagesEl.appendChild(typingEl);\n    messagesEl.scrollTop = messagesEl.scrollHeight;\n\n    function updateTypingContent(html, rawText) {\n      var isAtBottomNow = typeof isScrollAtBottom === 'function' ? isScrollAtBottom(messagesEl, 60) : true;\n      typingEl.innerHTML = html;\n      bindActions(typingEl);\n      if (isAtBottomNow) {\n        if (typeof ensureScrollBottom === 'function') {\n          ensureScrollBottom(messagesEl, true);\n        } else {\n          messagesEl.scrollTop = messagesEl.scrollHeight;\n        }\n      }\n      var imgs = typingEl.querySelectorAll('img');\n      for (var m = 0; m < imgs.length; m++) {\n        if (!imgs[m].complete) {\n          imgs[m].addEventListener('load', function () {\n            if (isAtBottomNow) {\n              if (typeof ensureScrollBottom === 'function') {\n                ensureScrollBottom(messagesEl, true);\n              } else {\n                messagesEl.scrollTop = messagesEl.scrollHeight;\n              }\n            }\n          });\n        }\n      }\n      conversationHistory.push({\n        role: 'assistant',\n        html: html,\n        text: rawText || html.replace(/<[^>]+>/g, ' ').trim()\n      });\n      saveHistory();\n    }\n\n    // 1. Try local ai-proxy /v1/chat/completions relay\n    var relaySuccess = false;\n    try {\n      var promptMessages = [\n        {\n          role: 'system',\n          content: 'You are the Covpages Assistant. Covpages is a git-native test coverage reporting tool for GitHub Pages with multi-commit trends, scoped badges, and zero backend required.'\n        }\n      ];\n\n      var recent = conversationHistory.slice(-6);\n      for (var r = 0; r < recent.length; r++) {\n        var hist = recent[r];\n        if (hist && hist.role) {\n          promptMessages.push({\n            role: hist.role === 'user' ? 'user' : 'assistant',\n            content: hist.text || (hist.html ? hist.html.replace(/<[^>]+>/g, ' ').trim() : '')\n          });\n        }\n      }\n\n      var relayRes = await fetch('http://127.0.0.1:8788/v1/chat/completions', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify({\n          model: 'local',\n          messages: promptMessages\n        }),\n        signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(1500) : undefined\n      });\n\n      if (relayRes.ok) {\n        var replyData = await relayRes.json();\n        var replyText = replyData && replyData.choices && replyData.choices[0] && replyData.choices[0].message && replyData.choices[0].message.content;\n        if (replyText) {\n          var isFallbackEcho = replyText.indexOf('ai-proxy local assistant received:') !== -1 ||\n                               replyText.indexOf('Permitted read-only tools: [none]') !== -1 ||\n                               replyText.indexOf('Permitted read-only tools:') !== -1;\n          if (!isFallbackEcho) {\n            var formatted = formatMarkdown(replyText);\n            updateTypingContent(formatted, replyText);\n            if (statusPill) {\n              statusPill.textContent = 'ai-proxy /v1 Connected';\n              statusPill.setAttribute('data-connected', 'true');\n            }\n            relaySuccess = true;\n          } else {\n            if (statusPill) {\n              statusPill.textContent = 'ai-proxy Ready (WebMCP Tools)';\n              statusPill.setAttribute('data-connected', 'true');\n            }\n          }\n        }\n      }\n    } catch (e) {\n      // Local relay not available; proceed to WebMCP tool engine\n    }\n\n    if (relaySuccess) return;\n\n    // 2. Intelligent Client-Side WebMCP Tool Dispatch Engine\n    var lower = text.toLowerCase();\n    var replyHtml = '';\n\n    try {\n      if (/(?:cli|help|commands?|options?|usage|參數|指令|用法|幫助|說明書)/i.test(lower) ||\n          /(?:generate|dropin|backfill|docker|init|serve|presets)/i.test(lower)) {\n        var subCmd = 'all';\n        if (lower.includes('generate')) subCmd = 'generate';\n        else if (lower.includes('dropin') || lower.includes('drop-in') || lower.includes('zero-build')) subCmd = 'dropin';\n        else if (lower.includes('mcp')) subCmd = 'mcp';\n        else if (lower.includes('backfill')) subCmd = 'backfill';\n        else if (lower.includes('presets') || lower.includes('preset')) subCmd = 'presets';\n        else if (lower.includes('docker')) subCmd = 'docker';\n        else if (lower.includes('serve')) subCmd = 'serve';\n        else if (lower.includes('init')) subCmd = 'init';\n\n        var cliRes = await callWebMcp('get_cli_help', { command: subCmd });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_cli_help(' + (cliRes.command ? '\"' + escapeHtml(cliRes.command) + '\"' : '') + ')</code></p>';\n        if (cliRes.documentation) {\n          replyHtml += '<p><strong>Command Reference:</strong></p>' +\n            '<pre><code>' + escapeHtml(cliRes.documentation) + '</code></pre>';\n        } else {\n          replyHtml += '<p><strong>Usage:</strong> <code>' + escapeHtml(cliRes.usage) + '</code></p>' +\n            '<p><strong>Available Commands:</strong></p>' +\n            '<ul>' +\n            '<li><code>generate</code>: ' + escapeHtml(cliRes.commands.generate) + '</li>' +\n            '<li><code>dropin</code>: ' + escapeHtml(cliRes.commands.dropin) + '</li>' +\n            '<li><code>mcp</code>: ' + escapeHtml(cliRes.commands.mcp) + '</li>' +\n            '<li><code>backfill</code>: ' + escapeHtml(cliRes.commands.backfill) + '</li>' +\n            '<li><code>presets</code>: ' + escapeHtml(cliRes.commands.presets) + '</li>' +\n            '<li><code>docker</code>: ' + escapeHtml(cliRes.commands.docker) + '</li>' +\n            '<li><code>init</code>: ' + escapeHtml(cliRes.commands.init) + '</li>' +\n            '<li><code>serve</code>: ' + escapeHtml(cliRes.commands.serve) + '</li>' +\n            '</ul>' +\n            '<p><strong>Quick Examples:</strong></p>' +\n            '<pre><code>' + escapeHtml(cliRes.quickExamples.join('\\\\n')) + '</code></pre>';\n        }\n        replyHtml += '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=get_cli_help\">Open in WebMCP Catalog (?tool=get_cli_help)</button></p>';\n      } else if (/(?:high-value|target|roi|價值|提升|priorit|uncovered|最具價值|最有價值|最值得|目標)/i.test(lower)) {\n        var targetRes = await callWebMcp('find_high_value_targets', { limit: 5 });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>find_high_value_targets(limit: 5)</code></p>' +\n          '<p>🎯 <strong>Highest Value Targets to Improve Coverage:</strong></p>' +\n          '<p>Overall repo line coverage is currently <strong>' + targetRes.repoSummary.currentLinesPct.toFixed(2) + '%</strong> (' + targetRes.repoSummary.coveredLines + '/' + targetRes.repoSummary.totalLines + ' lines). Here are top files where adding tests yields the greatest gain:</p>' +\n          '<ul class=\"ask-ai-actions-list\">';\n\n        targetRes.targets.forEach(function (t) {\n          replyHtml += '<li>' +\n            '<button type=\"button\" class=\"btn btn-sm ask-ai-jump-btn\" data-jump=\"#file=' + encodeURIComponent(t.path) + '\" style=\"display:flex; flex-direction:column; align-items:flex-start; width:100%; padding:8px 12px; gap:4px; text-align:left;\">' +\n              '<div style=\"display:flex; align-items:center; justify-content:space-between; width:100%;\">' +\n                '<code>' + escapeHtml(t.path) + '</code>' +\n                '<span class=\"badge\" style=\"font-weight:600;\">' + t.currentCoveragePct.toFixed(1) + '%</span>' +\n              '</div>' +\n              '<div style=\"font-size:11px; color:var(--color-fg-muted, #656d76);\">' +\n                t.uncoveredLines + ' uncovered lines &middot; <strong>+' + t.potentialGainPct.toFixed(2) + '%</strong> repo gain (up to ' + t.projectedRepoCoveragePct.toFixed(2) + '%)' +\n              '</div>' +\n            '</button>' +\n          '</li>';\n        });\n\n        replyHtml += '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/mcp?tool=find_high_value_targets\">Open in WebMCP Catalog (?tool=find_high_value_targets)</button></p>';\n      } else if (/(?:flutter|dart|vitest|vite|jest|rust|cargo|python|pytest|golang|go|cpp|preset|框架)/i.test(lower) || lower.includes('c++')) {\n        var fw = 'vitest';\n        if (lower.includes('flutter')) fw = 'flutter';\n        else if (lower.includes('dart')) fw = 'dart';\n        else if (lower.includes('jest')) fw = 'jest';\n        else if (lower.includes('rust') || lower.includes('cargo')) fw = 'rust';\n        else if (lower.includes('python') || lower.includes('pytest')) fw = 'python';\n        else if (lower.includes('go') || lower.includes('golang')) fw = 'go';\n        else if (lower.includes('cpp') || lower.includes('c++') || lower.includes('gcov')) fw = 'cpp';\n        else if (lower.includes('vitest') || lower.includes('vite')) fw = 'vitest';\n\n        var presetRes = await callWebMcp('get_framework_preset', { framework: fw, docs: true });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_framework_preset(framework: \"' + escapeHtml(fw) + '\")</code></p>' +\n          '<p>⚡ <strong>' + escapeHtml(presetRes.framework) + ' Integration Preset:</strong></p>' +\n          '<p><strong>Test Command:</strong> <code>' + escapeHtml(presetRes.testCommand) + '</code></p>' +\n          '<p><strong>Coverage File:</strong> <code>' + escapeHtml(presetRes.coverageFile) + '</code></p>' +\n          '<p><strong>GitHub Actions Workflow (<code>' + escapeHtml(presetRes.recommendedWorkflowPath) + '</code>):</strong></p>' +\n          '<pre><code>' + escapeHtml(presetRes.workflow) + '</code></pre>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=get_framework_preset&framework=' + encodeURIComponent(fw) + '\">Open in WebMCP Catalog</button></p>';\n      } else if (/(?:summary|delta|總覽|覆蓋率總結|current coverage|指標|metrics)/i.test(lower)) {\n        var summaryRes = await callWebMcp('get_coverage_summary', {});\n        var s = summaryRes.summary;\n        var d = summaryRes.delta;\n        var deltaStr = d ? (' (' + (d.linesPct >= 0 ? '+' : '') + d.linesPct + '% vs previous)') : '';\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_summary</code></p>' +\n          '<p>📊 <strong>Current Coverage Metrics:</strong></p>' +\n          '<ul>' +\n          '<li><strong>Lines:</strong> ' + s.lines.pct + '% (' + s.lines.covered + '/' + s.lines.total + ')' + deltaStr + '</li>' +\n          '<li><strong>Functions:</strong> ' + s.functions.pct + '% (' + s.functions.covered + '/' + s.functions.total + ')</li>' +\n          '<li><strong>Branches:</strong> ' + s.branches.pct + '% (' + s.branches.covered + '/' + s.branches.total + ')</li>' +\n          '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/\">Open Live Coverage Viewer</button></p>';\n      } else if (/(?:trend|trends|history|歷史|趨勢|commits?|走勢|進展)/i.test(lower)) {\n        var trendsRes = await callWebMcp('get_coverage_trends', { limit: 5 });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_trends(limit: 5)</code></p>' +\n          '<p>📈 <strong>Recent Coverage Trends across Commits:</strong></p>' +\n          '<ul>';\n        trendsRes.trends.forEach(function (c) {\n          replyHtml += '<li><code>' + escapeHtml(c.shortSha) + '</code>: <strong>' + c.linesPct + '%</strong> - ' + escapeHtml(c.message) + ' (' + escapeHtml(c.date) + ')</li>';\n        });\n        replyHtml += '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/#trend\">View Interactive Trendline</button></p>';\n      } else if (/(?:setup|advisor|consult|如何配置|配置|安裝|架設|模式|哪個模式|模式選擇)/i.test(lower)) {\n        var setupRes = await callWebMcp('consult_setup', {\n          zeroBuild: lower.includes('zero') || lower.includes('drop'),\n          hasExistingCommits: lower.includes('backfill') || lower.includes('commit') || lower.includes('history')\n        });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>consult_setup</code></p>' +\n          '<p>🚀 <strong>Recommended Deployment Mode:</strong> <code>' + escapeHtml(setupRes.recommendedMode) + '</code></p>' +\n          '<p>' + escapeHtml(setupRes.summary) + '</p>' +\n          (setupRes.quickCommand ? '<pre><code>' + escapeHtml(setupRes.quickCommand) + '</code></pre>' : '') +\n          (setupRes.command ? '<pre><code>' + escapeHtml(setupRes.command) + '</code></pre>' : '') +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=consult_setup\">Open in WebMCP Catalog</button></p>';\n      } else if (/(?:badge|badges|徽章|svg badge|shield)/i.test(lower)) {\n        var badgeRes = await callWebMcp('get_badge_code', { scope: 'overall' });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_badge_code</code></p>' +\n          '<p>🏷️ <strong>Scoped SVG Badge Code:</strong></p>' +\n          '<p>Markdown:</p>' +\n          '<pre><code>' + escapeHtml(badgeRes.markdown) + '</code></pre>' +\n          '<p>HTML:</p>' +\n          '<pre><code>' + escapeHtml(badgeRes.html) + '</code></pre>' +\n          '<p><button type=\"button\" class=\"btn btn-sm ask-ai-cta-btn\" data-action=\"jump:#badges\">Open Badge Generator</button></p>';\n      } else if (/(?:doc|docs|documentation|文件|說明)/i.test(lower)) {\n        var docRes = await callWebMcp('get_documentation', { topic: 'overview' });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_documentation</code></p>' +\n          formatMarkdown(docRes.content);\n      } else if (/(?:navigate|jump|go to|前往|打開|跳轉|demo|live)/i.test(lower)) {\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>navigate_to(target: \"live_demo\")</code></p>' +\n          '<p>Click below to jump directly to the live coverage report:</p>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/\">Open Live Coverage Demo</button></p>';\n      } else if (/(?:mcp|ai-proxy|register|註冊|連接)/i.test(lower)) {\n        var isCov = window.location.pathname.includes('/covpages/');\n        var targetPath = isCov ? 'covpages/covpages/mcp' : 'covpages/mcp';\n        var siteSlug = isCov ? 'covpages-covpages' : 'covpages';\n        replyHtml = '<p>🔌 <strong>Register WebMCP Endpoint:</strong></p>' +\n          '<p>Add this site to your local <code>ai-proxy</code> relay server:</p>' +\n          '<pre><code>npx ai-proxy add https://yongjhih.github.io/' + targetPath + ' --name ' + siteSlug + '</code></pre>' +\n          '<p style=\"display:flex;gap:0.5rem;flex-wrap:wrap;\">' +\n          '<button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"action:add-mcp?url=' + encodeURIComponent('https://yongjhih.github.io/' + targetPath) + '&name=' + encodeURIComponent(siteSlug) + '\">➕ 一鍵新增到 local ai-proxy</button>' +\n          '<button type=\"button\" class=\"btn btn-sm ask-ai-cta-btn\" data-action=\"navigate:mcp\">View MCP Tools Catalog</button>' +\n          '</p>';\n      } else {\n        replyHtml = '<p>🛠️ <strong>WebMCP Tools Ready (11 Tools Registered)</strong></p>' +\n          '<p>Ask me a question or click a tool to run it directly:</p>' +\n          '<div class=\"ask-ai-chips\">' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"covpages cli help\">🛠️ get_cli_help</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Find high-value coverage targets\">🎯 find_high_value_targets</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Vitest framework preset\">⚡ get_framework_preset</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Coverage summary and metrics\">📊 get_coverage_summary</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Multi-commit coverage trends\">📈 get_coverage_trends</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Generate SVG badge\">🏷️ get_badge_code</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Setup advisor and modes\">🚀 consult_setup</button>' +\n          '</div>';\n      }\n    } catch (toolErr) {\n      replyHtml = '<p>⚠️ Error executing WebMCP tool: ' + escapeHtml(toolErr && toolErr.message ? toolErr.message : String(toolErr)) + '</p>' +\n        '<p>You can also query tools directly on the <a href=\"mcp\">MCP Tools Catalog</a> page.</p>';\n    }\n\n    updateTypingContent(replyHtml);\n  }\n\n  if (form) {\n    form.addEventListener('submit', function (e) {\n      e.preventDefault();\n      var val = input.value;\n      if (val) handleUserQuery(val);\n    });\n  }\n\n  // Bind initial suggestion chips\n  bindActions(messagesEl);\n\n  function escapeHtml(str) {\n    return String(str || '')\n      .replace(/&/g, '&amp;')\n      .replace(/</g, '&lt;')\n      .replace(/>/g, '&gt;')\n      .replace(/\"/g, '&quot;');\n  }\n\n  function formatMarkdown(markdown) {\n    if (!markdown) return '';\n    var lines = String(markdown).split('\\\\n');\n    var result = [];\n    var inCodeBlock = false;\n    var codeBlockLines = [];\n    var inList = false;\n\n    function closeList() {\n      if (inList === 'ol') {\n        result.push('</ol>');\n        inList = false;\n      } else if (inList) {\n        result.push('</ul>');\n        inList = false;\n      }\n    }\n\n    function formatInline(text) {\n      var out = escapeHtml(text);\n\n      // 1) Action CTA buttons: [Text](action:...)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\((action:[^)]+)\\\\)/g,\n        function (_, label, actionUrl) {\n          return '<button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"' + actionUrl + '\">' + label + '</button>';\n        }\n      );\n\n      // 2) Jump buttons: [Text](#hash)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\((#[^)]+)\\\\)/g,\n        function (_, label, hash) {\n          return '<button type=\"button\" class=\"btn btn-sm ask-ai-jump-btn\" data-jump=\"' + hash + '\">' + label + '</button>';\n        }\n      );\n\n      // 3) Normal Links / relative files: [Text](url)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\(([^)]+)\\\\)/g,\n        function (_, label, url) {\n          var isExt = url.startsWith('http://') || url.startsWith('https://');\n          var targetAttr = isExt ? ' target=\"_blank\" rel=\"noopener\"' : '';\n          return '<a href=\"' + url + '\" class=\"btn btn-sm ask-ai-cta-btn\" style=\"text-decoration:none;\"' + targetAttr + '>' + label + '</a>';\n        }\n      );\n\n      // 4) Bold: **text**\n      out = out.replace(/\\\\*\\\\*(.+?)\\\\*\\\\*/g, '<strong>$1</strong>');\n\n      // 5) Inline code\n      out = out.replace(new RegExp('\\\\x60([^\\\\x60]+)\\\\x60', 'g'), '<code>$1</code>');\n\n      return out;\n    }\n\n    var codeFence = String.fromCharCode(96, 96, 96);\n    for (var i = 0; i < lines.length; i++) {\n      var rawLine = lines[i];\n      var trimmed = rawLine.trim();\n\n      if (trimmed.startsWith(codeFence)) {\n        if (inCodeBlock) {\n          result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\\\\n')) + '</code></pre>');\n          codeBlockLines = [];\n          inCodeBlock = false;\n        } else {\n          closeList();\n          inCodeBlock = true;\n        }\n        continue;\n      }\n      if (inCodeBlock) {\n        codeBlockLines.push(rawLine);\n        continue;\n      }\n\n      if (!trimmed) {\n        closeList();\n        continue;\n      }\n\n      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {\n        var itemContent = trimmed.slice(2);\n        var isAction = /^\\\\[.+?\\\\]\\\\(.+?\\\\)$/.test(itemContent.trim());\n        if (!inList) {\n          inList = 'ul';\n          result.push(isAction ? '<ul class=\"ask-ai-actions-list\">' : '<ul>');\n        }\n        result.push('<li>' + formatInline(itemContent) + '</li>');\n        continue;\n      }\n\n      var olMatch = /^(\\\\d+)\\\\.\\\\s+(.*)$/.exec(trimmed);\n      if (olMatch) {\n        if (!inList) {\n          inList = 'ol';\n          result.push('<ol>');\n        }\n        result.push('<li>' + formatInline(olMatch[2]) + '</li>');\n        continue;\n      }\n\n      closeList();\n\n      if (trimmed.startsWith('> ')) {\n        result.push('<blockquote>' + formatInline(trimmed.slice(2)) + '</blockquote>');\n        continue;\n      }\n\n      result.push('<p>' + formatInline(rawLine) + '</p>');\n    }\n\n    closeList();\n    if (inCodeBlock && codeBlockLines.length > 0) {\n      result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\\\\n')) + '</code></pre>');\n    }\n\n    return result.join('');\n  }\n})();\n`;\n"
+      "sourceCode": "import { ICONS } from './icons.js';\nimport { FRAMEWORK_PRESETS } from '../core/presets.js';\n\nexport const ASK_AI_CSS = `\n  /* Ask AI Drawer Styles (GitHub Primer) */\n  .ask-ai-backdrop {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.4);\n    z-index: 20000;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  .ask-ai-backdrop[data-open=\"true\"] {\n    opacity: 1;\n    pointer-events: auto;\n  }\n\n  .ask-ai-drawer {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    width: 440px;\n    max-width: 92vw;\n    background-color: var(--color-canvas-overlay, #ffffff);\n    border-left: 1px solid var(--color-border-default, #d0d7de);\n    box-shadow: var(--shadow-rest, 0 8px 24px rgba(1, 4, 9, 0.15));\n    display: flex;\n    flex-direction: column;\n    z-index: 20001;\n    transform: translateX(100%);\n    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  .ask-ai-drawer[data-open=\"true\"] {\n    transform: translateX(0);\n  }\n\n  .ask-ai-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 14px 18px;\n    border-bottom: 1px solid var(--color-border-default, #d0d7de);\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n  }\n  .ask-ai-title {\n    font-size: 14px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-title svg { fill: currentColor; }\n\n  .ask-ai-status-pill {\n    font-size: 11px;\n    font-weight: 500;\n    padding: 1px 6px;\n    border-radius: 10px;\n    background-color: var(--color-neutral-subtle, rgba(129, 139, 152, 0.12));\n    color: var(--color-fg-muted, #59636e);\n  }\n  .ask-ai-status-pill[data-connected=\"true\"] {\n    background-color: var(--color-success-subtle, rgba(26, 127, 55, 0.1));\n    color: var(--color-success-fg, #1a7f37);\n  }\n\n  .ask-ai-body {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n    font-size: 13px;\n    line-height: 1.5;\n  }\n\n  .ask-ai-msg {\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n    max-width: 92%;\n    border-radius: var(--radius-md, 6px);\n    padding: 10px 14px;\n    word-break: break-word;\n  }\n  .ask-ai-msg-assistant {\n    align-self: flex-start;\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n    border: 1px solid var(--color-border-default, #d0d7de);\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-msg-user {\n    align-self: flex-end;\n    background-color: var(--color-accent-subtle, rgba(9, 105, 218, 0.1));\n    border: 1px solid var(--color-accent-fg, #0969da);\n    color: var(--color-fg-default, #1f2328);\n  }\n\n  .ask-ai-msg p { margin: 0 0 6px 0; }\n  .ask-ai-msg p:last-child { margin-bottom: 0; }\n  .ask-ai-msg ul, .ask-ai-msg ol { padding-left: 18px; margin: 4px 0 6px 0; }\n  .ask-ai-msg li { margin-bottom: 2px; }\n  .ask-ai-msg code {\n    font-family: var(--font-mono, monospace);\n    font-size: 12px;\n    padding: 0.15em 0.35em;\n    background-color: var(--color-neutral-subtle, rgba(129, 139, 152, 0.12));\n    border-radius: var(--radius-sm, 4px);\n  }\n  .ask-ai-msg pre {\n    background-color: var(--color-canvas-default, #ffffff);\n    border: 1px solid var(--color-border-muted, #d8dee4);\n    border-radius: var(--radius-sm, 4px);\n    padding: 8px 10px;\n    font-family: var(--font-mono, monospace);\n    font-size: 11px;\n    overflow-x: auto;\n    margin: 6px 0;\n  }\n  .ask-ai-msg pre code {\n    background: none;\n    padding: 0;\n  }\n\n  .ask-ai-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 6px;\n    margin-top: 4px;\n  }\n  .ask-ai-chip {\n    background-color: var(--color-canvas-default, #ffffff);\n    border: 1px solid var(--color-border-default, #d0d7de);\n    border-radius: 14px;\n    padding: 3px 10px;\n    font-size: 11px;\n    color: var(--color-accent-fg, #0969da);\n    cursor: pointer;\n    line-height: 1.4;\n    transition: background-color 0.15s ease;\n  }\n  .ask-ai-chip:hover {\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n    text-decoration: none;\n  }\n\n  /* Primer Button styling for Drawer CTAs and Action Buttons */\n  .ask-ai-drawer .btn,\n  .ask-ai-cta-btn,\n  .ask-ai-jump-btn {\n    display: inline-flex;\n    align-items: center;\n    justify-content: flex-start;\n    gap: 6px;\n    padding: 5px 12px;\n    font-size: 12px;\n    font-weight: 500;\n    line-height: 20px;\n    color: var(--color-fg-default, #1f2328);\n    background-color: var(--color-btn-bg, #f6f8fa);\n    border: 1px solid var(--color-btn-border, #d0d7de);\n    border-radius: var(--radius-md, 6px);\n    box-shadow: 0 1px 0 rgba(31, 35, 40, 0.04);\n    cursor: pointer;\n    text-decoration: none;\n    user-select: none;\n    transition: background-color 0.15s ease, border-color 0.15s ease;\n    font-family: inherit;\n    box-sizing: border-box;\n  }\n  .ask-ai-drawer .btn:hover,\n  .ask-ai-cta-btn:hover,\n  .ask-ai-jump-btn:hover {\n    background-color: var(--color-btn-hover-bg, #eaeef2);\n    border-color: var(--color-border-default, #d0d7de);\n    text-decoration: none;\n    color: var(--color-fg-default, #1f2328);\n  }\n  .ask-ai-drawer .btn-primary,\n  .ask-ai-cta-btn.btn-primary {\n    color: #ffffff !important;\n    background-color: var(--color-btn-primary-bg, #1f883d);\n    border-color: var(--color-btn-primary-border, #1a7f37);\n  }\n  .ask-ai-drawer .btn-primary:hover,\n  .ask-ai-cta-btn.btn-primary:hover {\n    background-color: var(--color-btn-primary-hover-bg, #1a7f37);\n    border-color: var(--color-btn-primary-border, #1a7f37);\n    color: #ffffff !important;\n  }\n\n  .ask-ai-msg ul.ask-ai-actions-list {\n    list-style: none;\n    padding-left: 0;\n    margin: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n  .ask-ai-msg ul.ask-ai-actions-list li {\n    margin: 0;\n    display: flex;\n  }\n  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-cta-btn,\n  .ask-ai-msg ul.ask-ai-actions-list .ask-ai-jump-btn {\n    width: 100%;\n    margin: 0;\n    text-align: left;\n  }\n\n  .ask-ai-link {\n    color: var(--color-accent-fg, #0969da);\n    text-decoration: underline;\n  }\n  .ask-ai-link:hover {\n    text-decoration: underline;\n  }\n\n  .ask-ai-footer {\n    padding: 12px 16px;\n    border-top: 1px solid var(--color-border-default, #d0d7de);\n    background-color: var(--color-canvas-subtle, #f6f8fa);\n  }\n  .ask-ai-form {\n    display: flex;\n    gap: 8px;\n  }\n  .ask-ai-input {\n    flex: 1;\n    min-width: 0;\n    padding: 7px 12px;\n    font-size: 13px;\n    font-family: inherit;\n    border: 1px solid var(--color-border-default, #d0d7de);\n    border-radius: var(--radius-md, 6px);\n    background-color: var(--color-canvas-default, #ffffff);\n    color: var(--color-fg-default, #1f2328);\n    outline: none;\n  }\n  .ask-ai-input:focus {\n    border-color: var(--color-accent-fg, #0969da);\n    box-shadow: 0 0 0 2px var(--color-accent-subtle, rgba(9, 105, 218, 0.15));\n  }\n\n  .ask-ai-thinking {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    color: var(--color-fg-muted, #59636e);\n    font-size: 13px;\n  }\n  .ask-ai-thinking-spinner {\n    width: 14px;\n    height: 14px;\n    border: 2px solid var(--color-border-default, #d0d7de);\n    border-top-color: var(--color-accent-fg, #0969da);\n    border-radius: 50%;\n    animation: ask-ai-spin 0.8s linear infinite;\n    display: inline-block;\n    flex-shrink: 0;\n  }\n  .ask-ai-thinking-dots span {\n    animation: ask-ai-blink 1.4s infinite both;\n    font-weight: 700;\n  }\n  .ask-ai-thinking-dots span:nth-child(2) {\n    animation-delay: 0.2s;\n  }\n  .ask-ai-thinking-dots span:nth-child(3) {\n    animation-delay: 0.4s;\n  }\n  @keyframes ask-ai-spin {\n    to { transform: rotate(360deg); }\n  }\n  @keyframes ask-ai-blink {\n    0%, 80%, 100% { opacity: 0.2; }\n    40% { opacity: 1; }\n  }\n\n  .btn-danger {\n    color: #ffffff !important;\n    background-color: var(--color-btn-danger-bg, #da3633) !important;\n    border-color: var(--color-btn-danger-border, #b62324) !important;\n  }\n  .btn-danger:hover {\n    background-color: var(--color-btn-danger-hover-bg, #b62324) !important;\n  }\n`;\n\nexport function renderAskAiDrawerHtml(options: {\n  mode: 'project' | 'coverage';\n  baseUrl?: string;\n}): string {\n  const isCoverage = options.mode === 'coverage';\n\n  const defaultGreeting = isCoverage\n    ? `<p>Hello! I am your <strong>Covpages Coverage Assistant</strong>. I can help analyze your code coverage data, identify high-value test targets, inspect file metrics, or guide you through coverage trends.</p>`\n    : `<p>Hello! I am your <strong>Covpages AI Assistant</strong>. Ask me how to configure covpages, generate framework presets (Flutter, Vitest, Jest, Rust, Python, Go), set up zero-build drop-in sites, or query MCP endpoints.</p>`;\n\n  const chipsHtml = isCoverage\n    ? `<div class=\"ask-ai-chips\">\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Find high-value coverage targets\">🎯 High-Value Targets</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Which files have the most uncovered lines?\">📊 Top Uncovered Files</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"What is the current coverage summary and delta?\">📈 Summary &amp; Delta</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show multi-commit trend\">🕒 Trend History</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How to register this MCP in ai-proxy?\">🔌 WebMCP Registration</button>\n      </div>`\n    : `<div class=\"ask-ai-chips\">\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How do I set up covpages in 5 minutes?\">🚀 Quickstart</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show Vitest GitHub Actions workflow\">⚡ Vitest Preset</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Show Flutter coverage workflow\">💙 Flutter Preset</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"How does zero-build drop-in mode work?\">📦 Drop-in Mode</button>\n        <button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Open live demo\">👁️ Open Live Demo</button>\n      </div>`;\n\n  return `\n  <div class=\"ask-ai-backdrop\" id=\"ask-ai-backdrop\" data-open=\"false\"></div>\n  <aside class=\"ask-ai-drawer\" id=\"ask-ai-drawer\" data-open=\"false\" aria-hidden=\"true\" aria-label=\"Ask AI Assistant\">\n    <div class=\"ask-ai-header\">\n      <div class=\"ask-ai-title\">\n        ${ICONS.terminal || ''}\n        <span>Ask AI Assistant</span>\n        <span class=\"ask-ai-status-pill\" id=\"ask-ai-status-pill\" data-connected=\"false\">Local AI / Client</span>\n      </div>\n      <div class=\"ask-ai-header-actions\" style=\"display: flex; gap: 6px; align-items: center;\">\n        <button type=\"button\" class=\"btn btn-sm\" id=\"ask-ai-clear\" title=\"Clear chat history\" aria-label=\"Clear chat history\" style=\"display: none;\">Clear</button>\n        <button type=\"button\" class=\"btn btn-sm\" id=\"ask-ai-close\" aria-label=\"Close Ask AI\">&times; Close</button>\n      </div>\n    </div>\n\n    <div class=\"ask-ai-body\" id=\"ask-ai-messages\">\n      <div class=\"ask-ai-msg ask-ai-msg-assistant\">\n        ${defaultGreeting}\n        ${chipsHtml}\n      </div>\n    </div>\n\n    <div class=\"ask-ai-footer\">\n      <form class=\"ask-ai-form\" id=\"ask-ai-form\">\n        <input type=\"text\" class=\"ask-ai-input\" id=\"ask-ai-input\" placeholder=\"${isCoverage ? 'Ask about high-value targets, files, trends...' : 'Ask about setup, presets, badges, CLI...'}\" autocomplete=\"off\" required />\n        <button type=\"submit\" class=\"btn btn-primary btn-sm\" id=\"ask-ai-submit\">Send</button>\n      </form>\n    </div>\n  </aside>\n  `;\n}\n\nexport const ASK_AI_CLIENT_SCRIPT = `\n(function () {\n  var triggerBtn = document.getElementById('ask-ai-trigger');\n  var drawer = document.getElementById('ask-ai-drawer');\n  var backdrop = document.getElementById('ask-ai-backdrop');\n  var closeBtn = document.getElementById('ask-ai-close');\n  var clearBtn = document.getElementById('ask-ai-clear');\n  var form = document.getElementById('ask-ai-form');\n  var input = document.getElementById('ask-ai-input');\n  var messagesEl = document.getElementById('ask-ai-messages');\n  var statusPill = document.getElementById('ask-ai-status-pill');\n  var submitBtn = document.getElementById('ask-ai-submit') || (form && form.querySelector('button[type=\"submit\"]'));\n  var currentAbortController = null;\n\n  if (!drawer || !form || !input || !messagesEl) return;\n\n  var STORAGE_KEY = 'covpages_ask_ai_history';\n  var conversationHistory = [];\n\n  function loadHistory() {\n    try {\n      var raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);\n      if (raw) {\n        var parsed = JSON.parse(raw);\n        if (Array.isArray(parsed)) return parsed;\n      }\n    } catch (e) {}\n    return [];\n  }\n\n  function updateClearBtn() {\n    if (clearBtn) {\n      clearBtn.style.display = conversationHistory.length > 0 ? 'inline-flex' : 'none';\n    }\n  }\n\n  function saveHistory() {\n    try {\n      if (conversationHistory.length > 50) {\n        conversationHistory = conversationHistory.slice(-50);\n      }\n      var data = JSON.stringify(conversationHistory);\n      sessionStorage.setItem(STORAGE_KEY, data);\n      try { localStorage.setItem(STORAGE_KEY, data); } catch (e) {}\n    } catch (e) {}\n    updateClearBtn();\n  }\n\n  function clearHistory() {\n    conversationHistory = [];\n    try {\n      sessionStorage.removeItem(STORAGE_KEY);\n      localStorage.removeItem(STORAGE_KEY);\n    } catch (e) {}\n    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');\n    for (var i = 1; i < allMsgs.length; i++) {\n      allMsgs[i].remove();\n    }\n    updateClearBtn();\n  }\n\n  if (clearBtn) {\n    clearBtn.addEventListener('click', function (e) {\n      e.preventDefault();\n      clearHistory();\n    });\n  }\n\n  function restoreHistory() {\n    conversationHistory = loadHistory();\n    var allMsgs = messagesEl.querySelectorAll('.ask-ai-msg');\n    for (var m = 1; m < allMsgs.length; m++) {\n      allMsgs[m].remove();\n    }\n    if (conversationHistory && conversationHistory.length > 0) {\n      for (var i = 0; i < conversationHistory.length; i++) {\n        var item = conversationHistory[i];\n        if (item && item.role && item.html) {\n          var msgEl = document.createElement('div');\n          msgEl.className = 'ask-ai-msg ask-ai-msg-' + item.role;\n          msgEl.innerHTML = item.html;\n          messagesEl.appendChild(msgEl);\n          bindActions(msgEl);\n        }\n      }\n      messagesEl.scrollTop = messagesEl.scrollHeight;\n    }\n    updateClearBtn();\n  }\n\n  var lastToggleTime = 0;\n  function toggleDrawer(open) {\n    if (typeof open !== 'boolean') {\n      open = drawer.getAttribute('data-open') !== 'true';\n    }\n    var now = Date.now();\n    if (open && now - lastToggleTime < 150) {\n      return;\n    }\n    lastToggleTime = now;\n    drawer.setAttribute('data-open', open ? 'true' : 'false');\n    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');\n    if (backdrop) backdrop.setAttribute('data-open', open ? 'true' : 'false');\n    if (open) {\n      if (messagesEl.children.length <= 1) {\n        restoreHistory();\n      }\n      messagesEl.scrollTop = messagesEl.scrollHeight;\n      setTimeout(function () { input.focus(); }, 100);\n    }\n  }\n\n  window.toggleAskAiDrawer = function (open) {\n    toggleDrawer(open);\n  };\n\n  document.addEventListener('click', function (e) {\n    var btn = e.target && e.target.closest ? e.target.closest('#ask-ai-trigger, [data-ask-ai-trigger]') : null;\n    if (btn) {\n      e.preventDefault();\n      e.stopPropagation();\n      toggleDrawer();\n      return;\n    }\n    var close = e.target && e.target.closest ? e.target.closest('#ask-ai-close, [data-ask-ai-close]') : null;\n    if (close) {\n      e.preventDefault();\n      e.stopPropagation();\n      toggleDrawer(false);\n      return;\n    }\n  });\n\n  if (backdrop) {\n    backdrop.addEventListener('click', function (e) {\n      e.preventDefault();\n      toggleDrawer(false);\n    });\n  }\n\n  document.addEventListener('keydown', function (e) {\n    if (e.key === 'Escape' && drawer.getAttribute('data-open') === 'true') {\n      toggleDrawer(false);\n    }\n  });\n\n  function isScrollAtBottom(el, threshold) {\n    if (!el) return true;\n    threshold = typeof threshold === 'number' ? threshold : 60;\n    var ch = typeof el.clientHeight === 'number' ? el.clientHeight : 0;\n    var sh = typeof el.scrollHeight === 'number' ? el.scrollHeight : 0;\n    var st = typeof el.scrollTop === 'number' ? el.scrollTop : 0;\n    return (sh - st - ch) <= threshold;\n  }\n\n  function scrollToBottom(el) {\n    if (!el) return;\n    el.scrollTop = el.scrollHeight;\n  }\n\n  var scrollTimer = null;\n  function ensureScrollBottom(el, wasAtBottom) {\n    if (!el || wasAtBottom === false) return;\n    scrollToBottom(el);\n    if (typeof requestAnimationFrame !== 'undefined') {\n      requestAnimationFrame(function () {\n        if (isScrollAtBottom(el, 60)) {\n          scrollToBottom(el);\n        }\n      });\n    }\n    if (scrollTimer) clearTimeout(scrollTimer);\n    scrollTimer = setTimeout(function () {\n      if (isScrollAtBottom(el, 60)) {\n        scrollToBottom(el);\n      }\n    }, 50);\n  }\n\n  function appendMessage(sender, htmlContent, shouldSave, rawText) {\n    var wasAtBottom = isScrollAtBottom(messagesEl, 60);\n    var msgEl = document.createElement('div');\n    msgEl.className = 'ask-ai-msg ask-ai-msg-' + sender;\n    msgEl.innerHTML = htmlContent;\n    messagesEl.appendChild(msgEl);\n    if (sender === 'user' || wasAtBottom) {\n      ensureScrollBottom(messagesEl, true);\n    }\n    bindActions(msgEl);\n\n    if (shouldSave) {\n      conversationHistory.push({\n        role: sender,\n        html: htmlContent,\n        text: rawText || (htmlContent ? htmlContent.replace(/<[^>]+>/g, ' ').trim() : '')\n      });\n      saveHistory();\n    }\n    return msgEl;\n  }\n\n  // Restore history on script startup\n  restoreHistory();\n\n  function getAppRoot() {\n    var p = window.location.pathname.replace(/index\\\\.html$/, '');\n    var m = p.match(/^(.*?\\\\/)(?:tree|blob|commits|trends|mcp)(?:\\\\/|$)/);\n    return m ? m[1] : (p.endsWith('/') ? p : (p + '/'));\n  }\n\n  function handleJump(hash) {\n    if (!hash || !hash.startsWith('#')) return;\n\n    if (hash.startsWith('#file=')) {\n      var isCovPagesViewer = window.location.pathname.endsWith('/covpages/') ||\n                             window.location.pathname.endsWith('/covpages/index.html');\n      if (isCovPagesViewer) {\n        window.location.hash = hash;\n        toggleDrawer(false);\n        return;\n      }\n      var isInsideCoverageSubfolder = window.location.pathname.includes('/covpages/covpages/') ||\n                                     window.location.pathname.includes('/tree/') ||\n                                     window.location.pathname.includes('/blob/') ||\n                                     window.location.pathname.includes('/commits/') ||\n                                     window.location.pathname.includes('/trends');\n      var root = getAppRoot();\n      var target = isInsideCoverageSubfolder ? (root + hash) : (root + 'covpages/' + hash);\n      window.location.href = target;\n      return;\n    }\n\n    var el = document.querySelector(hash);\n    if (el) {\n      el.scrollIntoView({ behavior: 'smooth' });\n      toggleDrawer(false);\n      return;\n    }\n\n    // Check if it belongs to ai-proxy local dashboard\n    if (\n      hash === '#form-add-site' ||\n      hash === '#admin-dashboard-authenticated' ||\n      hash === '#details-allow-prefix' ||\n      hash === '#details-allowed-origins' ||\n      hash === '#details-key-mgmt' ||\n      hash.startsWith('#site-row-')\n    ) {\n      window.open('http://127.0.0.1:8788/dashboard.html' + hash, '_blank');\n      return;\n    }\n\n    // Otherwise cross-page jump to project landing page\n    var basePath = window.location.pathname.includes('/covpages/') ? '../' : './';\n    window.location.href = basePath + hash;\n  }\n\n  function bindActions(container) {\n    if (!container) return;\n    var chips = container.querySelectorAll('.ask-ai-chip[data-ask]');\n    for (var i = 0; i < chips.length; i++) {\n      chips[i].addEventListener('click', function (ev) {\n        var query = ev.currentTarget.getAttribute('data-ask');\n        if (query) {\n          handleUserQuery(query);\n        }\n      });\n    }\n\n    var jumpBtns = container.querySelectorAll('.ask-ai-jump-btn[data-jump]');\n    for (var k = 0; k < jumpBtns.length; k++) {\n      jumpBtns[k].addEventListener('click', function (ev) {\n        var hash = ev.currentTarget.getAttribute('data-jump');\n        handleJump(hash);\n      });\n    }\n\n    var actionBtns = container.querySelectorAll('.ask-ai-cta-btn[data-action]');\n    for (var j = 0; j < actionBtns.length; j++) {\n      actionBtns[j].addEventListener('click', function (ev) {\n        var action = ev.currentTarget.getAttribute('data-action');\n        if (!action) return;\n        if (action.startsWith('navigate:')) {\n          var targetUrl = action.slice('navigate:'.length);\n          if (targetUrl === 'mcp') {\n            var root = getAppRoot();\n            window.location.href = root + 'mcp';\n            return;\n          } else if (targetUrl === 'covpages/' || targetUrl === './covpages/') {\n            var isInsideCoverage = window.location.pathname.includes('/covpages/covpages/') ||\n                                   window.location.pathname.includes('/tree/') ||\n                                   window.location.pathname.includes('/blob/') ||\n                                   window.location.pathname.includes('/commits/') ||\n                                   window.location.pathname.includes('/trends');\n            var root = getAppRoot();\n            window.location.href = isInsideCoverage ? root : (root + 'covpages/');\n            return;\n          }\n          window.location.href = targetUrl;\n        } else if (action.startsWith('jump:')) {\n          handleJump(action.slice('jump:'.length));\n        } else if (action === 'action:connect' || action.startsWith('action:connect')) {\n          window.location.href = 'http://127.0.0.1:8788/admin/v1/open-dashboard?redirect=' + encodeURIComponent(window.location.href);\n        } else if (action.startsWith('action:add-mcp')) {\n          var addUrl = '';\n          var query = action.split('?')[1];\n          if (query) {\n            var qParams = new URLSearchParams(query);\n            addUrl = qParams.get('url') || '';\n          }\n          var dest = 'https://yongjhih.github.io/ai-proxy/dashboard.html' + (addUrl ? ('#add-url=' + encodeURIComponent(addUrl)) : '');\n          window.open(dest, '_blank');\n        } else if (action.startsWith('action:')) {\n          window.open('http://127.0.0.1:8788/dashboard.html', '_blank');\n        }\n      });\n    }\n\n    var links = container.querySelectorAll('a.ask-ai-cta-btn, a.ask-ai-link');\n    for (var l = 0; l < links.length; l++) {\n      links[l].addEventListener('click', function (ev) {\n        var href = ev.currentTarget.getAttribute('href');\n        if (!href) return;\n        if (href.startsWith('doc.html') || href.startsWith('dashboard.html')) {\n          ev.preventDefault();\n          window.open('http://127.0.0.1:8788/' + href, '_blank');\n        }\n      });\n    }\n  }\n\n  // Load coverage data helper\n  async function ensureCoverageData() {\n    if (typeof window !== 'undefined' && window.__COVPAGES_DATA__) {\n      return window.__COVPAGES_DATA__;\n    }\n\n    var candidates = [\n      'covpages-data.json',\n      './covpages-data.json',\n      './covpages/covpages-data.json',\n      '../covpages-data.json',\n      '../covpages/covpages-data.json'\n    ];\n\n    for (var i = 0; i < candidates.length; i++) {\n      try {\n        var res = await fetch(candidates[i]);\n        if (res.ok) {\n          var data = await res.json();\n          if (data && data.files) {\n            if (typeof window !== 'undefined') window.__COVPAGES_DATA__ = data;\n            return data;\n          }\n        }\n      } catch (err) {}\n    }\n    return null;\n  }\n\n  var PRESETS = ${JSON.stringify(FRAMEWORK_PRESETS)};\n\n  // 11 Covpages WebMCP Tool Executors\n  var toolExecutors = {\n    get_cli_help: async function(args) {\n      var cmd = args && args.command;\n      var commands = {\n        generate: 'covpages generate [options] [input-files...] - Generate coverage static site for GitHub Pages with multi-commit trends and badges.',\n        dropin: 'covpages dropin [dir] - Generate zero-build drop-in static site (index.html + .nojekyll). Put in gh-pages, then simply copy lcov.info!',\n        mcp: 'covpages mcp [dir] - Generate compliant MCP Page (mcp.html + web/ modules) for ai-proxy.',\n        backfill: 'covpages backfill --range <range> --test-cmd <cmd> - Backfill test coverage across a range of historical git commits.',\n        presets: 'covpages presets [framework] - View integration guides and workflows for mainstream frameworks (flutter, vitest, jest, rust, python, go, cpp).',\n        docker: 'covpages docker <run|build|pull> [args...] - Run, build, or pull covpages inside a container (docker/podman).',\n        serve: 'covpages serve [dir] [-p port] - Start a local preview web server.',\n        init: 'covpages init [--framework <name>] [--docs] - Create a GitHub Actions workflow (.github/workflows/covpages.yml).'\n      };\n      if (cmd && cmd !== 'all' && commands[cmd]) {\n        return {\n          command: cmd,\n          documentation: commands[cmd]\n        };\n      }\n      return {\n        usage: 'covpages [command] [options] [input-files...]',\n        commands: commands,\n        quickExamples: [\n          'npx covpages dropin gh-pages && cp coverage/lcov.info gh-pages/',\n          'npx covpages coverage/lcov.info --docs --save-raw',\n          'npx covpages init --framework vitest --docs',\n          'npx covpages backfill --range HEAD~5..HEAD --test-cmd \"npm test\"'\n        ]\n      };\n    },\n    get_framework_preset: async function(args) {\n      var fw = (args && args.framework ? args.framework : '').toLowerCase().trim();\n      var p = PRESETS[fw];\n      if (!p) {\n        return {\n          error: 'Unknown framework preset: \"' + fw + '\". Available: ' + Object.keys(PRESETS).join(', '),\n          availablePresets: Object.keys(PRESETS)\n        };\n      }\n      var docs = args && args.docs !== false;\n      var workflow = 'name: Test Coverage Pages\\\\n\\\\n' +\n        'on:\\\\n  push:\\\\n    branches: [main, master]\\\\n  pull_request:\\\\n\\\\n' +\n        'permissions:\\\\n  contents: write\\\\n  pages: write\\\\n  id-token: write\\\\n\\\\n' +\n        'concurrency:\\\\n  group: \"covpages\"\\\\n  cancel-in-progress: false\\\\n\\\\n' +\n        'jobs:\\\\n  coverage:\\\\n    runs-on: ubuntu-latest\\\\n    steps:\\\\n' +\n        '      - uses: actions/checkout@v4\\\\n        with:\\\\n          fetch-depth: 0\\\\n\\\\n' +\n        p.workflowStep + '\\\\n\\\\n' +\n        '      - name: Generate covpages Report\\\\n        run: npx covpages ' + p.coverageFile + ' ' + (docs ? '--docs' : '--output gh-pages') + ' --save-raw --mcp\\\\n\\\\n' +\n        '      - name: Deploy to GitHub Pages\\\\n        uses: peaceiris/actions-gh-pages@v4\\\\n        if: github.ref == \\\\'refs/heads/main\\\\' || github.ref == \\\\'refs/heads/master\\\\'\\\\n        with:\\\\n          github_token: ' + \"${'\\\\x24{{ secrets.GITHUB_TOKEN }}'}\" + '\\\\n          publish_dir: ' + (docs ? './docs/covpages' : './gh-pages') + '\\\\n';\n      return {\n        framework: p.name,\n        language: p.language,\n        testCommand: p.testCmd,\n        coverageFile: p.coverageFile,\n        description: p.description,\n        recommendedWorkflowPath: '.github/workflows/covpages.yml',\n        workflow: workflow\n      };\n    },\n    consult_setup: async function(args) {\n      args = args || {};\n      if (args.zeroBuild) {\n        return {\n          recommendedMode: 'zero-build-dropin',\n          summary: \"Zero-build drop-in mode is ideal for environments where you don\\\\'t want to run Node.js in CI.\",\n          steps: [\n            '1. Run \"npx covpages dropin gh-pages\" to create the static viewer.',\n            '2. In your CI, simply produce your coverage report (lcov.info) and copy it into gh-pages/.',\n            '3. Push gh-pages branch. The browser client parses and renders lcov.info dynamically at runtime!'\n          ],\n          command: 'npx covpages dropin gh-pages'\n        };\n      }\n      if (args.hasExistingCommits) {\n        return {\n          recommendedMode: 'backfill-history',\n          summary: 'Commit backfill mode executes historical commits in a git revision range to generate trendlines.',\n          command: 'npx covpages backfill --range HEAD~10..HEAD --test-cmd \"npm test\" --docs',\n          description: 'Runs your test suite across recent commits to populate multi-commit trends and store packed git objects.'\n        };\n      }\n      var matchedFramework = args.framework || args.language || 'vitest';\n      return {\n        recommendedMode: 'github-actions-workflow',\n        summary: 'GitHub Actions automated publishing with multi-commit trends and scoped badges.',\n        quickCommand: 'npx covpages init --framework ' + matchedFramework + ' --docs',\n        workflowFile: '.github/workflows/covpages.yml',\n        features: [\n          'Git packfile delta compression (100 commits compress into ~1.24 MB)',\n          'Scoped SVG badges for every branch, directory, and file',\n          'Built-in WebMCP endpoint (mcp.html + web/*.mjs) for ai-proxy'\n        ]\n      };\n    },\n    get_documentation: async function(args) {\n      var topic = (args && args.topic) || 'overview';\n      var bt = '\\\\x60';\n      var docsMap = {\n        overview: '# Covpages\\\\n\\\\nGit-Native Code Coverage for GitHub Pages with multi-commit trends, scoped SVG badges, syntax highlighting, and client-side WebMCP endpoints.',\n        quickstart: '## Quickstart\\\\n\\\\n1. Run tests with coverage: ' + bt + 'npm test -- --coverage' + bt + '\\\\n2. Generate site: ' + bt + 'npx covpages coverage/lcov.info --docs --save-raw' + bt + '\\\\n3. Deploy ' + bt + 'docs/' + bt + ' to GitHub Pages.',\n        dropin: '## Zero-Build Drop-in Mode\\\\n\\\\nPut ' + bt + 'index.html' + bt + ' in ' + bt + 'gh-pages' + bt + ', then just copy ' + bt + 'lcov.info' + bt + '. The browser parses LCOV at runtime!',\n        backfill: '## Backfill Commits\\\\n\\\\nRun ' + bt + 'npx covpages backfill --range HEAD~10..HEAD' + bt + ' to backfill trend points across historical commits.',\n        badges: '## Scoped SVG Badges\\\\n\\\\nCovpages generates badges into ' + bt + 'badges/' + bt + ' for repository, branch, directories, and files.',\n        react: '## React & Component Integration\\\\n\\\\nUse ' + bt + 'import { Covpages } from \"covpages/react\";' + bt + ' to embed interactive coverage charts into Next.js or Docusaurus.',\n        mcp: '## WebMCP & ai-proxy\\\\n\\\\nTurns any static GitHub Pages site into an MCP server via ' + bt + 'mcp.html' + bt + ' and vendored ' + bt + 'web/*.mjs' + bt + ' client modules.'\n      };\n      return {\n        topic: topic,\n        content: docsMap[topic] || docsMap.overview\n      };\n    },\n    navigate_to: async function(args) {\n      var target = (args && args.target) || 'live_demo';\n      var targets = {\n        live_demo: './covpages/',\n        coverage_mcp: './covpages/mcp',\n        badges: './#badges',\n        quickstart: './#quickstart',\n        github_repo: 'https://github.com/yongjhih/covpages'\n      };\n      var dest = targets[target] || './';\n      if (typeof window !== 'undefined' && window.location) {\n        window.location.href = dest;\n      }\n      return { target: target, navigatedTo: dest };\n    },\n    find_high_value_targets: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files || !covData.summary) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var limit = (args && args.limit) || 5;\n      var repoTotal = covData.summary.lines.total;\n      var repoCovered = covData.summary.lines.covered;\n      var curLinesPct = covData.summary.lines.pct;\n\n      var files = Object.values(covData.files);\n      if (args && args.folder) {\n        var prefix = args.folder.endsWith('/') ? args.folder : args.folder + '/';\n        files = files.filter(function(f) { return f.path.startsWith(prefix) || f.path === args.folder; });\n      }\n\n      var ranked = files.map(function(f) {\n        var uncovered = f.lines.total - f.lines.covered;\n        var gain = repoTotal > 0 ? (uncovered / repoTotal) * 100 : 0;\n        var proj = repoTotal > 0 ? ((repoCovered + uncovered) / repoTotal) * 100 : 0;\n        return {\n          path: f.path,\n          currentCoveragePct: f.lines.pct,\n          uncoveredLines: uncovered,\n          totalLines: f.lines.total,\n          potentialGainPct: Number(gain.toFixed(2)),\n          projectedRepoCoveragePct: Number(proj.toFixed(2)),\n          recommendation: 'Covering ' + f.path + ' (currently ' + f.lines.pct.toFixed(1) + '%, ' + uncovered + ' uncovered lines) will increase overall repo coverage by +' + gain.toFixed(2) + '% (from ' + curLinesPct.toFixed(2) + '% to ' + proj.toFixed(2) + '%).'\n        };\n      }).sort(function(a, b) { return b.uncoveredLines - a.uncoveredLines; });\n\n      return {\n        repoSummary: {\n          currentLinesPct: curLinesPct,\n          coveredLines: repoCovered,\n          totalLines: repoTotal,\n          deltaVsPrevious: covData.delta ? covData.delta.linesPct : null\n        },\n        totalEvaluated: files.length,\n        targets: ranked.slice(0, limit)\n      };\n    },\n    get_coverage_summary: async function() {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.summary) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      return {\n        repoName: covData.repoName || 'yongjhih/covpages',\n        generatedAt: covData.generatedAt,\n        currentCommit: covData.currentCommit,\n        previousCommit: covData.previousCommit || null,\n        summary: covData.summary,\n        delta: covData.delta || null\n      };\n    },\n    list_coverage_files: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var files = Object.values(covData.files);\n      var limit = (args && args.limit) || 20;\n      files.sort(function(a, b) { return a.lines.pct - b.lines.pct; });\n      return {\n        totalFiles: files.length,\n        files: files.slice(0, limit).map(function(f) {\n          return { path: f.path, linesPct: f.lines.pct, uncovered: f.lines.total - f.lines.covered };\n        })\n      };\n    },\n    get_file_coverage: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.files) {\n        throw new Error('Coverage data file could not be loaded.');\n      }\n      var p = args && args.path;\n      var file = covData.files[p] || Object.values(covData.files).find(function(f) { return f.path === p || f.path.endsWith('/' + p); });\n      if (!file) throw new Error('File not found in coverage report: ' + p);\n      return {\n        path: file.path,\n        lines: file.lines,\n        functions: file.functions,\n        branches: file.branches,\n        uncoveredLinesCount: file.lines.total - file.lines.covered\n      };\n    },\n    get_coverage_trends: async function(args) {\n      var covData = await ensureCoverageData();\n      if (!covData || !covData.commits) {\n        throw new Error('Coverage trends data not available.');\n      }\n      var limit = (args && args.limit) || 10;\n      var commits = covData.commits.slice(-limit).map(function(c) {\n        return {\n          sha: c.commit ? c.commit.sha : '',\n          shortSha: c.commit ? (c.commit.shortSha || c.commit.sha.slice(0, 7)) : '',\n          message: c.commit ? c.commit.message : '',\n          date: c.commit ? c.commit.date : '',\n          linesPct: c.summary ? c.summary.lines.pct : 0\n        };\n      });\n      return { totalCommits: covData.commits.length, trends: commits };\n    },\n    get_badge_code: async function(args) {\n      var covData = await ensureCoverageData();\n      var pct = covData && covData.summary ? covData.summary.lines.pct : 100;\n      return {\n        scope: (args && args.scope) || 'overall',\n        coveragePct: pct,\n        badgeFile: 'badges/overall.svg',\n        badgeUrl: 'https://yongjhih.github.io/covpages/badges/overall.svg',\n        markdown: '[![Coverage](https://yongjhih.github.io/covpages/badges/overall.svg)](https://yongjhih.github.io/covpages/covpages/)',\n        html: '<a href=\"https://yongjhih.github.io/covpages/covpages/\"><img src=\"https://yongjhih.github.io/covpages/badges/overall.svg\" alt=\"Coverage\" /></a>'\n      };\n    }\n  };\n\n  // Self-register modelContext if not present\n  if (typeof navigator !== 'undefined') {\n    if (!navigator.modelContext) {\n      var toolsMap = new Map();\n      for (var tk in toolExecutors) {\n        toolsMap.set(tk, {\n          name: tk,\n          execute: toolExecutors[tk]\n        });\n      }\n      navigator.modelContext = {\n        registerTool: function(t) { toolsMap.set(t.name, t); },\n        getTool: function(n) { return toolsMap.get(n) || null; },\n        listTools: function() { return Array.from(toolsMap.values()); },\n        callTool: async function(n, args) {\n          var t = toolsMap.get(n);\n          if (!t) throw new Error('Tool not found: ' + n);\n          return await t.execute(args);\n        }\n      };\n    } else {\n      for (var tk2 in toolExecutors) {\n        if (!navigator.modelContext.getTool(tk2)) {\n          navigator.modelContext.registerTool({\n            name: tk2,\n            description: 'Covpages WebMCP tool: ' + tk2,\n            execute: toolExecutors[tk2]\n          });\n        }\n      }\n    }\n  }\n\n  async function callWebMcp(toolName, args) {\n    if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.callTool === 'function') {\n      try {\n        var tool = navigator.modelContext.getTool(toolName);\n        if (tool) {\n          return await navigator.modelContext.callTool(toolName, args);\n        }\n      } catch (err) {}\n    }\n    var fn = toolExecutors[toolName];\n    if (fn) {\n      return await fn(args);\n    }\n    throw new Error('Unknown tool: ' + toolName);\n  }\n\n  // Client-side high-value target calculator\n  function computeHighValueTargets(data, limit) {\n    if (!data || !data.summary || !data.files) return null;\n    var repoTotal = data.summary.lines.total;\n    var repoCovered = data.summary.lines.covered;\n    var files = Object.values(data.files);\n\n    var ranked = files.map(function (f) {\n      var unc = f.lines.total - f.lines.covered;\n      var gain = (unc / repoTotal) * 100;\n      var proj = ((repoCovered + unc) / repoTotal) * 100;\n      return {\n        path: f.path,\n        pct: f.lines.pct,\n        uncovered: unc,\n        total: f.lines.total,\n        gain: gain,\n        projectedPct: proj\n      };\n    }).sort(function (a, b) {\n      return b.uncovered - a.uncovered;\n    });\n\n    return {\n      repoSummary: data.summary,\n      targets: ranked.slice(0, limit || 5)\n    };\n  }\n\n  async function handleUserQuery(text) {\n    text = (text || '').trim();\n    if (!text) return;\n\n    appendMessage('user', '<p>' + escapeHtml(text) + '</p>', true, text);\n    input.value = '';\n\n    // Show animated thinking placeholder\n    var typingEl = document.createElement('div');\n    typingEl.className = 'ask-ai-msg ask-ai-msg-assistant';\n    typingEl.innerHTML = [\n      '<div class=\"ask-ai-thinking\">',\n      '  <span class=\"ask-ai-thinking-spinner\"></span>',\n      '  <span>Thinking<span class=\"ask-ai-thinking-dots\"><span>.</span><span>.</span><span>.</span></span></span>',\n      '</div>'\n    ].join('');\n    messagesEl.appendChild(typingEl);\n    messagesEl.scrollTop = messagesEl.scrollHeight;\n\n    function updateTypingContent(html, rawText) {\n      var isAtBottomNow = typeof isScrollAtBottom === 'function' ? isScrollAtBottom(messagesEl, 60) : true;\n      typingEl.innerHTML = html;\n      bindActions(typingEl);\n      if (isAtBottomNow) {\n        if (typeof ensureScrollBottom === 'function') {\n          ensureScrollBottom(messagesEl, true);\n        } else {\n          messagesEl.scrollTop = messagesEl.scrollHeight;\n        }\n      }\n      var imgs = typingEl.querySelectorAll('img');\n      for (var m = 0; m < imgs.length; m++) {\n        if (!imgs[m].complete) {\n          imgs[m].addEventListener('load', function () {\n            if (isAtBottomNow) {\n              if (typeof ensureScrollBottom === 'function') {\n                ensureScrollBottom(messagesEl, true);\n              } else {\n                messagesEl.scrollTop = messagesEl.scrollHeight;\n              }\n            }\n          });\n        }\n      }\n      conversationHistory.push({\n        role: 'assistant',\n        html: html,\n        text: rawText || html.replace(/<[^>]+>/g, ' ').trim()\n      });\n      saveHistory();\n    }\n\n    var activeAbortCtrl = typeof AbortController === 'function' ? new AbortController() : null;\n    try {\n      if (typeof currentAbortController !== 'undefined') {\n        currentAbortController = activeAbortCtrl;\n      }\n    } catch (_) {}\n    var activeSubmitBtn = typeof submitBtn !== 'undefined' ? submitBtn : null;\n    if (activeSubmitBtn) {\n      activeSubmitBtn.textContent = '■ Stop';\n      activeSubmitBtn.classList.add('btn-danger');\n      activeSubmitBtn.classList.remove('btn-primary');\n    }\n\n    // 1. Try local ai-proxy /v1/chat/completions relay\n    var relaySuccess = false;\n    var customEndpoint = '';\n    try {\n      if (window.localStorage) customEndpoint = window.localStorage.getItem('ai_proxy_endpoint') || '';\n    } catch (e) {}\n    var endpoint = (customEndpoint || 'http://127.0.0.1:8788').replace(/\\\\/+$/, '');\n\n    try {\n      var promptMessages = [\n        {\n          role: 'system',\n          content: 'You are the Covpages Assistant. Covpages is a git-native test coverage reporting tool for GitHub Pages with multi-commit trends, scoped badges, and zero backend required. Answer questions helpfully and concisely using markdown formatting and action buttons when relevant.'\n        }\n      ];\n\n      var recent = conversationHistory.slice(-6);\n      for (var r = 0; r < recent.length; r++) {\n        var hist = recent[r];\n        if (hist && hist.role) {\n          promptMessages.push({\n            role: hist.role === 'user' ? 'user' : 'assistant',\n            content: hist.text || (hist.html ? hist.html.replace(/<[^>]+>/g, ' ').trim() : '')\n          });\n        }\n      }\n\n      var relayRes = await fetch(endpoint + '/v1/chat/completions', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify({\n          model: 'local-default',\n          messages: promptMessages\n        }),\n        signal: activeAbortCtrl ? activeAbortCtrl.signal : undefined\n      });\n\n      if (relayRes.ok) {\n        var replyData = await relayRes.json();\n        var replyText = replyData && replyData.choices && replyData.choices[0] && replyData.choices[0].message && replyData.choices[0].message.content;\n        if (replyText) {\n          var isFallbackEcho = replyText.indexOf('ai-proxy local assistant received:') !== -1 ||\n                               replyText.indexOf('Permitted read-only tools: [none]') !== -1;\n          if (!isFallbackEcho) {\n            var formatted = formatMarkdown(replyText);\n            updateTypingContent(formatted, replyText);\n            if (statusPill) {\n              statusPill.textContent = 'ai-proxy /v1 Connected';\n              statusPill.setAttribute('data-connected', 'true');\n            }\n            relaySuccess = true;\n          } else {\n            if (statusPill) {\n              statusPill.textContent = 'ai-proxy Ready (WebMCP Tools)';\n              statusPill.setAttribute('data-connected', 'true');\n            }\n          }\n        }\n      } else {\n        var errJson = await relayRes.json().catch(function () { return null; });\n        var errMsg = (errJson && errJson.error && (errJson.error.message || errJson.error)) || ('HTTP ' + relayRes.status);\n        console.warn('[Covpages AI] Relay returned non-200:', errMsg);\n      }\n    } catch (e) {\n      if (activeAbortCtrl && activeAbortCtrl.signal && activeAbortCtrl.signal.aborted) {\n        updateTypingContent('<p>⏹️ <em>Thinking stopped.</em></p>', '⏹️ Thinking stopped.');\n        return;\n      }\n      console.warn('[Covpages AI] Failed to fetch /v1/chat/completions:', e);\n    } finally {\n      try {\n        if (typeof currentAbortController !== 'undefined') {\n          currentAbortController = null;\n        }\n      } catch (_) {}\n      if (activeSubmitBtn) {\n        activeSubmitBtn.textContent = 'Send';\n        activeSubmitBtn.classList.remove('btn-danger');\n        activeSubmitBtn.classList.add('btn-primary');\n      }\n    }\n\n    if (relaySuccess) return;\n\n    // 2. Intelligent Client-Side WebMCP Tool Dispatch Engine\n    var lower = text.toLowerCase();\n    var replyHtml = '';\n\n    try {\n      if (/(?:cli|help|commands?|options?|usage|參數|指令|用法|幫助|說明書)/i.test(lower) ||\n          /(?:generate|dropin|backfill|docker|init|serve|presets)/i.test(lower)) {\n        var subCmd = 'all';\n        if (lower.includes('generate')) subCmd = 'generate';\n        else if (lower.includes('dropin') || lower.includes('drop-in') || lower.includes('zero-build')) subCmd = 'dropin';\n        else if (lower.includes('mcp')) subCmd = 'mcp';\n        else if (lower.includes('backfill')) subCmd = 'backfill';\n        else if (lower.includes('presets') || lower.includes('preset')) subCmd = 'presets';\n        else if (lower.includes('docker')) subCmd = 'docker';\n        else if (lower.includes('serve')) subCmd = 'serve';\n        else if (lower.includes('init')) subCmd = 'init';\n\n        var cliRes = await callWebMcp('get_cli_help', { command: subCmd });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_cli_help(' + (cliRes.command ? '\"' + escapeHtml(cliRes.command) + '\"' : '') + ')</code></p>';\n        if (cliRes.documentation) {\n          replyHtml += '<p><strong>Command Reference:</strong></p>' +\n            '<pre><code>' + escapeHtml(cliRes.documentation) + '</code></pre>';\n        } else {\n          replyHtml += '<p><strong>Usage:</strong> <code>' + escapeHtml(cliRes.usage) + '</code></p>' +\n            '<p><strong>Available Commands:</strong></p>' +\n            '<ul>' +\n            '<li><code>generate</code>: ' + escapeHtml(cliRes.commands.generate) + '</li>' +\n            '<li><code>dropin</code>: ' + escapeHtml(cliRes.commands.dropin) + '</li>' +\n            '<li><code>mcp</code>: ' + escapeHtml(cliRes.commands.mcp) + '</li>' +\n            '<li><code>backfill</code>: ' + escapeHtml(cliRes.commands.backfill) + '</li>' +\n            '<li><code>presets</code>: ' + escapeHtml(cliRes.commands.presets) + '</li>' +\n            '<li><code>docker</code>: ' + escapeHtml(cliRes.commands.docker) + '</li>' +\n            '<li><code>init</code>: ' + escapeHtml(cliRes.commands.init) + '</li>' +\n            '<li><code>serve</code>: ' + escapeHtml(cliRes.commands.serve) + '</li>' +\n            '</ul>' +\n            '<p><strong>Quick Examples:</strong></p>' +\n            '<pre><code>' + escapeHtml(cliRes.quickExamples.join('\\\\n')) + '</code></pre>';\n        }\n        replyHtml += '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=get_cli_help\">Open in WebMCP Catalog (?tool=get_cli_help)</button></p>';\n      } else if (/(?:high-value|target|roi|價值|提升|priorit|uncovered|最具價值|最有價值|最值得|目標)/i.test(lower)) {\n        var targetRes = await callWebMcp('find_high_value_targets', { limit: 5 });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>find_high_value_targets(limit: 5)</code></p>' +\n          '<p>🎯 <strong>Highest Value Targets to Improve Coverage:</strong></p>' +\n          '<p>Overall repo line coverage is currently <strong>' + targetRes.repoSummary.currentLinesPct.toFixed(2) + '%</strong> (' + targetRes.repoSummary.coveredLines + '/' + targetRes.repoSummary.totalLines + ' lines). Here are top files where adding tests yields the greatest gain:</p>' +\n          '<ul class=\"ask-ai-actions-list\">';\n\n        targetRes.targets.forEach(function (t) {\n          replyHtml += '<li>' +\n            '<button type=\"button\" class=\"btn btn-sm ask-ai-jump-btn\" data-jump=\"#file=' + encodeURIComponent(t.path) + '\" style=\"display:flex; flex-direction:column; align-items:flex-start; width:100%; padding:8px 12px; gap:4px; text-align:left;\">' +\n              '<div style=\"display:flex; align-items:center; justify-content:space-between; width:100%;\">' +\n                '<code>' + escapeHtml(t.path) + '</code>' +\n                '<span class=\"badge\" style=\"font-weight:600;\">' + t.currentCoveragePct.toFixed(1) + '%</span>' +\n              '</div>' +\n              '<div style=\"font-size:11px; color:var(--color-fg-muted, #656d76);\">' +\n                t.uncoveredLines + ' uncovered lines &middot; <strong>+' + t.potentialGainPct.toFixed(2) + '%</strong> repo gain (up to ' + t.projectedRepoCoveragePct.toFixed(2) + '%)' +\n              '</div>' +\n            '</button>' +\n          '</li>';\n        });\n\n        replyHtml += '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/mcp?tool=find_high_value_targets\">Open in WebMCP Catalog (?tool=find_high_value_targets)</button></p>';\n      } else if (/(?:flutter|dart|vitest|vite|jest|rust|cargo|python|pytest|golang|go|cpp|preset|框架)/i.test(lower) || lower.includes('c++')) {\n        var fw = 'vitest';\n        if (lower.includes('flutter')) fw = 'flutter';\n        else if (lower.includes('dart')) fw = 'dart';\n        else if (lower.includes('jest')) fw = 'jest';\n        else if (lower.includes('rust') || lower.includes('cargo')) fw = 'rust';\n        else if (lower.includes('python') || lower.includes('pytest')) fw = 'python';\n        else if (lower.includes('go') || lower.includes('golang')) fw = 'go';\n        else if (lower.includes('cpp') || lower.includes('c++') || lower.includes('gcov')) fw = 'cpp';\n        else if (lower.includes('vitest') || lower.includes('vite')) fw = 'vitest';\n\n        var presetRes = await callWebMcp('get_framework_preset', { framework: fw, docs: true });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_framework_preset(framework: \"' + escapeHtml(fw) + '\")</code></p>' +\n          '<p>⚡ <strong>' + escapeHtml(presetRes.framework) + ' Integration Preset:</strong></p>' +\n          '<p><strong>Test Command:</strong> <code>' + escapeHtml(presetRes.testCommand) + '</code></p>' +\n          '<p><strong>Coverage File:</strong> <code>' + escapeHtml(presetRes.coverageFile) + '</code></p>' +\n          '<p><strong>GitHub Actions Workflow (<code>' + escapeHtml(presetRes.recommendedWorkflowPath) + '</code>):</strong></p>' +\n          '<pre><code>' + escapeHtml(presetRes.workflow) + '</code></pre>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=get_framework_preset&framework=' + encodeURIComponent(fw) + '\">Open in WebMCP Catalog</button></p>';\n      } else if (/(?:summary|delta|總覽|覆蓋率總結|current coverage|指標|metrics)/i.test(lower)) {\n        var summaryRes = await callWebMcp('get_coverage_summary', {});\n        var s = summaryRes.summary;\n        var d = summaryRes.delta;\n        var deltaStr = d ? (' (' + (d.linesPct >= 0 ? '+' : '') + d.linesPct + '% vs previous)') : '';\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_summary</code></p>' +\n          '<p>📊 <strong>Current Coverage Metrics:</strong></p>' +\n          '<ul>' +\n          '<li><strong>Lines:</strong> ' + s.lines.pct + '% (' + s.lines.covered + '/' + s.lines.total + ')' + deltaStr + '</li>' +\n          '<li><strong>Functions:</strong> ' + s.functions.pct + '% (' + s.functions.covered + '/' + s.functions.total + ')</li>' +\n          '<li><strong>Branches:</strong> ' + s.branches.pct + '% (' + s.branches.covered + '/' + s.branches.total + ')</li>' +\n          '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/\">Open Live Coverage Viewer</button></p>';\n      } else if (/(?:trend|trends|history|歷史|趨勢|commits?|走勢|進展)/i.test(lower)) {\n        var trendsRes = await callWebMcp('get_coverage_trends', { limit: 5 });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_coverage_trends(limit: 5)</code></p>' +\n          '<p>📈 <strong>Recent Coverage Trends across Commits:</strong></p>' +\n          '<ul>';\n        trendsRes.trends.forEach(function (c) {\n          replyHtml += '<li><code>' + escapeHtml(c.shortSha) + '</code>: <strong>' + c.linesPct + '%</strong> - ' + escapeHtml(c.message) + ' (' + escapeHtml(c.date) + ')</li>';\n        });\n        replyHtml += '</ul>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/#trend\">View Interactive Trendline</button></p>';\n      } else if (/(?:setup|advisor|consult|如何配置|配置|安裝|架設|模式|哪個模式|模式選擇)/i.test(lower)) {\n        var setupRes = await callWebMcp('consult_setup', {\n          zeroBuild: lower.includes('zero') || lower.includes('drop'),\n          hasExistingCommits: lower.includes('backfill') || lower.includes('commit') || lower.includes('history')\n        });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>consult_setup</code></p>' +\n          '<p>🚀 <strong>Recommended Deployment Mode:</strong> <code>' + escapeHtml(setupRes.recommendedMode) + '</code></p>' +\n          '<p>' + escapeHtml(setupRes.summary) + '</p>' +\n          (setupRes.quickCommand ? '<pre><code>' + escapeHtml(setupRes.quickCommand) + '</code></pre>' : '') +\n          (setupRes.command ? '<pre><code>' + escapeHtml(setupRes.command) + '</code></pre>' : '') +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:mcp?tool=consult_setup\">Open in WebMCP Catalog</button></p>';\n      } else if (/(?:badge|badges|徽章|svg badge|shield)/i.test(lower)) {\n        var badgeRes = await callWebMcp('get_badge_code', { scope: 'overall' });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_badge_code</code></p>' +\n          '<p>🏷️ <strong>Scoped SVG Badge Code:</strong></p>' +\n          '<p>Markdown:</p>' +\n          '<pre><code>' + escapeHtml(badgeRes.markdown) + '</code></pre>' +\n          '<p>HTML:</p>' +\n          '<pre><code>' + escapeHtml(badgeRes.html) + '</code></pre>' +\n          '<p><button type=\"button\" class=\"btn btn-sm ask-ai-cta-btn\" data-action=\"jump:#badges\">Open Badge Generator</button></p>';\n      } else if (/(?:doc|docs|documentation|文件|說明)/i.test(lower)) {\n        var docRes = await callWebMcp('get_documentation', { topic: 'overview' });\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>get_documentation</code></p>' +\n          formatMarkdown(docRes.content);\n      } else if (/(?:navigate|jump|go to|前往|打開|跳轉|demo|live)/i.test(lower)) {\n        replyHtml = '<p>🛠️ <strong>WebMCP Tool Invoked:</strong> <code>navigate_to(target: \"live_demo\")</code></p>' +\n          '<p>Click below to jump directly to the live coverage report:</p>' +\n          '<p><button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"navigate:covpages/\">Open Live Coverage Demo</button></p>';\n      } else if (/(?:mcp|ai-proxy|register|註冊|連接)/i.test(lower)) {\n        var isCov = window.location.pathname.includes('/covpages/');\n        var targetPath = isCov ? 'covpages/covpages/mcp' : 'covpages/mcp';\n        var siteSlug = isCov ? 'covpages-covpages' : 'covpages';\n        replyHtml = '<p>🔌 <strong>Register WebMCP Endpoint:</strong></p>' +\n          '<p>Add this site to your local <code>ai-proxy</code> relay server:</p>' +\n          '<pre><code>npx ai-proxy add https://yongjhih.github.io/' + targetPath + ' --name ' + siteSlug + '</code></pre>' +\n          '<p style=\"display:flex;gap:0.5rem;flex-wrap:wrap;\">' +\n          '<button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"action:add-mcp?url=' + encodeURIComponent('https://yongjhih.github.io/' + targetPath) + '&name=' + encodeURIComponent(siteSlug) + '\">➕ 一鍵新增到 local ai-proxy</button>' +\n          '<button type=\"button\" class=\"btn btn-sm ask-ai-cta-btn\" data-action=\"navigate:mcp\">View MCP Tools Catalog</button>' +\n          '</p>';\n      } else {\n        replyHtml = '<p>🛠️ <strong>WebMCP Tools Ready (11 Tools Registered)</strong></p>' +\n          '<p>Ask me a question or click a tool to run it directly:</p>' +\n          '<div class=\"ask-ai-chips\">' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"covpages cli help\">🛠️ get_cli_help</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Find high-value coverage targets\">🎯 find_high_value_targets</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Vitest framework preset\">⚡ get_framework_preset</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Coverage summary and metrics\">📊 get_coverage_summary</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Multi-commit coverage trends\">📈 get_coverage_trends</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Generate SVG badge\">🏷️ get_badge_code</button>' +\n            '<button type=\"button\" class=\"ask-ai-chip\" data-ask=\"Setup advisor and modes\">🚀 consult_setup</button>' +\n          '</div>';\n      }\n    } catch (toolErr) {\n      replyHtml = '<p>⚠️ Error executing WebMCP tool: ' + escapeHtml(toolErr && toolErr.message ? toolErr.message : String(toolErr)) + '</p>' +\n        '<p>You can also query tools directly on the <a href=\"mcp\">MCP Tools Catalog</a> page.</p>';\n    }\n\n    updateTypingContent(replyHtml);\n  }\n\n  if (form) {\n    form.addEventListener('submit', function (e) {\n      e.preventDefault();\n      if (currentAbortController) {\n        currentAbortController.abort();\n        return;\n      }\n      var val = input.value;\n      if (val) handleUserQuery(val);\n    });\n  }\n\n  if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {\n    window.addEventListener('keydown', function (e) {\n      if (e.key === 'Escape' && currentAbortController) {\n        currentAbortController.abort();\n      }\n    });\n  }\n\n  // Bind initial suggestion chips\n  bindActions(messagesEl);\n\n  function escapeHtml(str) {\n    return String(str || '')\n      .replace(/&/g, '&amp;')\n      .replace(/</g, '&lt;')\n      .replace(/>/g, '&gt;')\n      .replace(/\"/g, '&quot;');\n  }\n\n  function formatMarkdown(markdown) {\n    if (!markdown) return '';\n    var lines = String(markdown).split('\\\\n');\n    var result = [];\n    var inCodeBlock = false;\n    var codeBlockLines = [];\n    var inList = false;\n\n    function closeList() {\n      if (inList === 'ol') {\n        result.push('</ol>');\n        inList = false;\n      } else if (inList) {\n        result.push('</ul>');\n        inList = false;\n      }\n    }\n\n    function formatInline(text) {\n      var out = escapeHtml(text);\n\n      // 1) Action CTA buttons: [Text](action:...)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\((action:[^)]+)\\\\)/g,\n        function (_, label, actionUrl) {\n          return '<button type=\"button\" class=\"btn btn-sm btn-primary ask-ai-cta-btn\" data-action=\"' + actionUrl + '\">' + label + '</button>';\n        }\n      );\n\n      // 2) Jump buttons: [Text](#hash)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\((#[^)]+)\\\\)/g,\n        function (_, label, hash) {\n          return '<button type=\"button\" class=\"btn btn-sm ask-ai-jump-btn\" data-jump=\"' + hash + '\">' + label + '</button>';\n        }\n      );\n\n      // 3) Normal Links / relative files: [Text](url)\n      out = out.replace(\n        /\\\\[([^\\\\]]+)\\\\]\\\\(([^)]+)\\\\)/g,\n        function (_, label, url) {\n          var isExt = url.startsWith('http://') || url.startsWith('https://');\n          var targetAttr = isExt ? ' target=\"_blank\" rel=\"noopener\"' : '';\n          return '<a href=\"' + url + '\" class=\"btn btn-sm ask-ai-cta-btn\" style=\"text-decoration:none;\"' + targetAttr + '>' + label + '</a>';\n        }\n      );\n\n      // 4) Bold: **text**\n      out = out.replace(/\\\\*\\\\*(.+?)\\\\*\\\\*/g, '<strong>$1</strong>');\n\n      // 5) Inline code\n      out = out.replace(new RegExp('\\\\x60([^\\\\x60]+)\\\\x60', 'g'), '<code>$1</code>');\n\n      return out;\n    }\n\n    var codeFence = String.fromCharCode(96, 96, 96);\n    for (var i = 0; i < lines.length; i++) {\n      var rawLine = lines[i];\n      var trimmed = rawLine.trim();\n\n      if (trimmed.startsWith(codeFence)) {\n        if (inCodeBlock) {\n          result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\\\\n')) + '</code></pre>');\n          codeBlockLines = [];\n          inCodeBlock = false;\n        } else {\n          closeList();\n          inCodeBlock = true;\n        }\n        continue;\n      }\n      if (inCodeBlock) {\n        codeBlockLines.push(rawLine);\n        continue;\n      }\n\n      if (!trimmed) {\n        closeList();\n        continue;\n      }\n\n      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {\n        var itemContent = trimmed.slice(2);\n        var isAction = /^\\\\[.+?\\\\]\\\\(.+?\\\\)$/.test(itemContent.trim());\n        if (!inList) {\n          inList = 'ul';\n          result.push(isAction ? '<ul class=\"ask-ai-actions-list\">' : '<ul>');\n        }\n        result.push('<li>' + formatInline(itemContent) + '</li>');\n        continue;\n      }\n\n      var olMatch = /^(\\\\d+)\\\\.\\\\s+(.*)$/.exec(trimmed);\n      if (olMatch) {\n        if (!inList) {\n          inList = 'ol';\n          result.push('<ol>');\n        }\n        result.push('<li>' + formatInline(olMatch[2]) + '</li>');\n        continue;\n      }\n\n      closeList();\n\n      if (trimmed.startsWith('> ')) {\n        result.push('<blockquote>' + formatInline(trimmed.slice(2)) + '</blockquote>');\n        continue;\n      }\n\n      result.push('<p>' + formatInline(rawLine) + '</p>');\n    }\n\n    closeList();\n    if (inCodeBlock && codeBlockLines.length > 0) {\n      result.push('<pre><code>' + escapeHtml(codeBlockLines.join('\\\\n')) + '</code></pre>');\n    }\n\n    return result.join('');\n  }\n})();\n`;\n"
     },
     "src/templates/icons.ts": {
       "path": "src/templates/icons.ts",
@@ -54106,11 +54106,974 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+        "shortSha": "ab33b15",
+        "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+        "author": "yongjhih",
+        "date": "2026-10-18T14:36:39.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3597,
+          "covered": 2337,
+          "skipped": 1260,
+          "pct": 64.97
+        },
+        "functions": {
+          "total": 142,
+          "covered": 104,
+          "skipped": 38,
+          "pct": 73.24
+        },
+        "branches": {
+          "total": 708,
+          "covered": 457,
+          "skipped": 251,
+          "pct": 64.55
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3597,
+            "covered": 2337,
+            "skipped": 1260,
+            "pct": 64.97
+          },
+          "functions": {
+            "total": 142,
+            "covered": 104,
+            "skipped": 38,
+            "pct": 73.24
+          },
+          "branches": {
+            "total": 708,
+            "covered": 457,
+            "skipped": 251,
+            "pct": 64.55
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3597,
+            "covered": 2337,
+            "skipped": 1260,
+            "pct": 64.97
+          },
+          "functions": {
+            "total": 142,
+            "covered": 104,
+            "skipped": 38,
+            "pct": 73.24
+          },
+          "branches": {
+            "total": 708,
+            "covered": 457,
+            "skipped": 251,
+            "pct": 64.55
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 906,
+            "covered": 700,
+            "skipped": 206,
+            "pct": 77.26
+          },
+          "functions": {
+            "total": 41,
+            "covered": 38,
+            "skipped": 3,
+            "pct": 92.68
+          },
+          "branches": {
+            "total": 257,
+            "covered": 199,
+            "skipped": 58,
+            "pct": 77.43
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1354,
+            "covered": 650,
+            "skipped": 704,
+            "pct": 48.01
+          },
+          "functions": {
+            "total": 52,
+            "covered": 27,
+            "skipped": 25,
+            "pct": 51.92
+          },
+          "branches": {
+            "total": 166,
+            "covered": 68,
+            "skipped": 98,
+            "pct": 40.96
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1129,
+            "covered": 426,
+            "skipped": 703,
+            "pct": 37.73
+          },
+          "functions": {
+            "total": 47,
+            "covered": 22,
+            "skipped": 25,
+            "pct": 46.81
+          },
+          "branches": {
+            "total": 115,
+            "covered": 27,
+            "skipped": 88,
+            "pct": 23.48
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 87,
+            "covered": 87,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 18,
+            "covered": 18,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 102,
+            "covered": 86,
+            "skipped": 16,
+            "pct": 84.31
+          },
+          "functions": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          },
+          "branches": {
+            "total": 10,
+            "covered": 6,
+            "skipped": 4,
+            "pct": 60
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 252,
+            "covered": 139,
+            "skipped": 113,
+            "pct": 55.16
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 17,
+            "skipped": 26,
+            "pct": 39.53
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 221,
+            "covered": 182,
+            "skipped": 39,
+            "pct": 82.35
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 34,
+            "skipped": 16,
+            "pct": 68
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 34,
+            "skipped": 1,
+            "pct": 97.14
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 8,
+            "covered": 7,
+            "skipped": 1,
+            "pct": 87.5
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 181,
+            "covered": 181,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 34,
+            "skipped": 9,
+            "pct": 79.07
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 86,
+            "skipped": 166,
+            "pct": 34.13
+          },
+          "functions": {
+            "total": 11,
+            "covered": 5,
+            "skipped": 6,
+            "pct": 45.45
+          },
+          "branches": {
+            "total": 13,
+            "covered": 5,
+            "skipped": 8,
+            "pct": 38.46
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 18,
+            "skipped": 141,
+            "pct": 11.32
+          },
+          "functions": {
+            "total": 3,
+            "covered": 1,
+            "skipped": 2,
+            "pct": 33.33
+          },
+          "branches": {
+            "total": 5,
+            "covered": 1,
+            "skipped": 4,
+            "pct": 20
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 22,
+            "skipped": 39,
+            "pct": 36.07
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 21,
+            "covered": 1,
+            "skipped": 20,
+            "pct": 4.76
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 131,
+            "skipped": 116,
+            "pct": 53.04
+          },
+          "functions": {
+            "total": 18,
+            "covered": 8,
+            "skipped": 10,
+            "pct": 44.44
+          },
+          "branches": {
+            "total": 34,
+            "covered": 11,
+            "skipped": 23,
+            "pct": 32.35
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 256,
+            "covered": 146,
+            "skipped": 110,
+            "pct": 57.03
+          },
+          "functions": {
+            "total": 7,
+            "covered": 6,
+            "skipped": 1,
+            "pct": 85.71
+          },
+          "branches": {
+            "total": 35,
+            "covered": 8,
+            "skipped": 27,
+            "pct": 22.86
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 23,
+            "skipped": 125,
+            "pct": 15.54
+          },
+          "functions": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          },
+          "branches": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/ask-ai.ts": {
+          "lines": {
+            "total": 20,
+            "covered": 20,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 7,
+            "covered": 7,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 26,
+            "covered": 26,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 38,
+            "covered": 38,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 16,
+            "covered": 0,
+            "skipped": 16,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 86,
+            "covered": 86,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 6,
+            "skipped": 3,
+            "pct": 66.67
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/ab/33b153f8d8eaaad09304234ac5c0739a53fd9e.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/ab/33b153f8d8eaaad09304234ac5c0739a53fd9e.lcov.info"
+          }
+        ]
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "c0a2da632e20500b8b7a6dcf259f388a54840e77",
+      "main": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -54733,6 +55696,19 @@
         "shortSha": "c0a2da6",
         "date": "2026-10-18T12:40:01.000Z",
         "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 64.97,
+        "functionsPct": 73.24,
+        "branchesPct": 64.55,
+        "linesCovered": 2337,
+        "linesTotal": 3597
+      },
+      {
+        "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+        "shortSha": "ab33b15",
+        "date": "2026-10-18T14:36:39.000Z",
+        "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
         "author": "yongjhih",
         "branch": "main",
         "linesPct": 64.97,
@@ -55367,6 +56343,19 @@
           "branchesPct": 64.55,
           "linesCovered": 2337,
           "linesTotal": 3597
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 64.97,
+          "functionsPct": 73.24,
+          "branchesPct": 64.55,
+          "linesCovered": 2337,
+          "linesTotal": 3597
         }
       ],
       "src": [
@@ -55986,6 +56975,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 64.97,
+          "functionsPct": 73.24,
+          "branchesPct": 64.55,
+          "linesCovered": 2337,
+          "linesTotal": 3597
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 64.97,
@@ -56619,6 +57621,19 @@
           "branchesPct": 77.43,
           "linesCovered": 700,
           "linesTotal": 906
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.26,
+          "functionsPct": 92.68,
+          "branchesPct": 77.43,
+          "linesCovered": 700,
+          "linesTotal": 906
         }
       ],
       "src/parsers": [
@@ -57238,6 +58253,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.17,
@@ -57871,6 +58899,19 @@
           "branchesPct": 100,
           "linesCovered": 87,
           "linesTotal": 87
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 87,
+          "linesTotal": 87
         }
       ],
       "src/react": [
@@ -58438,6 +59479,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
@@ -59019,6 +60073,19 @@
           "branchesPct": 60,
           "linesCovered": 86,
           "linesTotal": 102
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 84.31,
+          "functionsPct": 75,
+          "branchesPct": 60,
+          "linesCovered": 86,
+          "linesTotal": 102
         }
       ],
       "src/mcp": [
@@ -59346,6 +60413,19 @@
           "branchesPct": 40.96,
           "linesCovered": 650,
           "linesTotal": 1354
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 48.01,
+          "functionsPct": 51.92,
+          "branchesPct": 40.96,
+          "linesCovered": 650,
+          "linesTotal": 1354
         }
       ],
       "src/mcp/web": [
@@ -59666,6 +60746,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 37.73,
+          "functionsPct": 46.81,
+          "branchesPct": 23.48,
+          "linesCovered": 426,
+          "linesTotal": 1129
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 37.73,
@@ -60301,6 +61394,19 @@
           "branchesPct": 39.53,
           "linesCovered": 139,
           "linesTotal": 252
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 55.16,
+          "functionsPct": 100,
+          "branchesPct": 39.53,
+          "linesCovered": 139,
+          "linesTotal": 252
         }
       ],
       "src/index.ts": [
@@ -60920,6 +62026,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 82.35,
+          "functionsPct": 100,
+          "branchesPct": 68,
+          "linesCovered": 182,
+          "linesTotal": 221
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 82.35,
@@ -61553,6 +62672,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -62172,6 +63304,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -62805,6 +63950,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -63424,6 +64582,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
@@ -64057,6 +65228,19 @@
           "branchesPct": 96.67,
           "linesCovered": 60,
           "linesTotal": 62
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
         }
       ],
       "src/core/git.ts": [
@@ -64676,6 +65860,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 89.66,
@@ -65309,6 +66506,19 @@
           "branchesPct": 71.43,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -65928,6 +67138,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 99.25,
@@ -66561,6 +67784,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -67180,6 +68416,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 90.91,
@@ -67813,6 +69062,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -68432,6 +69694,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
@@ -69065,6 +70340,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -69684,6 +70972,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -70317,6 +71618,19 @@
           "branchesPct": 100,
           "linesCovered": 26,
           "linesTotal": 26
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 26,
+          "linesTotal": 26
         }
       ],
       "src/templates/index.html.ts": [
@@ -70936,6 +72250,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 38,
+          "linesTotal": 38
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -71569,6 +72896,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -72136,6 +73476,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
@@ -72717,6 +74070,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -73284,6 +74650,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -73865,6 +75244,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 16
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 16
         }
       ],
       "src/website/render.ts": [
@@ -74439,6 +75831,19 @@
           "branchesPct": 66.67,
           "linesCovered": 86,
           "linesTotal": 86
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 86,
+          "linesTotal": 86
         }
       ],
       "src/core/store.ts": [
@@ -74948,6 +76353,19 @@
           "branchesPct": 72.09,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -75405,6 +76823,19 @@
           "branchesPct": 63.64,
           "linesCovered": 23,
           "linesTotal": 27
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
         }
       ],
       "src/mcp/index.ts": [
@@ -75725,6 +77156,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.14,
+          "functionsPct": 100,
+          "branchesPct": 87.5,
+          "linesCovered": 34,
+          "linesTotal": 35
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 97.14,
@@ -76059,6 +77503,19 @@
           "branchesPct": 79.07,
           "linesCovered": 181,
           "linesTotal": 181
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 79.07,
+          "linesCovered": 181,
+          "linesTotal": 181
         }
       ],
       "src/mcp/web-modules.ts": [
@@ -76379,6 +77836,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
@@ -76713,6 +78183,19 @@
           "branchesPct": 38.46,
           "linesCovered": 86,
           "linesTotal": 252
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 34.13,
+          "functionsPct": 45.45,
+          "branchesPct": 38.46,
+          "linesCovered": 86,
+          "linesTotal": 252
         }
       ],
       "src/mcp/web/dispatch.mjs": [
@@ -77033,6 +78516,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 11.32,
+          "functionsPct": 33.33,
+          "branchesPct": 20,
+          "linesCovered": 18,
+          "linesTotal": 159
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 11.32,
@@ -77367,6 +78863,19 @@
           "branchesPct": 4.76,
           "linesCovered": 22,
           "linesTotal": 61
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 36.07,
+          "functionsPct": 100,
+          "branchesPct": 4.76,
+          "linesCovered": 22,
+          "linesTotal": 61
         }
       ],
       "src/mcp/web/index.mjs": [
@@ -77687,6 +79196,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
@@ -78021,6 +79543,19 @@
           "branchesPct": 32.35,
           "linesCovered": 131,
           "linesTotal": 247
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.04,
+          "functionsPct": 44.44,
+          "branchesPct": 32.35,
+          "linesCovered": 131,
+          "linesTotal": 247
         }
       ],
       "src/mcp/web/ui.mjs": [
@@ -78341,6 +79876,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 57.03,
+          "functionsPct": 85.71,
+          "branchesPct": 22.86,
+          "linesCovered": 146,
+          "linesTotal": 256
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 57.03,
@@ -78675,6 +80223,19 @@
           "branchesPct": 16.67,
           "linesCovered": 23,
           "linesTotal": 148
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 15.54,
+          "functionsPct": 16.67,
+          "branchesPct": 16.67,
+          "linesCovered": 23,
+          "linesTotal": 148
         }
       ],
       "src/templates/ask-ai.ts": [
@@ -78930,6 +80491,19 @@
           "shortSha": "c0a2da6",
           "date": "2026-10-18T12:40:01.000Z",
           "message": "Merge pull request #16 from yongjhih/fix/chat-stick-to-bottom\n\nfix: maintain stick-to-bottom scroll in Ask AI assistant",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 20,
+          "linesTotal": 20
+        },
+        {
+          "sha": "ab33b153f8d8eaaad09304234ac5c0739a53fd9e",
+          "shortSha": "ab33b15",
+          "date": "2026-10-18T14:36:39.000Z",
+          "message": "feat(ask-ai): add stop thinking, animated thinking indicator, and robust LLM connection (#17)",
           "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
