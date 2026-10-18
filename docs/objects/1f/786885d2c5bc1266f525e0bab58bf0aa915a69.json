@@ -2,8 +2,8 @@
   "commit": {
     "sha": "1f786885d2c5bc1266f525e0bab58bf0aa915a69",
     "shortSha": "1f78688",
-    "message": "fix: resolve MCP nav link relative to coverage root instead of SPA file path",
-    "author": "Andrew Chen",
+    "message": "Merge pull request #11 from yongjhih/fix/all-mcp-tools-and-ai-fallback\n\nfix: expose all 11 WebMCP tools on both MCP pages and fall back to client engine for high-value targets",
+    "author": "yongjhih",
     "date": "2026-10-18T11:43:14.000Z",
     "branch": "main"
   },
@@ -21,10 +21,10 @@
       "pct": 80.39
     },
     "branches": {
-      "total": 601,
-      "covered": 432,
-      "skipped": 169,
-      "pct": 71.88
+      "total": 599,
+      "covered": 428,
+      "skipped": 171,
+      "pct": 71.45
     }
   },
   "folderSummaries": {
@@ -42,10 +42,10 @@
         "pct": 80.39
       },
       "branches": {
-        "total": 601,
-        "covered": 432,
-        "skipped": 169,
-        "pct": 71.88
+        "total": 599,
+        "covered": 428,
+        "skipped": 171,
+        "pct": 71.45
       }
     },
     "src": {
@@ -62,10 +62,10 @@
         "pct": 80.39
       },
       "branches": {
-        "total": 601,
-        "covered": 432,
-        "skipped": 169,
-        "pct": 71.88
+        "total": 599,
+        "covered": 428,
+        "skipped": 171,
+        "pct": 71.45
       }
     },
     "src/core": {
@@ -82,10 +82,10 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 259,
-        "covered": 203,
-        "skipped": 56,
-        "pct": 78.38
+        "total": 257,
+        "covered": 199,
+        "skipped": 58,
+        "pct": 77.43
       }
     },
     "src/mcp": {
@@ -365,9 +365,9 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       }
     },
     "src/core/history.ts": {
@@ -384,10 +384,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       }
     },
     "src/core/lcov-normalizer.ts": {
@@ -444,10 +444,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       }
     },
     "src/mcp/index.ts": {
