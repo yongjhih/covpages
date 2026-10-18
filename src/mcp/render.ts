@@ -2,6 +2,185 @@ import { ICONS } from '../templates/icons.js';
 import { FRAMEWORK_PRESETS } from '../core/presets.js';
 import { ASK_AI_CSS, renderAskAiDrawerHtml, ASK_AI_CLIENT_SCRIPT } from '../templates/ask-ai.js';
 
+interface McpToolMeta {
+  name: string;
+  title: string;
+  description: string;
+  readOnly: boolean;
+  properties?: Record<string, { type?: string; description?: string }>;
+  required?: string[];
+}
+
+const COVERAGE_TOOLS_META: McpToolMeta[] = [
+  {
+    name: 'find_high_value_targets',
+    title: 'Find High-Value Coverage Targets',
+    description: 'Identify and prioritize high-value files and directories where adding test coverage yields the greatest overall repository coverage gains.',
+    readOnly: true,
+    properties: {
+      folder: { type: 'string', description: 'Filter targets to a specific directory or subfolder' },
+      scope: { type: 'string', description: 'Analyze files or folders (default: "files")' },
+      minUncoveredLines: { type: 'number', description: 'Filter targets with at least N uncovered lines' },
+      maxCoverage: { type: 'number', description: 'Filter targets with current coverage <= percentage (0-100)' },
+      limit: { type: 'integer', description: 'Maximum number of prioritized targets to return (default: 10)' }
+    }
+  },
+  {
+    name: 'get_coverage_summary',
+    title: 'Get Coverage Summary',
+    description: 'Get overall code coverage summary (lines, statements, functions, branches) and delta compared to previous commit.',
+    readOnly: true
+  },
+  {
+    name: 'list_coverage_files',
+    title: 'List Coverage Files',
+    description: 'List covered and uncovered source files with line coverage percentages and filter options.',
+    readOnly: true,
+    properties: {
+      folder: { type: 'string', description: 'Filter files by directory/folder prefix (e.g. "src/parsers" or "lib")' },
+      minCoverage: { type: 'number', description: 'Minimum line coverage percentage (0-100)' },
+      maxCoverage: { type: 'number', description: 'Maximum line coverage percentage (0-100)' },
+      limit: { type: 'integer', description: 'Maximum number of files to return (default: 50)' },
+      sortBy: { type: 'string', description: 'Sort by linesPct (ascending), name (alphabetical), or uncovered lines count (descending)' }
+    }
+  },
+  {
+    name: 'get_file_coverage',
+    title: 'Get File Coverage Details',
+    description: 'Get detailed line-by-line coverage and uncovered lines for a specific file.',
+    readOnly: true,
+    properties: {
+      path: { type: 'string', description: 'Relative path of the source file (e.g. "src/cli.ts")' }
+    },
+    required: ['path']
+  },
+  {
+    name: 'get_coverage_trends',
+    title: 'Get Coverage Trends',
+    description: 'Get historical coverage trend data across previous commits.',
+    readOnly: true,
+    properties: {
+      limit: { type: 'integer', description: 'Number of historical commits to return (default: 20)' },
+      branch: { type: 'string', description: 'Filter trends by git branch' }
+    }
+  },
+  {
+    name: 'get_badge_code',
+    title: 'Get Badge Code',
+    description: 'Generate SVG badge markdown and embed code for overall coverage or a specific folder/file.',
+    readOnly: true,
+    properties: {
+      scope: { type: 'string', description: 'Badge scope: overall project, folder, or specific file' },
+      path: { type: 'string', description: 'Target folder or file path when scope is "folder" or "file"' },
+      baseUrl: { type: 'string', description: 'Base URL of published GitHub Pages site (e.g. "https://user.github.io/repo")' }
+    }
+  }
+];
+
+const PROJECT_TOOLS_META: McpToolMeta[] = [
+  {
+    name: 'get_cli_help',
+    title: 'Get CLI Help',
+    description: 'Get covpages command-line interface documentation, commands, options, and usage examples.',
+    readOnly: true,
+    properties: {
+      command: { type: 'string', description: 'Filter by specific subcommand (default: "all")' }
+    }
+  },
+  {
+    name: 'get_framework_preset',
+    title: 'Get Framework Preset',
+    description: 'Get framework-specific integration guide, test command, and ready-to-use GitHub Actions workflow (.github/workflows/covpages.yml).',
+    readOnly: true,
+    properties: {
+      framework: { type: 'string', description: 'Target framework: flutter, dart, vitest, jest, rust, python, go, or cpp' },
+      docs: { type: 'boolean', description: 'Configure workflow for GitHub Pages deployment from docs/ directory (default: true)' }
+    },
+    required: ['framework']
+  },
+  {
+    name: 'consult_setup',
+    title: 'Consult Setup',
+    description: 'Consultative setup advisor for covpages. Recommends the optimal deployment mode (zero-build drop-in, GitHub Actions workflow, Docker, or commit backfill) based on your repository and requirements.',
+    readOnly: true,
+    properties: {
+      language: { type: 'string', description: 'Programming language (e.g. "typescript", "dart", "rust", "python", "go")' },
+      framework: { type: 'string', description: 'Testing framework (e.g. "vitest", "jest", "flutter", "pytest")' },
+      zeroBuild: { type: 'boolean', description: 'True if you prefer zero-build drop-in mode without node/npm build step in CI' },
+      hasExistingCommits: { type: 'boolean', description: 'True if you want to backfill coverage across historical git commits' }
+    }
+  },
+  {
+    name: 'get_documentation',
+    title: 'Get Documentation',
+    description: 'Fetch documentation topics (quickstart, dropin, backfill, badges, react, docker, specification, mcp).',
+    readOnly: true,
+    properties: {
+      topic: { type: 'string', description: 'Documentation topic' }
+    }
+  },
+  {
+    name: 'navigate_to',
+    title: 'Navigate To',
+    description: 'Navigate to a specific page or section of covpages (e.g. live demo coverage viewer, badges generator, quickstart, GitHub repo).',
+    readOnly: true,
+    properties: {
+      target: { type: 'string', description: 'Destination target' }
+    },
+    required: ['target']
+  }
+];
+
+function escapeHtml(str: string): string {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderStaticCatalogHtml(tools: McpToolMeta[]): string {
+  const toolCards = tools.map((t) => {
+    const props = t.properties ? Object.entries(t.properties) : [];
+    const inputsHtml = props.map(([k, schema]) => {
+      const req = t.required && t.required.includes(k);
+      return `<label class="mcp-field">
+        <span><code>${escapeHtml(k)}</code> (${escapeHtml(schema.type || 'string')}${req ? ' *' : ''})</span>
+        <input type="text" name="${escapeHtml(k)}" data-prop-type="${escapeHtml(schema.type || 'string')}" placeholder="${escapeHtml(schema.description || '')}" />
+      </label>`;
+    }).join('');
+
+    return `<div class="mcp-tool-row" data-tool-name="${escapeHtml(t.name)}">
+      <div class="mcp-tool-header">
+        <h4 class="mcp-tool-title"><code>${escapeHtml(t.name)}</code></h4>
+        <span class="badge ${t.readOnly ? 'badge-readonly' : 'badge-mutating'}">${t.readOnly ? 'Read-Only' : 'Mutating (Requires Confirmation)'}</span>
+      </div>
+      <p class="mcp-tool-desc">${escapeHtml(t.description)}</p>
+      <form class="mcp-tool-form" data-tool="${escapeHtml(t.name)}">
+        ${inputsHtml ? `<div class="mcp-field-group">${inputsHtml}</div>` : ''}
+        <div class="mcp-tool-actions">
+          <button type="submit" class="btn btn-sm">Run Tool</button>
+          ${t.readOnly ? `<a class="btn-link" href="?tool=${encodeURIComponent(t.name)}">Direct Link (?tool=${escapeHtml(t.name)})</a>` : ''}
+        </div>
+        <pre class="mcp-tool-result" hidden></pre>
+      </form>
+    </div>`;
+  }).join('');
+
+  return `
+    <div class="mcp-page-widget">
+      <div class="mcp-status-bar">
+        <div><strong>MCP Relay Status:</strong> <span class="badge badge-neutral" data-status="ready">Ready (${tools.length} tools)</span></div>
+        <div class="mcp-port-meta">Port: <code>8788</code></div>
+      </div>
+      <section class="mcp-catalog">
+        <h3>Registered WebMCP Tools (${tools.length})</h3>
+        <div class="mcp-tool-list">${toolCards}</div>
+      </section>
+    </div>
+  `;
+}
+
 export function renderMcpHtml(options: {
   repo?: string;
   title?: string;
@@ -14,6 +193,10 @@ export function renderMcpHtml(options: {
     : 'Covpages CLI & Project WebMCP Tools');
 
   const serializedPresets = JSON.stringify(FRAMEWORK_PRESETS);
+  const orderedTools = isCoverage
+    ? [...COVERAGE_TOOLS_META, ...PROJECT_TOOLS_META]
+    : [...PROJECT_TOOLS_META, ...COVERAGE_TOOLS_META];
+  const staticCatalogHtml = renderStaticCatalogHtml(orderedTools);
 
   return `<!doctype html>
 <html lang="en" data-color-mode="auto">
@@ -496,7 +679,7 @@ export function renderMcpHtml(options: {
       <nav class="nav-links">
         <a href="${isCoverage ? '../' : './'}" class="nav-link">Overview</a>
         <a href="${isCoverage ? './' : 'covpages/'}" class="nav-link">${isCoverage ? 'Coverage Report' : 'Live Coverage'}</a>
-        <a href="mcp" class="nav-link active">${isCoverage ? 'Coverage MCP (6 Tools)' : 'Project MCP (5 Tools)'}</a>
+        <a href="mcp" class="nav-link active">${isCoverage ? 'Coverage MCP (11 Tools)' : 'Project MCP (11 Tools)'}</a>
       </nav>
 
       <div style="display:flex;align-items:center;gap:10px;">
@@ -512,9 +695,7 @@ export function renderMcpHtml(options: {
     <section class="intro-section">
       <h1 class="intro-title">${title}</h1>
       <p class="intro-subtitle">
-        ${isCoverage
-          ? 'Zero backend required. This page runs in your browser and registers 6 client-side WebMCP tools via <code>navigator.modelContext</code> (including <code>find_high_value_targets</code>, <code>get_coverage_summary</code>, <code>list_coverage_files</code>, <code>get_file_coverage</code>, <code>get_coverage_trends</code>, <code>get_badge_code</code>). You can analyze high-value test targets, inspect file metrics, and track multi-commit trends directly from Claude or Cursor.'
-          : 'Zero backend required. This page runs in your browser and registers 5 client-side WebMCP tools via <code>navigator.modelContext</code> (<code>get_cli_help</code>, <code>get_framework_preset</code>, <code>consult_setup</code>, <code>get_documentation</code>, <code>navigate_to</code>). AI assistants can fetch ready-to-use workflows, recommend setup modes, consult on architecture, and navigate pages.'}
+        Zero backend required. This page runs in your browser and registers 11 client-side WebMCP tools via <code>navigator.modelContext</code> (including coverage analysis, high-value test targets, multi-commit trends, badges, CLI reference, and setup advisor). AI assistants can fetch ready-to-use workflows, analyze coverage metrics, and navigate pages directly from Claude, Cursor, or ai-proxy.
       </p>
 
       <div class="command-box">
@@ -524,7 +705,7 @@ export function renderMcpHtml(options: {
     </section>
 
     <!-- Mount target for WebMCP Catalog & Test Runner -->
-    <div id="mcp-catalog"></div>
+    <div id="mcp-catalog">${staticCatalogHtml}</div>
 
     <footer class="site-footer">
       <span>Compliant with <a href="https://yongjhih.github.io/ai-proxy/" target="_blank" rel="noopener">MCP Pages 1.0 Specification</a></span>
@@ -1273,7 +1454,9 @@ jobs:
       }
     ];
 
-    const tools = IS_COVERAGE_MODE ? coverageTools : projectTools;
+    const tools = IS_COVERAGE_MODE
+      ? [...coverageTools, ...projectTools]
+      : [...projectTools, ...coverageTools];
 
     mountMcpPageUi({
       container: document.getElementById('mcp-catalog'),
