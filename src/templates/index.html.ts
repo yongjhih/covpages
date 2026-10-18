@@ -3,6 +3,7 @@ import { ICONS } from './icons.js';
 import { STYLES_CSS } from './styles.css.js';
 import { PRISM_JS } from './prism.bundle.js';
 import { APP_JS } from './app.js.js';
+import { ASK_AI_CSS, renderAskAiDrawerHtml, ASK_AI_CLIENT_SCRIPT } from './ask-ai.js';
 
 function serializeForScript(obj: unknown): string {
   return JSON.stringify(obj)
@@ -34,6 +35,7 @@ export function renderIndexHtml(data?: CovpagesData | null, options: { inline?: 
   <title>${safeTitle}</title>
   <style>
 ${STYLES_CSS}
+${ASK_AI_CSS}
   </style>
 </head>
 <body>
@@ -46,6 +48,7 @@ ${STYLES_CSS}
     </noscript>
   </div>
   <div id="chart-tooltip" class="chart-tooltip" role="tooltip" aria-hidden="true"></div>
+  ${renderAskAiDrawerHtml({ mode: 'coverage' })}
   <script>
 ${dataJs}
   </script>
@@ -54,6 +57,9 @@ ${PRISM_JS}
   </script>
   <script>
 ${APP_JS}
+  </script>
+  <script type="module">
+${ASK_AI_CLIENT_SCRIPT}
   </script>
 </body>
 </html>`;

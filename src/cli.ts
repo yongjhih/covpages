@@ -83,6 +83,7 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     output: { type: 'string' as const, short: 'o', default: 'covpages-dist' },
     format: { type: 'string' as const, short: 'f', default: 'auto' },
     mcp: { type: 'boolean' as const, default: false },
+    scope: { type: 'string' as const },
     history: { type: 'string' as const },
     'history-dir': { type: 'string' as const },
     commit: { type: 'string' as const },
@@ -159,14 +160,19 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
   if (firstArg === 'mcp') {
     const defaultDir = fs.existsSync('docs') ? 'docs' : 'covpages-dist';
     const targetDir = positionals[1] || strVal(values.output, defaultDir)!;
+    const requestedScope = strVal(values.scope) as 'project' | 'coverage' | undefined;
     const result = buildMcpPage(targetDir, {
       repo: strVal(values.repo, 'yongjhih/covpages'),
-      title: strVal(values.title, 'Covpages WebMCP Tools'),
+      title: strVal(values.title),
+      scope: requestedScope,
     });
     console.log(`\n🎉 MCP Page generated at: ${result.mcpHtmlPath}`);
     console.log(`   Vendored ${result.vendoredFiles.length} WebMCP modules into ${path.join(targetDir, 'web')}`);
     console.log('   Register with ai-proxy:');
-    console.log(`   npx ai-proxy add https://<host>/<org>/<repo>/mcp.html --name covpages\n`);
+    const isCoverage = requestedScope === 'coverage' || targetDir.endsWith('covpages') || targetDir.includes('/covpages') || targetDir.includes('\\covpages');
+    const proxyName = isCoverage ? 'covpages-covpages' : 'covpages';
+    const subpath = isCoverage ? '/covpages/mcp' : '/mcp';
+    console.log(`   npx ai-proxy add https://<host>/<org>/<repo>${subpath} --name ${proxyName}\n`);
     return;
   }
 

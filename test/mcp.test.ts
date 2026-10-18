@@ -36,17 +36,36 @@ describe('MCP Page & ai-proxy integration', () => {
     expect(fs.existsSync(path.join(webDir, 'index.mjs'))).toBe(true);
   });
 
-  it('renders compliant mcp.html without localStorage leaks', () => {
-    const html = renderMcpHtml({ repo: 'test/repo', title: 'Test Coverage MCP' });
+  it('renders compliant mcp.html for project scope without localStorage leaks', () => {
+    const html = renderMcpHtml({ repo: 'test/repo', title: 'Test Project MCP', scope: 'project' });
+    expect(html).toContain('<!doctype html>');
+    expect(html).toContain('Test Project MCP');
+    expect(html).toContain('./web/ui.mjs');
+    expect(html).toContain('get_cli_help');
+    expect(html).toContain('get_framework_preset');
+    expect(html).toContain('consult_setup');
+    expect(html).toContain('get_documentation');
+    expect(html).toContain('navigate_to');
+    expect(html).toContain('readOnlyHint: true');
+    expect(html).toContain('ask-ai-drawer');
+
+    // Security check: Must never touch localStorage for mcp-key
+    expect(/localStorage\.setItem\([^)]*mcp-key/i.test(html)).toBe(false);
+  });
+
+  it('renders compliant mcp.html for coverage scope with find_high_value_targets', () => {
+    const html = renderMcpHtml({ repo: 'test/repo', title: 'Test Coverage MCP', scope: 'coverage' });
     expect(html).toContain('<!doctype html>');
     expect(html).toContain('Test Coverage MCP');
     expect(html).toContain('./web/ui.mjs');
+    expect(html).toContain('find_high_value_targets');
     expect(html).toContain('get_coverage_summary');
     expect(html).toContain('list_coverage_files');
     expect(html).toContain('get_file_coverage');
     expect(html).toContain('get_coverage_trends');
     expect(html).toContain('get_badge_code');
     expect(html).toContain('readOnlyHint: true');
+    expect(html).toContain('ask-ai-drawer');
 
     // Security check: Must never touch localStorage for mcp-key
     expect(/localStorage\.setItem\([^)]*mcp-key/i.test(html)).toBe(false);

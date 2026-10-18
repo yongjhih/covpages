@@ -19,6 +19,7 @@ export function buildWebsite(outputDir: string, options: { repo?: string } = {})
   // Vendor WebMCP modules and render mcp.html
   buildMcpPage(outputDir, {
     repo,
-    title: 'Covpages WebMCP Tools',
+    title: 'Covpages CLI & Project WebMCP Tools',
+    scope: 'project',
   });
 }
