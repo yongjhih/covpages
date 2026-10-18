@@ -38,4 +38,50 @@ describe('Emitted client scripts are valid JavaScript', () => {
   it('project website inline script parses', () => {
     extractScripts(renderWebsiteHtml()).forEach((s, i) => assertParses(s, `website script #${i}`));
   });
+
+  it('renderTrendChart decimates x-axis SHA labels to prevent overlap on dense history', () => {
+    const match = APP_JS.match(/  function renderTrendChart\(title, points, metricKey = 'linesPct'\) \{[\s\S]*?\n  \}/);
+    expect(match).not.toBeNull();
+
+    const points = Array.from({ length: 21 }, (_, i) => {
+      const shortSha = `${(i + 1).toString(16).padStart(7, 'a')}`;
+      return {
+        sha: `${shortSha}0000000`,
+        shortSha,
+        date: `2026-10-${String((i % 28) + 1).padStart(2, '0')}`,
+        message: `commit ${i + 1}`,
+        linesPct: 75 + (i % 5),
+        functionsPct: 80,
+        branchesPct: 70,
+        linesCovered: 75,
+        linesTotal: 100,
+      };
+    });
+
+    const fn = new Function(
+      'escapeHtml',
+      `const state = { selectedCommitSha: '${points[20].sha}' }; const icons = { graph: '' };\n${match![0]}\nreturn renderTrendChart;`,
+    )((s: string) => String(s));
+
+    const html: string = fn('Folder Trend: src', points, 'linesPct');
+
+    // Every commit point still renders an interactive dot
+    const dotMatches = [...html.matchAll(/class="chart-dot"/g)];
+    expect(dotMatches.length).toBe(21);
+
+    // Extract x-coordinates and text of x-axis SHA labels
+    const xAxisLabels = [
+      ...html.matchAll(/<text x="([\d.]+)" y="[\d.]+" text-anchor="middle"[^>]*>\s*([^\s<]+)\s*<\/text>/g),
+    ].map((m) => ({ x: parseFloat(m[1]), label: m[2] }));
+
+    expect(xAxisLabels.length).toBeGreaterThanOrEqual(2);
+    expect(xAxisLabels.length).toBeLessThanOrEqual(12);
+    expect(xAxisLabels[0].label).toBe(points[0].shortSha);
+    expect(xAxisLabels[xAxisLabels.length - 1].label).toBe(points[20].shortSha);
+
+    for (let i = 1; i < xAxisLabels.length; i++) {
+      expect(xAxisLabels[i].x - xAxisLabels[i - 1].x).toBeGreaterThan(46);
+    }
+  });
 });
+
