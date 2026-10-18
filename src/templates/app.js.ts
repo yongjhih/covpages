@@ -1065,6 +1065,8 @@ export const APP_JS = `
       headerBadgeLabel = 'coverage@' + viewCommit.shortSha;
     }
 
+    const mcpHref = (window.location.protocol === 'file:') ? 'mcp.html' : (getBasePath() + 'mcp');
+
     return \`
       <header class="gh-header">
         <div class="gh-header-inner">
@@ -1094,7 +1096,7 @@ export const APP_JS = `
               \${icons.sparkles || ''}
               <span>Ask AI</span>
             </button>
-            <a href="mcp" class="gh-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
+            <a href="\${mcpHref}" class="gh-btn" id="mcp-nav-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
               <span>MCP</span>
             </a>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
@@ -2047,6 +2049,8 @@ export const APP_JS = `
 
   // Render Empty Drop-in State when no coverage file is found yet
   function renderEmptyState() {
+    const mcpHref = (window.location.protocol === 'file:') ? 'mcp.html' : (getBasePath() + 'mcp');
+
     return \`
       <header class="gh-header">
         <div class="gh-header-inner">
@@ -2060,7 +2064,7 @@ export const APP_JS = `
               \${icons.sparkles || ''}
               <span>Ask AI</span>
             </button>
-            <a href="mcp" class="gh-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
+            <a href="\${mcpHref}" class="gh-btn" id="mcp-nav-btn" title="Coverage WebMCP Tools" style="text-decoration:none;">
               <span>MCP</span>
             </a>
             <button class="gh-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
