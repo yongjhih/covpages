@@ -96,4 +96,15 @@ describe('MCP Page & ai-proxy integration', () => {
       expect(res.stdout).toContain('mcp_page_wiring');
     }
   });
+
+  it('contains valid inline JavaScript for URL auto-detection', () => {
+    const html = renderMcpHtml({ repo: 'yongjhih/covpages' });
+    const scriptMatches = [...html.matchAll(/<script(?![^>]*type="module")>([\s\S]*?)<\/script>/gi)];
+    expect(scriptMatches.length).toBeGreaterThan(0);
+
+    for (const match of scriptMatches) {
+      const code = match[1];
+      expect(() => new Function(code)).not.toThrow();
+    }
+  });
 });
