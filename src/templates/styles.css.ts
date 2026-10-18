@@ -34,9 +34,17 @@ export const STYLES_CSS = `
   --color-neutral-emphasis: #656d76;
   --color-tab-indicator: #1f2328;
 
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: #d0d7de;
+  --color-btn-hover-bg: #eaeef2;
+  --color-btn-primary-bg: #1f883d;
+  --color-btn-primary-fg: #ffffff;
+  --color-btn-primary-border: #1a7f37;
+  --color-btn-primary-hover-bg: #1a7f37;
+
   --chart-grid: #eaeef2;
-  --chart-line: #59636e;
-  --chart-fill: rgba(89, 99, 110, 0.06);
+  --chart-line: #0969da;
+  --chart-fill: rgba(9, 105, 218, 0.08);
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -77,9 +85,17 @@ export const STYLES_CSS = `
     --color-neutral-emphasis: #6e7681;
     --color-tab-indicator: #e6edf3;
 
+    --color-btn-bg: #21262d;
+    --color-btn-border: #30363d;
+    --color-btn-hover-bg: #30363d;
+    --color-btn-primary-bg: #238636;
+    --color-btn-primary-fg: #ffffff;
+    --color-btn-primary-border: rgba(240, 246, 252, 0.1);
+    --color-btn-primary-hover-bg: #1a7f37;
+
     --chart-grid: #21262d;
-    --chart-line: #8b949e;
-    --chart-fill: rgba(139, 148, 158, 0.08);
+    --chart-line: #388bfd;
+    --chart-fill: rgba(56, 139, 253, 0.1);
     --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
   }
 }
@@ -116,9 +132,17 @@ export const STYLES_CSS = `
   --color-neutral-emphasis: #6e7681;
   --color-tab-indicator: #e6edf3;
 
+  --color-btn-bg: #21262d;
+  --color-btn-border: #30363d;
+  --color-btn-hover-bg: #30363d;
+  --color-btn-primary-bg: #238636;
+  --color-btn-primary-fg: #ffffff;
+  --color-btn-primary-border: rgba(240, 246, 252, 0.1);
+  --color-btn-primary-hover-bg: #1a7f37;
+
   --chart-grid: #21262d;
-  --chart-line: #8b949e;
-  --chart-fill: rgba(139, 148, 158, 0.08);
+  --chart-line: #388bfd;
+  --chart-fill: rgba(56, 139, 253, 0.1);
   --shadow-rest: 0 8px 24px rgba(1, 4, 9, 0.45), 0 1px 3px rgba(1, 4, 9, 0.3);
 }
 
@@ -154,9 +178,17 @@ export const STYLES_CSS = `
   --color-neutral-emphasis: #656d76;
   --color-tab-indicator: #1f2328;
 
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: #d0d7de;
+  --color-btn-hover-bg: #eaeef2;
+  --color-btn-primary-bg: #1f883d;
+  --color-btn-primary-fg: #ffffff;
+  --color-btn-primary-border: #1a7f37;
+  --color-btn-primary-hover-bg: #1a7f37;
+
   --chart-grid: #eaeef2;
-  --chart-line: #59636e;
-  --chart-fill: rgba(89, 99, 110, 0.06);
+  --chart-line: #0969da;
+  --chart-fill: rgba(9, 105, 218, 0.08);
   --shadow-rest: 0 4px 12px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);
 }
 
@@ -236,7 +268,7 @@ a {
   gap: 8px;
 }
 
-/* GitHub Primer + shadcn/ui Restrained Buttons & Selectors */
+/* GitHub Primer Buttons & Selectors */
 .gh-btn {
   display: inline-flex;
   align-items: center;
@@ -246,8 +278,8 @@ a {
   font-weight: 500;
   line-height: 20px;
   color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
-  border: 1px solid var(--color-border-default);
+  background-color: var(--color-btn-bg);
+  border: 1px solid var(--color-btn-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   text-decoration: none;
@@ -257,8 +289,8 @@ a {
 }
 
 .gh-btn:hover {
-  background-color: var(--color-canvas-subtle);
-  border-color: var(--color-border-default);
+  background-color: var(--color-btn-hover-bg);
+  border-color: var(--color-btn-border);
 }
 
 .gh-btn:active {
@@ -271,15 +303,16 @@ a {
 }
 
 .gh-btn-primary {
-  color: var(--color-canvas-default);
-  background-color: var(--color-fg-default);
-  border-color: var(--color-fg-default);
+  color: var(--color-btn-primary-fg) !important;
+  background-color: var(--color-btn-primary-bg);
+  border-color: var(--color-btn-primary-border);
   font-weight: 500;
 }
 
 .gh-btn-primary:hover {
-  opacity: 0.9;
-  background-color: var(--color-fg-default);
+  background-color: var(--color-btn-primary-hover-bg);
+  border-color: var(--color-btn-primary-border);
+  opacity: 1;
 }
 
 /* Ref (Branch/Tag) Selector Popover */
