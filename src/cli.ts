@@ -11,6 +11,7 @@ import {
   FRAMEWORK_PRESETS,
   getPreset,
   generatePresetWorkflow,
+  buildMcpPage,
 } from './index.js';
 import type { SupportedFormat } from './types.js';
 
@@ -23,6 +24,7 @@ USAGE:
 COMMANDS:
   generate (default)  Generate coverage static site for GitHub Pages
   dropin              Generate zero-build drop-in static site (index.html + .nojekyll)
+  mcp                 Generate compliant MCP Page (mcp.html + web/ modules) for ai-proxy
   backfill            Backfill test coverage across a range of historical git commits
   presets             View integration guides and workflows for mainstream frameworks
   docker              Run, build, or pull covpages inside a container (docker/podman)
@@ -34,6 +36,7 @@ OPTIONS:
   -i, --input <path>      Input coverage file (lcov.info, cobertura.xml, coverage-summary.json)
   -o, --output <dir>      Output directory for generated site (default: "covpages-dist")
   -f, --format <type>     Coverage format: lcov | cobertura | json | auto (default: auto)
+  --mcp                   Generate mcp.html and vendor WebMCP client modules
   --history <file>        Path to history JSON file (default: "<output>/history.json")
   --history-dir <dir>     Directory containing multiple commit reports (for trends)
   --commit <sha>          Commit SHA (defaults to git HEAD)
@@ -79,6 +82,7 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
     input: { type: 'string' as const, short: 'i', multiple: true },
     output: { type: 'string' as const, short: 'o', default: 'covpages-dist' },
     format: { type: 'string' as const, short: 'f', default: 'auto' },
+    mcp: { type: 'boolean' as const, default: false },
     history: { type: 'string' as const },
     'history-dir': { type: 'string' as const },
     commit: { type: 'string' as const },
@@ -140,12 +144,29 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
   // 1. Drop-in command
   if (firstArg === 'dropin') {
     const targetDir = positionals[1] || strVal(values.output, 'gh-pages')!;
-    createDropinSite(targetDir, strVal(values.title, 'Coverage Report'));
+    createDropinSite(targetDir, strVal(values.title, 'Coverage Report'), {
+      mcp: Boolean(values.mcp),
+    });
     console.log(`\n🎉 Zero-build Drop-in site created at: ${path.resolve(targetDir)}/index.html`);
     console.log('   How to use:');
     console.log('   1. Put your coverage file (lcov.info) into this directory.');
     console.log('   2. Push to your "gh-pages" branch.');
     console.log('   3. The page will fetch and parse lcov.info in real time on the client side!\n');
+    return;
+  }
+
+  // 2. MCP command: generate compliant mcp.html and vendor web/*.mjs modules
+  if (firstArg === 'mcp') {
+    const defaultDir = fs.existsSync('docs') ? 'docs' : 'covpages-dist';
+    const targetDir = positionals[1] || strVal(values.output, defaultDir)!;
+    const result = buildMcpPage(targetDir, {
+      repo: strVal(values.repo, 'yongjhih/covpages'),
+      title: strVal(values.title, 'Covpages WebMCP Tools'),
+    });
+    console.log(`\n🎉 MCP Page generated at: ${result.mcpHtmlPath}`);
+    console.log(`   Vendored ${result.vendoredFiles.length} WebMCP modules into ${path.join(targetDir, 'web')}`);
+    console.log('   Register with ai-proxy:');
+    console.log(`   npx ai-proxy add https://<host>/<org>/<repo>/mcp.html --name covpages\n`);
     return;
   }
 
@@ -308,6 +329,7 @@ export async function runCli(argv = process.argv.slice(2)): Promise<void> {
       repoName: strVal(values.repo),
       includeSource: !values['no-source'],
       maxHistoryCommits: parseInt(strVal(values['max-history'], '100')!, 10),
+      mcp: Boolean(values.mcp),
     });
 
     const linesPct = result.summary.lines.pct;
