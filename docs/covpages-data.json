@@ -2,8 +2,16 @@
   "title": "covpages Coverage",
   "repoName": "yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-18T10:01:02.615Z",
+  "generatedAt": "2026-10-18T10:02:00.949Z",
   "currentCommit": {
+    "sha": "024caeb80917d644fcec13a59221878d23817c39",
+    "shortSha": "024caeb",
+    "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+    "author": "yongjhih",
+    "date": "2026-10-18T10:01:31.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "fe7d6568df00f30d1f61b78a8cb16669fad00701",
     "shortSha": "fe7d656",
     "message": "feat: add WebMCP page compliant with ai-proxy specification",
@@ -11,18 +19,10 @@
     "date": "2026-10-18T10:00:22.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "7c14f78880c66889c05a86f72e958c34cb279d34",
-    "shortSha": "7c14f78",
-    "message": "feat: add WebMCP page compliant with ai-proxy specification",
-    "author": "Andrew Chen",
-    "date": "2026-10-18T08:59:47.000Z",
-    "branch": "feat/ai-proxy-mcp-page"
-  },
   "delta": {
     "linesPct": 0,
     "functionsPct": 0,
-    "branchesPct": 0
+    "branchesPct": -0.47
   },
   "summary": {
     "lines": {
@@ -38,10 +38,10 @@
       "pct": 79.8
     },
     "branches": {
-      "total": 548,
-      "covered": 391,
-      "skipped": 157,
-      "pct": 71.35
+      "total": 546,
+      "covered": 387,
+      "skipped": 159,
+      "pct": 70.88
     }
   },
   "folders": {
@@ -61,10 +61,10 @@
         "pct": 79.8
       },
       "branches": {
-        "total": 548,
-        "covered": 391,
-        "skipped": 157,
-        "pct": 71.35
+        "total": 546,
+        "covered": 387,
+        "skipped": 159,
+        "pct": 70.88
       },
       "filesCount": 36,
       "foldersCount": 1
@@ -85,10 +85,10 @@
         "pct": 79.8
       },
       "branches": {
-        "total": 548,
-        "covered": 391,
-        "skipped": 157,
-        "pct": 71.35
+        "total": 546,
+        "covered": 387,
+        "skipped": 159,
+        "pct": 70.88
       },
       "filesCount": 36,
       "foldersCount": 6
@@ -109,10 +109,10 @@
         "pct": 92.68
       },
       "branches": {
-        "total": 259,
-        "covered": 203,
-        "skipped": 56,
-        "pct": 78.38
+        "total": 257,
+        "covered": 199,
+        "skipped": 58,
+        "pct": 77.43
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -3438,8 +3438,8 @@
         "73": {
           "hits": 72,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 1,
+            "taken": 1
           }
         },
         "74": {
@@ -3452,8 +3452,8 @@
         "75": {
           "hits": 15,
           "branches": {
-            "total": 1,
-            "taken": 1
+            "total": 2,
+            "taken": 2
           }
         },
         "76": {
@@ -3570,45 +3570,45 @@
       },
       "branches": {
         "total": 42,
-        "covered": 27,
-        "skipped": 15,
-        "pct": 64.29
+        "covered": 25,
+        "skipped": 17,
+        "pct": 59.52
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 44,
+          "hits": 21,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 44
+          "hits": 21
         },
         "6": {
-          "hits": 44
+          "hits": 21
         },
         "7": {
-          "hits": 44,
+          "hits": 21,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 44
+          "hits": 21
         },
         "9": {
-          "hits": 44
+          "hits": 21
         },
         "10": {
-          "hits": 44
+          "hits": 21
         },
         "11": {
-          "hits": 44,
+          "hits": 21,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3621,7 +3621,7 @@
           "hits": 9
         },
         "14": {
-          "hits": 44
+          "hits": 21
         },
         "20": {
           "hits": 1,
@@ -3718,7 +3718,7 @@
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "48": {
@@ -3728,14 +3728,14 @@
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "50": {
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "51": {
@@ -3749,7 +3749,7 @@
           "hits": 10,
           "branches": {
             "total": 5,
-            "taken": 3
+            "taken": 2
           }
         },
         "53": {
@@ -3850,7 +3850,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 44
+          "hits": 21
         },
         {
           "name": "resolveContainingBranch",
@@ -3885,10 +3885,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 50,
-        "covered": 36,
+        "total": 49,
+        "covered": 35,
         "skipped": 14,
-        "pct": 72
+        "pct": 71.43
       },
       "lineDetails": {
         "1": {
@@ -4551,8 +4551,8 @@
         "205": {
           "hits": 11,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "206": {
@@ -5683,10 +5683,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 44,
-        "covered": 32,
+        "total": 43,
+        "covered": 31,
         "skipped": 12,
-        "pct": 72.73
+        "pct": 72.09
       },
       "lineDetails": {
         "1": {
@@ -5819,8 +5819,8 @@
         "57": {
           "hits": 11,
           "branches": {
-            "total": 3,
-            "taken": 3
+            "total": 2,
+            "taken": 2
           }
         },
         "58": {
@@ -30549,11 +30549,954 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "024caeb80917d644fcec13a59221878d23817c39",
+        "shortSha": "024caeb",
+        "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+        "author": "yongjhih",
+        "date": "2026-10-18T10:01:31.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3367,
+          "covered": 1701,
+          "skipped": 1666,
+          "pct": 50.52
+        },
+        "functions": {
+          "total": 99,
+          "covered": 79,
+          "skipped": 20,
+          "pct": 79.8
+        },
+        "branches": {
+          "total": 546,
+          "covered": 387,
+          "skipped": 159,
+          "pct": 70.88
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3367,
+            "covered": 1701,
+            "skipped": 1666,
+            "pct": 50.52
+          },
+          "functions": {
+            "total": 99,
+            "covered": 79,
+            "skipped": 20,
+            "pct": 79.8
+          },
+          "branches": {
+            "total": 546,
+            "covered": 387,
+            "skipped": 159,
+            "pct": 70.88
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3367,
+            "covered": 1701,
+            "skipped": 1666,
+            "pct": 50.52
+          },
+          "functions": {
+            "total": 99,
+            "covered": 79,
+            "skipped": 20,
+            "pct": 79.8
+          },
+          "branches": {
+            "total": 546,
+            "covered": 387,
+            "skipped": 159,
+            "pct": 70.88
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 906,
+            "covered": 700,
+            "skipped": 206,
+            "pct": 77.26
+          },
+          "functions": {
+            "total": 41,
+            "covered": 38,
+            "skipped": 3,
+            "pct": 92.68
+          },
+          "branches": {
+            "total": 257,
+            "covered": 199,
+            "skipped": 58,
+            "pct": 77.43
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1159,
+            "covered": 48,
+            "skipped": 1111,
+            "pct": 4.14
+          },
+          "functions": {
+            "total": 10,
+            "covered": 3,
+            "skipped": 7,
+            "pct": 30
+          },
+          "branches": {
+            "total": 14,
+            "covered": 5,
+            "skipped": 9,
+            "pct": 35.71
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1110,
+            "covered": 0,
+            "skipped": 1110,
+            "pct": 0
+          },
+          "functions": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          },
+          "branches": {
+            "total": 7,
+            "covered": 0,
+            "skipped": 7,
+            "pct": 0
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 63,
+            "covered": 63,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 97,
+            "covered": 82,
+            "skipped": 15,
+            "pct": 84.54
+          },
+          "functions": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          },
+          "branches": {
+            "total": 10,
+            "covered": 6,
+            "skipped": 4,
+            "pct": 60
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 246,
+            "covered": 133,
+            "skipped": 113,
+            "pct": 54.07
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 40,
+            "covered": 17,
+            "skipped": 23,
+            "pct": 42.5
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 221,
+            "covered": 182,
+            "skipped": 39,
+            "pct": 82.35
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 34,
+            "skipped": 16,
+            "pct": 68
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 58,
+            "covered": 52,
+            "skipped": 6,
+            "pct": 89.66
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 25,
+            "skipped": 17,
+            "pct": 59.52
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 29,
+            "covered": 28,
+            "skipped": 1,
+            "pct": 96.55
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 4,
+            "covered": 3,
+            "skipped": 1,
+            "pct": 75
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 0,
+            "skipped": 252,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 0,
+            "skipped": 159,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 0,
+            "skipped": 61,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 0,
+            "skipped": 247,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 237,
+            "covered": 0,
+            "skipped": 237,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 0,
+            "skipped": 148,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 25,
+            "covered": 25,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 35,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 15,
+            "covered": 0,
+            "skipped": 15,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 82,
+            "covered": 82,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 6,
+            "skipped": 3,
+            "pct": 66.67
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/02/4caeb80917d644fcec13a59221878d23817c39.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/02/4caeb80917d644fcec13a59221878d23817c39.lcov.info"
+          }
+        ]
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "fe7d6568df00f30d1f61b78a8cb16669fad00701",
+      "main": "024caeb80917d644fcec13a59221878d23817c39",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -30884,6 +31827,19 @@
         "branchesPct": 71.35,
         "linesCovered": 1701,
         "linesTotal": 3367
+      },
+      {
+        "sha": "024caeb80917d644fcec13a59221878d23817c39",
+        "shortSha": "024caeb",
+        "date": "2026-10-18T10:01:31.000Z",
+        "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 50.52,
+        "functionsPct": 79.8,
+        "branchesPct": 70.88,
+        "linesCovered": 1701,
+        "linesTotal": 3367
       }
     ],
     "folders": {
@@ -31210,6 +32166,19 @@
           "linesPct": 50.52,
           "functionsPct": 79.8,
           "branchesPct": 71.35,
+          "linesCovered": 1701,
+          "linesTotal": 3367
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 50.52,
+          "functionsPct": 79.8,
+          "branchesPct": 70.88,
           "linesCovered": 1701,
           "linesTotal": 3367
         }
@@ -31539,6 +32508,19 @@
           "branchesPct": 71.35,
           "linesCovered": 1701,
           "linesTotal": 3367
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 50.52,
+          "functionsPct": 79.8,
+          "branchesPct": 70.88,
+          "linesCovered": 1701,
+          "linesTotal": 3367
         }
       ],
       "src/core": [
@@ -31866,6 +32848,19 @@
           "branchesPct": 78.38,
           "linesCovered": 700,
           "linesTotal": 906
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.26,
+          "functionsPct": 92.68,
+          "branchesPct": 77.43,
+          "linesCovered": 700,
+          "linesTotal": 906
         }
       ],
       "src/parsers": [
@@ -32187,6 +33182,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -32520,6 +33528,19 @@
           "branchesPct": 100,
           "linesCovered": 63,
           "linesTotal": 63
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 63,
+          "linesTotal": 63
         }
       ],
       "src/react": [
@@ -32789,6 +33810,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -33070,6 +34104,19 @@
           "branchesPct": 60,
           "linesCovered": 82,
           "linesTotal": 97
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 84.54,
+          "functionsPct": 75,
+          "branchesPct": 60,
+          "linesCovered": 82,
+          "linesTotal": 97
         }
       ],
       "src/mcp": [
@@ -33098,6 +34145,19 @@
           "branchesPct": 35.71,
           "linesCovered": 48,
           "linesTotal": 1159
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 4.14,
+          "functionsPct": 30,
+          "branchesPct": 35.71,
+          "linesCovered": 48,
+          "linesTotal": 1159
         }
       ],
       "src/mcp/web": [
@@ -33120,6 +34180,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 1110
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -33455,6 +34528,19 @@
           "branchesPct": 42.5,
           "linesCovered": 133,
           "linesTotal": 246
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 54.07,
+          "functionsPct": 100,
+          "branchesPct": 42.5,
+          "linesCovered": 133,
+          "linesTotal": 246
         }
       ],
       "src/index.ts": [
@@ -33776,6 +34862,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 82.35,
+          "functionsPct": 100,
+          "branchesPct": 68,
+          "linesCovered": 182,
+          "linesTotal": 221
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 82.35,
           "functionsPct": 100,
@@ -34109,6 +35208,19 @@
           "branchesPct": 100,
           "linesCovered": 12,
           "linesTotal": 64
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
         }
       ],
       "src/types.ts": [
@@ -34430,6 +35542,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -34763,6 +35888,19 @@
           "branchesPct": 94.12,
           "linesCovered": 87,
           "linesTotal": 91
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
         }
       ],
       "src/core/backfill.ts": [
@@ -35084,6 +36222,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -35417,6 +36568,19 @@
           "branchesPct": 96.67,
           "linesCovered": 60,
           "linesTotal": 62
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
         }
       ],
       "src/core/git.ts": [
@@ -35742,6 +36906,19 @@
           "linesPct": 89.66,
           "functionsPct": 100,
           "branchesPct": 64.29,
+          "linesCovered": 52,
+          "linesTotal": 58
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 89.66,
+          "functionsPct": 100,
+          "branchesPct": 59.52,
           "linesCovered": 52,
           "linesTotal": 58
         }
@@ -36071,6 +37248,19 @@
           "branchesPct": 72,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -36392,6 +37582,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -36725,6 +37928,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -37046,6 +38262,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -37379,6 +38608,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -37700,6 +38942,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -38033,6 +39288,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -38354,6 +39622,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -38687,6 +39968,19 @@
           "branchesPct": 100,
           "linesCovered": 25,
           "linesTotal": 25
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 25,
+          "linesTotal": 25
         }
       ],
       "src/templates/index.html.ts": [
@@ -39008,6 +40302,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 35,
+          "linesTotal": 35
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -39341,6 +40648,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -39610,6 +40930,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -39891,6 +41224,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -40160,6 +41506,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -40441,6 +41800,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 15
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 15
         }
       ],
       "src/website/render.ts": [
@@ -40716,6 +42088,19 @@
           "branchesPct": 66.67,
           "linesCovered": 82,
           "linesTotal": 82
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 82,
+          "linesTotal": 82
         }
       ],
       "src/core/store.ts": [
@@ -40926,6 +42311,19 @@
           "branchesPct": 72.73,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -41084,6 +42482,19 @@
           "branchesPct": 63.64,
           "linesCovered": 23,
           "linesTotal": 27
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
         }
       ],
       "src/mcp/index.ts": [
@@ -41106,6 +42517,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 96.55,
+          "functionsPct": 100,
+          "branchesPct": 75,
+          "linesCovered": 28,
+          "linesTotal": 29
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 96.55,
           "functionsPct": 100,
@@ -41140,6 +42564,19 @@
           "branchesPct": 66.67,
           "linesCovered": 11,
           "linesTotal": 11
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 11,
+          "linesTotal": 11
         }
       ],
       "src/mcp/web-modules.ts": [
@@ -41162,6 +42599,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -41196,6 +42646,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 252
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 252
         }
       ],
       "src/mcp/web/dispatch.mjs": [
@@ -41218,6 +42681,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 159
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -41252,6 +42728,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 61
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 61
         }
       ],
       "src/mcp/web/index.mjs": [
@@ -41274,6 +42763,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -41308,6 +42810,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 247
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 247
         }
       ],
       "src/mcp/web/ui.mjs": [
@@ -41336,6 +42851,19 @@
           "branchesPct": 0,
           "linesCovered": 0,
           "linesTotal": 237
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 237
         }
       ],
       "src/mcp/web/url.mjs": [
@@ -41358,6 +42886,19 @@
           "date": "2026-10-18T10:00:22.000Z",
           "message": "feat: add WebMCP page compliant with ai-proxy specification",
           "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 148
+        },
+        {
+          "sha": "024caeb80917d644fcec13a59221878d23817c39",
+          "shortSha": "024caeb",
+          "date": "2026-10-18T10:01:31.000Z",
+          "message": "Merge pull request #4 from yongjhih/feat/ai-proxy-mcp-page\n\nfeat(mcp): add WebMCP page compliant with ai-proxy specification",
+          "author": "yongjhih",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
