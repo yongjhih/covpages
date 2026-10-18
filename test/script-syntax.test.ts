@@ -395,6 +395,10 @@ describe('Emitted client scripts are valid JavaScript', () => {
          function bindActions() {}
          function saveHistory() {}
          function formatMarkdown(m) { return m; }
+         let scrollTimer = null;
+         ${ASK_AI_CLIENT_SCRIPT.match(/function isScrollAtBottom\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function scrollToBottom\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function ensureScrollBottom\([\s\S]*?\n  \}/)![0]}
          ${ASK_AI_CLIENT_SCRIPT.match(/function getAppRoot\(\)[\s\S]*?\n  \}/)![0]}
          ${ASK_AI_CLIENT_SCRIPT.match(/var PRESETS = [\s\S]*?;\n/)![0]}
          ${ASK_AI_CLIENT_SCRIPT.match(/async function ensureCoverageData\(\)[\s\S]*?\n  \}/)![0]}
@@ -413,6 +417,118 @@ describe('Emitted client scripts are valid JavaScript', () => {
       expect(lastMsg.innerHTML).toContain('Highest Value Targets to Improve Coverage');
       expect(lastMsg.innerHTML).toContain('src/cli.ts');
       expect(lastMsg.innerHTML).toContain('data-jump="#file=src%2Fcli.ts"');
+      expect(messagesEl.scrollTop).toBe(messagesEl.scrollHeight);
+    } finally {
+      (globalThis as any).window = originalWindow;
+      (globalThis as any).document = originalDocument;
+      (globalThis as any).fetch = originalFetch;
+    }
+  });
+
+  it('maintains stick-to-bottom scroll position when replying, but respects user scroll-up', async () => {
+    const originalWindow = (globalThis as any).window;
+    const originalDocument = (globalThis as any).document;
+    const originalFetch = (globalThis as any).fetch;
+
+    try {
+      const mockStorage: Record<string, string> = {};
+      const fakeStorage = {
+        getItem: (k: string) => mockStorage[k] || null,
+        setItem: (k: string, v: string) => { mockStorage[k] = v; },
+        removeItem: (k: string) => { delete mockStorage[k]; },
+      };
+
+      const elements: Record<string, any> = {};
+      function createMockEl(id: string) {
+        const el: any = {
+          id,
+          children: [] as any[],
+          innerHTML: '',
+          value: '',
+          style: {},
+          attributes: {} as Record<string, string>,
+          setAttribute: (k: string, v: string) => { el.attributes[k] = v; },
+          getAttribute: (k: string) => el.attributes[k] || null,
+          appendChild: (c: any) => el.children.push(c),
+          querySelectorAll: () => [],
+          addEventListener: () => {},
+          remove: () => {},
+          scrollTop: 0,
+          scrollHeight: 100,
+          clientHeight: 100,
+        };
+        return el;
+      }
+
+      (globalThis as any).document = {
+        getElementById: (id: string) => {
+          if (!elements[id]) elements[id] = createMockEl(id);
+          return elements[id];
+        },
+        createElement: (tag: string) => createMockEl(tag),
+        addEventListener: () => {},
+      };
+
+      (globalThis as any).window = {
+        location: { href: 'https://user.github.io/covpages/', pathname: '/covpages/', hash: '' },
+        sessionStorage: fakeStorage,
+        localStorage: fakeStorage,
+      };
+
+      let fetchInterceptor = async () => ({ ok: false });
+      const fetchWrapper = (...args: any[]) => fetchInterceptor(...args);
+
+      const fnMatch = ASK_AI_CLIENT_SCRIPT.match(/async function handleUserQuery\([\s\S]*?\n  \}/);
+      const messagesEl = (globalThis as any).document.getElementById('ask-ai-messages');
+
+      const handleUserQuery = new Function(
+        'window', 'document', 'fetch',
+        `let conversationHistory = [];
+         let messagesEl = document.getElementById('ask-ai-messages');
+         let input = document.getElementById('ask-ai-input');
+         let statusPill = document.getElementById('ask-ai-status-pill');
+         function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+         function appendMessage(role, html) {
+           const el = document.createElement('div');
+           el.className = 'ask-ai-msg ask-ai-msg-' + role;
+           el.innerHTML = html;
+           messagesEl.appendChild(el);
+           return el;
+         }
+         function bindActions() {}
+         function saveHistory() {}
+         function formatMarkdown(m) { return m; }
+         let scrollTimer = null;
+         ${ASK_AI_CLIENT_SCRIPT.match(/function isScrollAtBottom\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function scrollToBottom\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function ensureScrollBottom\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function getAppRoot\(\)[\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/var PRESETS = [\s\S]*?;\n/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/async function ensureCoverageData\(\)[\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/var toolExecutors = \{[\s\S]*?\n  \};/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/async function callWebMcp\([\s\S]*?\n  \}/)![0]}
+         ${ASK_AI_CLIENT_SCRIPT.match(/function computeHighValueTargets\([\s\S]*?\n  \}/)![0]}
+         ${fnMatch![0]}
+         return handleUserQuery;`
+      )((globalThis as any).window, (globalThis as any).document, fetchWrapper);
+
+      // Case 1: When user was at bottom
+      messagesEl.scrollHeight = 300;
+      messagesEl.clientHeight = 200;
+      messagesEl.scrollTop = 100; // 300 - 100 - 200 = 0 (at bottom)
+      await handleUserQuery('covpages cli help');
+      expect(messagesEl.scrollTop).toBe(messagesEl.scrollHeight);
+
+      // Case 2: When user scrolls up while assistant is processing
+      messagesEl.scrollHeight = 1000;
+      messagesEl.clientHeight = 200;
+      fetchInterceptor = async () => {
+        messagesEl.scrollTop = 100;
+        return { ok: false };
+      };
+      await handleUserQuery('covpages cli help');
+      // Should respect user's scroll position and not jump to bottom
+      expect(messagesEl.scrollTop).toBe(100);
     } finally {
       (globalThis as any).window = originalWindow;
       (globalThis as any).document = originalDocument;
