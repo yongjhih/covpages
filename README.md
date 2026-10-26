@@ -1,5 +1,7 @@
 # covpages
 
+[English](README.md) · [繁體中文](README.zh-TW.md)
+
 [![Coverage](https://yongjhih.github.io/covpages/badge.svg)](https://yongjhih.github.io/covpages/)
 [![MCP Pages: Connect](https://img.shields.io/badge/MCP%20Pages-Connect-238636?logo=github&logoColor=white)](https://yongjhih.github.io/ai-proxy/dashboard.html#add-url=https%3A%2F%2Fyongjhih.github.io%2Fcovpages%2Fcovpages%2Fmcp)
 [![Specification](https://img.shields.io/badge/docs-specification-blue.svg)](docs/SPECIFICATION.md)
