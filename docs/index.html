@@ -990,6 +990,7 @@
     <div class="header-actions">
       <button class="btn btn-sm" id="ask-ai-trigger" title="Ask AI about covpages" aria-label="Ask AI"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M7.53 1.282a.5.5 0 0 1 .94 0l.965 2.569a3.5 3.5 0 0 0 2.062 2.062l2.569.965a.5.5 0 0 1 0 .944l-2.569.965a3.5 3.5 0 0 0-2.062 2.062l-.965 2.569a.5.5 0 0 1-.94 0l-.965-2.569a3.5 3.5 0 0 0-2.062-2.062l-2.569-.965a.5.5 0 0 1 0-.944l2.569-.965a3.5 3.5 0 0 0 2.062-2.062l.965-2.569Z"></path></svg> <span>Ask AI</span></button>
       <button class="btn btn-sm" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme"><svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" fill="currentColor"><path d="M9.598 1.591a.749.749 0 0 1 .785-.175 7.001 7.001 0 1 1-8.953 8.953.75.75 0 0 1 .62-1.036 5.501 5.501 0 0 0 8.04-8.04.75.75 0 0 1-.492-.702Z"></path></svg> <span>Theme</span></button>
+      <a href="zh/" class="btn btn-sm" id="lang-toggle" title="切換至繁體中文" aria-label="切換至繁體中文">繁體中文</a>
       <a href="https://github.com/yongjhih/covpages" class="btn btn-sm" target="_blank" rel="noopener">GitHub <svg height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>
       <a href="covpages/" class="btn btn-sm btn-primary">Live Coverage</a>
     </div>
@@ -1137,7 +1138,7 @@
         <div class="spec-item">
           <h3 class="spec-title">undefined <span>WebMCP &amp; ai-proxy Native Endpoint</span></h3>
           <p class="spec-desc">
-            Turns your coverage site into an <a href="mcp">MCP Page</a> with 5 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
+            Turns your coverage site into an <a href="mcp">MCP Page</a> with 11 client-side WebMCP tools. Connect Claude or Cursor via <code>npx ai-proxy add</code> with zero backend required.
           </p>
         </div>
       </div>
@@ -1428,6 +1429,14 @@
         localStorage.setItem('covpages-theme', currentMode);
       });
 
+      // Language Toggle Preference Persistence
+      const langToggle = document.getElementById('lang-toggle');
+      if (langToggle) {
+        langToggle.addEventListener('click', () => {
+          localStorage.setItem('covpages-lang', 'zh-TW');
+        });
+      }
+
       // Tab switcher
       const tabBtns = document.querySelectorAll('.tab-btn');
       tabBtns.forEach(btn => {
@@ -1476,22 +1485,23 @@
           targetLabel.textContent = scope === 'branch' ? 'Branch Name' : (scope === 'folder' ? 'Directory Path' : 'File Path');
         }
 
+        const isZhMode = false;
         let badgeFile = 'badges/overall.svg';
         let linkPath = '';
-        let altText = 'Coverage';
+        let altText = isZhMode ? '測試覆蓋率' : 'Coverage';
 
         if (scope === 'branch') {
           badgeFile = 'badges/branch-' + sanitizeBadgeName(target || 'main') + '.svg';
           linkPath = 'tree/' + (target || 'main');
-          altText = 'Coverage: ' + (target || 'main');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'main');
         } else if (scope === 'folder') {
           badgeFile = 'badges/folder-' + sanitizeBadgeName(target || 'src') + '.svg';
           linkPath = 'tree/main/' + (target || 'src');
-          altText = 'Coverage: ' + (target || 'src');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'src');
         } else if (scope === 'file') {
           badgeFile = 'badges/file-' + sanitizeBadgeName(target || 'src/index.ts') + '.svg';
           linkPath = 'blob/main/' + (target || 'src/index.ts');
-          altText = 'Coverage: ' + (target || 'src/index.ts');
+          altText = (isZhMode ? '覆蓋率: ' : 'Coverage: ') + (target || 'src/index.ts');
         }
 
         const origin = window.location.origin;
@@ -1547,12 +1557,12 @@
       <div class="ask-ai-msg ask-ai-msg-assistant">
         <p>Hello! I am your <strong>Covpages AI Assistant</strong>. Ask me how to configure covpages, generate framework presets (Flutter, Vitest, Jest, Rust, Python, Go), set up zero-build drop-in sites, or query MCP endpoints.</p>
         <div class="ask-ai-chips">
-        <button type="button" class="ask-ai-chip" data-ask="How do I set up covpages in 5 minutes?">🚀 Quickstart</button>
-        <button type="button" class="ask-ai-chip" data-ask="Show Vitest GitHub Actions workflow">⚡ Vitest Preset</button>
-        <button type="button" class="ask-ai-chip" data-ask="Show Flutter coverage workflow">💙 Flutter Preset</button>
-        <button type="button" class="ask-ai-chip" data-ask="How does zero-build drop-in mode work?">📦 Drop-in Mode</button>
-        <button type="button" class="ask-ai-chip" data-ask="Open live demo">👁️ Open Live Demo</button>
-      </div>
+          <button type="button" class="ask-ai-chip" data-ask="How do I set up covpages in 5 minutes?">🚀 Quickstart</button>
+          <button type="button" class="ask-ai-chip" data-ask="Show Vitest GitHub Actions workflow">⚡ Vitest Preset</button>
+          <button type="button" class="ask-ai-chip" data-ask="Show Flutter coverage workflow">💙 Flutter Preset</button>
+          <button type="button" class="ask-ai-chip" data-ask="How does zero-build drop-in mode work?">📦 Drop-in Mode</button>
+          <button type="button" class="ask-ai-chip" data-ask="Open live demo">👁️ Open Live Demo</button>
+        </div>
       </div>
     </div>
 
