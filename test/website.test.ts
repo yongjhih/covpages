@@ -16,6 +16,7 @@ describe('Project Website Generator', () => {
     expect(html).toContain('<!DOCTYPE html>');
     expect(html).toContain('<html lang="en"');
     expect(html).toContain('Git-Native Code Coverage');
+    expect(html).toContain('How It Works: 3 Simple Steps');
     expect(html).toContain('GitHub Pages');
     expect(html).toContain('Interactive Badge Generator');
     expect(html).toContain('Storage & Bandwidth Benchmarks');
@@ -38,6 +39,7 @@ describe('Project Website Generator', () => {
     expect(html).toContain('<!DOCTYPE html>');
     expect(html).toContain('<html lang="zh-TW"');
     expect(html).toContain('專為 GitHub Pages 打造的原生 Git 測試覆蓋率報告');
+    expect(html).toContain('運作原理：3 步驟深入淺出');
     expect(html).toContain('互動式徽章生成器');
     expect(html).toContain('儲存空間與頻寬評測');
     expect(html).toContain('+React 與組件複用');
