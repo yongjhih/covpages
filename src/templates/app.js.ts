@@ -94,6 +94,91 @@ export const APP_JS = `
     return p.endsWith('/') ? p : p + '/';
   }
 
+  function getRepoBaseUrl() {
+    if (data?.repoUrl) {
+      return data.repoUrl.replace(/\\.git$/, '').replace(/\\/$/, '');
+    }
+    const repoName = data?.repoName || '';
+    if (repoName.includes('/')) {
+      return 'https://github.com/' + repoName.replace(/\\.git$/, '');
+    }
+    if (typeof location !== 'undefined') {
+      const host = location.hostname || '';
+      if (host.endsWith('.github.io')) {
+        const owner = host.replace('.github.io', '');
+        const parts = location.pathname.split('/').filter(Boolean);
+        const repo = parts[0] || repoName || owner;
+        return 'https://github.com/' + owner + '/' + repo;
+      }
+    }
+    return repoName ? 'https://github.com/' + repoName : '';
+  }
+
+  function getGitRef() {
+    if (state.selectedCommitSha && state.selectedCommitSha !== data?.currentCommit?.sha) {
+      const found = data?.commits?.find(c => c.commit.sha === state.selectedCommitSha || c.commit.shortSha === state.selectedCommitSha);
+      if (found?.commit?.tag) return found.commit.tag;
+      return state.selectedCommitSha;
+    }
+    return state.activeRefName || data?.defaultBranch || data?.currentCommit?.branch || 'main';
+  }
+
+  function getGitBlobUrl(filePath, lineNum) {
+    const baseUrl = getRepoBaseUrl();
+    if (!baseUrl || !filePath) return '';
+    const ref = getGitRef();
+    const cleanPath = filePath.replace(/^\\/+/, '');
+    const isGitLab = baseUrl.includes('gitlab.');
+    const blobPrefix = isGitLab ? '/-/blob/' : '/blob/';
+    const lineHash = lineNum ? '#L' + lineNum : '';
+    return baseUrl + blobPrefix + encodeURI(ref) + '/' + cleanPath + lineHash;
+  }
+
+  function getGitTreeUrl(folderPath) {
+    const baseUrl = getRepoBaseUrl();
+    if (!baseUrl) return '';
+    const ref = getGitRef();
+    const cleanPath = (folderPath || '').replace(/^\\/+/, '');
+    const isGitLab = baseUrl.includes('gitlab.');
+    const treePrefix = isGitLab ? '/-/tree/' : '/tree/';
+    return cleanPath ? (baseUrl + treePrefix + encodeURI(ref) + '/' + cleanPath) : (baseUrl + treePrefix + encodeURI(ref));
+  }
+
+  function getGitCommitUrl(sha) {
+    const baseUrl = getRepoBaseUrl();
+    if (!baseUrl || !sha) return '';
+    const isGitLab = baseUrl.includes('gitlab.');
+    const commitPrefix = isGitLab ? '/-/commit/' : '/commit/';
+    return baseUrl + commitPrefix + sha;
+  }
+
+  function openCommitSnapshot(sha, targetFile, targetFolder) {
+    if (!sha) return;
+    state.selectedCommitSha = sha;
+    const found = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === sha);
+    if (found) {
+      if (found.commit.tag) {
+        state.activeRefType = 'tag';
+        state.activeRefName = found.commit.tag;
+      } else if (found.commit.branch) {
+        state.activeRefType = 'branch';
+        state.activeRefName = found.commit.branch;
+      }
+    }
+    state.activeTab = 'files';
+    if (targetFile) {
+      state.selectedFile = targetFile;
+      state.currentFolder = '';
+      ensureExpanded(targetFile);
+    } else if (targetFolder !== undefined && targetFolder !== null) {
+      state.currentFolder = targetFolder || '';
+      state.selectedFile = null;
+      if (targetFolder) ensureExpanded(targetFolder);
+    }
+    updateRoute();
+    render();
+  }
+
   function sanitizeBadgeName(name) {
     return (name || '').replace(/[/\\?%*:|"<>]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
   }
@@ -1241,7 +1326,13 @@ export const APP_JS = `
           </div>
         </div>
         <div class="commit-meta">
-          <span class="commit-sha-badge">\${icons.commit} \${escapeHtml(c.shortSha)}</span>
+          \${getGitCommitUrl(c.sha) ? \`
+            <a href="\${getGitCommitUrl(c.sha)}" target="_blank" rel="noopener noreferrer" class="commit-sha-badge" style="text-decoration:none;" title="View commit on Git">
+              \${icons.commit} \${escapeHtml(c.shortSha)} \${icons.linkExternal || ''}
+            </a>
+          \` : \`
+            <span class="commit-sha-badge">\${icons.commit} \${escapeHtml(c.shortSha)}</span>
+          \`}
         </div>
       </div>
     \`;
@@ -1371,10 +1462,11 @@ export const APP_JS = `
           data-sha="\${p.sha}" data-date="\${escapeHtml(p.date)}" data-msg="\${escapeHtml(p.message)}"
           data-lines="\${p.linesPct}%" data-fn="\${p.functionsPct}%" data-br="\${p.branchesPct}%"
           data-covered="\${p.linesCovered}" data-total="\${p.linesTotal}"
+          role="button" tabindex="0" aria-label="Commit \${escapeHtml(p.shortSha)}: \${escapeHtml(p.message)}"
         />
         \${showLabel ? \`
           <line x1="\${c.x}" y1="\${paddingTop + chartH}" x2="\${c.x}" y2="\${paddingTop + chartH + 4}" stroke="var(--color-border-default)" stroke-width="1"/>
-          <text x="\${c.x}" y="\${paddingTop + chartH + 18}" text-anchor="middle" fill="\${isSelected ? 'var(--color-fg-default)' : 'var(--color-fg-muted)'}" font-weight="\${isSelected ? '600' : '400'}" font-size="10" font-family="var(--font-mono)">
+          <text x="\${c.x}" y="\${paddingTop + chartH + 18}" text-anchor="middle" class="chart-label" fill="\${isSelected ? 'var(--color-fg-default)' : 'var(--color-fg-muted)'}" font-weight="\${isSelected ? '600' : '400'}" font-size="10" font-family="var(--font-mono)" data-sha="\${p.sha}" role="button" tabindex="0" title="Click to view commit \${escapeHtml(p.shortSha)}">
             \${escapeHtml(p.shortSha)}
           </text>
         \` : ''}
@@ -1696,6 +1788,15 @@ export const APP_JS = `
               <div class="file-name-cell">
                 <span>\${icon}</span>
                 \${fileLinkHtml}
+                \${r.type === 'file' && getGitBlobUrl(r.path) ? \`
+                  <a href="\${getGitBlobUrl(r.path)}" target="_blank" rel="noopener noreferrer" class="git-blob-link" title="Open blob on Git" style="margin-left:6px;" onclick="event.stopPropagation();">
+                    \${icons.linkExternal || ''}
+                  </a>
+                \` : (r.type === 'folder' && getGitTreeUrl(r.path) ? \`
+                  <a href="\${getGitTreeUrl(r.path)}" target="_blank" rel="noopener noreferrer" class="git-blob-link" title="Open tree on Git" style="margin-left:6px;" onclick="event.stopPropagation();">
+                    \${icons.linkExternal || ''}
+                  </a>
+                \` : '')}
               </div>
             </td>
             <td>
@@ -1843,6 +1944,7 @@ export const APP_JS = `
     const fileCov = vFiles[filePath];
     if (!fileCov) return '<div>File not found in coverage report.</div>';
 
+    const gitBlobUrl = getGitBlobUrl(filePath);
     const trendPoints = data.trends?.files?.[filePath] || [];
 
     const sourceCode = fileCov.sourceCode;
@@ -1852,6 +1954,13 @@ export const APP_JS = `
       return \`
         <div class="file-toolbar">
           \${renderBreadcrumbs()}
+          \${gitBlobUrl ? \`
+            <a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="gh-btn btn-sm" id="view-git-blob-btn" title="View file on GitHub / Git host" style="display:inline-flex; align-items:center; gap:5px; text-decoration:none;">
+              \${icons.github || icons.file || ''}
+              <span>View blob</span>
+              \${icons.linkExternal || ''}
+            </a>
+          \` : ''}
         </div>
         \${renderMetrics(fileCov, null)}
         <div class="blob-wrapper" style="padding: 48px 24px; text-align: center; color: var(--color-fg-muted);">
@@ -1873,6 +1982,13 @@ export const APP_JS = `
       return \`
         <div class="file-toolbar">
           \${renderBreadcrumbs()}
+          \${gitBlobUrl ? \`
+            <a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="gh-btn btn-sm" id="view-git-blob-btn" title="View file on GitHub / Git host" style="display:inline-flex; align-items:center; gap:5px; text-decoration:none;">
+              \${icons.github || icons.file || ''}
+              <span>View blob</span>
+              \${icons.linkExternal || ''}
+            </a>
+          \` : ''}
         </div>
         \${renderMetrics(fileCov, null)}
         \${trendPoints.length > 1 ? renderTrendChart('Trend for ' + escapeHtml(filePath), trendPoints, state.trendMetric) : ''}
@@ -1911,7 +2027,7 @@ export const APP_JS = `
 
       codeRows += \`
         <tr class="\${rowClass}" id="L\${lineNum}">
-          <td class="blob-num" data-line-number="\${lineNum}">\${lineNum}</td>
+          <td class="blob-num" data-line-number="\${lineNum}">\${gitBlobUrl ? \`<a href="\${gitBlobUrl}#L\${lineNum}" target="_blank" rel="noopener noreferrer" title="View line \${lineNum} on Git blob" style="color:inherit; text-decoration:none; display:block;">\${lineNum}</a>\` : lineNum}</td>
           <td class="blob-hits">\${hitsText}</td>
           <td class="blob-code">\${codeHtml}</td>
         </tr>
@@ -1924,6 +2040,13 @@ export const APP_JS = `
       <div class="file-toolbar">
         \${renderBreadcrumbs()}
         <div style="display:flex; align-items:center; gap:8px;">
+          \${gitBlobUrl ? \`
+            <a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="gh-btn btn-sm" id="view-git-blob-btn" title="View file on GitHub / Git host" style="display:inline-flex; align-items:center; gap:5px; text-decoration:none;">
+              \${icons.github || icons.file || ''}
+              <span>View blob</span>
+              \${icons.linkExternal || ''}
+            </a>
+          \` : ''}
           <div class="badge-toolbar-group">
             <button class="gh-btn badge-btn" id="file-badge-btn" data-badge-copy="file" data-badge-file="\${escapeHtml(filePath)}" title="Click to copy badge Markdown for this file">
               <span class="badge-svg-display">\${generateClientBadgeSvg(fileCov.lines.pct, fileBadgeLabel)}</span>
@@ -1940,9 +2063,14 @@ export const APP_JS = `
 
       <div class="blob-wrapper">
         <div class="blob-header">
-          <div>
+          <div style="display:flex; align-items:center; gap:8px;">
             <strong>\${escapeHtml(filePath)}</strong>
-            <span style="margin-left:8px;">\${linesArray.length} lines</span>
+            <span style="color:var(--color-fg-muted); font-size:12px;">\${linesArray.length} lines</span>
+            \${gitBlobUrl ? \`
+              <a href="\${gitBlobUrl}" target="_blank" rel="noopener noreferrer" class="git-blob-link" title="Open blob on Git" style="margin-left:4px; display:inline-flex; align-items:center;">
+                \${icons.linkExternal || ''}
+              </a>
+            \` : ''}
           </div>
           <div class="blob-actions">
             <span>\${fileCov.lines.covered}/\${fileCov.lines.total} lines covered (\${fileCov.lines.pct}%)</span>
@@ -2026,7 +2154,7 @@ export const APP_JS = `
             </thead>
             <tbody>
               \${targetPoints.slice().reverse().map(p => \`
-                <tr>
+                <tr data-commit-sha="\${escapeHtml(p.sha)}" style="cursor:pointer;" title="Click to view this commit coverage snapshot">
                   <td>
                     <span class="commit-sha-badge">\${icons.commit} \${escapeHtml(p.shortSha)}</span>
                   </td>
@@ -2080,6 +2208,11 @@ export const APP_JS = `
                       <span class="commit-sha-badge">
                         \${icons.commit} \${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}
                       </span>
+                      \${getGitCommitUrl(c.commit.sha) ? \`
+                        <a href="\${getGitCommitUrl(c.commit.sha)}" target="_blank" rel="noopener noreferrer" class="git-blob-link" title="Open commit on Git" style="margin-left:4px;" onclick="event.stopPropagation();">
+                          \${icons.linkExternal || ''}
+                        </a>
+                      \` : ''}
                       <button class="gh-btn badge-btn" data-badge-copy="commit" data-badge-commit="\${escapeHtml(c.commit.shortSha || c.commit.sha.slice(0, 7))}" data-badge-pct="\${c.summary.lines.pct}" title="Copy badge Markdown for this commit" style="padding:1px 6px; font-size:11px; margin-left:6px; display:inline-flex; align-items:center; gap:3px;">
                         \${icons.copy || ''} Badge
                       </button>
@@ -2400,21 +2533,16 @@ export const APP_JS = `
     document.querySelectorAll('[data-commit-sha]').forEach(row => {
       row.addEventListener('click', () => {
         const sha = row.getAttribute('data-commit-sha');
-        state.selectedCommitSha = sha;
-        const found = data?.commits?.find(c => c.commit.sha === sha);
-        if (found) {
-          if (found.commit.tag) {
-            state.activeRefType = 'tag';
-            state.activeRefName = found.commit.tag;
-          } else if (found.commit.branch) {
-            state.activeRefType = 'branch';
-            state.activeRefName = found.commit.branch;
+        let targetFile = null;
+        let targetFolder = '';
+        if (state.activeTab === 'trends') {
+          if (state.trendScope === 'file' && state.trendTarget) {
+            targetFile = state.trendTarget;
+          } else if (state.trendScope === 'folder' && state.trendTarget) {
+            targetFolder = state.trendTarget;
           }
         }
-        state.activeTab = 'files';
-        state.selectedFile = null;
-        updateRoute();
-        render();
+        openCommitSnapshot(sha, targetFile, targetFolder);
       });
     });
 
@@ -2759,6 +2887,35 @@ export const APP_JS = `
       });
     }
 
+    document.querySelectorAll('.chart-dot, .chart-label').forEach(el => {
+      el.addEventListener('click', () => {
+        const sha = el.getAttribute('data-sha');
+        if (!sha) return;
+        let targetFile = state.selectedFile;
+        let targetFolder = state.currentFolder;
+        if (state.activeTab === 'trends') {
+          if (state.trendScope === 'file' && state.trendTarget) {
+            targetFile = state.trendTarget;
+            targetFolder = '';
+          } else if (state.trendScope === 'folder' && state.trendTarget) {
+            targetFolder = state.trendTarget;
+            targetFile = null;
+          } else {
+            targetFolder = '';
+            targetFile = null;
+          }
+        }
+        openCommitSnapshot(sha, targetFile, targetFolder);
+      });
+
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+
     document.querySelectorAll('.chart-dot').forEach(dot => {
       dot.addEventListener('mouseenter', (e) => {
         if (!tooltipEl) return;
@@ -2772,7 +2929,10 @@ export const APP_JS = `
         tooltipEl.innerHTML = \`
           <div style="font-weight:600; margin-bottom:4px;">\${escapeHtml(msg)}</div>
           <div style="color:var(--color-fg-muted); margin-bottom:6px;">\${sha} • \${date}</div>
-          <div>Lines: <strong>\${lines}</strong> • Functions: <strong>\${fn}</strong> • Branches: <strong>\${br}</strong></div>
+          <div style="margin-bottom:6px;">Lines: <strong>\${lines}</strong> • Functions: <strong>\${fn}</strong> • Branches: <strong>\${br}</strong></div>
+          <div style="font-size:11px; color:var(--color-accent-fg); border-top:1px solid var(--color-border-muted); padding-top:4px;">
+            Click to view commit snapshot
+          </div>
         \`;
         tooltipEl.style.opacity = '1';
         tooltipEl.style.left = (e.pageX + 10) + 'px';

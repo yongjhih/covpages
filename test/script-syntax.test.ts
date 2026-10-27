@@ -627,5 +627,89 @@ describe('Emitted client scripts are valid JavaScript', () => {
     expect(branchComp.displayName).toBe('src');
     expect(branchComp.hasCompacted).toBe(false);
   });
+
+  it('constructs Git blob, tree, and commit URLs correctly', () => {
+    const extractFn = (name: string) => {
+      const match = APP_JS.match(new RegExp(`function ${name}\\([\\s\\S]*?\\n  \\}`));
+      return match ? match[0] : '';
+    };
+
+    const script = `
+      ${extractFn('getRepoBaseUrl')}
+      ${extractFn('getGitRef')}
+      ${extractFn('getGitBlobUrl')}
+      ${extractFn('getGitTreeUrl')}
+      ${extractFn('getGitCommitUrl')}
+      return { getRepoBaseUrl, getGitRef, getGitBlobUrl, getGitTreeUrl, getGitCommitUrl };
+    `;
+
+    // 1. GitHub owner/repo format
+    const mockEnv1 = new Function('data', 'state', 'location', script)(
+      { repoName: 'yongjhih/covpages', defaultBranch: 'main' },
+      { activeRefName: 'main', selectedCommitSha: '' },
+      { hostname: 'localhost', pathname: '/' },
+    );
+
+    expect(mockEnv1.getRepoBaseUrl()).toBe('https://github.com/yongjhih/covpages');
+    expect(mockEnv1.getGitBlobUrl('src/templates/app.js.ts', 42)).toBe(
+      'https://github.com/yongjhih/covpages/blob/main/src/templates/app.js.ts#L42',
+    );
+    expect(mockEnv1.getGitTreeUrl('src/templates')).toBe(
+      'https://github.com/yongjhih/covpages/tree/main/src/templates',
+    );
+    expect(mockEnv1.getGitCommitUrl('abcdef123456')).toBe(
+      'https://github.com/yongjhih/covpages/commit/abcdef123456',
+    );
+
+    // 2. Historical commit selected -> blob URL uses commit SHA
+    const mockEnv2 = new Function('data', 'state', 'location', script)(
+      { repoName: 'yongjhih/covpages', defaultBranch: 'main', currentCommit: { sha: 'head123' }, commits: [{ commit: { sha: 'past456', shortSha: 'past456' } }] },
+      { activeRefName: 'main', selectedCommitSha: 'past456' },
+      { hostname: 'localhost', pathname: '/' },
+    );
+
+    expect(mockEnv2.getGitBlobUrl('src/index.ts')).toBe(
+      'https://github.com/yongjhih/covpages/blob/past456/src/index.ts',
+    );
+
+    // 3. GitLab repoUrl support
+    const mockEnv3 = new Function('data', 'state', 'location', script)(
+      { repoUrl: 'https://gitlab.com/group/my-project.git', defaultBranch: 'main' },
+      { activeRefName: 'main', selectedCommitSha: '' },
+      { hostname: 'localhost', pathname: '/' },
+    );
+
+    expect(mockEnv3.getRepoBaseUrl()).toBe('https://gitlab.com/group/my-project');
+    expect(mockEnv3.getGitBlobUrl('src/main.rs', 10)).toBe(
+      'https://gitlab.com/group/my-project/-/blob/main/src/main.rs#L10',
+    );
+  });
+
+  it('renders interactive trend chart dots and labels with click attributes and accessible buttons', () => {
+    const match = APP_JS.match(/function renderTrendChart\([\s\S]*?\n  \}/);
+    expect(match).toBeTruthy();
+
+    const points = [
+      { sha: '111111111111', shortSha: '1111111', date: '2026-10-01T00:00:00Z', message: 'First commit', linesPct: 80, functionsPct: 80, branchesPct: 80, linesCovered: 8, linesTotal: 10 },
+      { sha: '222222222222', shortSha: '2222222', date: '2026-10-02T00:00:00Z', message: 'Second commit', linesPct: 90, functionsPct: 90, branchesPct: 90, linesCovered: 9, linesTotal: 10 },
+    ];
+
+    const fn = new Function(
+      'escapeHtml',
+      `const state = { selectedCommitSha: '222222222222' }; const icons = { graph: '' };\n${match![0]}\nreturn renderTrendChart;`,
+    )((s: string) => String(s));
+
+    const html: string = fn('Coverage Trend', points, 'linesPct');
+
+    // Dot elements have data-sha, role="button", and tabindex="0"
+    expect(html).toContain('class="chart-dot"');
+    expect(html).toContain('data-sha="111111111111"');
+    expect(html).toContain('data-sha="222222222222"');
+    expect(html).toContain('role="button" tabindex="0"');
+
+    // Labels also have class="chart-label" and data-sha
+    expect(html).toContain('class="chart-label"');
+    expect(html).toContain('title="Click to view commit 1111111"');
+  });
 });
 
