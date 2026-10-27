@@ -707,5 +707,70 @@ describe('Emitted client scripts are valid JavaScript', () => {
     expect(html).toContain('data-sha="222222222222"');
     expect(html).not.toContain('role="button"');
   });
+
+  it('switches to commit snapshot with tree/<commit-id> route on commit selection', () => {
+    const extractFn = (name: string) => {
+      const match = APP_JS.match(new RegExp(`function ${name}\\([\\s\\S]*?\\n  \\}`));
+      return match ? match[0] : '';
+    };
+
+    const script = `
+      ${extractFn('getBasePath')}
+      ${extractFn('openCommitSnapshot')}
+      ${extractFn('updateRoute')}
+      return { openCommitSnapshot, updateRoute, state };
+    `;
+
+    let pushedUrl = '';
+    const mockHistory = {
+      pushState: (_: any, __: any, url: string) => { pushedUrl = url; },
+      replaceState: (_: any, __: any, url: string) => { pushedUrl = url; },
+    };
+
+    const mockData = {
+      defaultBranch: 'main',
+      baseUrl: '/covpages/',
+      currentCommit: { sha: '1111111111111111111111111111111111111111', shortSha: '1111111', branch: 'main' },
+      commits: [
+        { commit: { sha: '2222222222222222222222222222222222222222', shortSha: '2222222', branch: 'main' }, summary: { lines: { pct: 85 } } },
+      ],
+    };
+
+    const state = {
+      activeTab: 'commits',
+      currentFolder: '',
+      selectedFile: null,
+      selectedCommitSha: '',
+      activeRefType: 'branch',
+      activeRefName: 'main',
+      expandedFolders: new Set(),
+    };
+
+    const env = new Function('data', 'state', 'history', 'ensureExpanded', 'render', 'window', script)(
+      mockData,
+      state,
+      mockHistory,
+      () => {},
+      () => {},
+      { location: { protocol: 'https:', pathname: '/covpages/' } },
+    );
+
+    // Click commit '2222222222222222222222222222222222222222'
+    env.openCommitSnapshot('2222222222222222222222222222222222222222', null, '');
+
+    expect(env.state.activeTab).toBe('files');
+    expect(env.state.activeRefType).toBe('commit');
+    expect(env.state.activeRefName).toBe('2222222');
+    expect(env.state.selectedCommitSha).toBe('2222222222222222222222222222222222222222');
+    expect(pushedUrl).toBe('/covpages/tree/2222222');
+
+    // If viewing a folder, route includes folder
+    env.openCommitSnapshot('2222222222222222222222222222222222222222', null, 'src/core');
+    expect(pushedUrl).toBe('/covpages/tree/2222222/src/core');
+
+    // If viewing a file, route becomes blob
+    env.openCommitSnapshot('2222222222222222222222222222222222222222', 'src/core/git.ts', null);
+    expect(pushedUrl).toBe('/covpages/blob/2222222/src/core/git.ts');
+  });
 });
 
