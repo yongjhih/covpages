@@ -65,6 +65,18 @@ export function createDropinSite(
   fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');
   fs.writeFileSync(path.join(dir, '404.html'), render404Html(), 'utf-8');
 
+  // If dir is a subfolder named covpages (e.g. docs/covpages), GitHub Pages requires
+  // 404.html in the root of the publishing source (e.g. docs/404.html) to support SPA routing.
+  const dropinParent = path.dirname(dir);
+  const dropinParent404 = path.join(dropinParent, '404.html');
+  if (path.basename(dir) === 'covpages' && !fs.existsSync(dropinParent404)) {
+    try {
+      fs.writeFileSync(dropinParent404, render404Html(), 'utf-8');
+    } catch {
+      // Ignore if parent dir is not writable
+    }
+  }
+
   if (options.mcp) {
     buildMcpPage(dir, { title });
   }
@@ -264,6 +276,18 @@ export function generateCoveragePages(options: GenerateOptions): CovpagesData {
   fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');
   fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');
   fs.writeFileSync(path.join(outputDir, '404.html'), render404Html(), 'utf-8');
+
+  // If outputDir is a subfolder named covpages (e.g. docs/covpages), GitHub Pages requires
+  // 404.html in the root of the publishing source (e.g. docs/404.html) to support SPA routing.
+  const parentDir = path.dirname(outputDir);
+  const parent404 = path.join(parentDir, '404.html');
+  if (path.basename(outputDir) === 'covpages' && !fs.existsSync(parent404)) {
+    try {
+      fs.writeFileSync(parent404, render404Html(), 'utf-8');
+    } catch {
+      // Ignore if parent dir is not writable
+    }
+  }
 
   // 10. Generate scoped badges in badges/ directory for folders, files, branches, tags, and commits
   const badgesDir = path.join(outputDir, 'badges');
