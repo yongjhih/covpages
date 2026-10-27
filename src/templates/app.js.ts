@@ -154,18 +154,15 @@ export const APP_JS = `
 
   function openCommitSnapshot(sha, targetFile, targetFolder) {
     if (!sha) return;
-    state.selectedCommitSha = sha;
-    const found = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === sha);
-    if (found) {
-      if (found.commit.tag) {
-        state.activeRefType = 'tag';
-        state.activeRefName = found.commit.tag;
-      } else if (found.commit.branch) {
-        state.activeRefType = 'branch';
-        state.activeRefName = found.commit.branch;
-      }
-    }
+    const found = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === sha || c.commit.sha.startsWith(sha));
+    const fullSha = found?.commit?.sha || sha;
+    const shortSha = found?.commit?.shortSha || sha.slice(0, 7);
+
+    state.selectedCommitSha = fullSha;
+    state.activeRefType = 'commit';
+    state.activeRefName = shortSha;
     state.activeTab = 'files';
+
     if (targetFile) {
       state.selectedFile = targetFile;
       state.currentFolder = '';
@@ -174,7 +171,11 @@ export const APP_JS = `
       state.currentFolder = targetFolder || '';
       state.selectedFile = null;
       if (targetFolder) ensureExpanded(targetFolder);
+    } else {
+      state.currentFolder = '';
+      state.selectedFile = null;
     }
+
     updateRoute();
     render();
   }
@@ -384,7 +385,10 @@ export const APP_JS = `
       const firstPart = firstSlash !== -1 ? remainder.slice(0, firstSlash) : remainder;
       const restPart = firstSlash !== -1 ? remainder.slice(firstSlash + 1) : '';
       if (/^[0-9a-f]{7,40}$/i.test(firstPart)) {
-        return { refName: firstPart, refType: 'branch', sha: firstPart, path: restPart };
+        const found = data?.commits?.find(c => c.commit.sha.startsWith(firstPart) || c.commit.shortSha === firstPart);
+        const fullSha = found?.commit?.sha || firstPart;
+        const short = found?.commit?.shortSha || firstPart.slice(0, 7);
+        return { refName: short, refType: 'commit', sha: fullSha, path: restPart };
       }
       return { refName: data?.currentCommit?.branch || 'main', refType: 'branch', sha: data?.currentCommit?.sha || '', path: remainder };
     }
@@ -424,6 +428,8 @@ export const APP_JS = `
 
   function updateRoute(replace = false) {
     const base = getBasePath();
+    const isCommit = state.activeRefType === 'commit';
+    const isTag = state.activeRefType === 'tag';
     const ref = state.activeRefName || data?.currentCommit?.branch || 'main';
     let targetUrl = base;
 
@@ -435,7 +441,7 @@ export const APP_JS = `
       targetUrl = base + 'blob/' + encodeURI(ref) + '/' + state.selectedFile;
     } else if (state.currentFolder) {
       targetUrl = base + 'tree/' + encodeURI(ref) + '/' + state.currentFolder;
-    } else if (ref !== 'main' || state.activeRefType === 'tag') {
+    } else if (isCommit || isTag || (ref !== 'main' && ref !== (data?.defaultBranch || 'main'))) {
       targetUrl = base + 'tree/' + encodeURI(ref);
     } else {
       targetUrl = base;
@@ -488,17 +494,19 @@ export const APP_JS = `
     if (!key || lcovCache[key] || loadingLcovSha === key) return;
     loadingLcovSha = key;
 
-    const cEntry = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === shortSha);
+    const cEntry = data?.commits?.find(c => c.commit.sha === sha || c.commit.shortSha === shortSha || c.commit.sha.startsWith(sha));
     const artifactPath = cEntry?.artifacts?.lcov;
+    const base = getBasePath();
+    const cleanArtifact = artifactPath ? artifactPath.replace(/^\\/+/, '') : '';
 
     const candidates = [
-      ...(artifactPath ? ['./' + artifactPath.replace(/^\\/+/, '')] : []),
-      ...(sha && sha.length >= 7 ? ['./objects/' + sha.slice(0, 2).toLowerCase() + '/' + sha.slice(2).toLowerCase() + '.lcov'] : []),
-      './history/lcov/lcov-' + shortSha + '.info',
-      './history/lcov/' + sha + '.lcov',
-      './history/lcov/' + shortSha + '.lcov',
-      './history/lcov/lcov-' + sha + '.info',
-      './coverage/lcov-' + shortSha + '.info',
+      ...(cleanArtifact ? [base + cleanArtifact] : []),
+      ...(sha && sha.length >= 7 ? [base + 'objects/' + sha.slice(0, 2).toLowerCase() + '/' + sha.slice(2).toLowerCase() + '.lcov'] : []),
+      base + 'history/lcov/lcov-' + shortSha + '.info',
+      base + 'history/lcov/' + sha + '.lcov',
+      base + 'history/lcov/' + shortSha + '.lcov',
+      base + 'history/lcov/lcov-' + sha + '.info',
+      base + 'coverage/lcov-' + shortSha + '.info',
     ];
 
     for (const url of candidates) {
@@ -521,7 +529,7 @@ export const APP_JS = `
 
   function getActiveViewData() {
     if (!data) return null;
-    const cEntry = data.commits?.find(c => c.commit.sha === state.selectedCommitSha || c.commit.shortSha === state.selectedCommitSha);
+    const cEntry = data.commits?.find(c => c.commit.sha === state.selectedCommitSha || c.commit.shortSha === state.selectedCommitSha || c.commit.sha.startsWith(state.selectedCommitSha));
     if (!cEntry || cEntry.commit.sha === data.currentCommit?.sha) {
       return {
         commit: data.currentCommit,
@@ -1199,7 +1207,7 @@ export const APP_JS = `
           <div class="gh-header-actions">
             <div class="ref-selector-wrap">
               <button class="gh-btn ref-selector-btn" id="ref-selector-btn" title="Switch branches or tags" aria-haspopup="true" aria-expanded="\${state.refPopoverOpen}">
-                \${state.activeRefType === 'tag' ? (icons.tag || '') : (icons.branch || '')}
+                \${state.activeRefType === 'tag' ? (icons.tag || '') : (state.activeRefType === 'commit' ? (icons.commit || '') : (icons.branch || ''))}
                 <span class="ref-btn-label">\${escapeHtml(state.activeRefName || viewCommit?.branch || 'main')}</span>
                 <span class="dropdown-caret">▼</span>
               </button>
@@ -2754,6 +2762,9 @@ export const APP_JS = `
         state.activeTab = 'files';
         state.currentFolder = '';
         state.selectedFile = null;
+        state.activeRefType = 'branch';
+        state.activeRefName = data?.currentCommit?.branch || data?.defaultBranch || 'main';
+        state.selectedCommitSha = data?.currentCommit?.sha || '';
         updateRoute();
         render();
       });
@@ -2969,10 +2980,11 @@ export const APP_JS = `
 
   // Dynamic bootstrapping for Drop-in mode
   async function bootstrap() {
+    const base = getBasePath();
     if (data) {
       if (!data.refs) {
         try {
-          const rr = await fetch('./refs.json');
+          const rr = await fetch(base + 'refs.json');
           if (rr.ok) data.refs = await rr.json();
         } catch {}
       }
@@ -2983,12 +2995,12 @@ export const APP_JS = `
 
     // Try fetching covpages-data.json
     try {
-      const r = await fetch('./covpages-data.json');
+      const r = await fetch(base + 'covpages-data.json');
       if (r.ok) {
         data = await r.json();
         if (!data.refs) {
           try {
-            const rr = await fetch('./refs.json');
+            const rr = await fetch(base + 'refs.json');
             if (rr.ok) data.refs = await rr.json();
           } catch {}
         }
@@ -3001,7 +3013,7 @@ export const APP_JS = `
     // Try fetching history.json
     let historyCommits = [];
     try {
-      const hr = await fetch('./history.json');
+      const hr = await fetch(base + 'history.json');
       if (hr.ok) {
         historyCommits = await hr.json();
       }
@@ -3009,13 +3021,13 @@ export const APP_JS = `
 
     // Try fetching coverage files (LCOV, Cobertura XML, Istanbul/Jest JSON)
     const candidates = [
-      './lcov.info',
-      './coverage/lcov.info',
-      './cobertura.xml',
-      './coverage/cobertura-coverage.xml',
-      './coverage/coverage-final.json',
-      './coverage-final.json',
-      './coverage.json',
+      base + 'lcov.info',
+      base + 'coverage/lcov.info',
+      base + 'cobertura.xml',
+      base + 'coverage/cobertura-coverage.xml',
+      base + 'coverage/coverage-final.json',
+      base + 'coverage-final.json',
+      base + 'coverage.json',
     ];
     for (const cand of candidates) {
       try {
@@ -3024,7 +3036,7 @@ export const APP_JS = `
           const covText = await lr.text();
           data = parseClientCoverage(covText, historyCommits);
           try {
-            const rr = await fetch('./refs.json');
+            const rr = await fetch(base + 'refs.json');
             if (rr.ok) data.refs = await rr.json();
           } catch {}
           initState();
