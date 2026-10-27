@@ -115,6 +115,7 @@ export interface CoverageReport {
 export interface CovpagesData {
   title: string;
   repoName: string;
+  repoUrl?: string;
   baseUrl?: string;
   defaultBranch?: string;
   generatedAt: string;
@@ -162,6 +163,7 @@ export interface GenerateOptions {
   format?: SupportedFormat;
   title?: string;
   repoName?: string;
+  repoUrl?: string;
   baseUrl?: string;
   commitSha?: string;
   commitMessage?: string;

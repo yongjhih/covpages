@@ -80,3 +80,31 @@ export function resolveCommitInfo(options?: {
     tag: tag || undefined,
   };
 }
+
+export function resolveRepoInfo(options?: { cwd?: string; repo?: string }): { repoName?: string; repoUrl?: string } {
+  const cwd = options?.cwd || process.cwd();
+  let repoName = options?.repo || process.env.GITHUB_REPOSITORY;
+  const remote = runGit('config --get remote.origin.url', cwd);
+
+  let repoUrl: string | undefined;
+
+  if (remote) {
+    const scpMatch = remote.match(/^git@([^:]+):(.+?)(\.git)?$/);
+    if (scpMatch) {
+      repoUrl = `https://${scpMatch[1]}/${scpMatch[2]}`;
+      if (!repoName) repoName = scpMatch[2];
+    } else {
+      const httpMatch = remote.match(/^https?:\/\/([^@]+@)?([^\/]+)\/(.+?)(\.git)?$/);
+      if (httpMatch) {
+        repoUrl = `https://${httpMatch[2]}/${httpMatch[3]}`;
+        if (!repoName) repoName = httpMatch[3];
+      }
+    }
+  }
+
+  if (!repoUrl && repoName && repoName.includes('/')) {
+    repoUrl = `https://github.com/${repoName}`;
+  }
+
+  return { repoName, repoUrl };
+}
