@@ -576,5 +576,56 @@ describe('Emitted client scripts are valid JavaScript', () => {
       (globalThis as any).window = originalWindow;
     }
   });
+
+  it('compacts single-child empty directory chains like GitHub (x/xx/xxx) in files tree and table', () => {
+    const getCompactedFolderMatch = APP_JS.match(/function getCompactedFolder\(startFolder, baseFolder, vChildren\) \{[\s\S]*?\n  \}/);
+    expect(getCompactedFolderMatch).not.toBeNull();
+
+    const fn = new Function(
+      `${getCompactedFolderMatch![0]}
+       return { getCompactedFolder };`
+    )();
+
+    // Setup mock directory structure:
+    // packages/ (0 files, 1 subfolder: packages/core)
+    // packages/core/ (0 files, 1 subfolder: packages/core/src)
+    // packages/core/src/ (2 files, 0 subfolders)
+    const vChildren: Record<string, { subfolders: string[]; files: string[] }> = {
+      '': { subfolders: ['packages'], files: [] },
+      'packages': { subfolders: ['packages/core'], files: [] },
+      'packages/core': { subfolders: ['packages/core/src'], files: [] },
+      'packages/core/src': { subfolders: [], files: ['packages/core/src/index.ts', 'packages/core/src/utils.ts'] },
+    };
+
+    // From root (''), packages should compact all the way to packages/core/src
+    const rootComp = fn.getCompactedFolder('packages', '', vChildren);
+    expect(rootComp.targetFolder).toBe('packages/core/src');
+    expect(rootComp.displayName).toBe('packages/core/src');
+    expect(rootComp.hasCompacted).toBe(true);
+
+    // From packages/ (e.g. if navigated to packages directly), core should compact to core/src
+    const pkgComp = fn.getCompactedFolder('packages/core', 'packages', vChildren);
+    expect(pkgComp.targetFolder).toBe('packages/core/src');
+    expect(pkgComp.displayName).toBe('core/src');
+    expect(pkgComp.hasCompacted).toBe(true);
+
+    // When a folder has files, it does not compact
+    const nonComp = fn.getCompactedFolder('packages/core/src', 'packages/core', vChildren);
+    expect(nonComp.targetFolder).toBe('packages/core/src');
+    expect(nonComp.displayName).toBe('src');
+    expect(nonComp.hasCompacted).toBe(false);
+
+    // When a folder branches (2 subfolders), it stops at the branching folder
+    const branchingChildren: Record<string, { subfolders: string[]; files: string[] }> = {
+      '': { subfolders: ['src'], files: [] },
+      'src': { subfolders: ['src/a', 'src/b'], files: [] },
+      'src/a': { subfolders: [], files: ['src/a/one.ts'] },
+      'src/b': { subfolders: [], files: ['src/b/two.ts'] },
+    };
+    const branchComp = fn.getCompactedFolder('src', '', branchingChildren);
+    expect(branchComp.targetFolder).toBe('src');
+    expect(branchComp.displayName).toBe('src');
+    expect(branchComp.hasCompacted).toBe(false);
+  });
 });
 
