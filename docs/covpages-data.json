@@ -3,27 +3,27 @@
   "repoName": "yongjhih/covpages",
   "repoUrl": "https://github.com/yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-27T05:01:10.475Z",
+  "generatedAt": "2026-10-27T05:01:52.129Z",
   "currentCommit": {
-    "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
-    "shortSha": "037f224",
-    "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-    "author": "Andrew Chen",
-    "date": "2026-10-27T04:53:27.000Z",
+    "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+    "shortSha": "77d365d",
+    "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+    "author": "covpages-bot",
+    "date": "2026-10-27T05:01:21.000Z",
     "branch": "main"
   },
   "previousCommit": {
-    "sha": "f213b4647be6e7b8d04d13833dae2dd7e1da7282",
-    "shortSha": "f213b46",
-    "message": "feat: switch to commit snapshot with tree/<commit-id> route on commit click",
-    "author": "covpages-bot",
-    "date": "2026-10-27T04:52:38.000Z",
+    "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
+    "shortSha": "037f224",
+    "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+    "author": "yongjhih",
+    "date": "2026-10-27T04:53:27.000Z",
     "branch": "main"
   },
   "delta": {
-    "linesPct": 0,
+    "linesPct": -0.13,
     "functionsPct": 0,
-    "branchesPct": 0
+    "branchesPct": 0.49
   },
   "summary": {
     "lines": {
@@ -66975,9 +66975,972 @@
       "commit": {
         "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
         "shortSha": "037f224",
-        "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-        "author": "Andrew Chen",
+        "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+        "author": "yongjhih",
         "date": "2026-10-27T04:53:27.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3819,
+          "covered": 2569,
+          "skipped": 1250,
+          "pct": 67.27
+        },
+        "functions": {
+          "total": 143,
+          "covered": 106,
+          "skipped": 37,
+          "pct": 74.13
+        },
+        "branches": {
+          "total": 990,
+          "covered": 725,
+          "skipped": 265,
+          "pct": 73.23
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3819,
+            "covered": 2569,
+            "skipped": 1250,
+            "pct": 67.27
+          },
+          "functions": {
+            "total": 143,
+            "covered": 106,
+            "skipped": 37,
+            "pct": 74.13
+          },
+          "branches": {
+            "total": 990,
+            "covered": 725,
+            "skipped": 265,
+            "pct": 73.23
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3819,
+            "covered": 2569,
+            "skipped": 1250,
+            "pct": 67.27
+          },
+          "functions": {
+            "total": 143,
+            "covered": 106,
+            "skipped": 37,
+            "pct": 74.13
+          },
+          "branches": {
+            "total": 990,
+            "covered": 725,
+            "skipped": 265,
+            "pct": 73.23
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 929,
+            "covered": 719,
+            "skipped": 210,
+            "pct": 77.4
+          },
+          "functions": {
+            "total": 42,
+            "covered": 39,
+            "skipped": 3,
+            "pct": 92.86
+          },
+          "branches": {
+            "total": 265,
+            "covered": 201,
+            "skipped": 64,
+            "pct": 75.85
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1354,
+            "covered": 650,
+            "skipped": 704,
+            "pct": 48.01
+          },
+          "functions": {
+            "total": 52,
+            "covered": 27,
+            "skipped": 25,
+            "pct": 51.92
+          },
+          "branches": {
+            "total": 167,
+            "covered": 69,
+            "skipped": 98,
+            "pct": 41.32
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1129,
+            "covered": 426,
+            "skipped": 703,
+            "pct": 37.73
+          },
+          "functions": {
+            "total": 47,
+            "covered": 22,
+            "skipped": 25,
+            "pct": 46.81
+          },
+          "branches": {
+            "total": 115,
+            "covered": 27,
+            "skipped": 88,
+            "pct": 23.48
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 114,
+            "covered": 112,
+            "skipped": 2,
+            "pct": 98.25
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 38,
+            "skipped": 4,
+            "pct": 90.48
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 269,
+            "covered": 269,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 258,
+            "covered": 251,
+            "skipped": 7,
+            "pct": 97.29
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 254,
+            "covered": 141,
+            "skipped": 113,
+            "pct": 55.51
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 17,
+            "skipped": 26,
+            "pct": 39.53
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 224,
+            "covered": 185,
+            "skipped": 39,
+            "pct": 82.59
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 51,
+            "covered": 34,
+            "skipped": 17,
+            "pct": 66.67
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 81,
+            "covered": 71,
+            "skipped": 10,
+            "pct": 87.65
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 27,
+            "skipped": 23,
+            "pct": 54
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 49,
+            "covered": 35,
+            "skipped": 14,
+            "pct": 71.43
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 31,
+            "skipped": 12,
+            "pct": 72.09
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 34,
+            "skipped": 1,
+            "pct": 97.14
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 8,
+            "skipped": 1,
+            "pct": 88.89
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 181,
+            "covered": 181,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 34,
+            "skipped": 9,
+            "pct": 79.07
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 86,
+            "skipped": 166,
+            "pct": 34.13
+          },
+          "functions": {
+            "total": 11,
+            "covered": 5,
+            "skipped": 6,
+            "pct": 45.45
+          },
+          "branches": {
+            "total": 13,
+            "covered": 5,
+            "skipped": 8,
+            "pct": 38.46
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 18,
+            "skipped": 141,
+            "pct": 11.32
+          },
+          "functions": {
+            "total": 3,
+            "covered": 1,
+            "skipped": 2,
+            "pct": 33.33
+          },
+          "branches": {
+            "total": 5,
+            "covered": 1,
+            "skipped": 4,
+            "pct": 20
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 22,
+            "skipped": 39,
+            "pct": 36.07
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 21,
+            "covered": 1,
+            "skipped": 20,
+            "pct": 4.76
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 131,
+            "skipped": 116,
+            "pct": 53.04
+          },
+          "functions": {
+            "total": 18,
+            "covered": 8,
+            "skipped": 10,
+            "pct": 44.44
+          },
+          "branches": {
+            "total": 34,
+            "covered": 11,
+            "skipped": 23,
+            "pct": 32.35
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 256,
+            "covered": 146,
+            "skipped": 110,
+            "pct": 57.03
+          },
+          "functions": {
+            "total": 7,
+            "covered": 6,
+            "skipped": 1,
+            "pct": 85.71
+          },
+          "branches": {
+            "total": 35,
+            "covered": 8,
+            "skipped": 27,
+            "pct": 22.86
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 23,
+            "skipped": 125,
+            "pct": 15.54
+          },
+          "functions": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          },
+          "branches": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/ask-ai.ts": {
+          "lines": {
+            "total": 46,
+            "covered": 44,
+            "skipped": 2,
+            "pct": 95.65
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 31,
+            "covered": 27,
+            "skipped": 4,
+            "pct": 87.1
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 27,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 38,
+            "covered": 38,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 36,
+            "covered": 36,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 233,
+            "covered": 233,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 256,
+            "covered": 250,
+            "skipped": 6,
+            "pct": 97.66
+          }
+        }
+      },
+      "artifacts": {
+        "lcov": "objects/03/7f224e9dc6c6f95cac15c03f4bca75200b5043.lcov",
+        "sources": [
+          {
+            "format": "lcov",
+            "path": "objects/03/7f224e9dc6c6f95cac15c03f4bca75200b5043.lcov.info"
+          }
+        ]
+      }
+    },
+    {
+      "commit": {
+        "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+        "shortSha": "77d365d",
+        "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+        "author": "covpages-bot",
+        "date": "2026-10-27T05:01:21.000Z",
         "branch": "main"
       },
       "summary": {
@@ -67928,7 +68891,7 @@
   ],
   "refs": {
     "branches": {
-      "main": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
+      "main": "77d365d540ff498fdd0aefff976408d78bc6d8da",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -68719,8 +69682,21 @@
         "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
         "shortSha": "037f224",
         "date": "2026-10-27T04:53:27.000Z",
-        "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-        "author": "Andrew Chen",
+        "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+        "author": "yongjhih",
+        "branch": "main",
+        "linesPct": 67.27,
+        "functionsPct": 74.13,
+        "branchesPct": 73.23,
+        "linesCovered": 2569,
+        "linesTotal": 3819
+      },
+      {
+        "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+        "shortSha": "77d365d",
+        "date": "2026-10-27T05:01:21.000Z",
+        "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+        "author": "covpages-bot",
         "branch": "main",
         "linesPct": 67.14,
         "functionsPct": 74.13,
@@ -69515,8 +70491,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 67.27,
+          "functionsPct": 74.13,
+          "branchesPct": 73.23,
+          "linesCovered": 2569,
+          "linesTotal": 3819
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 67.14,
           "functionsPct": 74.13,
@@ -70310,8 +71299,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 67.27,
+          "functionsPct": 74.13,
+          "branchesPct": 73.23,
+          "linesCovered": 2569,
+          "linesTotal": 3819
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 67.14,
           "functionsPct": 74.13,
@@ -71105,8 +72107,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 77.4,
+          "functionsPct": 92.86,
+          "branchesPct": 75.85,
+          "linesCovered": 719,
+          "linesTotal": 929
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.96,
           "functionsPct": 92.86,
@@ -71900,8 +72915,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -72695,8 +73723,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 98.25,
+          "functionsPct": 100,
+          "branchesPct": 90.48,
+          "linesCovered": 112,
+          "linesTotal": 114
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 98.25,
           "functionsPct": 100,
@@ -73438,8 +74479,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -74181,8 +75235,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 97.29,
+          "linesCovered": 269,
+          "linesTotal": 269
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -74677,8 +75744,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 48.01,
+          "functionsPct": 51.92,
+          "branchesPct": 41.32,
+          "linesCovered": 650,
+          "linesTotal": 1354
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 47.93,
           "functionsPct": 51.92,
@@ -75173,8 +76253,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 37.73,
+          "functionsPct": 46.81,
+          "branchesPct": 23.48,
+          "linesCovered": 426,
+          "linesTotal": 1129
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 37.64,
           "functionsPct": 46.81,
@@ -75970,8 +77063,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 55.51,
+          "functionsPct": 100,
+          "branchesPct": 39.53,
+          "linesCovered": 141,
+          "linesTotal": 254
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 55.51,
           "functionsPct": 100,
@@ -76765,8 +77871,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 82.59,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 185,
+          "linesTotal": 224
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 82.59,
           "functionsPct": 100,
@@ -77560,8 +78679,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 18.75,
           "functionsPct": 0,
@@ -78355,8 +79487,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -79150,8 +80295,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.6,
           "functionsPct": 100,
@@ -79945,8 +81103,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 1.12,
           "functionsPct": 0,
@@ -80740,8 +81911,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 96.77,
           "functionsPct": 100,
@@ -81535,8 +82719,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 87.65,
+          "functionsPct": 100,
+          "branchesPct": 54,
+          "linesCovered": 71,
+          "linesTotal": 81
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 82.72,
           "functionsPct": 100,
@@ -82330,8 +83527,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 71.43,
+          "linesCovered": 184,
+          "linesTotal": 194
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 94.85,
           "functionsPct": 100,
@@ -83125,8 +84335,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -83920,8 +85143,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 92.86,
           "functionsPct": 100,
@@ -84715,8 +85951,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -85510,8 +86759,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 88.46,
           "functionsPct": 100,
@@ -86305,8 +87567,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -87100,8 +88375,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.3,
           "functionsPct": 100,
@@ -87895,8 +89183,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -88690,8 +89991,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 27,
+          "linesTotal": 27
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -89485,8 +90799,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 38,
+          "linesTotal": 38
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -90280,8 +91607,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -91023,8 +92363,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -91766,8 +93119,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -92509,8 +93875,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -93252,8 +94631,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 36,
+          "linesTotal": 36
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -93995,8 +95387,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 97.66,
+          "linesCovered": 233,
+          "linesTotal": 233
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -94673,8 +96078,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.09,
+          "linesCovered": 104,
+          "linesTotal": 105
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 99.05,
           "functionsPct": 100,
@@ -95299,8 +96717,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 85.19,
           "functionsPct": 50,
@@ -95795,8 +97226,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.14,
+          "functionsPct": 100,
+          "branchesPct": 88.89,
+          "linesCovered": 34,
+          "linesTotal": 35
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.14,
           "functionsPct": 100,
@@ -96291,8 +97735,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 79.07,
+          "linesCovered": 181,
+          "linesTotal": 181
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -96787,8 +98244,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -97283,8 +98753,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 34.13,
+          "functionsPct": 45.45,
+          "branchesPct": 38.46,
+          "linesCovered": 86,
+          "linesTotal": 252
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 33.73,
           "functionsPct": 45.45,
@@ -97779,8 +99262,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 11.32,
+          "functionsPct": 33.33,
+          "branchesPct": 20,
+          "linesCovered": 18,
+          "linesTotal": 159
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 11.32,
           "functionsPct": 33.33,
@@ -98275,8 +99771,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 36.07,
+          "functionsPct": 100,
+          "branchesPct": 4.76,
+          "linesCovered": 22,
+          "linesTotal": 61
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 36.07,
           "functionsPct": 100,
@@ -98771,8 +100280,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -99267,8 +100789,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 53.04,
+          "functionsPct": 44.44,
+          "branchesPct": 32.35,
+          "linesCovered": 131,
+          "linesTotal": 247
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 53.04,
           "functionsPct": 44.44,
@@ -99763,8 +101298,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 57.03,
+          "functionsPct": 85.71,
+          "branchesPct": 22.86,
+          "linesCovered": 146,
+          "linesTotal": 256
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 57.03,
           "functionsPct": 85.71,
@@ -100259,8 +101807,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 15.54,
+          "functionsPct": 16.67,
+          "branchesPct": 16.67,
+          "linesCovered": 23,
+          "linesTotal": 148
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 15.54,
           "functionsPct": 16.67,
@@ -100690,8 +102251,21 @@
           "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
           "shortSha": "037f224",
           "date": "2026-10-27T04:53:27.000Z",
-          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url",
-          "author": "Andrew Chen",
+          "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
+          "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.65,
+          "functionsPct": 100,
+          "branchesPct": 87.1,
+          "linesCovered": 44,
+          "linesTotal": 46
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.65,
           "functionsPct": 100,
