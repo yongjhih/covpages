@@ -3,8 +3,16 @@
   "repoName": "yongjhih/covpages",
   "repoUrl": "https://github.com/yongjhih/covpages",
   "defaultBranch": "main",
-  "generatedAt": "2026-10-27T04:54:04.466Z",
+  "generatedAt": "2026-10-27T05:01:52.129Z",
   "currentCommit": {
+    "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+    "shortSha": "77d365d",
+    "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+    "author": "covpages-bot",
+    "date": "2026-10-27T05:01:21.000Z",
+    "branch": "main"
+  },
+  "previousCommit": {
     "sha": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
     "shortSha": "037f224",
     "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
@@ -12,25 +20,17 @@
     "date": "2026-10-27T04:53:27.000Z",
     "branch": "main"
   },
-  "previousCommit": {
-    "sha": "f213b4647be6e7b8d04d13833dae2dd7e1da7282",
-    "shortSha": "f213b46",
-    "message": "feat: switch to commit snapshot with tree/<commit-id> route on commit click",
-    "author": "covpages-bot",
-    "date": "2026-10-27T04:52:38.000Z",
-    "branch": "main"
-  },
   "delta": {
-    "linesPct": 0.13,
+    "linesPct": -0.13,
     "functionsPct": 0,
-    "branchesPct": -0.49
+    "branchesPct": 0.49
   },
   "summary": {
     "lines": {
       "total": 3819,
-      "covered": 2569,
-      "skipped": 1250,
-      "pct": 67.27
+      "covered": 2564,
+      "skipped": 1255,
+      "pct": 67.14
     },
     "functions": {
       "total": 143,
@@ -39,10 +39,10 @@
       "pct": 74.13
     },
     "branches": {
-      "total": 990,
-      "covered": 725,
-      "skipped": 265,
-      "pct": 73.23
+      "total": 993,
+      "covered": 732,
+      "skipped": 261,
+      "pct": 73.72
     }
   },
   "folders": {
@@ -51,9 +51,9 @@
       "name": "root",
       "lines": {
         "total": 3819,
-        "covered": 2569,
-        "skipped": 1250,
-        "pct": 67.27
+        "covered": 2564,
+        "skipped": 1255,
+        "pct": 67.14
       },
       "functions": {
         "total": 143,
@@ -62,10 +62,10 @@
         "pct": 74.13
       },
       "branches": {
-        "total": 990,
-        "covered": 725,
-        "skipped": 265,
-        "pct": 73.23
+        "total": 993,
+        "covered": 732,
+        "skipped": 261,
+        "pct": 73.72
       },
       "filesCount": 37,
       "foldersCount": 1
@@ -75,9 +75,9 @@
       "name": "src",
       "lines": {
         "total": 3819,
-        "covered": 2569,
-        "skipped": 1250,
-        "pct": 67.27
+        "covered": 2564,
+        "skipped": 1255,
+        "pct": 67.14
       },
       "functions": {
         "total": 143,
@@ -86,10 +86,10 @@
         "pct": 74.13
       },
       "branches": {
-        "total": 990,
-        "covered": 725,
-        "skipped": 265,
-        "pct": 73.23
+        "total": 993,
+        "covered": 732,
+        "skipped": 261,
+        "pct": 73.72
       },
       "filesCount": 37,
       "foldersCount": 6
@@ -99,9 +99,9 @@
       "name": "core",
       "lines": {
         "total": 929,
-        "covered": 719,
-        "skipped": 210,
-        "pct": 77.4
+        "covered": 715,
+        "skipped": 214,
+        "pct": 76.96
       },
       "functions": {
         "total": 42,
@@ -110,10 +110,10 @@
         "pct": 92.86
       },
       "branches": {
-        "total": 265,
-        "covered": 201,
-        "skipped": 64,
-        "pct": 75.85
+        "total": 267,
+        "covered": 206,
+        "skipped": 61,
+        "pct": 77.15
       },
       "filesCount": 8,
       "foldersCount": 0
@@ -123,9 +123,9 @@
       "name": "mcp",
       "lines": {
         "total": 1354,
-        "covered": 650,
-        "skipped": 704,
-        "pct": 48.01
+        "covered": 649,
+        "skipped": 705,
+        "pct": 47.93
       },
       "functions": {
         "total": 52,
@@ -134,10 +134,10 @@
         "pct": 51.92
       },
       "branches": {
-        "total": 167,
-        "covered": 69,
-        "skipped": 98,
-        "pct": 41.32
+        "total": 168,
+        "covered": 71,
+        "skipped": 97,
+        "pct": 42.26
       },
       "filesCount": 10,
       "foldersCount": 1
@@ -147,9 +147,9 @@
       "name": "web",
       "lines": {
         "total": 1129,
-        "covered": 426,
-        "skipped": 703,
-        "pct": 37.73
+        "covered": 425,
+        "skipped": 704,
+        "pct": 37.64
       },
       "functions": {
         "total": 47,
@@ -158,10 +158,10 @@
         "pct": 46.81
       },
       "branches": {
-        "total": 115,
-        "covered": 27,
-        "skipped": 88,
-        "pct": 23.48
+        "total": 116,
+        "covered": 29,
+        "skipped": 87,
+        "pct": 25
       },
       "filesCount": 7,
       "foldersCount": 0
@@ -2088,7 +2088,7 @@
           "hits": 10
         }
       ],
-      "sourceCode": "import fs from 'node:fs';\nimport path from 'node:path';\nimport type {\n  CovpagesData,\n  GenerateOptions,\n  FileCoverage,\n  CommitHistoryEntry,\n} from './types.js';\nimport { parseCoverageFile, resolveParser } from './parsers/index.js';\nimport { resolveCommitInfo, resolveRepoInfo } from './core/git.js';\nimport { aggregateCoverage } from './core/aggregator.js';\nimport {\n  createCommitHistoryEntry,\n  buildTrends,\n  loadHistory,\n  saveHistory,\n  appendOrUpdateCommit,\n  calculateDelta,\n  extractRefs,\n  saveRefs,\n} from './core/history.js';\nimport { normalizeLcov, fileCoveragesToLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';\nimport { generateBadgeSvg, getBadgeFileName, formatBadgeLabel } from './core/badge.js';\nimport { renderIndexHtml, render404Html } from './templates/index.html.js';\nimport {\n  loadCommitObjects,\n  writeCommitObject,\n  writeLcovObject,\n  writeRawObject,\n  writeLooseRefs,\n  writeHead,\n  readHeadBranch,\n  pruneObjects,\n  migrateLegacyLcov,\n} from './core/store.js';\n\nexport * from './types.js';\nexport * from './parsers/index.js';\nexport * from './core/aggregator.js';\nexport * from './core/history.js';\nexport * from './core/git.js';\nexport * from './core/store.js';\nexport * from './core/backfill.js';\nexport * from './core/presets.js';\nexport * from './core/lcov-normalizer.js';\nexport * from './core/badge.js';\nexport * from './server.js';\nexport * from './mcp/index.js';\nexport { renderDropinHtml } from './templates/index.html.js';\nimport { buildMcpPage } from './mcp/index.js';\n\nexport function createDropinSite(\n  outputDir = 'gh-pages',\n  title = 'Coverage Report',\n  options: { mcp?: boolean } = {}\n): void {\n  const dir = path.resolve(outputDir);\n  if (!fs.existsSync(dir)) {\n    fs.mkdirSync(dir, { recursive: true });\n  }\n  const rendered = renderIndexHtml(null);\n  fs.writeFileSync(path.join(dir, 'index.html'), rendered.html, 'utf-8');\n  fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');\n  fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');\n  fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');\n  fs.writeFileSync(path.join(dir, '404.html'), render404Html(), 'utf-8');\n\n  if (options.mcp) {\n    buildMcpPage(dir, { title });\n  }\n}\n\n\nexport function generateCoveragePages(options: GenerateOptions): CovpagesData {\n  const outputDir = path.resolve(options.outputDir || './covpages-dist');\n  const rootDir = options.rootDir ? path.resolve(options.rootDir) : process.cwd();\n  const maxHistory = options.maxHistoryCommits || 100;\n\n  if (!fs.existsSync(outputDir)) {\n    fs.mkdirSync(outputDir, { recursive: true });\n  }\n\n  // 1. Resolve commit info for current run\n  const currentCommit = resolveCommitInfo({\n    cwd: rootDir,\n    sha: options.commitSha,\n    message: options.commitMessage,\n    author: options.commitAuthor,\n    date: options.commitDate,\n    branch: options.branch,\n    tag: options.tag,\n  });\n\n  // 2. Load existing history\n  const historyPath = options.historyFile \n    ? path.resolve(options.historyFile) \n    : path.join(outputDir, 'history.json');\n  \n  let commitsHistory = loadHistory(historyPath);\n  // Loose commit objects (objects/<aa>/<rest>.json) are the source of truth;\n  // history.json is just the packed index of them.\n  for (const obj of loadCommitObjects(outputDir)) {\n    commitsHistory = appendOrUpdateCommit(commitsHistory, obj, Number.MAX_SAFE_INTEGER);\n  }\n\n  // If a historyDir is provided, load and parse any historical coverage files\n  if (options.historyDir && fs.existsSync(options.historyDir)) {\n    const historyFiles = fs.readdirSync(options.historyDir)\n      .filter((f: string) => !f.startsWith('.') && (f.endsWith('.lcov') || f.endsWith('.info') || f.endsWith('.xml') || f.endsWith('.json')))\n      .sort();\n\n    for (const hFile of historyFiles) {\n      const fullHPath = path.join(options.historyDir, hFile);\n      const parsedHFiles = parseCoverageFile(fullHPath, {\n        format: options.format,\n        rootDir,\n        includeSource: false,\n      });\n      const aggregatedH = aggregateCoverage(parsedHFiles);\n\n      // Extract metadata from filename if possible, e.g. <sha>_<date>_<branch>.lcov\n      const baseName = path.basename(hFile, path.extname(hFile));\n      const parts = baseName.split('_');\n      const hSha = parts[0] || `hist_${baseName}`;\n      const hDate = parts[1] || new Date(fs.statSync(fullHPath).mtime).toISOString();\n      const hBranch = parts[2] || currentCommit.branch;\n\n      const hCommitInfo = {\n        sha: hSha,\n        shortSha: hSha.slice(0, 7),\n        message: `Coverage run ${baseName}`,\n        author: 'automated',\n        date: hDate,\n        branch: hBranch,\n      };\n\n      const hEntry = createCommitHistoryEntry(\n        hCommitInfo,\n        aggregatedH.summary,\n        aggregatedH.folders,\n        aggregatedH.files\n      );\n\n      commitsHistory = appendOrUpdateCommit(commitsHistory, hEntry, maxHistory);\n    }\n  }\n\n  // 3. Process primary input coverage file(s)\n  let mergedFiles: Record<string, FileCoverage> = {};\n  const sourcesArtifacts: { format: string; path: string }[] = [];\n\n  const inputPaths = options.inputs && options.inputs.length > 0 \n    ? options.inputs \n    : ['coverage/lcov.info'];\n\n  for (let i = 0; i < inputPaths.length; i++) {\n    const inputPath = inputPaths[i];\n    const resolvedInput = path.resolve(inputPath);\n    if (!fs.existsSync(resolvedInput)) {\n      throw new Error(`Coverage input file not found: ${resolvedInput}`);\n    }\n\n    const content = fs.readFileSync(resolvedInput, 'utf-8');\n    const parser = resolveParser(resolvedInput, content, options.format);\n    const parsed = parser.parse(content, rootDir, options.includeSource ?? true);\n    mergedFiles = { ...mergedFiles, ...parsed };\n\n    if (options.saveRaw) {\n      const ext = parser.extension || path.extname(resolvedInput).replace(/^\\./, '') || 'raw';\n      const kind = inputPaths.length > 1 ? `${i}.${parser.id}.${ext}` : `${parser.id}.${ext}`;\n      const relPath = writeRawObject(outputDir, currentCommit.sha, kind, content);\n      sourcesArtifacts.push({ format: parser.id, path: relPath });\n    }\n  }\n\n  // 4. Canonical LCOV generation for unified client consumption\n  const canonicalLcov = fileCoveragesToLcov(mergedFiles);\n  fs.writeFileSync(path.join(outputDir, 'lcov.info'), canonicalLcov, 'utf-8');\n\n  let lcovArtifactPath: string | undefined;\n  if (options.saveRaw) {\n    writeLcovObject(outputDir, currentCommit.sha, canonicalLcov);\n    lcovArtifactPath = `objects/${currentCommit.sha.slice(0, 2).toLowerCase()}/${currentCommit.sha.slice(2).toLowerCase()}.lcov`;\n  }\n\n  const artifacts = options.saveRaw\n    ? {\n        lcov: lcovArtifactPath,\n        sources: sourcesArtifacts.length > 0 ? sourcesArtifacts : undefined,\n      }\n    : undefined;\n\n  // 5. Hierarchical aggregation\n  const aggregated = aggregateCoverage(mergedFiles);\n\n  // 6. Create history entry for the current commit\n  const currentEntry = createCommitHistoryEntry(\n    currentCommit,\n    aggregated.summary,\n    aggregated.folders,\n    aggregated.files,\n    artifacts\n  );\n\n  // Find previous commit before appending current\n  const existingPrevious = commitsHistory.length > 0 \n    ? commitsHistory[commitsHistory.length - 1] \n    : undefined;\n\n  const previousCommit = existingPrevious?.commit;\n  const delta = calculateDelta(aggregated.summary, existingPrevious?.summary);\n\n  // Append or update current commit\n  commitsHistory = appendOrUpdateCommit(commitsHistory, currentEntry, maxHistory);\n\n  // 6. Build Trends across all historical commits (overall, folder, file)\n  const trends = buildTrends(commitsHistory);\n\n  // 7. Save updated history and refs\n  saveHistory(historyPath, commitsHistory);\n  const refs = extractRefs(commitsHistory);\n  saveRefs(path.join(outputDir, 'refs.json'), refs);\n\n  // Git-like loose store: objects/, refs/heads, refs/tags, HEAD\n  for (const entry of commitsHistory) writeCommitObject(outputDir, entry);\n  migrateLegacyLcov(outputDir, commitsHistory);\n  pruneObjects(outputDir, commitsHistory);\n  writeLooseRefs(outputDir, refs);\n  const defaultBranch = readHeadBranch(outputDir) || currentCommit.branch || 'main';\n  writeHead(outputDir, defaultBranch);\n\n  // 8. Assemble CovpagesData\n  const repoInfo = resolveRepoInfo({ cwd: rootDir, repo: options.repoName });\n  const repoName = options.repoName || repoInfo.repoName || path.basename(rootDir) || 'coverage';\n  const repoUrl = options.repoUrl || repoInfo.repoUrl;\n  const title = options.title || 'Coverage Report';\n\n  const covpagesData: CovpagesData = {\n    title,\n    repoName,\n    repoUrl,\n    baseUrl: options.baseUrl,\n    defaultBranch,\n    generatedAt: new Date().toISOString(),\n    currentCommit,\n    previousCommit,\n    delta,\n    summary: aggregated.summary,\n    folders: aggregated.folders,\n    files: aggregated.files,\n    folderChildren: aggregated.folderChildren,\n    commits: commitsHistory,\n    refs,\n    trends,\n  };\n\n  // 9. Render and write HTML, JS, CSS, JSON, .nojekyll, and .gitattributes\n  const rendered = renderIndexHtml(covpagesData);\n\n  fs.writeFileSync(path.join(outputDir, 'index.html'), rendered.html, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'covpages-data.json'), JSON.stringify(covpagesData, null, 2), 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'covpages-data.js'), rendered.dataJs, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '.nojekyll'), '', 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '404.html'), render404Html(), 'utf-8');\n\n  // 10. Generate scoped badges in badges/ directory for folders, files, branches, tags, and commits\n  const badgesDir = path.join(outputDir, 'badges');\n  if (!fs.existsSync(badgesDir)) {\n    fs.mkdirSync(badgesDir, { recursive: true });\n  }\n  fs.writeFileSync(path.join(badgesDir, 'overall.svg'), generateBadgeSvg(aggregated.summary.lines.pct, 'coverage'), 'utf-8');\n\n  // Branch badges: default branch is 'coverage', other branches are 'coverage@<branch>'\n  const branchMap: Record<string, number> = {};\n  if (currentCommit.branch) {\n    branchMap[currentCommit.branch] = aggregated.summary.lines.pct;\n  }\n  if (refs.branches) {\n    for (const [b, sha] of Object.entries(refs.branches)) {\n      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);\n      branchMap[b] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;\n    }\n  }\n  for (const [branch, pct] of Object.entries(branchMap)) {\n    const bFile = getBadgeFileName('branch', branch);\n    const bLabel = formatBadgeLabel('branch', branch, defaultBranch);\n    fs.writeFileSync(path.join(badgesDir, bFile), generateBadgeSvg(pct, bLabel), 'utf-8');\n  }\n\n  // Tag badges: 'coverage@<tag>'\n  const tagMap: Record<string, number> = {};\n  if (currentCommit.tag) {\n    tagMap[currentCommit.tag] = aggregated.summary.lines.pct;\n  }\n  if (refs.tags) {\n    for (const [t, sha] of Object.entries(refs.tags)) {\n      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);\n      tagMap[t] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;\n    }\n  }\n  for (const [tag, pct] of Object.entries(tagMap)) {\n    const tFile = getBadgeFileName('tag', tag);\n    const tLabel = formatBadgeLabel('tag', tag, defaultBranch);\n    fs.writeFileSync(path.join(badgesDir, tFile), generateBadgeSvg(pct, tLabel), 'utf-8');\n  }\n\n  // Commit badges: 'coverage@<commit-id>'\n  for (const entry of commitsHistory) {\n    if (entry.commit.shortSha) {\n      const cFile = getBadgeFileName('commit', entry.commit.shortSha);\n      const cLabel = formatBadgeLabel('commit', entry.commit.shortSha, defaultBranch);\n      fs.writeFileSync(path.join(badgesDir, cFile), generateBadgeSvg(entry.summary.lines.pct, cLabel), 'utf-8');\n    }\n  }\n\n  for (const [fPath, fCov] of Object.entries(aggregated.folders)) {\n    if (!fPath) continue;\n    const fFile = getBadgeFileName('folder', fPath);\n    const fLabel = formatBadgeLabel('folder', fPath);\n    fs.writeFileSync(path.join(badgesDir, fFile), generateBadgeSvg(fCov.lines.pct, fLabel), 'utf-8');\n  }\n\n  for (const [filePath, fileCov] of Object.entries(aggregated.files)) {\n    const fileFile = getBadgeFileName('file', filePath);\n    const fileLabel = formatBadgeLabel('file', filePath);\n    fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, fileLabel), 'utf-8');\n  }\n\n  if (options.mcp) {\n    buildMcpPage(outputDir, { repo: repoName, title });\n  }\n\n  return covpagesData;\n}\n"
+      "sourceCode": "import fs from 'node:fs';\nimport path from 'node:path';\nimport type {\n  CovpagesData,\n  GenerateOptions,\n  FileCoverage,\n  CommitHistoryEntry,\n} from './types.js';\nimport { parseCoverageFile, resolveParser } from './parsers/index.js';\nimport { resolveCommitInfo, resolveRepoInfo } from './core/git.js';\nimport { aggregateCoverage } from './core/aggregator.js';\nimport {\n  createCommitHistoryEntry,\n  buildTrends,\n  loadHistory,\n  saveHistory,\n  appendOrUpdateCommit,\n  calculateDelta,\n  extractRefs,\n  saveRefs,\n} from './core/history.js';\nimport { normalizeLcov, fileCoveragesToLcov, GITATTRIBUTES_CONTENT } from './core/lcov-normalizer.js';\nimport { generateBadgeSvg, getBadgeFileName, formatBadgeLabel } from './core/badge.js';\nimport { renderIndexHtml, render404Html } from './templates/index.html.js';\nimport {\n  loadCommitObjects,\n  writeCommitObject,\n  writeLcovObject,\n  writeRawObject,\n  writeLooseRefs,\n  writeHead,\n  readHeadBranch,\n  pruneObjects,\n  migrateLegacyLcov,\n} from './core/store.js';\n\nexport * from './types.js';\nexport * from './parsers/index.js';\nexport * from './core/aggregator.js';\nexport * from './core/history.js';\nexport * from './core/git.js';\nexport * from './core/store.js';\nexport * from './core/backfill.js';\nexport * from './core/presets.js';\nexport * from './core/lcov-normalizer.js';\nexport * from './core/badge.js';\nexport * from './server.js';\nexport * from './mcp/index.js';\nexport { renderDropinHtml } from './templates/index.html.js';\nimport { buildMcpPage } from './mcp/index.js';\n\nexport function createDropinSite(\n  outputDir = 'gh-pages',\n  title = 'Coverage Report',\n  options: { mcp?: boolean } = {}\n): void {\n  const dir = path.resolve(outputDir);\n  if (!fs.existsSync(dir)) {\n    fs.mkdirSync(dir, { recursive: true });\n  }\n  const rendered = renderIndexHtml(null);\n  fs.writeFileSync(path.join(dir, 'index.html'), rendered.html, 'utf-8');\n  fs.writeFileSync(path.join(dir, '.nojekyll'), '', 'utf-8');\n  fs.writeFileSync(path.join(dir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');\n  fs.writeFileSync(path.join(dir, 'badge.svg'), generateBadgeSvg(100), 'utf-8');\n  fs.writeFileSync(path.join(dir, '404.html'), render404Html(), 'utf-8');\n\n  // If dir is a subfolder named covpages (e.g. docs/covpages), GitHub Pages requires\n  // 404.html in the root of the publishing source (e.g. docs/404.html) to support SPA routing.\n  const dropinParent = path.dirname(dir);\n  const dropinParent404 = path.join(dropinParent, '404.html');\n  if (path.basename(dir) === 'covpages' && !fs.existsSync(dropinParent404)) {\n    try {\n      fs.writeFileSync(dropinParent404, render404Html(), 'utf-8');\n    } catch {\n      // Ignore if parent dir is not writable\n    }\n  }\n\n  if (options.mcp) {\n    buildMcpPage(dir, { title });\n  }\n}\n\n\nexport function generateCoveragePages(options: GenerateOptions): CovpagesData {\n  const outputDir = path.resolve(options.outputDir || './covpages-dist');\n  const rootDir = options.rootDir ? path.resolve(options.rootDir) : process.cwd();\n  const maxHistory = options.maxHistoryCommits || 100;\n\n  if (!fs.existsSync(outputDir)) {\n    fs.mkdirSync(outputDir, { recursive: true });\n  }\n\n  // 1. Resolve commit info for current run\n  const currentCommit = resolveCommitInfo({\n    cwd: rootDir,\n    sha: options.commitSha,\n    message: options.commitMessage,\n    author: options.commitAuthor,\n    date: options.commitDate,\n    branch: options.branch,\n    tag: options.tag,\n  });\n\n  // 2. Load existing history\n  const historyPath = options.historyFile \n    ? path.resolve(options.historyFile) \n    : path.join(outputDir, 'history.json');\n  \n  let commitsHistory = loadHistory(historyPath);\n  // Loose commit objects (objects/<aa>/<rest>.json) are the source of truth;\n  // history.json is just the packed index of them.\n  for (const obj of loadCommitObjects(outputDir)) {\n    commitsHistory = appendOrUpdateCommit(commitsHistory, obj, Number.MAX_SAFE_INTEGER);\n  }\n\n  // If a historyDir is provided, load and parse any historical coverage files\n  if (options.historyDir && fs.existsSync(options.historyDir)) {\n    const historyFiles = fs.readdirSync(options.historyDir)\n      .filter((f: string) => !f.startsWith('.') && (f.endsWith('.lcov') || f.endsWith('.info') || f.endsWith('.xml') || f.endsWith('.json')))\n      .sort();\n\n    for (const hFile of historyFiles) {\n      const fullHPath = path.join(options.historyDir, hFile);\n      const parsedHFiles = parseCoverageFile(fullHPath, {\n        format: options.format,\n        rootDir,\n        includeSource: false,\n      });\n      const aggregatedH = aggregateCoverage(parsedHFiles);\n\n      // Extract metadata from filename if possible, e.g. <sha>_<date>_<branch>.lcov\n      const baseName = path.basename(hFile, path.extname(hFile));\n      const parts = baseName.split('_');\n      const hSha = parts[0] || `hist_${baseName}`;\n      const hDate = parts[1] || new Date(fs.statSync(fullHPath).mtime).toISOString();\n      const hBranch = parts[2] || currentCommit.branch;\n\n      const hCommitInfo = {\n        sha: hSha,\n        shortSha: hSha.slice(0, 7),\n        message: `Coverage run ${baseName}`,\n        author: 'automated',\n        date: hDate,\n        branch: hBranch,\n      };\n\n      const hEntry = createCommitHistoryEntry(\n        hCommitInfo,\n        aggregatedH.summary,\n        aggregatedH.folders,\n        aggregatedH.files\n      );\n\n      commitsHistory = appendOrUpdateCommit(commitsHistory, hEntry, maxHistory);\n    }\n  }\n\n  // 3. Process primary input coverage file(s)\n  let mergedFiles: Record<string, FileCoverage> = {};\n  const sourcesArtifacts: { format: string; path: string }[] = [];\n\n  const inputPaths = options.inputs && options.inputs.length > 0 \n    ? options.inputs \n    : ['coverage/lcov.info'];\n\n  for (let i = 0; i < inputPaths.length; i++) {\n    const inputPath = inputPaths[i];\n    const resolvedInput = path.resolve(inputPath);\n    if (!fs.existsSync(resolvedInput)) {\n      throw new Error(`Coverage input file not found: ${resolvedInput}`);\n    }\n\n    const content = fs.readFileSync(resolvedInput, 'utf-8');\n    const parser = resolveParser(resolvedInput, content, options.format);\n    const parsed = parser.parse(content, rootDir, options.includeSource ?? true);\n    mergedFiles = { ...mergedFiles, ...parsed };\n\n    if (options.saveRaw) {\n      const ext = parser.extension || path.extname(resolvedInput).replace(/^\\./, '') || 'raw';\n      const kind = inputPaths.length > 1 ? `${i}.${parser.id}.${ext}` : `${parser.id}.${ext}`;\n      const relPath = writeRawObject(outputDir, currentCommit.sha, kind, content);\n      sourcesArtifacts.push({ format: parser.id, path: relPath });\n    }\n  }\n\n  // 4. Canonical LCOV generation for unified client consumption\n  const canonicalLcov = fileCoveragesToLcov(mergedFiles);\n  fs.writeFileSync(path.join(outputDir, 'lcov.info'), canonicalLcov, 'utf-8');\n\n  let lcovArtifactPath: string | undefined;\n  if (options.saveRaw) {\n    writeLcovObject(outputDir, currentCommit.sha, canonicalLcov);\n    lcovArtifactPath = `objects/${currentCommit.sha.slice(0, 2).toLowerCase()}/${currentCommit.sha.slice(2).toLowerCase()}.lcov`;\n  }\n\n  const artifacts = options.saveRaw\n    ? {\n        lcov: lcovArtifactPath,\n        sources: sourcesArtifacts.length > 0 ? sourcesArtifacts : undefined,\n      }\n    : undefined;\n\n  // 5. Hierarchical aggregation\n  const aggregated = aggregateCoverage(mergedFiles);\n\n  // 6. Create history entry for the current commit\n  const currentEntry = createCommitHistoryEntry(\n    currentCommit,\n    aggregated.summary,\n    aggregated.folders,\n    aggregated.files,\n    artifacts\n  );\n\n  // Find previous commit before appending current\n  const existingPrevious = commitsHistory.length > 0 \n    ? commitsHistory[commitsHistory.length - 1] \n    : undefined;\n\n  const previousCommit = existingPrevious?.commit;\n  const delta = calculateDelta(aggregated.summary, existingPrevious?.summary);\n\n  // Append or update current commit\n  commitsHistory = appendOrUpdateCommit(commitsHistory, currentEntry, maxHistory);\n\n  // 6. Build Trends across all historical commits (overall, folder, file)\n  const trends = buildTrends(commitsHistory);\n\n  // 7. Save updated history and refs\n  saveHistory(historyPath, commitsHistory);\n  const refs = extractRefs(commitsHistory);\n  saveRefs(path.join(outputDir, 'refs.json'), refs);\n\n  // Git-like loose store: objects/, refs/heads, refs/tags, HEAD\n  for (const entry of commitsHistory) writeCommitObject(outputDir, entry);\n  migrateLegacyLcov(outputDir, commitsHistory);\n  pruneObjects(outputDir, commitsHistory);\n  writeLooseRefs(outputDir, refs);\n  const defaultBranch = readHeadBranch(outputDir) || currentCommit.branch || 'main';\n  writeHead(outputDir, defaultBranch);\n\n  // 8. Assemble CovpagesData\n  const repoInfo = resolveRepoInfo({ cwd: rootDir, repo: options.repoName });\n  const repoName = options.repoName || repoInfo.repoName || path.basename(rootDir) || 'coverage';\n  const repoUrl = options.repoUrl || repoInfo.repoUrl;\n  const title = options.title || 'Coverage Report';\n\n  const covpagesData: CovpagesData = {\n    title,\n    repoName,\n    repoUrl,\n    baseUrl: options.baseUrl,\n    defaultBranch,\n    generatedAt: new Date().toISOString(),\n    currentCommit,\n    previousCommit,\n    delta,\n    summary: aggregated.summary,\n    folders: aggregated.folders,\n    files: aggregated.files,\n    folderChildren: aggregated.folderChildren,\n    commits: commitsHistory,\n    refs,\n    trends,\n  };\n\n  // 9. Render and write HTML, JS, CSS, JSON, .nojekyll, and .gitattributes\n  const rendered = renderIndexHtml(covpagesData);\n\n  fs.writeFileSync(path.join(outputDir, 'index.html'), rendered.html, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'covpages-data.json'), JSON.stringify(covpagesData, null, 2), 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'covpages-data.js'), rendered.dataJs, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '.nojekyll'), '', 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '.gitattributes'), GITATTRIBUTES_CONTENT, 'utf-8');\n  fs.writeFileSync(path.join(outputDir, 'badge.svg'), generateBadgeSvg(aggregated.summary.lines.pct), 'utf-8');\n  fs.writeFileSync(path.join(outputDir, '404.html'), render404Html(), 'utf-8');\n\n  // If outputDir is a subfolder named covpages (e.g. docs/covpages), GitHub Pages requires\n  // 404.html in the root of the publishing source (e.g. docs/404.html) to support SPA routing.\n  const parentDir = path.dirname(outputDir);\n  const parent404 = path.join(parentDir, '404.html');\n  if (path.basename(outputDir) === 'covpages' && !fs.existsSync(parent404)) {\n    try {\n      fs.writeFileSync(parent404, render404Html(), 'utf-8');\n    } catch {\n      // Ignore if parent dir is not writable\n    }\n  }\n\n  // 10. Generate scoped badges in badges/ directory for folders, files, branches, tags, and commits\n  const badgesDir = path.join(outputDir, 'badges');\n  if (!fs.existsSync(badgesDir)) {\n    fs.mkdirSync(badgesDir, { recursive: true });\n  }\n  fs.writeFileSync(path.join(badgesDir, 'overall.svg'), generateBadgeSvg(aggregated.summary.lines.pct, 'coverage'), 'utf-8');\n\n  // Branch badges: default branch is 'coverage', other branches are 'coverage@<branch>'\n  const branchMap: Record<string, number> = {};\n  if (currentCommit.branch) {\n    branchMap[currentCommit.branch] = aggregated.summary.lines.pct;\n  }\n  if (refs.branches) {\n    for (const [b, sha] of Object.entries(refs.branches)) {\n      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);\n      branchMap[b] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;\n    }\n  }\n  for (const [branch, pct] of Object.entries(branchMap)) {\n    const bFile = getBadgeFileName('branch', branch);\n    const bLabel = formatBadgeLabel('branch', branch, defaultBranch);\n    fs.writeFileSync(path.join(badgesDir, bFile), generateBadgeSvg(pct, bLabel), 'utf-8');\n  }\n\n  // Tag badges: 'coverage@<tag>'\n  const tagMap: Record<string, number> = {};\n  if (currentCommit.tag) {\n    tagMap[currentCommit.tag] = aggregated.summary.lines.pct;\n  }\n  if (refs.tags) {\n    for (const [t, sha] of Object.entries(refs.tags)) {\n      const match = commitsHistory.find(c => c.commit.sha === sha || c.commit.shortSha === sha);\n      tagMap[t] = match ? match.summary.lines.pct : aggregated.summary.lines.pct;\n    }\n  }\n  for (const [tag, pct] of Object.entries(tagMap)) {\n    const tFile = getBadgeFileName('tag', tag);\n    const tLabel = formatBadgeLabel('tag', tag, defaultBranch);\n    fs.writeFileSync(path.join(badgesDir, tFile), generateBadgeSvg(pct, tLabel), 'utf-8');\n  }\n\n  // Commit badges: 'coverage@<commit-id>'\n  for (const entry of commitsHistory) {\n    if (entry.commit.shortSha) {\n      const cFile = getBadgeFileName('commit', entry.commit.shortSha);\n      const cLabel = formatBadgeLabel('commit', entry.commit.shortSha, defaultBranch);\n      fs.writeFileSync(path.join(badgesDir, cFile), generateBadgeSvg(entry.summary.lines.pct, cLabel), 'utf-8');\n    }\n  }\n\n  for (const [fPath, fCov] of Object.entries(aggregated.folders)) {\n    if (!fPath) continue;\n    const fFile = getBadgeFileName('folder', fPath);\n    const fLabel = formatBadgeLabel('folder', fPath);\n    fs.writeFileSync(path.join(badgesDir, fFile), generateBadgeSvg(fCov.lines.pct, fLabel), 'utf-8');\n  }\n\n  for (const [filePath, fileCov] of Object.entries(aggregated.files)) {\n    const fileFile = getBadgeFileName('file', filePath);\n    const fileLabel = formatBadgeLabel('file', filePath);\n    fs.writeFileSync(path.join(badgesDir, fileFile), generateBadgeSvg(fileCov.lines.pct, fileLabel), 'utf-8');\n  }\n\n  if (options.mcp) {\n    buildMcpPage(outputDir, { repo: repoName, title });\n  }\n\n  return covpagesData;\n}\n"
     },
     "src/server.ts": {
       "path": "src/server.ts",
@@ -3484,8 +3484,8 @@
         "73": {
           "hits": 72,
           "branches": {
-            "total": 1,
-            "taken": 1
+            "total": 2,
+            "taken": 2
           }
         },
         "74": {
@@ -3498,8 +3498,8 @@
         "75": {
           "hits": 15,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 1,
+            "taken": 1
           }
         },
         "76": {
@@ -3604,9 +3604,9 @@
       "path": "src/core/git.ts",
       "lines": {
         "total": 81,
-        "covered": 71,
-        "skipped": 10,
-        "pct": 87.65
+        "covered": 67,
+        "skipped": 14,
+        "pct": 82.72
       },
       "functions": {
         "total": 5,
@@ -3616,45 +3616,45 @@
       },
       "branches": {
         "total": 50,
-        "covered": 27,
-        "skipped": 23,
-        "pct": 54
+        "covered": 30,
+        "skipped": 20,
+        "pct": 60
       },
       "lineDetails": {
         "1": {
           "hits": 1
         },
         "4": {
-          "hits": 31,
+          "hits": 54,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "5": {
-          "hits": 31
+          "hits": 54
         },
         "6": {
-          "hits": 31
+          "hits": 54
         },
         "7": {
-          "hits": 31,
+          "hits": 54,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
         "8": {
-          "hits": 31
+          "hits": 54
         },
         "9": {
-          "hits": 31
+          "hits": 54
         },
         "10": {
-          "hits": 31
+          "hits": 54
         },
         "11": {
-          "hits": 31,
+          "hits": 54,
           "branches": {
             "total": 1,
             "taken": 1
@@ -3667,7 +3667,7 @@
           "hits": 9
         },
         "14": {
-          "hits": 31
+          "hits": 54
         },
         "20": {
           "hits": 1,
@@ -3764,7 +3764,7 @@
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "48": {
@@ -3774,14 +3774,14 @@
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 2
+            "taken": 1
           }
         },
         "50": {
           "hits": 10,
           "branches": {
             "total": 3,
-            "taken": 1
+            "taken": 2
           }
         },
         "51": {
@@ -3795,7 +3795,7 @@
           "hits": 10,
           "branches": {
             "total": 5,
-            "taken": 2
+            "taken": 3
           }
         },
         "53": {
@@ -3925,42 +3925,42 @@
           "hits": 10
         },
         "93": {
-          "hits": 10,
-          "branches": {
-            "total": 1,
-            "taken": 0
-          }
+          "hits": 10
         },
         "94": {
-          "hits": 0
+          "hits": 10
         },
         "95": {
-          "hits": 0
+          "hits": 10,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
         },
         "96": {
-          "hits": 10
-        },
-        "97": {
-          "hits": 10
-        },
-        "98": {
-          "hits": 10
-        },
-        "99": {
-          "hits": 10
-        },
-        "100": {
           "hits": 10,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
+        "97": {
+          "hits": 0
+        },
+        "98": {
+          "hits": 0
+        },
+        "99": {
+          "hits": 0
+        },
+        "100": {
+          "hits": 0
+        },
         "101": {
-          "hits": 10
+          "hits": 0
         },
         "102": {
-          "hits": 10
+          "hits": 0
         },
         "103": {
           "hits": 10
@@ -3989,7 +3989,7 @@
         {
           "name": "runGit",
           "line": 4,
-          "hits": 31
+          "hits": 54
         },
         {
           "name": "resolveContainingBranch",
@@ -4029,10 +4029,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 49,
-        "covered": 35,
+        "total": 50,
+        "covered": 36,
         "skipped": 14,
-        "pct": 71.43
+        "pct": 72
       },
       "lineDetails": {
         "1": {
@@ -4695,8 +4695,8 @@
         "205": {
           "hits": 11,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 3,
+            "taken": 3
           }
         },
         "206": {
@@ -5810,7 +5810,7 @@
           "hits": 3
         }
       ],
-      "sourceCode": "export interface FrameworkPreset {\n  name: string;\n  language: string;\n  testCmd: string;\n  coverageFile: string;\n  description: string;\n  workflowStep: string;\n}\n\nexport const FRAMEWORK_PRESETS: Record<string, FrameworkPreset> = {\n  flutter: {\n    name: 'Flutter / Dart',\n    language: 'dart',\n    testCmd: 'flutter test --coverage',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Flutter and Dart applications using built-in lcov test runner',\n    workflowStep: `      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          channel: 'stable'\n\n      - name: Run Tests with Coverage\n        run: flutter test --coverage`,\n  },\n  dart: {\n    name: 'Dart (Standalone)',\n    language: 'dart',\n    testCmd: 'dart test --coverage=coverage && dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Pure Dart packages and CLI applications',\n    workflowStep: `      - name: Setup Dart\n        uses: dart-lang/setup-dart@v1\n\n      - name: Run Tests with Coverage\n        run: |\n          dart pub get\n          dart test --coverage=coverage\n          dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info`,\n  },\n  vitest: {\n    name: 'Vitest (JavaScript / TypeScript)',\n    language: 'javascript',\n    testCmd: 'npx vitest run --coverage',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Vite / Vitest projects with @vitest/coverage-v8 or istanbul',\n    workflowStep: `      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx vitest run --coverage`,\n  },\n  jest: {\n    name: 'Jest (JavaScript / TypeScript)',\n    language: 'javascript',\n    testCmd: 'npx jest --coverage --coverageReporters=\"lcov\"',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Jest test suites configured with lcov reporter',\n    workflowStep: `      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx jest --coverage --coverageReporters=\"lcov\"`,\n  },\n  rust: {\n    name: 'Rust (cargo-llvm-cov)',\n    language: 'rust',\n    testCmd: 'cargo llvm-cov --lcov --output-path coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Rust crates using cargo-llvm-cov source-based coverage',\n    workflowStep: `      - name: Install Rust toolchain\n        uses: dtolnay/rust-toolchain@stable\n\n      - name: Install cargo-llvm-cov\n        uses: taiki-e/install-action@cargo-llvm-cov\n\n      - name: Run Tests with Coverage\n        run: |\n          mkdir -p coverage\n          cargo llvm-cov --lcov --output-path coverage/lcov.info`,\n  },\n  python: {\n    name: 'Python (pytest-cov)',\n    language: 'python',\n    testCmd: 'pytest --cov --cov-report=lcov:coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Python projects using pytest and pytest-cov lcov output',\n    workflowStep: `      - name: Setup Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: '3.12'\n\n      - name: Run Tests with Coverage\n        run: |\n          pip install pytest pytest-cov\n          pytest --cov --cov-report=lcov:coverage/lcov.info`,\n  },\n  go: {\n    name: 'Go',\n    language: 'go',\n    testCmd: 'go test -coverprofile=coverage.out ./... && npx covpages coverage.out',\n    coverageFile: 'coverage.out',\n    description: 'Go projects using standard coverprofile',\n    workflowStep: `      - name: Setup Go\n        uses: actions/setup-go@v5\n        with:\n          go-version: 'stable'\n\n      - name: Run Tests with Coverage\n        run: go test -v -coverprofile=coverage.out ./...`,\n  },\n  cpp: {\n    name: 'C / C++ (gcov / lcov)',\n    language: 'cpp',\n    testCmd: 'lcov --capture --directory . --output-file coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'C/C++ projects compiled with --coverage',\n    workflowStep: `      - name: Install lcov\n        run: sudo apt-get update && sudo apt-get install -y lcov\n\n      - name: Run Tests and Generate LCOV\n        run: |\n          mkdir -p coverage\n          lcov --capture --directory . --output-file coverage/lcov.info`,\n  },\n};\n\nexport function getPreset(name: string): FrameworkPreset | undefined {\n  const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');\n  return FRAMEWORK_PRESETS[key] || FRAMEWORK_PRESETS[name.toLowerCase()];\n}\n\nexport function generatePresetWorkflow(presetKey: string, options?: { docs?: boolean }): string {\n  const preset = getPreset(presetKey);\n  if (!preset) {\n    throw new Error(`Unknown framework preset: \"${presetKey}\". Available: ${Object.keys(FRAMEWORK_PRESETS).join(', ')}`);\n  }\n\n  if (options?.docs) {\n    return `name: Test Coverage Pages (Docs)\n\non:\n  push:\n    branches: [main, master]\n  pull_request:\n\npermissions:\n  contents: write\n\nconcurrency:\n  group: \"covpages-docs\"\n  cancel-in-progress: false\n\njobs:\n  coverage:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n${preset.workflowStep}\n\n      - name: Generate covpages Report for docs/covpages\n        run: |\n          npx covpages generate \\\\\n            --input ${preset.coverageFile} \\\\\n            --output docs/covpages \\\\\n            --commit \"\\${{ github.sha }}\" \\\\\n            --branch \"\\${{ github.ref_name }}\" \\\\\n            --message \"\\${{ github.event.head_commit.message || 'Coverage update' }}\"\n\n      - name: Commit and Push to docs/covpages\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        run: |\n          git config --global user.name \"github-actions[bot]\"\n          git config --global user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add docs/covpages\n          git diff --staged --quiet || git commit -m \"docs(coverage): update covpages report [skip ci]\"\n          git push\n`;\n  }\n\n  return `name: Test Coverage Pages\n\non:\n  push:\n    branches: [main, master]\n  pull_request:\n\npermissions:\n  contents: write\n  pages: write\n\nconcurrency:\n  group: \"pages\"\n  cancel-in-progress: false\n\njobs:\n  coverage:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n${preset.workflowStep}\n\n      - name: Restore Previous Coverage History\n        uses: actions/cache/restore@v4\n        with:\n          path: covpages-dist/history.json\n          key: covpages-history-\\${{ github.ref_name }}\n          restore-keys: |\n            covpages-history-\n\n      - name: Generate covpages Report\n        run: |\n          npx covpages generate \\\\\n            --input ${preset.coverageFile} \\\\\n            --output covpages-dist \\\\\n            --commit \"\\${{ github.sha }}\" \\\\\n            --branch \"\\${{ github.ref_name }}\" \\\\\n            --message \"\\${{ github.event.head_commit.message || 'Coverage update' }}\"\n\n      - name: Save Coverage History Cache\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        uses: actions/cache/save@v4\n        with:\n          path: covpages-dist/history.json\n          key: covpages-history-\\${{ github.ref_name }}-\\${{ github.run_id }}\n\n      - name: Deploy to gh-pages Branch\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        uses: peaceiris/actions-gh-pages@v4\n        with:\n          github_token: \\${{ secrets.GITHUB_TOKEN }}\n          publish_dir: ./covpages-dist\n          force_orphan: true\n`;\n}\n"
+      "sourceCode": "export interface FrameworkPreset {\n  name: string;\n  language: string;\n  testCmd: string;\n  coverageFile: string;\n  description: string;\n  workflowStep: string;\n}\n\nexport const FRAMEWORK_PRESETS: Record<string, FrameworkPreset> = {\n  flutter: {\n    name: 'Flutter / Dart',\n    language: 'dart',\n    testCmd: 'flutter test --coverage',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Flutter and Dart applications using built-in lcov test runner',\n    workflowStep: `      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          channel: 'stable'\n\n      - name: Run Tests with Coverage\n        run: flutter test --coverage`,\n  },\n  dart: {\n    name: 'Dart (Standalone)',\n    language: 'dart',\n    testCmd: 'dart test --coverage=coverage && dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Pure Dart packages and CLI applications',\n    workflowStep: `      - name: Setup Dart\n        uses: dart-lang/setup-dart@v1\n\n      - name: Run Tests with Coverage\n        run: |\n          dart pub get\n          dart test --coverage=coverage\n          dart pub run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -i coverage -o coverage/lcov.info`,\n  },\n  vitest: {\n    name: 'Vitest (JavaScript / TypeScript)',\n    language: 'javascript',\n    testCmd: 'npx vitest run --coverage',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Vite / Vitest projects with @vitest/coverage-v8 or istanbul',\n    workflowStep: `      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx vitest run --coverage`,\n  },\n  jest: {\n    name: 'Jest (JavaScript / TypeScript)',\n    language: 'javascript',\n    testCmd: 'npx jest --coverage --coverageReporters=\"lcov\"',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Jest test suites configured with lcov reporter',\n    workflowStep: `      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '22'\n\n      - name: Run Tests with Coverage\n        run: |\n          npm ci\n          npx jest --coverage --coverageReporters=\"lcov\"`,\n  },\n  rust: {\n    name: 'Rust (cargo-llvm-cov)',\n    language: 'rust',\n    testCmd: 'cargo llvm-cov --lcov --output-path coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Rust crates using cargo-llvm-cov source-based coverage',\n    workflowStep: `      - name: Install Rust toolchain\n        uses: dtolnay/rust-toolchain@stable\n\n      - name: Install cargo-llvm-cov\n        uses: taiki-e/install-action@cargo-llvm-cov\n\n      - name: Run Tests with Coverage\n        run: |\n          mkdir -p coverage\n          cargo llvm-cov --lcov --output-path coverage/lcov.info`,\n  },\n  python: {\n    name: 'Python (pytest-cov)',\n    language: 'python',\n    testCmd: 'pytest --cov --cov-report=lcov:coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'Python projects using pytest and pytest-cov lcov output',\n    workflowStep: `      - name: Setup Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: '3.12'\n\n      - name: Run Tests with Coverage\n        run: |\n          pip install pytest pytest-cov\n          pytest --cov --cov-report=lcov:coverage/lcov.info`,\n  },\n  go: {\n    name: 'Go',\n    language: 'go',\n    testCmd: 'go test -coverprofile=coverage.out ./... && npx covpages coverage.out',\n    coverageFile: 'coverage.out',\n    description: 'Go projects using standard coverprofile',\n    workflowStep: `      - name: Setup Go\n        uses: actions/setup-go@v5\n        with:\n          go-version: 'stable'\n\n      - name: Run Tests with Coverage\n        run: go test -v -coverprofile=coverage.out ./...`,\n  },\n  cpp: {\n    name: 'C / C++ (gcov / lcov)',\n    language: 'cpp',\n    testCmd: 'lcov --capture --directory . --output-file coverage/lcov.info',\n    coverageFile: 'coverage/lcov.info',\n    description: 'C/C++ projects compiled with --coverage',\n    workflowStep: `      - name: Install lcov\n        run: sudo apt-get update && sudo apt-get install -y lcov\n\n      - name: Run Tests and Generate LCOV\n        run: |\n          mkdir -p coverage\n          lcov --capture --directory . --output-file coverage/lcov.info`,\n  },\n};\n\nexport function getPreset(name: string): FrameworkPreset | undefined {\n  const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');\n  return FRAMEWORK_PRESETS[key] || FRAMEWORK_PRESETS[name.toLowerCase()];\n}\n\nexport function generatePresetWorkflow(presetKey: string, options?: { docs?: boolean }): string {\n  const preset = getPreset(presetKey);\n  if (!preset) {\n    throw new Error(`Unknown framework preset: \"${presetKey}\". Available: ${Object.keys(FRAMEWORK_PRESETS).join(', ')}`);\n  }\n\n  if (options?.docs) {\n    return `name: Test Coverage Pages (Docs)\n\non:\n  push:\n    branches: [main, master]\n  pull_request:\n\npermissions:\n  contents: write\n\nconcurrency:\n  group: \"covpages-docs\"\n  cancel-in-progress: false\n\njobs:\n  coverage:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n${preset.workflowStep}\n\n      - name: Generate covpages Report for docs/covpages\n        run: |\n          npx covpages generate \\\\\n            --input ${preset.coverageFile} \\\\\n            --output docs/covpages \\\\\n            --commit \"\\${{ github.sha }}\" \\\\\n            --branch \"\\${{ github.ref_name }}\" \\\\\n            --message \"\\${{ github.event.head_commit.message || 'Coverage update' }}\"\n\n      - name: Commit and Push to docs/covpages\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        run: |\n          git config --global user.name \"github-actions[bot]\"\n          git config --global user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add docs/covpages docs/404.html 2>/dev/null || true\n          git diff --staged --quiet || git commit -m \"docs(coverage): update covpages report [skip ci]\"\n          git push\n`;\n  }\n\n  return `name: Test Coverage Pages\n\non:\n  push:\n    branches: [main, master]\n  pull_request:\n\npermissions:\n  contents: write\n  pages: write\n\nconcurrency:\n  group: \"pages\"\n  cancel-in-progress: false\n\njobs:\n  coverage:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n${preset.workflowStep}\n\n      - name: Restore Previous Coverage History\n        uses: actions/cache/restore@v4\n        with:\n          path: covpages-dist/history.json\n          key: covpages-history-\\${{ github.ref_name }}\n          restore-keys: |\n            covpages-history-\n\n      - name: Generate covpages Report\n        run: |\n          npx covpages generate \\\\\n            --input ${preset.coverageFile} \\\\\n            --output covpages-dist \\\\\n            --commit \"\\${{ github.sha }}\" \\\\\n            --branch \"\\${{ github.ref_name }}\" \\\\\n            --message \"\\${{ github.event.head_commit.message || 'Coverage update' }}\"\n\n      - name: Save Coverage History Cache\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        uses: actions/cache/save@v4\n        with:\n          path: covpages-dist/history.json\n          key: covpages-history-\\${{ github.ref_name }}-\\${{ github.run_id }}\n\n      - name: Deploy to gh-pages Branch\n        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'\n        uses: peaceiris/actions-gh-pages@v4\n        with:\n          github_token: \\${{ secrets.GITHUB_TOKEN }}\n          publish_dir: ./covpages-dist\n          force_orphan: true\n`;\n}\n"
     },
     "src/core/store.ts": {
       "path": "src/core/store.ts",
@@ -5827,10 +5827,10 @@
         "pct": 100
       },
       "branches": {
-        "total": 43,
-        "covered": 31,
+        "total": 44,
+        "covered": 32,
         "skipped": 12,
-        "pct": 72.09
+        "pct": 72.73
       },
       "lineDetails": {
         "1": {
@@ -5963,8 +5963,8 @@
         "57": {
           "hits": 11,
           "branches": {
-            "total": 2,
-            "taken": 2
+            "total": 3,
+            "taken": 3
           }
         },
         "58": {
@@ -7293,9 +7293,9 @@
       "path": "src/mcp/web/client.mjs",
       "lines": {
         "total": 252,
-        "covered": 86,
-        "skipped": 166,
-        "pct": 34.13
+        "covered": 85,
+        "skipped": 167,
+        "pct": 33.73
       },
       "functions": {
         "total": 11,
@@ -7364,23 +7364,23 @@
           "hits": 1
         },
         "20": {
+          "hits": 1
+        },
+        "21": {
+          "hits": 1
+        },
+        "22": {
           "hits": 1,
           "branches": {
             "total": 1,
             "taken": 0
           }
         },
-        "21": {
+        "23": {
           "hits": 0
         },
-        "22": {
-          "hits": 1
-        },
-        "23": {
-          "hits": 1
-        },
         "24": {
-          "hits": 1
+          "hits": 0
         },
         "25": {
           "hits": 1
@@ -10043,10 +10043,10 @@
         "pct": 85.71
       },
       "branches": {
-        "total": 35,
-        "covered": 8,
-        "skipped": 27,
-        "pct": 22.86
+        "total": 36,
+        "covered": 10,
+        "skipped": 26,
+        "pct": 27.78
       },
       "lineDetails": {
         "1": {
@@ -10330,29 +10330,29 @@
           "hits": 1
         },
         "99": {
-          "hits": 16,
+          "hits": 14,
           "branches": {
             "total": 1,
             "taken": 1
           }
         },
         "100": {
-          "hits": 16
+          "hits": 14
         },
         "101": {
-          "hits": 16
+          "hits": 14
         },
         "102": {
-          "hits": 16
+          "hits": 14
         },
         "103": {
-          "hits": 16
+          "hits": 14
         },
         "104": {
-          "hits": 16
+          "hits": 14
         },
         "105": {
-          "hits": 16
+          "hits": 14
         },
         "107": {
           "hits": 1,
@@ -10584,14 +10584,18 @@
           "hits": 2,
           "branches": {
             "total": 1,
-            "taken": 0
+            "taken": 1
           }
         },
         "171": {
-          "hits": 2
+          "hits": 2,
+          "branches": {
+            "total": 1,
+            "taken": 1
+          }
         },
         "172": {
-          "hits": 2,
+          "hits": 1,
           "branches": {
             "total": 1,
             "taken": 0
@@ -10968,7 +10972,7 @@
         {
           "name": "escapeHtml",
           "line": 99,
-          "hits": 16
+          "hits": 14
         },
         {
           "name": "mountMcpPageUi",
@@ -14281,8 +14285,8 @@
         "309": {
           "hits": 33,
           "branches": {
-            "total": 1,
-            "taken": 1
+            "total": 2,
+            "taken": 2
           }
         },
         "310": {
@@ -14312,11 +14316,7 @@
           "hits": 3
         },
         "329": {
-          "hits": 33,
-          "branches": {
-            "total": 1,
-            "taken": 1
-          }
+          "hits": 30
         },
         "330": {
           "hits": 30,
@@ -67933,11 +67933,965 @@
           }
         ]
       }
+    },
+    {
+      "commit": {
+        "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+        "shortSha": "77d365d",
+        "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+        "author": "covpages-bot",
+        "date": "2026-10-27T05:01:21.000Z",
+        "branch": "main"
+      },
+      "summary": {
+        "lines": {
+          "total": 3819,
+          "covered": 2564,
+          "skipped": 1255,
+          "pct": 67.14
+        },
+        "functions": {
+          "total": 143,
+          "covered": 106,
+          "skipped": 37,
+          "pct": 74.13
+        },
+        "branches": {
+          "total": 993,
+          "covered": 732,
+          "skipped": 261,
+          "pct": 73.72
+        }
+      },
+      "folderSummaries": {
+        "": {
+          "lines": {
+            "total": 3819,
+            "covered": 2564,
+            "skipped": 1255,
+            "pct": 67.14
+          },
+          "functions": {
+            "total": 143,
+            "covered": 106,
+            "skipped": 37,
+            "pct": 74.13
+          },
+          "branches": {
+            "total": 993,
+            "covered": 732,
+            "skipped": 261,
+            "pct": 73.72
+          }
+        },
+        "src": {
+          "lines": {
+            "total": 3819,
+            "covered": 2564,
+            "skipped": 1255,
+            "pct": 67.14
+          },
+          "functions": {
+            "total": 143,
+            "covered": 106,
+            "skipped": 37,
+            "pct": 74.13
+          },
+          "branches": {
+            "total": 993,
+            "covered": 732,
+            "skipped": 261,
+            "pct": 73.72
+          }
+        },
+        "src/core": {
+          "lines": {
+            "total": 929,
+            "covered": 715,
+            "skipped": 214,
+            "pct": 76.96
+          },
+          "functions": {
+            "total": 42,
+            "covered": 39,
+            "skipped": 3,
+            "pct": 92.86
+          },
+          "branches": {
+            "total": 267,
+            "covered": 206,
+            "skipped": 61,
+            "pct": 77.15
+          }
+        },
+        "src/mcp": {
+          "lines": {
+            "total": 1354,
+            "covered": 649,
+            "skipped": 705,
+            "pct": 47.93
+          },
+          "functions": {
+            "total": 52,
+            "covered": 27,
+            "skipped": 25,
+            "pct": 51.92
+          },
+          "branches": {
+            "total": 168,
+            "covered": 71,
+            "skipped": 97,
+            "pct": 42.26
+          }
+        },
+        "src/mcp/web": {
+          "lines": {
+            "total": 1129,
+            "covered": 425,
+            "skipped": 704,
+            "pct": 37.64
+          },
+          "functions": {
+            "total": 47,
+            "covered": 22,
+            "skipped": 25,
+            "pct": 46.81
+          },
+          "branches": {
+            "total": 116,
+            "covered": 29,
+            "skipped": 87,
+            "pct": 25
+          }
+        },
+        "src/parsers": {
+          "lines": {
+            "total": 509,
+            "covered": 403,
+            "skipped": 106,
+            "pct": 79.17
+          },
+          "functions": {
+            "total": 19,
+            "covered": 16,
+            "skipped": 3,
+            "pct": 84.21
+          },
+          "branches": {
+            "total": 145,
+            "covered": 101,
+            "skipped": 44,
+            "pct": 69.66
+          }
+        },
+        "src/react": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/templates": {
+          "lines": {
+            "total": 114,
+            "covered": 112,
+            "skipped": 2,
+            "pct": 98.25
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 42,
+            "covered": 38,
+            "skipped": 4,
+            "pct": 90.48
+          }
+        },
+        "src/website": {
+          "lines": {
+            "total": 269,
+            "covered": 269,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 258,
+            "covered": 251,
+            "skipped": 7,
+            "pct": 97.29
+          }
+        }
+      },
+      "fileSummaries": {
+        "src/cli.ts": {
+          "lines": {
+            "total": 254,
+            "covered": 141,
+            "skipped": 113,
+            "pct": 55.51
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 17,
+            "skipped": 26,
+            "pct": 39.53
+          }
+        },
+        "src/index.ts": {
+          "lines": {
+            "total": 224,
+            "covered": 185,
+            "skipped": 39,
+            "pct": 82.59
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 51,
+            "covered": 34,
+            "skipped": 17,
+            "pct": 66.67
+          }
+        },
+        "src/server.ts": {
+          "lines": {
+            "total": 64,
+            "covered": 12,
+            "skipped": 52,
+            "pct": 18.75
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/aggregator.ts": {
+          "lines": {
+            "total": 91,
+            "covered": 87,
+            "skipped": 4,
+            "pct": 95.6
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 17,
+            "covered": 16,
+            "skipped": 1,
+            "pct": 94.12
+          }
+        },
+        "src/core/backfill.ts": {
+          "lines": {
+            "total": 178,
+            "covered": 2,
+            "skipped": 176,
+            "pct": 1.12
+          },
+          "functions": {
+            "total": 3,
+            "covered": 0,
+            "skipped": 3,
+            "pct": 0
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/core/badge.ts": {
+          "lines": {
+            "total": 62,
+            "covered": 60,
+            "skipped": 2,
+            "pct": 96.77
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 30,
+            "covered": 29,
+            "skipped": 1,
+            "pct": 96.67
+          }
+        },
+        "src/core/git.ts": {
+          "lines": {
+            "total": 81,
+            "covered": 67,
+            "skipped": 14,
+            "pct": 82.72
+          },
+          "functions": {
+            "total": 5,
+            "covered": 5,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 30,
+            "skipped": 20,
+            "pct": 60
+          }
+        },
+        "src/core/history.ts": {
+          "lines": {
+            "total": 194,
+            "covered": 184,
+            "skipped": 10,
+            "pct": 94.85
+          },
+          "functions": {
+            "total": 8,
+            "covered": 8,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 50,
+            "covered": 36,
+            "skipped": 14,
+            "pct": 72
+          }
+        },
+        "src/core/lcov-normalizer.ts": {
+          "lines": {
+            "total": 134,
+            "covered": 133,
+            "skipped": 1,
+            "pct": 99.25
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 70,
+            "covered": 60,
+            "skipped": 10,
+            "pct": 85.71
+          }
+        },
+        "src/core/presets.ts": {
+          "lines": {
+            "total": 84,
+            "covered": 78,
+            "skipped": 6,
+            "pct": 92.86
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 6,
+            "covered": 3,
+            "skipped": 3,
+            "pct": 50
+          }
+        },
+        "src/core/store.ts": {
+          "lines": {
+            "total": 105,
+            "covered": 104,
+            "skipped": 1,
+            "pct": 99.05
+          },
+          "functions": {
+            "total": 12,
+            "covered": 12,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 44,
+            "covered": 32,
+            "skipped": 12,
+            "pct": 72.73
+          }
+        },
+        "src/mcp/index.ts": {
+          "lines": {
+            "total": 35,
+            "covered": 34,
+            "skipped": 1,
+            "pct": 97.14
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 9,
+            "covered": 8,
+            "skipped": 1,
+            "pct": 88.89
+          }
+        },
+        "src/mcp/render.ts": {
+          "lines": {
+            "total": 181,
+            "covered": 181,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 43,
+            "covered": 34,
+            "skipped": 9,
+            "pct": 79.07
+          }
+        },
+        "src/mcp/web-modules.ts": {
+          "lines": {
+            "total": 9,
+            "covered": 9,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/mcp/web/client.mjs": {
+          "lines": {
+            "total": 252,
+            "covered": 85,
+            "skipped": 167,
+            "pct": 33.73
+          },
+          "functions": {
+            "total": 11,
+            "covered": 5,
+            "skipped": 6,
+            "pct": 45.45
+          },
+          "branches": {
+            "total": 13,
+            "covered": 5,
+            "skipped": 8,
+            "pct": 38.46
+          }
+        },
+        "src/mcp/web/dispatch.mjs": {
+          "lines": {
+            "total": 159,
+            "covered": 18,
+            "skipped": 141,
+            "pct": 11.32
+          },
+          "functions": {
+            "total": 3,
+            "covered": 1,
+            "skipped": 2,
+            "pct": 33.33
+          },
+          "branches": {
+            "total": 5,
+            "covered": 1,
+            "skipped": 4,
+            "pct": 20
+          }
+        },
+        "src/mcp/web/handshake.mjs": {
+          "lines": {
+            "total": 61,
+            "covered": 22,
+            "skipped": 39,
+            "pct": 36.07
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 21,
+            "covered": 1,
+            "skipped": 20,
+            "pct": 4.76
+          }
+        },
+        "src/mcp/web/index.mjs": {
+          "lines": {
+            "total": 6,
+            "covered": 0,
+            "skipped": 6,
+            "pct": 0
+          },
+          "functions": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          },
+          "branches": {
+            "total": 1,
+            "covered": 0,
+            "skipped": 1,
+            "pct": 0
+          }
+        },
+        "src/mcp/web/model-context.mjs": {
+          "lines": {
+            "total": 247,
+            "covered": 131,
+            "skipped": 116,
+            "pct": 53.04
+          },
+          "functions": {
+            "total": 18,
+            "covered": 8,
+            "skipped": 10,
+            "pct": 44.44
+          },
+          "branches": {
+            "total": 34,
+            "covered": 11,
+            "skipped": 23,
+            "pct": 32.35
+          }
+        },
+        "src/mcp/web/ui.mjs": {
+          "lines": {
+            "total": 256,
+            "covered": 146,
+            "skipped": 110,
+            "pct": 57.03
+          },
+          "functions": {
+            "total": 7,
+            "covered": 6,
+            "skipped": 1,
+            "pct": 85.71
+          },
+          "branches": {
+            "total": 36,
+            "covered": 10,
+            "skipped": 26,
+            "pct": 27.78
+          }
+        },
+        "src/mcp/web/url.mjs": {
+          "lines": {
+            "total": 148,
+            "covered": 23,
+            "skipped": 125,
+            "pct": 15.54
+          },
+          "functions": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          },
+          "branches": {
+            "total": 6,
+            "covered": 1,
+            "skipped": 5,
+            "pct": 16.67
+          }
+        },
+        "src/parsers/cobertura.ts": {
+          "lines": {
+            "total": 121,
+            "covered": 110,
+            "skipped": 11,
+            "pct": 90.91
+          },
+          "functions": {
+            "total": 2,
+            "covered": 2,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 22,
+            "covered": 11,
+            "skipped": 11,
+            "pct": 50
+          }
+        },
+        "src/parsers/index.ts": {
+          "lines": {
+            "total": 52,
+            "covered": 46,
+            "skipped": 6,
+            "pct": 88.46
+          },
+          "functions": {
+            "total": 6,
+            "covered": 6,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 27,
+            "covered": 22,
+            "skipped": 5,
+            "pct": 81.48
+          }
+        },
+        "src/parsers/json.ts": {
+          "lines": {
+            "total": 124,
+            "covered": 44,
+            "skipped": 80,
+            "pct": 35.48
+          },
+          "functions": {
+            "total": 3,
+            "covered": 2,
+            "skipped": 1,
+            "pct": 66.67
+          },
+          "branches": {
+            "total": 17,
+            "covered": 9,
+            "skipped": 8,
+            "pct": 52.94
+          }
+        },
+        "src/parsers/lcov.ts": {
+          "lines": {
+            "total": 185,
+            "covered": 180,
+            "skipped": 5,
+            "pct": 97.3
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 68,
+            "covered": 52,
+            "skipped": 16,
+            "pct": 76.47
+          }
+        },
+        "src/parsers/registry.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 23,
+            "skipped": 4,
+            "pct": 85.19
+          },
+          "functions": {
+            "total": 4,
+            "covered": 2,
+            "skipped": 2,
+            "pct": 50
+          },
+          "branches": {
+            "total": 11,
+            "covered": 7,
+            "skipped": 4,
+            "pct": 63.64
+          }
+        },
+        "src/react/index.ts": {
+          "lines": {
+            "total": 102,
+            "covered": 78,
+            "skipped": 24,
+            "pct": 76.47
+          },
+          "functions": {
+            "total": 16,
+            "covered": 11,
+            "skipped": 5,
+            "pct": 68.75
+          },
+          "branches": {
+            "total": 19,
+            "covered": 14,
+            "skipped": 5,
+            "pct": 73.68
+          }
+        },
+        "src/react/types.ts": {
+          "lines": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/app.js.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/ask-ai.ts": {
+          "lines": {
+            "total": 46,
+            "covered": 44,
+            "skipped": 2,
+            "pct": 95.65
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 31,
+            "covered": 27,
+            "skipped": 4,
+            "pct": 87.1
+          }
+        },
+        "src/templates/icons.ts": {
+          "lines": {
+            "total": 27,
+            "covered": 27,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/index.html.ts": {
+          "lines": {
+            "total": 38,
+            "covered": 38,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 4,
+            "covered": 4,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 11,
+            "covered": 11,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/prism.bundle.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/templates/styles.css.ts": {
+          "lines": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "src/website/index.ts": {
+          "lines": {
+            "total": 36,
+            "covered": 36,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 1,
+            "covered": 1,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 2,
+            "covered": 1,
+            "skipped": 1,
+            "pct": 50
+          }
+        },
+        "src/website/render.ts": {
+          "lines": {
+            "total": 233,
+            "covered": 233,
+            "skipped": 0,
+            "pct": 100
+          },
+          "functions": {
+            "total": 3,
+            "covered": 3,
+            "skipped": 0,
+            "pct": 100
+          },
+          "branches": {
+            "total": 256,
+            "covered": 250,
+            "skipped": 6,
+            "pct": 97.66
+          }
+        }
+      }
     }
   ],
   "refs": {
     "branches": {
-      "main": "037f224e9dc6c6f95cac15c03f4bca75200b5043",
+      "main": "77d365d540ff498fdd0aefff976408d78bc6d8da",
       "feat/ai-proxy-mcp-page": "7c14f78880c66889c05a86f72e958c34cb279d34"
     },
     "tags": {}
@@ -68736,6 +69690,19 @@
         "branchesPct": 73.23,
         "linesCovered": 2569,
         "linesTotal": 3819
+      },
+      {
+        "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+        "shortSha": "77d365d",
+        "date": "2026-10-27T05:01:21.000Z",
+        "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+        "author": "covpages-bot",
+        "branch": "main",
+        "linesPct": 67.14,
+        "functionsPct": 74.13,
+        "branchesPct": 73.72,
+        "linesCovered": 2564,
+        "linesTotal": 3819
       }
     ],
     "folders": {
@@ -69532,6 +70499,19 @@
           "branchesPct": 73.23,
           "linesCovered": 2569,
           "linesTotal": 3819
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 67.14,
+          "functionsPct": 74.13,
+          "branchesPct": 73.72,
+          "linesCovered": 2564,
+          "linesTotal": 3819
         }
       ],
       "src": [
@@ -70326,6 +71306,19 @@
           "functionsPct": 74.13,
           "branchesPct": 73.23,
           "linesCovered": 2569,
+          "linesTotal": 3819
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 67.14,
+          "functionsPct": 74.13,
+          "branchesPct": 73.72,
+          "linesCovered": 2564,
           "linesTotal": 3819
         }
       ],
@@ -71122,6 +72115,19 @@
           "branchesPct": 75.85,
           "linesCovered": 719,
           "linesTotal": 929
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 76.96,
+          "functionsPct": 92.86,
+          "branchesPct": 77.15,
+          "linesCovered": 715,
+          "linesTotal": 929
         }
       ],
       "src/parsers": [
@@ -71911,6 +72917,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 79.17,
+          "functionsPct": 84.21,
+          "branchesPct": 69.66,
+          "linesCovered": 403,
+          "linesTotal": 509
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 79.17,
           "functionsPct": 84.21,
@@ -72712,6 +73731,19 @@
           "branchesPct": 90.48,
           "linesCovered": 112,
           "linesTotal": 114
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 98.25,
+          "functionsPct": 100,
+          "branchesPct": 90.48,
+          "linesCovered": 112,
+          "linesTotal": 114
         }
       ],
       "src/react": [
@@ -73449,6 +74481,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -74198,6 +75243,19 @@
           "branchesPct": 97.29,
           "linesCovered": 269,
           "linesTotal": 269
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 97.29,
+          "linesCovered": 269,
+          "linesTotal": 269
         }
       ],
       "src/mcp": [
@@ -74694,6 +75752,19 @@
           "branchesPct": 41.32,
           "linesCovered": 650,
           "linesTotal": 1354
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 47.93,
+          "functionsPct": 51.92,
+          "branchesPct": 42.26,
+          "linesCovered": 649,
+          "linesTotal": 1354
         }
       ],
       "src/mcp/web": [
@@ -75189,6 +76260,19 @@
           "functionsPct": 46.81,
           "branchesPct": 23.48,
           "linesCovered": 426,
+          "linesTotal": 1129
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 37.64,
+          "functionsPct": 46.81,
+          "branchesPct": 25,
+          "linesCovered": 425,
           "linesTotal": 1129
         }
       ]
@@ -75981,6 +77065,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 55.51,
+          "functionsPct": 100,
+          "branchesPct": 39.53,
+          "linesCovered": 141,
+          "linesTotal": 254
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 55.51,
           "functionsPct": 100,
@@ -76782,6 +77879,19 @@
           "branchesPct": 66.67,
           "linesCovered": 185,
           "linesTotal": 224
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 82.59,
+          "functionsPct": 100,
+          "branchesPct": 66.67,
+          "linesCovered": 185,
+          "linesTotal": 224
         }
       ],
       "src/server.ts": [
@@ -77571,6 +78681,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 18.75,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 12,
+          "linesTotal": 64
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 18.75,
           "functionsPct": 0,
@@ -78372,6 +79495,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/core/aggregator.ts": [
@@ -79161,6 +80297,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.6,
+          "functionsPct": 100,
+          "branchesPct": 94.12,
+          "linesCovered": 87,
+          "linesTotal": 91
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.6,
           "functionsPct": 100,
@@ -79962,6 +81111,19 @@
           "branchesPct": 100,
           "linesCovered": 2,
           "linesTotal": 178
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 1.12,
+          "functionsPct": 0,
+          "branchesPct": 100,
+          "linesCovered": 2,
+          "linesTotal": 178
         }
       ],
       "src/core/badge.ts": [
@@ -80751,6 +81913,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 96.77,
+          "functionsPct": 100,
+          "branchesPct": 96.67,
+          "linesCovered": 60,
+          "linesTotal": 62
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 96.77,
           "functionsPct": 100,
@@ -81552,6 +82727,19 @@
           "branchesPct": 54,
           "linesCovered": 71,
           "linesTotal": 81
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 82.72,
+          "functionsPct": 100,
+          "branchesPct": 60,
+          "linesCovered": 67,
+          "linesTotal": 81
         }
       ],
       "src/core/history.ts": [
@@ -82347,6 +83535,19 @@
           "branchesPct": 71.43,
           "linesCovered": 184,
           "linesTotal": 194
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 94.85,
+          "functionsPct": 100,
+          "branchesPct": 72,
+          "linesCovered": 184,
+          "linesTotal": 194
         }
       ],
       "src/core/lcov-normalizer.ts": [
@@ -83136,6 +84337,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 99.25,
+          "functionsPct": 100,
+          "branchesPct": 85.71,
+          "linesCovered": 133,
+          "linesTotal": 134
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 99.25,
           "functionsPct": 100,
@@ -83937,6 +85151,19 @@
           "branchesPct": 50,
           "linesCovered": 78,
           "linesTotal": 84
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 92.86,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 78,
+          "linesTotal": 84
         }
       ],
       "src/parsers/cobertura.ts": [
@@ -84726,6 +85953,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 90.91,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 110,
+          "linesTotal": 121
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 90.91,
           "functionsPct": 100,
@@ -85527,6 +86767,19 @@
           "branchesPct": 81.48,
           "linesCovered": 46,
           "linesTotal": 52
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 88.46,
+          "functionsPct": 100,
+          "branchesPct": 81.48,
+          "linesCovered": 46,
+          "linesTotal": 52
         }
       ],
       "src/parsers/json.ts": [
@@ -86316,6 +87569,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 35.48,
+          "functionsPct": 66.67,
+          "branchesPct": 52.94,
+          "linesCovered": 44,
+          "linesTotal": 124
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 35.48,
           "functionsPct": 66.67,
@@ -87117,6 +88383,19 @@
           "branchesPct": 76.47,
           "linesCovered": 180,
           "linesTotal": 185
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 97.3,
+          "functionsPct": 100,
+          "branchesPct": 76.47,
+          "linesCovered": 180,
+          "linesTotal": 185
         }
       ],
       "src/templates/app.js.ts": [
@@ -87906,6 +89185,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -88707,6 +89999,19 @@
           "branchesPct": 100,
           "linesCovered": 27,
           "linesTotal": 27
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 27,
+          "linesTotal": 27
         }
       ],
       "src/templates/index.html.ts": [
@@ -89496,6 +90801,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 38,
+          "linesTotal": 38
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -90297,6 +91615,19 @@
           "branchesPct": 100,
           "linesCovered": 1,
           "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
         }
       ],
       "src/react/index.ts": [
@@ -91034,6 +92365,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 76.47,
+          "functionsPct": 68.75,
+          "branchesPct": 73.68,
+          "linesCovered": 78,
+          "linesTotal": 102
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 76.47,
           "functionsPct": 68.75,
@@ -91783,6 +93127,19 @@
           "branchesPct": 100,
           "linesCovered": 0,
           "linesTotal": 0
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 0,
+          "linesTotal": 0
         }
       ],
       "src/templates/prism.bundle.ts": [
@@ -92520,6 +93877,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 1,
+          "linesTotal": 1
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -93269,6 +94639,19 @@
           "branchesPct": 50,
           "linesCovered": 36,
           "linesTotal": 36
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 50,
+          "linesCovered": 36,
+          "linesTotal": 36
         }
       ],
       "src/website/render.ts": [
@@ -94012,6 +95395,19 @@
           "branchesPct": 97.66,
           "linesCovered": 233,
           "linesTotal": 233
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 97.66,
+          "linesCovered": 233,
+          "linesTotal": 233
         }
       ],
       "src/core/store.ts": [
@@ -94690,6 +96086,19 @@
           "branchesPct": 72.09,
           "linesCovered": 104,
           "linesTotal": 105
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 99.05,
+          "functionsPct": 100,
+          "branchesPct": 72.73,
+          "linesCovered": 104,
+          "linesTotal": 105
         }
       ],
       "src/parsers/registry.ts": [
@@ -95316,6 +96725,19 @@
           "branchesPct": 63.64,
           "linesCovered": 23,
           "linesTotal": 27
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 85.19,
+          "functionsPct": 50,
+          "branchesPct": 63.64,
+          "linesCovered": 23,
+          "linesTotal": 27
         }
       ],
       "src/mcp/index.ts": [
@@ -95806,6 +97228,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 97.14,
+          "functionsPct": 100,
+          "branchesPct": 88.89,
+          "linesCovered": 34,
+          "linesTotal": 35
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 97.14,
           "functionsPct": 100,
@@ -96308,6 +97743,19 @@
           "branchesPct": 79.07,
           "linesCovered": 181,
           "linesTotal": 181
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 79.07,
+          "linesCovered": 181,
+          "linesTotal": 181
         }
       ],
       "src/mcp/web-modules.ts": [
@@ -96798,6 +98246,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 100,
+          "functionsPct": 100,
+          "branchesPct": 100,
+          "linesCovered": 9,
+          "linesTotal": 9
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 100,
           "functionsPct": 100,
@@ -97300,6 +98761,19 @@
           "branchesPct": 38.46,
           "linesCovered": 86,
           "linesTotal": 252
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 33.73,
+          "functionsPct": 45.45,
+          "branchesPct": 38.46,
+          "linesCovered": 85,
+          "linesTotal": 252
         }
       ],
       "src/mcp/web/dispatch.mjs": [
@@ -97790,6 +99264,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 11.32,
+          "functionsPct": 33.33,
+          "branchesPct": 20,
+          "linesCovered": 18,
+          "linesTotal": 159
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 11.32,
           "functionsPct": 33.33,
@@ -98292,6 +99779,19 @@
           "branchesPct": 4.76,
           "linesCovered": 22,
           "linesTotal": 61
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 36.07,
+          "functionsPct": 100,
+          "branchesPct": 4.76,
+          "linesCovered": 22,
+          "linesTotal": 61
         }
       ],
       "src/mcp/web/index.mjs": [
@@ -98782,6 +100282,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 0,
+          "functionsPct": 0,
+          "branchesPct": 0,
+          "linesCovered": 0,
+          "linesTotal": 6
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 0,
           "functionsPct": 0,
@@ -99284,6 +100797,19 @@
           "branchesPct": 32.35,
           "linesCovered": 131,
           "linesTotal": 247
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 53.04,
+          "functionsPct": 44.44,
+          "branchesPct": 32.35,
+          "linesCovered": 131,
+          "linesTotal": 247
         }
       ],
       "src/mcp/web/ui.mjs": [
@@ -99778,6 +101304,19 @@
           "linesPct": 57.03,
           "functionsPct": 85.71,
           "branchesPct": 22.86,
+          "linesCovered": 146,
+          "linesTotal": 256
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 57.03,
+          "functionsPct": 85.71,
+          "branchesPct": 27.78,
           "linesCovered": 146,
           "linesTotal": 256
         }
@@ -100276,6 +101815,19 @@
           "branchesPct": 16.67,
           "linesCovered": 23,
           "linesTotal": 148
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
+          "branch": "main",
+          "linesPct": 15.54,
+          "functionsPct": 16.67,
+          "branchesPct": 16.67,
+          "linesCovered": 23,
+          "linesTotal": 148
         }
       ],
       "src/templates/ask-ai.ts": [
@@ -100701,6 +102253,19 @@
           "date": "2026-10-27T04:53:27.000Z",
           "message": "Merge pull request #22 from yongjhih/feat/commit-item-tree-url\n\nfeat: switch to commit snapshot with tree/<commit-id> route on commit click",
           "author": "yongjhih",
+          "branch": "main",
+          "linesPct": 95.65,
+          "functionsPct": 100,
+          "branchesPct": 87.1,
+          "linesCovered": 44,
+          "linesTotal": 46
+        },
+        {
+          "sha": "77d365d540ff498fdd0aefff976408d78bc6d8da",
+          "shortSha": "77d365d",
+          "date": "2026-10-27T05:01:21.000Z",
+          "message": "feat: automatically generate root 404.html when covpages is in subfolder",
+          "author": "covpages-bot",
           "branch": "main",
           "linesPct": 95.65,
           "functionsPct": 100,
