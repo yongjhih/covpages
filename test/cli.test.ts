@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import path from 'node:path';
 import fs from 'node:fs';
+import { execSync } from 'node:child_process';
 import { runCli } from '../src/cli.js';
 
 describe('Covpages CLI', () => {
@@ -54,5 +55,12 @@ describe('Covpages CLI', () => {
         fs.writeFileSync(workflowPath, backupContent, 'utf-8');
       }
     }
+  });
+
+  it('bin/covpages.js handles invocation via node and displays help', () => {
+    const binPath = path.resolve('bin/covpages.js');
+    const output = execSync(`node "${binPath}" --help`, { encoding: 'utf-8' });
+    expect(output).toContain('covpages [command] [options]');
+    expect(output).toContain('generate');
   });
 });
